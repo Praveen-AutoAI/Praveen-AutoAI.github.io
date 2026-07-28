@@ -14,22 +14,14 @@ If there's one thing I'd recommend, it's this:
 
 > Never consider a model transfer successful just because MATLAB imported the ONNX file. Consider it successful only when the MATLAB prediction matches the original PyTorch prediction for the same input.
 
-The workflow I follow today looks like this:
+**Practical Workflow**
 
-```mermaid
-flowchart LR
-
-A[PyTorch Model]
-B[ONNX Export]
-C[ONNX Runtime Validation]
-D[MATLAB Import]
-E[MATLAB Validation]
-
-A --> B
-B --> C
-C --> D
-D --> E
-```
+1. Train and validate the model in PyTorch.
+2. Export the trained model to ONNX.
+3. Verify predictions using ONNX Runtime.
+4. Import the ONNX model into MATLAB.
+5. Compare MATLAB predictions against ONNX Runtime outputs.
+6. Only then consider the model transfer successful.
 
 ---
 
