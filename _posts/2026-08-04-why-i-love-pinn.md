@@ -72,33 +72,17 @@ Unfortunately, real-world engineering projects introduced two massive challenges
 
 ### Challenge #1: Sparse Data Availability
 
-Always.
-
-And trust me, you won't believe it sometimes.
-
-You get:
-
-```text
-10 data points
-```
-
-and everyone calls it a dataset 🙂
-
-Meanwhile, most deep learning examples use thousands or millions of samples.
+Most of the time. You would get 15-20 data points and they call it a dataset ;(
 
 ---
 
-### Challenge #2: Convincing Domain Experts
+### Challenge #2: Convincing Engineering Domain Experts 
 
-Also always.
-
-Even after building a highly accurate model, the first question during reviews is usually:
+Always the challenge. Even after building a highly accurate model, the first question during reviews is usually:
 
 > "Why should I trust this prediction?"
 
-And honestly, that is a perfectly reasonable question.
-
-Engineering experts trust physics more than black-box models.
+And honestly, that is a perfectly reasonable question. Engineering experts trust physics more than black-box models. I should admit that those critical questions from them was the drive for me to learn and apply PINN at my work.
 
 ---
 
