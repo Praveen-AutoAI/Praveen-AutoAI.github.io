@@ -6,7 +6,7 @@ categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
-### Why I Love PINNs :)
+### Why I Love PINNs & You will T00oo :)
 
 The datasets I typically encounter in engineering projects fall into two categories:
 
