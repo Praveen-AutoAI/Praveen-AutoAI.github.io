@@ -1,11 +1,67 @@
-Why I Love PINN: :)
+---
+layout: post
+title: "Why I Love PINNs :)"
+date: 2026-08-04
+categories: [Machine Learning, Engineering]
+tags: [PINN, Deep Learning, Physics, AI]
+---
 
-The datasets I typically get fall into 2 categories: Case #1 - data is large but with NOISE (large noise, even the testing engineer would doubt it), and Case #2 - data is scarce, barely 10 data points but credible (the test engineer is confident, while some noise is always part of engineering data).
+# Why I Love PINNs :)
 
-Engineering domains have the blessing of great scientists and engineers in the form of governing equations, but come with the curse of uncertainty due to component-to-component variations from manufacturing, processes, and measurements, test-to-test variations, etc.
+The datasets I typically encounter in engineering fall into two categories:
 
-While I was a fan of deep learning (since I am lazy, just load the data and train neural networks to find the function :)), I faced two massive challenge at my work: a) Sparse data availability (Always... and you won't believe it, you get 10 data points and they call it a dataset ;)) & b) Convincing engineering domain experts to trust my AI model (Always... at all stages of reviews).
+### Case #1: Plenty of Data, Plenty of Noise
 
-The saviour was "Physics-Informed Neural Networks" (PINN), which solved both of the above issues. PINN helps us incorporate the known governing equation of the system into the loss function during training and ensures that the neural network obeys the governing law that we put in and the data we feed to train. It is a beautiful synergy.
+There are thousands of data points available, but the noise level is so high that even the testing engineer doubts the data.
 
-This post will convince you that PINNs are a good and natural choice for engineering domain problems, solving the noisy characteristics of the data and the nosy characteristics of engineering expert reviewers
+### Case #2: Scarce Data, High Confidence
+
+There are barely 10 data points available, but the testing engineer is confident about every single one of them. Of course, some noise is always part of engineering data, but the measurements themselves are considered trustworthy.
+
+If you work in engineering domains long enough, you'll realize that this is the norm rather than the exception.
+
+---
+
+## Engineering's Blessing and Curse
+
+Engineering domains come with a unique blessing.
+
+Over decades, great scientists and engineers have built mathematical models describing how systems behave:
+
+- Heat transfer equations
+- Diffusion equations
+- Conservation laws
+- Electrochemistry equations
+- Structural mechanics equations
+
+In other words, we often know *how the system should behave*.
+
+At the same time, engineering is filled with uncertainty:
+
+- Manufacturing variations
+- Material inconsistencies
+- Measurement errors
+- Process variations
+- Test-to-test variations
+- Environmental effects
+
+This is the curse.
+
+We have beautiful physics, but messy data.
+
+---
+
+## My Deep Learning Problem
+
+I have always been a fan of deep learning.
+
+Partly because I am lazy.
+
+The workflow is attractive:
+
+```text
+Load Data
+    ↓
+Train Neural Network
+    ↓
+Find Function
