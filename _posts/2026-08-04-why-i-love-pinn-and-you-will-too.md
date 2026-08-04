@@ -169,9 +169,15 @@ And that is incredibly powerful.
 
 ### Final Thoughts
 
-I still love deep learning.
+Advantages of PINN:
+a) Works Well with Small Datasets 
+b) Physics-Based Generalization (using our existing knowledge in the form of mathematical governing laws)
+c) Higher Trust and Explainability
+d) Reduced Dependence on Noisy Data (noise source sensor noise, measurement uncertainty, manufacturing variations, etc.)
+e) Enables parameter discover (Called as Inverse PINN)
+f) very suitable for Engineering AI
 
-But engineering problems are fundamentally different from image classification or language modeling problems. We rarely have unlimited data. What we do have is physics. Physics-Informed Neural Networks provide a natural way to combine both worlds.
+I still love deep learning. But engineering problems are fundamentally different from image classification or language modeling problems. We rarely have unlimited data. What we do have is physics. Physics-Informed Neural Networks provide a natural way to combine both worlds.
 
 They help us:
 - Work with sparse datasets
