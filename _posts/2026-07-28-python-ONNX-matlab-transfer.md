@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Pytorch to ONNX to MATLAB Model Transfer"
+date: 2026-08-04
+categories: [Machine Learning, Engineering]
+tags: [PINN, Physics, Deep Learning, AI]
+---
+
 # Practical Python to ONNX to MATLAB Successful Model Transfer
 
 Moving a trained model from Python to MATLAB sounds deceptively simple:
