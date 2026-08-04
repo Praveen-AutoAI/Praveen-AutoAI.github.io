@@ -1,1 +1,11 @@
-2026-08-04-universe-of-inverse-pinn.md
+Why I Love PINN: :)
+
+The datasets I typically get fall into 2 categories: Case #1 - data is large but with NOISE (large noise, even the testing engineer would doubt it), and Case #2 - data is scarce, barely 10 data points but credible (the test engineer is confident, while some noise is always part of engineering data).
+
+Engineering domains have the blessing of great scientists and engineers in the form of governing equations, but come with the curse of uncertainty due to component-to-component variations from manufacturing, processes, and measurements, test-to-test variations, etc.
+
+While I was a fan of deep learning (since I am lazy, just load the data and train neural networks to find the function :)), I faced two massive challenge at my work: a) Sparse data availability (Always... and you won't believe it, you get 10 data points and they call it a dataset ;)) & b) Convincing engineering domain experts to trust my AI model (Always... at all stages of reviews).
+
+The saviour was "Physics-Informed Neural Networks" (PINN), which solved both of the above issues. PINN helps us incorporate the known governing equation of the system into the loss function during training and ensures that the neural network obeys the governing law that we put in and the data we feed to train. It is a beautiful synergy.
+
+This post will convince you that PINNs are a good and natural choice for engineering domain problems, solving the noisy characteristics of the data and the nosy characteristics of engineering expert reviewers
