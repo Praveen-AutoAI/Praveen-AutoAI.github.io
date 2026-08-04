@@ -161,6 +161,11 @@ to propogation into the prediction
 > "What physical mechanism is causing this behavior?"
 And that is incredibly powerful.
 
+### Challenges in PINN:
+- Selecting the governing equation - Adding all the governing equation can lead to fiasco => adding the right, simple and appropriate enough equation will lead to successful deployment
+- Training instability & lack of convergence - Sometimes you feel you are in wild forest without any clue => progressive addition of physics equation, adjusting the learning rate for weights and physics parameters are needed to solve.
+- Computation intensive - Especially for higher-order derivative and complex multi-physics system => better to approximate to first-order system 
+
 ---
 
 ### Final Thoughts
