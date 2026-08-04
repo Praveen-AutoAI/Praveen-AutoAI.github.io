@@ -6,7 +6,7 @@ categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
-# Why I Love PINNs :)
+## Why I Love PINNs :)
 
 The datasets I typically encounter in engineering projects fall into two categories:
 
@@ -26,7 +26,7 @@ If you have worked in engineering long enough, you know this is not an exception
 
 Engineering domains have a unique advantage.
 
-We are blessed with decades of work from great scientists and engineers in the form of governing equations:
+We are **blessed with decades of work from great scientists and engineers in the form of governing equations**:
 
 - Heat transfer equations
 - Diffusion equations
