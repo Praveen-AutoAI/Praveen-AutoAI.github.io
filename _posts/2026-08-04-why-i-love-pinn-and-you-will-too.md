@@ -112,6 +112,10 @@ where:
 - **Data Loss** ensures agreement with measurements.
 - **Physics Loss** ensures compliance with governing equations.
 
+## PINN Architecture
+
+/assets/images/PINN_Intro.png
+
 ---
 
 ### Why This Is Beautiful
