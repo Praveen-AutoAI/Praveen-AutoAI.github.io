@@ -189,9 +189,11 @@ Most important advantage in my experience are, they help in encountering both:
 
 ### And that is why I love PINNs and you will t2o.
 
-### Gentle References:
-1) https://in.mathworks.com/discovery/physics-informed-neural-networks.html
-2) https://medium.com/@vivek-karmarkar/a-short-introduction-to-physics-informed-neural-networks-pinns-cd342f5a3c5e
-3) https://benmoseley.blog/my-research/so-what-is-a-physics-informed-neural-network/
-4) https://dcn.nat.fau.eu/pinns-introductory-code-for-the-heat-equation/
-5) https://github.com/Vaezi92/PINNs-TF2.x
+
+### Gentle References
+
+1. [MathWorks: Physics-Informed Neural Networks](https://in.mathworks.com/discovery/physics-informed-neural-networks.html)
+2. [A Short Introduction to Physics-Informed Neural Networks (PINNs)](https://medium.com/@vivek-karmarkar/a-short-introduction-to-physics-informed-neural-networks-pinns-cd342f5a3c5e)
+3. [So What Is a Physics-Informed Neural Network?](https://benmoseley.blog/my-research/so-what-is-a-physics-informed-neural-network/)
+4. [PINNs Introductory Code for the Heat Equation](https://dcn.nat.fau.eu/pinns-introductory-code-for-the-heat-equation/)
+5. [PINNs-TF2.x GitHub Repository](https://github.com/Vaezi92/PINNs-TF2.x)
