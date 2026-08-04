@@ -171,14 +171,9 @@ And that is incredibly powerful.
 
 I still love deep learning.
 
-But engineering problems are fundamentally different from image classification or language modeling problems.
-
-We rarely have unlimited data. What we do have is physics.
-
-Physics-Informed Neural Networks provide a natural way to combine both worlds.
+But engineering problems are fundamentally different from image classification or language modeling problems. We rarely have unlimited data. What we do have is physics. Physics-Informed Neural Networks provide a natural way to combine both worlds.
 
 They help us:
-
 - Work with sparse datasets
 - Improve trust and explainability
 - Incorporate scientific knowledge
@@ -187,8 +182,8 @@ They help us:
 
 Most importantly, they help solve both:
 
-- the **noisy characteristics of engineering data**, and
-- the **nosy characteristics of engineering reviewers** 🙂
+- the **noisy and sparse characteristics of engineering data**, and
+- the **nosy and critical characteristics of engineering reviewers** 🙂
 
-### **And that is why I love PINNs and you will too.**
+### And that is why I love PINNs and you will too.
 
