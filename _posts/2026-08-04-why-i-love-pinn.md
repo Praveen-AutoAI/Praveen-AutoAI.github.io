@@ -6,15 +6,15 @@ categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
-## Why I Love PINNs :)
+### Why I Love PINNs :)
 
 The datasets I typically encounter in engineering projects fall into two categories:
 
-### Case #1: Lots of Data, Lots of Noise
+#### Case #1: Lots of Data, Lots of Noise
 
 The dataset is large, but the noise is so significant that even the testing engineer starts questioning the measurements.
 
-### Case #2: Very Little Data, But Credible
+#### Case #2: Very Little Data, But Credible
 
 The dataset consists of barely 10 data points, but the testing engineer is confident about every one of them. Of course, some noise is always part of engineering measurements, but the data itself is considered trustworthy.
 
@@ -22,7 +22,7 @@ If you have worked in engineering long enough, you know this is not an exception
 
 ---
 
-## Engineering's Blessing and Curse
+### Engineering's Blessing and Curse
 
 Engineering domains have a unique advantage.
 
@@ -50,7 +50,7 @@ So while physics is often well understood, the data is rarely perfect.
 
 ---
 
-## My Deep Learning Dilemma
+### My Deep Learning Dilemma
 
 I have always been a fan of deep learning.
 
@@ -70,13 +70,13 @@ Simple.
 
 Unfortunately, real-world engineering projects introduced two massive challenges.
 
-### Challenge #1: Sparse Data Availability
+#### Challenge #1: Sparse Data Availability
 
 Most of the time. You would get 15-20 data points and they call it a dataset ;(
 
 ---
 
-### Challenge #2: Convincing Engineering Domain Experts 
+#### Challenge #2: Convincing Engineering Domain Experts 
 
 Always the challenge. Even after building a highly accurate model, the first question during reviews is usually:
 
@@ -86,7 +86,7 @@ And honestly, that is a perfectly reasonable question. Engineering experts trust
 
 ---
 
-## Enter Physics-Informed Neural Networks (PINNs)
+### Enter Physics-Informed Neural Networks (PINNs)
 
 The savior was **Physics-Informed Neural Networks (PINNs)**.
 
@@ -114,7 +114,7 @@ where:
 
 ---
 
-## Why This Is Beautiful
+### Why This Is Beautiful
 
 With PINNs, even when data is scarce, the model is guided by decades of scientific knowledge embedded in the governing equations.
 
@@ -122,7 +122,7 @@ This dramatically improves generalization and most importantly interpretability 
 
 ---
 
-## Solving the Reviewer Problem
+### Solving the Reviewer Problem
 
 One unexpected benefit of PINNs is how they change technical discussions.
 
@@ -138,7 +138,7 @@ That creates a completely different **level of trust**.
 
 ---
 
-## What Excites Me Most
+### What Excites Me Most
 
 The most exciting aspect of PINNs is that they are not just prediction tools.
 
@@ -164,7 +164,7 @@ And that is incredibly powerful.
 
 ---
 
-## Final Thoughts
+### Final Thoughts
 
 I still love deep learning.
 
