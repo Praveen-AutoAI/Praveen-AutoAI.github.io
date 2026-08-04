@@ -103,9 +103,9 @@ at the same time.
 
 The loss function becomes:
 
-\[
-Loss = Loss_{Data} + \lambda Loss_{Physics}
-\]
+```text
+Loss = Loss_Data + λ × Loss_Physics
+```
 
 where:
 
