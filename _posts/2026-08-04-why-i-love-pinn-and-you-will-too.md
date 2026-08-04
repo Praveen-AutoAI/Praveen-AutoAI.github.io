@@ -180,5 +180,5 @@ Most important advantage in my experience are, they help in encountering both:
 - the **noisy and sparse characteristics of engineering data**, and
 - the **nosy and critical characteristics of engineering reviewers** 🙂
 
-### And that is why I love PINNs and you will too.
+### And that is why I love PINNs and you will t2o.
 
