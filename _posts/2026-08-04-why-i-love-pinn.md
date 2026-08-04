@@ -26,7 +26,7 @@ If you have worked in engineering long enough, you know this is not an exception
 
 Engineering domains have a unique advantage.
 
-We are **blessed with decades of work from great scientists and engineers in the form of governing equations**:
+Great scientists and engineers had dedicated their lives and **blessed us in the form of governing equations**:
 
 - Heat transfer equations
 - Diffusion equations
@@ -37,7 +37,7 @@ We are **blessed with decades of work from great scientists and engineers in the
 
 These equations describe how systems should behave.
 
-At the same time, engineering comes with unavoidable uncertainty:
+At the same time, engineering comes with **Curse of uncertainty***:
 
 - Component-to-component variation
 - Manufacturing tolerances
