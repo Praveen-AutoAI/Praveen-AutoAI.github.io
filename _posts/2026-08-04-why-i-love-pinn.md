@@ -118,19 +118,7 @@ where:
 
 With PINNs, even when data is scarce, the model is guided by decades of scientific knowledge embedded in the governing equations.
 
-Rather than learning only from:
-
-```text
-10 measurements
-```
-
-the model also learns from:
-
-```text
-The physics governing the system
-```
-
-This dramatically improves generalization and interpretability.
+This dramatically improves generalization and most importantly interpretability (Able to explain the model's prediction is considered so important in engineering domains).
 
 ---
 
@@ -146,9 +134,7 @@ With a PINN, the conversation shifts to:
 
 > "The model is fitting the data while obeying the same governing equations used in our engineering analysis."
 
-That creates a completely different level of trust.
-
-Physics becomes the bridge between AI and engineering expertise.
+That creates a completely different **level of trust**.
 
 ---
 
@@ -184,9 +170,7 @@ I still love deep learning.
 
 But engineering problems are fundamentally different from image classification or language modeling problems.
 
-We rarely have unlimited data.
-
-What we do have is physics.
+We rarely have unlimited data. What we do have is physics.
 
 Physics-Informed Neural Networks provide a natural way to combine both worlds.
 
@@ -203,4 +187,5 @@ Most importantly, they help solve both:
 - the **noisy characteristics of engineering data**, and
 - the **nosy characteristics of engineering reviewers** 🙂
 
-And that is why I love PINNs.
+And that is why I love PINNs and you will too.
+
