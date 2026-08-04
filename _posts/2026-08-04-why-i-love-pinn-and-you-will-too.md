@@ -155,14 +155,10 @@ Instead of finding only outputs, they can infer hidden physical parameters such 
 - Thermal constants
 - Battery degradation rates
 
-This moves the problem from:
-
+This moves the problem from pure prediction:
 > "What will happen?"
-
-to
-
+to propogation into the prediction 
 > "What physical mechanism is causing this behavior?"
-
 And that is incredibly powerful.
 
 ---
