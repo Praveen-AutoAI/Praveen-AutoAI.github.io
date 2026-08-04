@@ -166,12 +166,12 @@ And that is incredibly powerful.
 ### Final Thoughts
 
 Advantages of PINN:
--a) Works well with sparse datasets 
--b) Physics-Based generalization (using our existing knowledge in the form of mathematical governing laws)
--c) Higher trust and explainability
--d) Reduced dependence on noisy data (noise from sources like sensor noise, measurement uncertainty, manufacturing variations, etc.)
--e) Enables parameter discover (Intering meaning physical parameters & this area if PINN is called as Inverse PINN)
--f) Build models that engineers can actually believe (Amazing for Engineering AI)
+- Works well with sparse datasets 
+- Physics-Based generalization (using our existing knowledge in the form of mathematical governing laws)
+- Higher trust and explainability
+- Reduced dependence on noisy data (noise from sources like sensor noise, measurement uncertainty, manufacturing variations, etc.)
+- Enables parameter discover (Intering meaning physical parameters & this area if PINN is called as Inverse PINN)
+- Build models that engineers can actually believe (Amazing for Engineering AI)
 
 I still love deep learning. But engineering problems are fundamentally different from image classification or language modeling problems. We rarely have unlimited data. What we do have is physics. Physics-Informed Neural Networks provide a natural way to combine both worlds.
 
