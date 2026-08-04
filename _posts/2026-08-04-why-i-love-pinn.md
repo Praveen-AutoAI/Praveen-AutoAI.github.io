@@ -190,5 +190,5 @@ Most importantly, they help solve both:
 - the **noisy characteristics of engineering data**, and
 - the **nosy characteristics of engineering reviewers** 🙂
 
-And that is why I love PINNs and you will too.
+### **And that is why I love PINNs and you will too.**
 
