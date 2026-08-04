@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Pytorch to ONNX to MATLAB Model Transfer"
-date: 2026-08-04
+date: 2026-07-28
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
