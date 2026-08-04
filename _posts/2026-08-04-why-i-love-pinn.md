@@ -128,12 +128,14 @@ One interesting impact of PINNs is how they change technical discussions.
 
 With a conventional neural network, the conversation often becomes:
 
-> "How do we know this model will extrapolate correctly? How to explain the prediction, What is the inference from the prediction? I have a legacy mathematical model why should i trust this? "
+> "How do we know this model will extrapolate correctly?"
+> How to explain the prediction, What is the inference from the prediction?"
+> "I have a legacy mathematical model why should i trust this? "
 
 With a PINN, the conversation shifts to:
 
 > "The model is fitting the data while obeying the same governing equations used in our engineering analysis."
-> "The governing equation are these and coefficient derived conveys the physics"
+> "The governing equation are these and coefficient derived conveys such a trend"
 
 That creates a completely different **level of trust**.
 
