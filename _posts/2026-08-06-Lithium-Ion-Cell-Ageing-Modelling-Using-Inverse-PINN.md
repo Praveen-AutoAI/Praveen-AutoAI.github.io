@@ -114,3 +114,294 @@ The experimental data was extracted from:
 📄 **Paper:**  
 https://iopscience.iop.org/article/10.1149/2.1181714jes
 
+
+<h3>Physics Model</h3>
+
+<div style="font-size: 16px;
+border-left: 5px solid #2e86de;
+padding: 12px 18px;
+background-color: #f8f9fa;
+border-radius: 4px;
+">
+
+The degradation of lithium-ion batteries is a complex multi-dimensional phenomenon involving several interacting ageing mechanisms. While many degradation pathways exist, calendar ageing is primarily governed by **SEI (Solid Electrolyte Interphase) growth** and other parasitic side reactions occurring at the electrode-electrolyte interface.
+
+The objective of this work is not to develop a complete ageing model covering all degradation mechanisms. Instead, it aims to demonstrate how an **Inverse Physics-Informed Neural Network (iPINN)** can be used to identify temperature-dependent degradation parameters directly from sparse experimental observations.
+
+A richer dataset containing variations in temperature, SoC, depth-of-discharge, current rates, and other operating conditions would allow the formulation of a more comprehensive governing equation. However, for this demonstration, a simplified yet physically meaningful degradation model is adopted.
+
+---
+
+### Step 1: Start from the Capacity Loss Model
+
+Battery capacity loss is assumed to arise from two degradation mechanisms:
+
+- Diffusion-limited SEI growth
+- Long-term parasitic reactions
+
+This leads to the semi-empirical ageing model:
+
+$$
+Loss(t) = a\sqrt{t} + bt
+$$
+
+where:
+
+- \(a\) = degradation due to SEI growth
+- \(b\) = degradation due to long-term ageing reactions
+- \(t\) = storage time
+
+The first term dominates early-life ageing, while the second term represents slower, continuous degradation.
+
+---
+
+### Step 2: Define Remaining Capacity
+
+The PINN is trained on **normalized remaining capacity** rather than capacity loss.
+
+$$
+Q(t)=1-Loss(t)
+$$
+
+Substituting the ageing model:
+
+$$
+Q(t)=1-a\sqrt{t}-bt
+$$
+
+---
+
+### Step 3: Differentiate with Respect to Time
+
+PINNs enforce the governing differential equation, so we require the rate of change of capacity.
+
+Taking the derivative:
+
+$$
+\frac{dQ}{dt}
+=
+-\frac{d}{dt}\left(a\sqrt{t}+bt\right)
+$$
+
+Since
+
+$$
+\frac{d}{dt}\left(\sqrt{t}\right)
+=
+\frac{1}{2}t^{-0.5}
+$$
+
+we obtain
+
+$$
+\frac{dQ}{dt}
+=
+-\left(0.5a\,t^{-0.5}+b\right)
+$$
+
+---
+
+### Step 4: Rearranging into a Governing Equation
+
+Defining
+
+$$
+k = 0.5a
+$$
+
+gives
+
+$$
+\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
+$$
+
+---
+
+### Step 5: Physical Interpretation
+
+The resulting differential equation contains two physically meaningful degradation mechanisms:
+
+$$
+\frac{dQ}{dt}
++
+\underbrace{k\,t^{-0.5}}_{\text{SEI Growth}}
++
+\underbrace{b}_{\text{Linear Ageing}}
+=
+0
+$$
+
+where:
+
+- \(k\,t^{-0.5}\) represents diffusion-controlled SEI growth.
+- \(b\) represents degradation due to long-term parasitic reactions.
+- \(\frac{dQ}{dt}\) represents the instantaneous capacity-fade rate.
+
+The equation naturally predicts that degradation slows down over time because the term \(t^{-0.5}\) decreases as storage time increases.
+
+---
+
+### Step 6: Why PINNs Use the Differential Equation Instead of the Integrated Solution
+
+PINNs enforce the governing differential equation directly rather than the integrated solution.
+
+The physics residual is defined as
+
+$$
+R(t)
+=
+\frac{dQ_{PINN}}{dt}
++
+k\,t^{-0.5}
++
+b
+$$
+
+and the physics loss becomes
+
+$$
+Loss_{Physics}
+=
+MSE\big(R(t)\big)
+$$
+
+During training, the network minimizes this residual together with the data loss.
+
+This ensures that the neural network not only fits the experimental measurements but also satisfies the physical constraints embedded in the governing equation.
+
+The iPINN therefore learns:
+
+- The degradation trajectory \(Q(t)\)
+- The SEI-growth parameter \(k\)
+- The linear-ageing parameter \(b\)
+
+directly from experimental battery-ageing data.
+
+---
+
+## PINN Loss Function
+
+The overall loss function should answer three key questions:
+
+- **Does the model match the measured capacity fade?** → Data Loss
+- **Does the model obey the degradation physics?** → Physics Loss
+- **Does the model start from the correct battery state?** → Initial Condition Loss
+
+---
+
+### Removing the Singularity
+
+The original governing equation contains the singular term \(t^{-0.5}\):
+
+$$
+\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
+$$
+
+To improve numerical stability, the equation is reformulated by multiplying through by \(\sqrt{t}\):
+
+$$
+\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
+$$
+
+⬇️
+
+$$
+\sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0
+$$
+
+This singularity-free formulation preserves the original physics while improving optimization stability.
+
+---
+
+### Physics Residual
+
+Using the reformulated equation, the residual becomes
+
+$$
+R(t)
+=
+\sqrt{t}\frac{dQ_{PINN}}{dt}
++
+k
++
+b\sqrt{t}
+$$
+
+The corresponding physics loss is
+
+$$
+Loss_{Physics}
+=
+MSE\big(R(t)\big)
+$$
+
+which enforces the governing degradation physics.
+
+---
+
+### Data Loss
+
+The data loss ensures agreement with the experimental observations:
+
+$$
+Loss_{Data}
+=
+MSE
+\left(
+Q_{PINN},
+Q_{Data}
+\right)
+$$
+
+---
+
+### Initial Condition Loss
+
+Since the battery starts at full normalized capacity,
+
+$$
+Q(0)=1
+$$
+
+the initial-condition loss is defined as
+
+$$
+Loss_{IC}
+=
+MSE
+\left(
+Q_{PINN}(0),
+1
+\right)
+$$
+
+This anchors the solution at the correct initial battery state.
+
+---
+
+### Total Loss Function
+
+The overall training objective is
+
+$$
+Loss_{Total}
+=
+Loss_{Data}
++
+\lambda_{Phys}Loss_{Physics}
++
+\lambda_{IC}Loss_{IC}
+$$
+
+where:
+
+- \(\lambda_{Phys}\) controls the importance of satisfying the governing physics.
+- \(\lambda_{IC}\) controls the strength of the initial-condition constraint.
+
+This formulation ensures that the network simultaneously:
+
+- Fits the experimental measurements
+- Satisfies the governing battery-degradation physics
+- Starts from the correct initial condition
+
+while discovering physically meaningful degradation parameters directly from sparse experimental data.
