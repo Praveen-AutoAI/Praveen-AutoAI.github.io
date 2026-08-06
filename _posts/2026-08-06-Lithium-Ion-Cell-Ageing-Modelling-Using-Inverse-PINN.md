@@ -124,7 +124,6 @@ background-color: #f8f9fa;
 border-radius: 4px;
 ">
 
-## Physics Model
 
 The degradation of lithium-ion batteries is a complex, multi-dimensional phenomenon involving several interacting ageing mechanisms. While numerous degradation pathways exist, calendar ageing is primarily driven by **SEI (Solid Electrolyte Interphase) growth** and other parasitic side reactions occurring at the electrode-electrolyte interface.
 
