@@ -68,6 +68,8 @@ The result is often:
 - NaN values
 - Failed training runs
 
+NaN are serious problem in PINN training, when monitoring the training loss when you see NaN, you will feel real depressed ;)
+
 ### The Fix
 
 Whenever possible, reformulate the governing equation.
