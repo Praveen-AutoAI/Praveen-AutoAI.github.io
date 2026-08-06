@@ -188,7 +188,7 @@ PINNs optimize multiple objectives simultaneously:
 
 As a result, it is perfectly normal for one loss component to oscillate while the others converge smoothly.
 
-For example, during this project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
+For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
 
 - The magnitude of the IC loss was extremely small (on the order of \(10^{-7}\)).
 - The predicted initial capacity remained essentially equal to 1.
