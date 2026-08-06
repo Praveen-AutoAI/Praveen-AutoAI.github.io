@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Why I Love PINNs & You Will T2o :)"
+date: 2026-08-04
+categories: [Machine Learning, Engineering]
+tags: [PINN, Physics, Deep Learning, AI]
+---
 
 <h3>Introduction</h3>
 
