@@ -171,6 +171,49 @@ For battery-aging problems, this often means placing more collocation points nea
 The distribution of collocation points is therefore just as important as the experimental measurements themselves.
 
 ---
+---
+
+### 6. Learn to Read the Loss Components, Not Just the Total Loss
+
+One of the biggest mistakes I made early on was assuming that a noisy loss curve automatically meant that something was wrong with the training.
+
+### The Pitfall
+
+PINNs optimize multiple objectives simultaneously:
+
+- Data loss
+- Physics loss
+- Initial-condition loss
+- Boundary-condition loss (if present)
+
+As a result, it is perfectly normal for one loss component to oscillate while the others converge smoothly.
+
+For example, during this project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
+
+- The magnitude of the IC loss was extremely small (on the order of \(10^{-7}\)).
+- The predicted initial capacity remained essentially equal to 1.
+- The total loss, data loss, and physics loss had already converged.
+
+In other words, the network was behaving correctly despite the oscillations.
+
+### The Fix
+
+Do not judge PINN training solely by the appearance of a loss curve.
+
+Instead:
+
+- Examine the magnitude of each loss component.
+- Check whether the associated physical constraint is actually being satisfied.
+- Look at the learned parameters and predicted solutions.
+- Verify that the model behaviour remains physically meaningful.
+
+A noisy loss term is not necessarily a problem. What matters is whether the underlying physical constraint is being violated.
+
+### Key Takeaway
+
+> In PINNs, loss curves are diagnostic tools, not pass/fail indicators. Always interpret the meaning behind a loss component before concluding that the training is unstable.
+
+Sometimes a wildly oscillating loss is simply telling you that the error is already extremely small. Understanding the story behind the loss is often more important than the loss value itself.
 
 ## Final Thoughts
 
