@@ -1,0 +1,193 @@
+---
+layout: post
+title: "Lessons Learned While Building Physics-Informed Neural Networks (PINNs)"
+date: 2026-08-06
+categories: [Machine Learning, Engineering, Physics]
+tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
+---
+
+# Lessons Learned While Building Physics-Informed Neural Networks (PINNs)
+
+One of the reasons I enjoy working with Physics-Informed Neural Networks (PINNs) is that they force me to think like both a machine learning engineer and a physicist.
+
+Unlike conventional neural networks that primarily focus on minimizing a data-driven loss, PINNs must simultaneously satisfy experimental observations and governing physical laws. This additional constraint is precisely what makes them powerful, but it is also what makes them challenging to train.
+
+During my journey building Inverse PINNs for battery degradation modeling, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems.
+
+Here are the most important lessons I learned along the way.
+
+---
+
+## 1. Gradient Pathology (Loss Balancing)
+
+One of the most common reasons a PINN fails to converge is that the gradients coming from the various loss components compete with each other.
+
+### The Pitfall
+
+The model may:
+
+- Ignore the physics and focus entirely on fitting the data.
+- Satisfy the governing equation perfectly while ignoring the measurements.
+- Oscillate indefinitely because different loss components pull the model in conflicting directions.
+
+### The Fix
+
+Carefully balance the loss terms using weighting factors such as:
+
+```text
+L_total = λ_data L_data + λ_phys L_phys + λ_IC L_IC
+```
+
+Finding the right balance between data, physics, and boundary-condition losses is often one of the most important tuning activities in PINN training.
+
+---
+
+## 2. Handling Mathematical Singularities
+
+Neural networks and automatic differentiation do not behave well when the governing equation contains singular terms.
+
+### The Pitfall
+
+Expressions such as:
+
+```text
+1 / t
+1 / √t
+t⁻¹
+t⁻⁰·⁵
+```
+
+can generate extremely large residuals near zero.
+
+The result is often:
+
+- Unstable gradients
+- Parameter collapse
+- NaN values
+- Failed training runs
+
+### The Fix
+
+Whenever possible, reformulate the governing equation.
+
+For example:
+
+```text
+dQ/dt + k·t⁻⁰·⁵ = 0
+```
+
+can be rewritten as:
+
+```text
+√t·dQ/dt + k = 0
+```
+
+Both equations represent the same physics, but the second form is significantly more stable for neural network optimization.
+
+For my battery-aging PINN, this reformulation was one of the most important improvements I made.
+
+---
+
+## 3. Enforcing Physical Constraints on Parameters
+
+Neural networks are excellent optimizers.
+
+They are not physicists.
+
+### The Pitfall
+
+An Inverse PINN may happily discover:
+
+- Negative degradation rates
+- Negative diffusivities
+- Negative reaction constants
+- Other mathematically convenient but physically impossible solutions
+
+if those values happen to reduce the loss function.
+
+### The Fix
+
+Embed physical constraints directly into the model.
+
+For positive-only parameters, transformations such as:
+
+```python
+torch.abs(parameter)
+```
+
+or preferably:
+
+```python
+torch.nn.functional.softplus(parameter)
+```
+
+help ensure that the learned parameters remain physically meaningful throughout training.
+
+---
+
+## 4. Optimizer Limitations
+
+The optimization landscape of a PINN is considerably more complex than that of a conventional neural network.
+
+### The Pitfall
+
+Training can plateau early even when the physics residual remains relatively large.
+
+Adam often finds a reasonable solution quickly, but may struggle to achieve the precision required for scientific applications.
+
+### The Fix
+
+A common PINN training strategy is:
+
+1. Train with **Adam** for rapid initial exploration.
+2. Switch to **L-BFGS** for fine tuning.
+
+L-BFGS is particularly effective at reducing the physics residual to very small values and is used extensively in many successful PINN implementations.
+
+---
+
+## 5. Collocation Point Distribution Matters
+
+Physics is only enforced where the residual is evaluated.
+
+### The Pitfall
+
+If collocation points are sparse, the network may satisfy the governing equation at those locations while behaving poorly between them.
+
+In other words, the physics is only learned where it is enforced.
+
+### The Fix
+
+Use a sufficiently dense set of collocation points across the domain.
+
+Even better, concentrate additional collocation points in regions where rapid physical changes occur.
+
+For battery-aging problems, this often means placing more collocation points near the beginning of life where degradation occurs more rapidly.
+
+> A PINN learns physics only where you ask it to enforce physics.
+
+The distribution of collocation points is therefore just as important as the experimental measurements themselves.
+
+---
+
+## Final Thoughts
+
+The hardest part of building a PINN is rarely the neural network.
+
+The real challenge lies in converting physical knowledge into a numerically stable optimization problem.
+
+In my experience, most PINN failures can be traced back to one of five causes:
+
+- Poor loss balancing
+- Mathematical singularities
+- Missing physical constraints
+- Optimizer limitations
+- Inadequate collocation-point selection
+
+Once these challenges are addressed, PINNs become incredibly powerful tools for combining sparse experimental data with known physics and discovering hidden system parameters.
+
+And perhaps that is what makes PINNs so fascinating.
+
+They are not just machine learning models.
+
+They are a conversation between data and physics.
