@@ -100,7 +100,8 @@ where:
 
 Using remaining capacity instead of capacity loss allows the network to directly model battery **State-of-Health (SoH)** evolution while simultaneously enforcing the underlying degradation physics through the PINN framework.
 
-!assets/images/Experimental_Data.jpg
+### Experimental Data (Impact of Temperature on Calendar Ageing)
+![Impact of Temperature on Calendar Ageing](/assets/images/Experimental_Data.jpg)
 
 ---
 
