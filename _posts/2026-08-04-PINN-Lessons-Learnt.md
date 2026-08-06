@@ -14,6 +14,8 @@ Unlike conventional neural networks that primarily focus on minimizing a data-dr
 
 During my journey building Inverse PINNs for battery degradation modeling, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems.
 
+I created this to list the problems I have faced and would add as I encounter new problems in my upcoming project.
+
 Here are the most important lessons I learned along the way.
 
 ---
