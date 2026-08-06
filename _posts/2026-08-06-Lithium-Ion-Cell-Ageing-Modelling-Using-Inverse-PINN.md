@@ -53,3 +53,61 @@ Traditional machine learning approaches typically require large amounts of data 
 
 **Objective** is to develop **Inverse Physics-Informed Neural Network (iPINN)** method to accurately recover battery degradation parameters directly from sparse experimental observations while maintaining physical consistency with established battery-ageing theory.
 
+Lithium-ion cells have 2 dimension of ageing a) Cyclic ageing and b) Calendar ageing. While the cell degradation is complex multi-dimensional process, that is not yet fully understood, there are successful mathematical hypothesis to model some of the degradation mechanisms (SEI formation, Lithium plating, Electrode cracking, electrolyte oxidation are some of them)
+To demonstrate the idea, potential and beauty of PINN/iPINN, here I am considering calendar ageing dataset, where the capacity loss as a function of temperature.
+
+<h3>Dataset</h3>
+
+<div style="font-size: 16px;
+border-left: 5px solid #2e86de;
+padding: 12px 18px;
+background-color: #f8f9fa;
+border-radius: 4px;
+">
+
+The experimental data used in this **Inverse Physics-Informed Neural Network (iPINN)** demonstration corresponds to calendar-ageing measurements of a commercial **Lithium Iron Phosphate (LFP)** cell. The objective of the original study was to investigate the impact of **storage temperature** on battery degradation under high State-of-Charge (SoC) conditions.
+
+### Cell Specifications
+
+The experiments were performed on a commercial **Sony US26650FTC1** cell designed for stationary energy-storage applications.
+
+#### Cell Characteristics
+
+- **Format:** 26650 Cylindrical Cell
+- **Chemistry:** Lithium Iron Phosphate (LiFePO₄)
+- **Nominal Capacity:** 3000 mAh
+- **Nominal Voltage:** 3.2 V
+- **Operating Voltage Range:** 2.0 V to 3.6 V
+
+---
+
+### Calendar Ageing Test Conditions
+
+- **Storage State:** Constant 100% State of Charge (SoC)
+- **Temperature Matrix:** 15°C, 25°C, 35°C, and 45°C
+- **Time Span:** Day 0 to approximately Day 235 (sparse observation checkpoints)
+
+The original study reports **capacity loss** over time. For the iPINN implementation, the data was converted to **remaining capacity**, which serves as the target variable for the neural network:
+
+```text
+Q = 1 - Loss
+```
+
+where:
+
+- **Q** = Remaining normalized capacity
+- **Loss** = Measured capacity fade
+
+Using remaining capacity instead of capacity loss allows the network to directly model battery **State-of-Health (SoH)** evolution while simultaneously enforcing the underlying degradation physics through the PINN framework.
+
+---
+
+### Source
+
+The experimental data was extracted from:
+
+> Naumann, M. et al., *Analysis and Modeling of Calendar Aging of a Commercial LiFePO₄/Graphite Cell*, Journal of The Electrochemical Society.
+
+📄 **Paper:**  
+https://iopscience.iop.org/article/10.1149/2.1181714jes
+
