@@ -124,284 +124,230 @@ background-color: #f8f9fa;
 border-radius: 4px;
 ">
 
-The degradation of lithium-ion batteries is a complex multi-dimensional phenomenon involving several interacting ageing mechanisms. While many degradation pathways exist, calendar ageing is primarily governed by **SEI (Solid Electrolyte Interphase) growth** and other parasitic side reactions occurring at the electrode-electrolyte interface.
+## Physics Model
 
-The objective of this work is not to develop a complete ageing model covering all degradation mechanisms. Instead, it aims to demonstrate how an **Inverse Physics-Informed Neural Network (iPINN)** can be used to identify temperature-dependent degradation parameters directly from sparse experimental observations.
+The degradation of lithium-ion batteries is a complex multi-dimensional phenomenon involving several interacting ageing mechanisms. While many degradation pathways exist, calendar ageing is largely governed by **SEI (Solid Electrolyte Interphase) growth** and long-term parasitic side reactions occurring at the electrode-electrolyte interface.
 
-A richer dataset containing variations in temperature, SoC, depth-of-discharge, current rates, and other operating conditions would allow the formulation of a more comprehensive governing equation. However, for this demonstration, a simplified yet physically meaningful degradation model is adopted.
+The objective of this work is not to model every degradation mechanism, but rather to demonstrate how an **Inverse Physics-Informed Neural Network (iPINN)** can identify physically meaningful degradation parameters directly from sparse experimental observations.
 
 ---
 
-### Step 1: Start from the Capacity Loss Model
+### Step 1: Capacity Loss Model
 
 Battery capacity loss is assumed to arise from two degradation mechanisms:
 
 - Diffusion-limited SEI growth
 - Long-term parasitic reactions
 
-This leads to the semi-empirical ageing model:
+The capacity-loss model is:
 
-$$
-Loss(t) = a\sqrt{t} + bt
-$$
+```text
+Loss(t) = a·√t + b·t
+```
 
 where:
 
-- \(a\) = degradation due to SEI growth
-- \(b\) = degradation due to long-term ageing reactions
-- \(t\) = storage time
+- **a** = SEI-growth contribution
+- **b** = long-term ageing contribution
+- **t** = storage time
 
-The first term dominates early-life ageing, while the second term represents slower, continuous degradation.
+The √t term dominates early-life ageing, while the linear term captures slow continuous degradation.
 
 ---
 
 ### Step 2: Define Remaining Capacity
 
-The PINN is trained on **normalized remaining capacity** rather than capacity loss.
+The PINN is trained on normalized remaining capacity:
 
-$$
-Q(t)=1-Loss(t)
-$$
+```text
+Q(t) = 1 − Loss(t)
+```
 
-Substituting the ageing model:
+Substituting the capacity-loss model:
 
-$$
-Q(t)=1-a\sqrt{t}-bt
-$$
+```text
+Q(t) = 1 − a·√t − b·t
+```
 
 ---
 
 ### Step 3: Differentiate with Respect to Time
 
-PINNs enforce the governing differential equation, so we require the rate of change of capacity.
-
 Taking the derivative:
 
-$$
-\frac{dQ}{dt}
-=
--\frac{d}{dt}\left(a\sqrt{t}+bt\right)
-$$
+```text
+dQ/dt = −(0.5·a·t⁻⁰·⁵ + b)
+```
 
-Since
+Defining:
 
-$$
-\frac{d}{dt}\left(\sqrt{t}\right)
-=
-\frac{1}{2}t^{-0.5}
-$$
+```text
+k = 0.5·a
+```
 
-we obtain
+gives:
 
-$$
-\frac{dQ}{dt}
-=
--\left(0.5a\,t^{-0.5}+b\right)
-$$
+```text
+dQ/dt = −(k·t⁻⁰·⁵ + b)
+```
 
 ---
 
-### Step 4: Rearranging into a Governing Equation
+### Step 4: Governing Equation
 
-Defining
+Rearranging gives the governing degradation equation:
 
-$$
-k = 0.5a
-$$
-
-gives
-
-$$
-\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
-$$
+```text
+dQ/dt + k·t⁻⁰·⁵ + b = 0
+```
 
 ---
 
 ### Step 5: Physical Interpretation
 
-The resulting differential equation contains two physically meaningful degradation mechanisms:
+The governing equation contains two physically meaningful ageing mechanisms:
 
-$$
-\frac{dQ}{dt}
-+
-\underbrace{k\,t^{-0.5}}_{\text{SEI Growth}}
-+
-\underbrace{b}_{\text{Linear Ageing}}
-=
-0
-$$
+```text
+dQ/dt + k·t⁻⁰·⁵ + b = 0
+```
 
 where:
 
-- \(k\,t^{-0.5}\) represents diffusion-controlled SEI growth.
-- \(b\) represents degradation due to long-term parasitic reactions.
-- \(\frac{dQ}{dt}\) represents the instantaneous capacity-fade rate.
+- **k·t⁻⁰·⁵** → Diffusion-limited SEI growth
+- **b** → Long-term parasitic ageing
+- **dQ/dt** → Instantaneous capacity-fade rate
 
-The equation naturally predicts that degradation slows down over time because the term \(t^{-0.5}\) decreases as storage time increases.
+The model naturally predicts that SEI-driven degradation slows down with time because the term **t⁻⁰·⁵** decreases as storage time increases.
 
 ---
 
-### Step 6: Why PINNs Use the Differential Equation Instead of the Integrated Solution
+### Step 6: Why PINNs Use the Differential Equation
 
-PINNs enforce the governing differential equation directly rather than the integrated solution.
+Instead of enforcing the integrated solution:
 
-The physics residual is defined as
+```text
+Loss(t) = a·√t + b·t
+```
 
-$$
-R(t)
-=
-\frac{dQ_{PINN}}{dt}
-+
-k\,t^{-0.5}
-+
-b
-$$
+PINNs enforce the local governing physics:
 
-and the physics loss becomes
+```text
+R(t) = dQ_PINN/dt + k·t⁻⁰·⁵ + b
+```
 
-$$
-Loss_{Physics}
-=
-MSE\big(R(t)\big)
-$$
+The corresponding physics loss is:
 
-During training, the network minimizes this residual together with the data loss.
+```text
+Loss_Physics = MSE(R(t))
+```
 
-This ensures that the neural network not only fits the experimental measurements but also satisfies the physical constraints embedded in the governing equation.
+By minimizing this residual, the PINN learns a degradation trajectory that not only matches the measured data but also obeys the governing physics throughout the entire time domain.
 
 The iPINN therefore learns:
 
-- The degradation trajectory \(Q(t)\)
-- The SEI-growth parameter \(k\)
-- The linear-ageing parameter \(b\)
+- Capacity trajectory Q(t)
+- SEI-growth parameter k
+- Linear-ageing parameter b
 
-directly from experimental battery-ageing data.
+directly from experimental observations.
 
 ---
 
 ## PINN Loss Function
 
-The overall loss function should answer three key questions:
+The overall loss formulation should answer three key questions:
 
-- **Does the model match the measured capacity fade?** → Data Loss
-- **Does the model obey the degradation physics?** → Physics Loss
-- **Does the model start from the correct battery state?** → Initial Condition Loss
+✔ Does the model match the measured capacity fade?  
+✔ Does the model obey the governing physics?  
+✔ Does the model start from the correct battery state?
 
 ---
 
-### Removing the Singularity
+### Singularity-Free Formulation
 
-The original governing equation contains the singular term \(t^{-0.5}\):
+The original governing equation is:
 
-$$
-\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
-$$
+```text
+dQ/dt + k·t⁻⁰·⁵ + b = 0
+```
 
-To improve numerical stability, the equation is reformulated by multiplying through by \(\sqrt{t}\):
+The term **t⁻⁰·⁵** creates a singularity near t = 0.
 
-$$
-\frac{dQ}{dt} + k\,t^{-0.5} + b = 0
-$$
+To improve numerical stability, the equation is reformulated as:
 
-⬇️
+```text
+√t·dQ/dt + k + b·√t = 0
+```
 
-$$
-\sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0
-$$
-
-This singularity-free formulation preserves the original physics while improving optimization stability.
+Both equations represent the same physics, but the second form is significantly more stable for neural-network optimization.
 
 ---
 
 ### Physics Residual
 
-Using the reformulated equation, the residual becomes
+The PINN residual becomes:
 
-$$
-R(t)
-=
-\sqrt{t}\frac{dQ_{PINN}}{dt}
-+
-k
-+
-b\sqrt{t}
-$$
+```text
+R(t) = √t·dQ_PINN/dt + k + b·√t
+```
 
-The corresponding physics loss is
+and the physics loss is:
 
-$$
-Loss_{Physics}
-=
-MSE\big(R(t)\big)
-$$
-
-which enforces the governing degradation physics.
+```text
+Loss_Physics = MSE(R(t))
+```
 
 ---
 
 ### Data Loss
 
-The data loss ensures agreement with the experimental observations:
+The data loss ensures agreement with the experimental measurements:
 
-$$
-Loss_{Data}
-=
-MSE
-\left(
-Q_{PINN},
-Q_{Data}
-\right)
-$$
+```text
+Loss_Data = MSE(Q_PINN , Q_Data)
+```
 
 ---
 
 ### Initial Condition Loss
 
-Since the battery starts at full normalized capacity,
+The battery starts at full normalized capacity:
 
-$$
-Q(0)=1
-$$
+```text
+Q(0) = 1
+```
 
-the initial-condition loss is defined as
+This constraint is enforced through:
 
-$$
-Loss_{IC}
-=
-MSE
-\left(
-Q_{PINN}(0),
-1
-\right)
-$$
-
-This anchors the solution at the correct initial battery state.
+```text
+Loss_IC = MSE(Q_PINN(0), 1)
+```
 
 ---
 
 ### Total Loss Function
 
-The overall training objective is
+The overall training objective becomes:
 
-$$
-Loss_{Total}
+```text
+Loss_Total
 =
-Loss_{Data}
+Loss_Data
 +
-\lambda_{Phys}Loss_{Physics}
+λ_Physics · Loss_Physics
 +
-\lambda_{IC}Loss_{IC}
-$$
+λ_IC · Loss_IC
+```
 
 where:
 
-- \(\lambda_{Phys}\) controls the importance of satisfying the governing physics.
-- \(\lambda_{IC}\) controls the strength of the initial-condition constraint.
+- **λ_Physics** controls the importance of satisfying the governing physics.
+- **λ_IC** controls the strength of the initial-condition constraint.
 
 This formulation ensures that the network simultaneously:
 
-- Fits the experimental measurements
-- Satisfies the governing battery-degradation physics
+- Fits the measured battery-ageing data
+- Satisfies the governing degradation physics
 - Starts from the correct initial condition
 
-while discovering physically meaningful degradation parameters directly from sparse experimental data.
+while discovering physically meaningful degradation parameters directly from sparse experimental observations.
