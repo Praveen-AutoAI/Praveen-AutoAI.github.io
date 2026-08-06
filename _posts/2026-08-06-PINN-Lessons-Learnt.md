@@ -192,7 +192,7 @@ As a result, it is perfectly normal for one loss component to oscillate while th
 
 For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
 
-- The magnitude of the IC loss was extremely small (on the order of \(10^{-7}\)).
+- The magnitude of the IC loss was extremely small (on the order of **10⁻⁷**).
 - The predicted initial capacity remained essentially equal to 1.
 - The total loss, data loss, and physics loss had already converged.
 
