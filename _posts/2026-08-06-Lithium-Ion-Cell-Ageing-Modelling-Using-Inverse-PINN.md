@@ -32,3 +32,23 @@ Inverse Physics-Informed Neural Networks (inverse PINNs) refer to a class of Sci
 - System Identification *(discovering governing terms/fields)*
 - Robustness with Sparse & Noisy Data
 - Uncertainty Quantification
+
+
+<h3>Problem Statement</h3>
+
+<div style="font-size: 16px;
+border-left: 5px solid #2e86de;
+padding: 12px 18px;
+background-color: #f8f9fa;
+border-radius: 4px;
+">
+
+Battery calendar ageing is strongly influenced by storage temperature. Engineers often require degradation-rate parameters to:
+
+- Predict and forecast battery lifetime
+- Understand underlying ageing mechanisms
+- Compare battery performance across different operating conditions
+
+Traditional machine learning approaches typically require large amounts of data and are often criticized as **black-box models** with limited physical interpretability. On the other hand, classical curve-fitting methods can match experimental observations but do not explicitly enforce the underlying physics governing the degradation process.
+
+This project investigates whether an **Inverse Physics-Informed Neural Network (iPINN)** can accurately recover battery degradation parameters directly from sparse experimental observations while maintaining physical consistency with established battery-ageing theory.
