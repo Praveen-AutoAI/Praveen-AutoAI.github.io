@@ -195,7 +195,7 @@ $$ \frac{dQ}{dt} + \underbrace{k\,t^{-0.5}}_{\text{Diffusion-Limited SEI Growth}
 
 where:
 * $$k\,t^{-0.5}$$ represents degradation due to diffusion-controlled SEI growth.
-* $$b$$ represents degradation due to long-term parasitic reactions.
+* $$b$$ represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the diffusion-limited SEI term.
 * $$\frac{dQ}{dt}$$ represents the instantaneous capacity-fade rate.
 
 The model naturally predicts that SEI-driven degradation slows over time because the term $$t^{-0.5}$$ decreases as storage time increases.
