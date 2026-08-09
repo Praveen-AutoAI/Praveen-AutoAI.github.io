@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Test"
-date: 2026-08-04
+date: 2026-08-09
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 math: true
