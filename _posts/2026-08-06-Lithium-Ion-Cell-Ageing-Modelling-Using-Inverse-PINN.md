@@ -139,7 +139,9 @@ where:
 * $$a$$ = degradation parameter due to SEI growth
 * $$b$$ = represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the diffusion-limited SEI term
 * $$t$$ = storage time
+  
 ---
+
 #### Step 2: Define Remaining Capacity
 
 The iPINN is trained on **normalized remaining capacity** rather than capacity loss.
