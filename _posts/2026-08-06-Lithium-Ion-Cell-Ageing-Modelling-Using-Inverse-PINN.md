@@ -15,8 +15,7 @@ background-color: #f8f9fa;
 border-radius: 4px;
 ">
 
-    
-#### What are Inverse PINNs (iPINNs)?
+What are Inverse PINNs (iPINNs)?
 A class of **Scientific Machine Learning (SciML)** that embeds governing equations (ODEs/PDEs) into the loss function to infer unknown parameters from data.
 
 * **Forward PINNs:** Given parameters & equations $\rightarrow$ solve for **state variables**.
@@ -28,7 +27,7 @@ Inverse Physics-Informed Neural Networks (inverse PINNs) refer to a class of Sci
 
 
 
-#### Key Capabilities/Usage:
+Key Capabilities/Usage:
 - Parameter Recovery & Inference *(e.g., calendar ageing kinetic parameters)*
 - System Identification *(discovering governing terms/fields)*
 - Robustness with Sparse & Noisy Data
