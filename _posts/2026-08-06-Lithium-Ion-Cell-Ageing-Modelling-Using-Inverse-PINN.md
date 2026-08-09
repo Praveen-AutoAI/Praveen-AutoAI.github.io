@@ -140,6 +140,15 @@ where:
 * $$b$$ = represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the diffusion-limited SEI term
 * $$t$$ = storage time
 
+#### Step 2: Define Remaining Capacity
+
+The iPINN is trained on **normalized remaining capacity** rather than capacity loss.
+
+$$ Q(t) = 1 - Loss(t) $$
+
+Substituting the capacity-loss model:
+
+$$ Q(t) = 1 - a\sqrt{t} - bt $$
 The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI growth, while the linear term ($$bt$$) represents slower, continuous ageing mechanisms.
 
 ---
