@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Discovering Lithium-Ion Cell Calendar-Ageing Rates Using Inverse Physics-Informed Neural Networks (iPINNs)"
+title: "Test"
 date: 2026-08-04
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
