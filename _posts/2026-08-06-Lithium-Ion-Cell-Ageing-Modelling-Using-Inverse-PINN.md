@@ -6,6 +6,8 @@ categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
+<div style="font-size:16px; border-left:5px solid #2e86de; padding:12px 18px; background-color:#f8f9fa; border-radius:4px;">
+  
 ## Introduction
 
 ### What are Inverse PINNs (iPINNs)?
@@ -30,7 +32,7 @@ This class of methods is foundational for scientific machine learning, enabling 
 - **Robustness with Sparse and Noisy Data**
 - **Uncertainty Quantification**
 
-<div style="font-size:16px; border-left:5px solid #2e86de; padding:12px 18px; background-color:#f8f9fa; border-radius:4px;">
+
 
 ### What are Inverse PINNs (iPINNs)?
 
