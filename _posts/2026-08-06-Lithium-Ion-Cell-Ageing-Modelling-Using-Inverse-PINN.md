@@ -57,4 +57,58 @@ Although battery degradation is a complex, multidimensional process that is not 
 
 To demonstrate the concept, potential, and elegance of **PINNs** and **inverse PINNs**, this study focuses on a **calendar-ageing dataset**, where battery capacity loss is analyzed as a function of storage temperature.
 
-The goal is to infer physically meaningful degradation-rate parameters from limited observations while leveraging known governing equations to constrain the learning process.
+The goal is to infer physically meaningful degradation-rate parameters from limited observations(data) while leveraging known governing equations to constrain the learning process.
+
+
+## Dataset
+
+The experimental data used in this **Inverse Physics-Informed Neural Network (iPINN)** demonstration corresponds to calendar-ageing measurements of a commercial **Lithium Iron Phosphate (LFP)** cell. The objective of the original study was to investigate the impact of **storage temperature** on battery degradation under high State-of-Charge (SoC) conditions.
+
+### Cell Specifications
+
+The experiments were performed on a commercial **Sony US26650FTC1** cell designed for stationary energy-storage applications.
+
+#### Cell Characteristics
+
+- **Format:** 26650 Cylindrical Cell
+- **Chemistry:** Lithium Iron Phosphate (LiFePO₄)
+- **Nominal Capacity:** 3000 mAh
+- **Nominal Voltage:** 3.2 V
+- **Operating Voltage Range:** 2.0 V to 3.6 V
+
+---
+
+### Calendar Ageing Test Conditions
+
+- **Storage State:** Constant **100% State of Charge (SoC)**
+- **Temperature Matrix:** **15°C, 25°C, 35°C, and 45°C**
+- **Time Span:** Day 0 to approximately Day 235 (sparse observation checkpoints)
+
+The original study reports **capacity loss** over time. For the iPINN implementation, the data was converted to **remaining capacity**, which serves as the target variable for the neural network:
+
+```text
+Q = 1 − Loss
+```
+
+where:
+
+- **Q** = Remaining normalized capacity
+- **Loss** = Measured capacity fade
+
+Using remaining capacity instead of capacity loss allows the network to directly model battery **State-of-Health (SoH)** evolution while simultaneously enforcing the underlying degradation physics through the PINN framework.
+
+### Experimental Data: Impact of Temperature on Calendar Ageing
+
+/assets/images/Experimental_Data.jpg
+
+---
+
+### Source
+
+The experimental data was extracted from:
+
+> Naumann, M. et al., *Analysis and Modeling of Calendar Aging of a Commercial LiFePO₄/Graphite Cell*, Journal of The Electrochemical Society.
+
+**Paper:**  
+https://iopscience.iop.org/article/10.1149/2.1181714jes
+
