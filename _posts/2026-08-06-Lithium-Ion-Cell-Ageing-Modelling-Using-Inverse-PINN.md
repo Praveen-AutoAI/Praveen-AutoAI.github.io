@@ -416,3 +416,11 @@ Q_{PINN}(0),
 $$
 
 which anchors the solution at the correct initial battery state.
+
+The data loss ensures agreement with the experimental measurements:
+
+$$
+L_{Data}
+=
+\mathrm{MSE}(Q_{PINN},Q_{Data})
+$$
