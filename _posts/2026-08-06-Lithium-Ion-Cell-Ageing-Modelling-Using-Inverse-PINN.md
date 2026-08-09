@@ -295,7 +295,7 @@ which anchors the solution at the correct initial battery state.
 
 The complete loss function balances data fitting, differential equation compliance, and initial conditions using weighting factors ($\lambda$):
 
-$$ \Large L_{\text{Total}} = \lambda_{\text{Data}} L_{\text{Data}} + \lambda_{\text{Physics}} L_{\text{Physics}} + \lambda_{\text{IC}} L_{\text{IC}} $$
+$$ L_{\text{Total}} = \lambda_{\text{Data}} L_{\text{Data}} + \lambda_{\text{Physics}} L_{\text{Physics}} + \lambda_{\text{IC}} L_{\text{IC}} $$
 
 * $$\lambda_{\text{Data}}$$ weight associated with the data loss.
 * $$\lambda_{\text{Physics}}$$ balances the trade-off between strict physics adherence and data fitting.
