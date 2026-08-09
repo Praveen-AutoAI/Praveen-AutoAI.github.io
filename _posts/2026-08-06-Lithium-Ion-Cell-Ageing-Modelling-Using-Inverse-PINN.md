@@ -127,7 +127,7 @@ To keep the physics simple and interpretable, we assume that battery capacity lo
 
 The derivation of the governing equation is presented below.
 
----
+
 
 ### Step 1: Capacity-Loss Model
 
@@ -145,21 +145,5 @@ where:
 
 The $\sqrt{t}$ term captures the rapid initial degradation associated with SEI growth, while the linear term represents slower continuous ageing mechanisms.
 
----
 
-
-### Step 1: Capacity-Loss Model
-
-A commonly used semi-empirical representation of calendar ageing is
-
-$$
-Loss(t)=a\sqrt{t}+bt
-$$
-
-where \(a\) quantifies diffusion-limited SEI growth and \(b\) captures long-term parasitic ageing reactions.
-
-The first term dominates during the early stages of storage and decreases with time, while the second term represents a persistent linear degradation process.
-
-When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
