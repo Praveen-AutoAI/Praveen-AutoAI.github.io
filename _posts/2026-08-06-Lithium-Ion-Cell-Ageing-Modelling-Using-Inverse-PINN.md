@@ -131,7 +131,7 @@ The derivation of the governing equation is presented below.
 
 #### Step 1: Capacity-Loss Model
 
-The battery capacity loss is represented using a semi-empirical ageing model:
+A commonly used semi-empirical representation of calendar ageing assumes that capacity loss can be approximated by a diffusion-limited t\sqrt{t} term combined with a linear ageing term.
 
 $$ Loss(t) = a\sqrt{t} + bt $$
 
