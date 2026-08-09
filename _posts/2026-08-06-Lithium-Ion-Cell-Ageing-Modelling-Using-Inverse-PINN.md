@@ -269,9 +269,9 @@ which enforces the governing degradation physics.
 
 #### Data Loss
 
-The data loss ensures agreement with the experimental measurements:
+The data loss evaluates model fidelity against the sparse measured State-of-Health (SoH) checkpoints:
 
-$$ L_{\text{Data}} = \mathrm{MSE}\left( Q_{PINN}, Q_{\text{Data}} \right) $$
+$$ \Large L_{\text{Data}} = \frac{1}{N_d} \sum_{j=1}^{N_d} \left( Q_{\text{PINN}}(t_j) - Q_{\text{Data}}(t_j) \right)^2 $$
 
 ---
 
@@ -283,7 +283,7 @@ $$ Q(0) = 1 $$
 
 The corresponding initial-condition loss is:
 
-$$ L_{\text{IC}} = \mathrm{MSE}\left( Q_{PINN}(0), 1 \right) $$
+$$  L_{\text{IC}} = \left( Q_{\text{PINN}}(0) - 1.0 \right)^2 $$
 
 which anchors the solution at the correct initial battery state.
 
