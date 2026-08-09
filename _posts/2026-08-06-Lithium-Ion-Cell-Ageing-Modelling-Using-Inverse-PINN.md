@@ -230,7 +230,7 @@ directly from sparse experimental observations.
 ---
 #### Step 6: Why PINNs Use the Differential Equation
 
-#### PINN Loss Function
+#### PINN Loss Function Formulation (The most important to understand)
 
 The overall loss formulation should answer three key questions:
 * Does the model match the measured capacity fade?
@@ -253,7 +253,7 @@ The reformulated equation preserves the underlying physics while removing the si
 
 ---
 
-### Physics Loss
+### Physics Loss 
 
 Using the singularity-free formulation, the residual becomes
 
@@ -267,7 +267,7 @@ which enforces the governing degradation physics.
 
 ---
 
-### Data Loss
+#### Data Loss
 
 The data loss ensures agreement with the experimental measurements:
 
@@ -275,7 +275,7 @@ $$ L_{\text{Data}} = \mathrm{MSE}\left( Q_{PINN}, Q_{\text{Data}} \right) $$
 
 ---
 
-### Initial-Condition Loss
+#### Initial-Condition Loss
 
 The battery starts at full normalized capacity:
 
@@ -289,7 +289,7 @@ which anchors the solution at the correct initial battery state.
 
 ---
 
-### Total Loss Function
+#### Total Loss Function
 
 The iPINN is trained by simultaneously minimizing the data mismatch, the physics residual, and the initial-condition constraint:
 
