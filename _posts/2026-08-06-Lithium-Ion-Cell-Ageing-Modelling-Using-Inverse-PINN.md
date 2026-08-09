@@ -254,16 +254,16 @@ $$ L_{\text{Physics}} = \frac{1}{N_f} \sum_{i=1}^{N_f} \left| R(t_i) \right|^2 $
 which enforces the governing degradation physics.
 
 
->  Practical Note: Singularity Issue and Reformulation
-
+> **Practical Note: Singularity Issue and Reformulation**
+>
 > The original governing equation contains the term $$t^{-0.5}$$, which becomes singular near $$t=0$$:
-
-> $$ \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
-
+>
+> $$ \Large \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
+>
 > To improve numerical stability, the equation is reformulated by multiplying through by $$\sqrt{t}$$:
-
-> $$ \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
-
+>
+> $$ \Large \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
+>
 > The reformulated equation preserves the underlying physics while removing the singularity at the beginning of the time domain.
 
 
