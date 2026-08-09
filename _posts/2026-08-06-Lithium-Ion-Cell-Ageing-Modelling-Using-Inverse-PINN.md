@@ -254,7 +254,7 @@ $$ L_{\text{Physics}} = \frac{1}{N_f} \sum_{i=1}^{N_f} \left| R(t_i) \right|^2 $
 which enforces the governing degradation physics.
 
 
-#### Practical Note: Singularity Issue and Reformulation
+>  Practical Note: Singularity Issue and Reformulation
 
 The original governing equation contains the term $$t^{-0.5}$$, which becomes singular near $$t=0$$:
 
