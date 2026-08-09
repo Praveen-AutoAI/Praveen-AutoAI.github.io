@@ -155,71 +155,37 @@ The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI
 
 
 ---
-
 ### Step 3: Differentiate with Respect to Time
 
 PINNs enforce governing differential equations, so we require the rate of change of capacity.
 
-Differentiating with respect to time:
+Differentiating with respect to time ($$t$$):
 
-$$
-\frac{dQ}{dt}
-=
--\frac{d}{dt}
-\left(
-a\sqrt{t}+bt
-\right)
-$$
+$$ \frac{dQ}{dt} = -\frac{d}{dt} \left( a\sqrt{t} + bt \right) $$
 
-Since
+Since 
 
-$$
-\frac{d}{dt}
-\left(
-\sqrt{t}
-\right)
-=
-\frac{1}{2}t^{-0.5}
-$$
+$$ \frac{d}{dt}\left(\sqrt{t}\right) = \frac{1}{2}t^{-0.5} $$
 
 we obtain
 
-$$
-\frac{dQ}{dt}
-=
--\left(
-0.5a\,t^{-0.5}
-+
-b
-\right)
-$$
+$$ \frac{dQ}{dt} = -\left( 0.5a\,t^{-0.5} + b \right) $$
 
 ---
-
 
 ### Step 4: Rearranging into a Governing Equation
 
 Defining
 
-$$
-k = 0.5a
-$$
+$$ k = 0.5a $$
 
 gives
 
-$$
-\frac{dQ}{dt}
-+
-k\,t^{-0.5}
-+
-b
-=
-0
-$$
+$$ \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
 
 This differential equation will be used as the governing degradation law for the PINN.
 
--
+---
 
 ### Step 5: Physical Interpretation
 
@@ -233,9 +199,4 @@ where:
 * $$\frac{dQ}{dt}$$ represents the instantaneous capacity-fade rate.
 
 The model naturally predicts that SEI-driven degradation slows over time because the term $$t^{-0.5}$$ decreases as storage time increases.
-
----
-
-
----
 
