@@ -143,6 +143,18 @@ where:
 - $b$ = degradation due to long-term ageing reactions
 - $t$ = storage time
 
+  ### Step 1: Capacity-Loss Model
+
+A commonly used semi-empirical representation of calendar ageing is
+
+$$
+Loss(t)=a\sqrt{t}+bt
+$$
+
+where $a$ represents degradation associated with diffusion-limited SEI growth, $b$ represents the effective long-term linear-ageing contribution, and $t$ denotes storage time.
+
+The $\sqrt{t}$ term captures rapid initial degradation associated with diffusion-limited SEI growth, while the linear term represents slower continuous ageing mechanisms.
+
 The $\sqrt{t}$ term captures the rapid initial degradation associated with SEI growth, while the linear term represents slower continuous ageing mechanisms.
 
 
