@@ -158,3 +158,7 @@ $$
 where \(a\) quantifies diffusion-limited SEI growth and \(b\) captures long-term parasitic ageing reactions.
 
 The first term dominates during the early stages of storage and decreases with time, while the second term represents a persistent linear degradation process.
+
+When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
