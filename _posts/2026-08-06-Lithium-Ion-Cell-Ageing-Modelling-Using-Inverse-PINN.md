@@ -258,11 +258,11 @@ which enforces the governing degradation physics.
 >
 > The original governing equation contains the term $$t^{-0.5}$$, which becomes singular near $$t=0$$:
 >
-> $$ \Large \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
+> $$ \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
 >
 > To improve numerical stability, the equation is reformulated by multiplying through by $$\sqrt{t}$$:
 >
-> $$ \Large \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
+> $$ \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
 >
 > The reformulated equation preserves the underlying physics while removing the singularity at the beginning of the time domain.
 
