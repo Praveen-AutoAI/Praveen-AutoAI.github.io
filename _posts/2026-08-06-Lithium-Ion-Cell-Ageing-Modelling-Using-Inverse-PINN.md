@@ -306,6 +306,18 @@ This formulation ensures that the network simultaneously:
 
 while discovering physically meaningful degradation parameters directly from sparse experimental observations.
 
+#### Total Multi-Objective Loss Function
+
+The complete loss function balances data fitting, differential equation compliance, and initial conditions using weighting factors ($\lambda$):
+
+$$ \Large L_{\text{Total}} = \lambda_{\text{Data}} L_{\text{Data}} + \lambda_{\text{Physics}} L_{\text{Physics}} + \lambda_{\text{IC}} L_{\text{IC}} $$
+
+* $$\lambda_{\text{Physics}}$$ balances the trade-off between strict physics adherence and data fitting.
+* $$\lambda_{\text{IC}}$$ ensures the trajectory is strongly tied to $Q(0) = 1.0$.
+
+> **Implementation Note:** Setting $\lambda_{\text{Data}} = 1.0$, $\lambda_{\text{Physics}} = 0.1$, and $\lambda_{\text{IC}} = 10.0$ often provides robust initial optimization convergence, mitigating gradient pathologies between data and physics losses.
+
+---
 ## PINN Loss Function
 
 The overall loss formulation answers three core questions:
