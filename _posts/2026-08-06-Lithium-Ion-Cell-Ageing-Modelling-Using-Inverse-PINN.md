@@ -229,9 +229,79 @@ directly from sparse experimental observations.
 
 ---
 
-### PINN Loss Function
+## PINN Loss Function
 
 The overall loss formulation should answer three key questions:
 * Does the model match the measured capacity fade?
 * Does the model obey the governing physics?
 * Does the model start from the correct battery state?
+
+---
+
+### Singularity Issue and Reformulation
+
+The original governing equation contains the term $$t^{-0.5}$$, which becomes singular near $$t=0$$:
+
+$$ \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
+
+To improve numerical stability, the equation is reformulated by multiplying through by $$\sqrt{t}$$:
+
+$$ \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
+
+The reformulated equation preserves the underlying physics while removing the singularity at the beginning of the time domain.
+
+---
+
+### Physics Loss
+
+Using the singularity-free formulation, the residual becomes
+
+$$ R(t) = \sqrt{t}\frac{dQ_{PINN}}{dt} + k + b\sqrt{t} $$
+
+The physics loss is then
+
+$$ L_{\text{Physics}} = \mathrm{MSE}\left( R(t) \right) $$
+
+which enforces the governing degradation physics.
+
+---
+
+### Data Loss
+
+The data loss ensures agreement with the experimental measurements:
+
+$$ L_{\text{Data}} = \mathrm{MSE}\left( Q_{PINN}, Q_{\text{Data}} \right) $$
+
+---
+
+### Initial-Condition Loss
+
+The battery starts at full normalized capacity:
+
+$$ Q(0) = 1 $$
+
+The corresponding initial-condition loss is:
+
+$$ L_{\text{IC}} = \mathrm{MSE}\left( Q_{PINN}(0), 1 \right) $$
+
+which anchors the solution at the correct initial battery state.
+
+---
+
+### Total Loss Function
+
+The iPINN is trained by simultaneously minimizing the data mismatch, the physics residual, and the initial-condition constraint:
+
+$$ L_{\text{Total}} = \lambda_{\text{Data}}L_{\text{Data}} + \lambda_{\text{Physics}}L_{\text{Physics}} + \lambda_{\text{IC}}L_{\text{IC}} $$
+
+where:
+* $$\lambda_{\text{Physics}}$$ controls the importance of satisfying the governing physics.
+* $$\lambda_{\text{IC}}$$ controls the strength of the initial-condition constraint.
+
+This formulation ensures that the network simultaneously:
+* Fits the measured battery-ageing data,
+* Satisfies the governing degradation physics,
+* Starts from the correct initial condition,
+
+while discovering physically meaningful degradation parameters directly from sparse experimental observations.
+
