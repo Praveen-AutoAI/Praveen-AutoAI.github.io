@@ -263,6 +263,8 @@ The physics loss is then
 
 $$ L_{\text{Physics}} = \mathrm{MSE}\left( R(t) \right) $$
 
+$$ L_{\text{Physics}} = \frac{1}{N_f} \sum_{i=1}^{N_f} \left| R(t_i) \right|^2 $$
+
 which enforces the governing degradation physics.
 
 ---
