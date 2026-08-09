@@ -194,5 +194,30 @@ $$
 
 ---
 
+
+### Step 4: Rearranging into a Governing Equation
+
+Defining
+
+$$
+k = 0.5a
+$$
+
+gives
+
+$$
+\frac{dQ}{dt}
++
+k\,t^{-0.5}
++
+b
+=
+0
+$$
+
+This differential equation will be used as the governing degradation law for the PINN.
+
+
+
 ---
 
