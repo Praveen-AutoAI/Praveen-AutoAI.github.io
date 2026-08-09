@@ -202,7 +202,7 @@ The model naturally predicts that SEI-driven degradation slows over time because
 
 ---
 
-#### Step 6: Why PINNs Use the Differential Equation
+#### Additional Note: Why PINNs Use the Differential Equation
 
 Rather than enforcing the integrated solution
 
@@ -228,8 +228,9 @@ The iPINN therefore learns:
 directly from sparse experimental observations.
 
 ---
+#### Step 6: Why PINNs Use the Differential Equation
 
-## PINN Loss Function
+#### PINN Loss Function
 
 The overall loss formulation should answer three key questions:
 * Does the model match the measured capacity fade?
@@ -238,7 +239,7 @@ The overall loss formulation should answer three key questions:
 
 ---
 
-### Singularity Issue and Reformulation
+#### Singularity Issue and Reformulation
 
 The original governing equation contains the term $$t^{-0.5}$$, which becomes singular near $$t=0$$:
 
