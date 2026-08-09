@@ -200,3 +200,38 @@ where:
 
 The model naturally predicts that SEI-driven degradation slows over time because the term $$t^{-0.5}$$ decreases as storage time increases.
 
+---
+
+#### Step 6: Why PINNs Use the Differential Equation
+
+Rather than enforcing the integrated solution
+
+$$ Loss(t) = a\sqrt{t} + bt $$
+
+PINNs enforce the governing differential equation directly.
+
+The physics residual is defined as
+
+$$ R(t) = \frac{dQ_{PINN}}{dt} + k\,t^{-0.5} + b $$
+
+and the corresponding physics loss is
+
+$$ L_{Physics} = \mathrm{MSE}\left( R(t) \right) $$
+
+By minimizing this residual, the PINN learns a solution that not only matches the experimental data but also obeys the governing degradation physics throughout the entire time domain.
+
+The iPINN therefore learns:
+* The degradation trajectory $$Q(t)$$
+* The SEI-growth parameter $$k$$
+* The linear-ageing parameter $$b$$
+
+directly from sparse experimental observations.
+
+---
+
+### PINN Loss Function
+
+The overall loss formulation should answer three key questions:
+* Does the model match the measured capacity fade?
+* Does the model obey the governing physics?
+* Does the model start from the correct battery state?
