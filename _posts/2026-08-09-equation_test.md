@@ -124,16 +124,15 @@ To keep the physics simple and interpretable, we assume that battery capacity lo
 * Long-term parasitic ageing reactions
 
 ---
-
 ### Step 1: Capacity-Loss Model
 
 The battery capacity loss is represented using a semi-empirical ageing model:
 
-$$Loss(t) = a\sqrt{t} + bt$$
+$$ Loss(t) = a\sqrt{t} + bt $$
 
 where:
-* $a$ = degradation parameter due to SEI growth
-* $b$ = degradation parameter due to long-term ageing reactions
-* $t$ = storage time
+* $$a$$ = degradation parameter due to SEI growth
+* $$b$$ = degradation parameter due to long-term ageing reactions
+* $$t$$ = storage time
 
-The $\sqrt{t}$ term captures the rapid initial degradation associated with SEI growth, while the linear term ($bt$) represents slower, continuous ageing mechanisms.
+The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI growth, while the linear term ($$bt$$) represents slower, continuous ageing mechanisms.
