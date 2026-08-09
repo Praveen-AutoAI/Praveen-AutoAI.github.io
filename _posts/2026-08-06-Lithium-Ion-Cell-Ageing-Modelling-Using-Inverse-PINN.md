@@ -4,6 +4,7 @@ title: "Discovering Lithium-Ion Cell Calendar-Ageing Rates Using Inverse Physics
 date: 2026-08-04
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
+math: true
 ---
 
   
