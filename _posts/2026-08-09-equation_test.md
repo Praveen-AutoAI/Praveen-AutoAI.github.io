@@ -124,7 +124,6 @@ To keep the physics simple and interpretable, we assume that battery capacity lo
 * Long-term parasitic ageing reactions
 
 ---
-
 ### Step 1: Capacity-Loss Model
 
 A commonly used semi-empirical representation of calendar ageing is expressed as:
