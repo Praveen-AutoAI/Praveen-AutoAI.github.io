@@ -217,6 +217,31 @@ $$
 
 This differential equation will be used as the governing degradation law for the PINN.
 
+-
+
+### Step 5: Physical Interpretation
+
+The governing equation contains two physically meaningful degradation mechanisms:
+
+$$
+\frac{dQ}{dt}
++
+\underbrace{k\,t^{-0.5}}_{\text{Diffusion-Limited SEI Growth}}
++
+\underbrace{b}_{\text{Long-Term Linear Ageing}}
+=
+0
+$$
+
+where:
+
+- **\(k\,t^{-0.5}\)** represents degradation due to diffusion-controlled SEI growth.
+- **\(b\)** represents degradation due to long-term parasitic reactions.
+- **\(\frac{dQ}{dt}\)** represents the instantaneous capacity-fade rate.
+
+The model naturally predicts that SEI-driven degradation slows with time because the term \(t^{-0.5}\) decreases as storage time increases.
+
+---
 
 
 ---
