@@ -291,23 +291,6 @@ which anchors the solution at the correct initial battery state.
 
 ---
 
-#### Total Loss Function
-
-The iPINN is trained by simultaneously minimizing the data mismatch, the physics residual, and the initial-condition constraint:
-
-$$ L_{\text{Total}} = \lambda_{\text{Data}}L_{\text{Data}} + \lambda_{\text{Physics}}L_{\text{Physics}} + \lambda_{\text{IC}}L_{\text{IC}} $$
-
-where:
-* $$\lambda_{\text{Physics}}$$ controls the importance of satisfying the governing physics.
-* $$\lambda_{\text{IC}}$$ controls the strength of the initial-condition constraint.
-
-This formulation ensures that the network simultaneously:
-* Fits the measured battery-ageing data,
-* Satisfies the governing degradation physics,
-* Starts from the correct initial condition,
-
-while discovering physically meaningful degradation parameters directly from sparse experimental observations.
-
 #### Total Multi-Objective Loss Function
 
 The complete loss function balances data fitting, differential equation compliance, and initial conditions using weighting factors ($\lambda$):
@@ -318,6 +301,13 @@ $$ \Large L_{\text{Total}} = \lambda_{\text{Data}} L_{\text{Data}} + \lambda_{\t
 * $$\lambda_{\text{IC}}$$ ensures the trajectory is strongly tied to $Q(0) = 1.0$.
 
 > **Implementation Note:** Setting $\lambda_{\text{Data}} = 1.0$, $\lambda_{\text{Physics}} = 0.1$, and $\lambda_{\text{IC}} = 10.0$ often provides robust initial optimization convergence, mitigating gradient pathologies between data and physics losses.
+
+Now, this formulation ensures that the network simultaneously:
+* Fits the measured battery-ageing data,
+* Satisfies the governing degradation physics,
+* Starts from the correct initial condition,
+
+while discovering physically meaningful degradation parameters directly from sparse experimental observations.
 
 ---
 ## PINN Loss Function
