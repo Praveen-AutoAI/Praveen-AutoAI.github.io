@@ -8,9 +8,9 @@ math: true
 ---
 
   
-## Introduction
+### Introduction
 
-### What are Inverse PINNs (iPINNs)?
+#### What are Inverse PINNs (iPINNs)?
 
 > A class of **Scientific Machine Learning (SciML)** that embeds governing equations (ODEs/PDEs) into the loss function to infer unknown parameters from data.
 
@@ -25,14 +25,14 @@ Unlike forward PINNs, which solve for state variables given equations and parame
 
 This class of methods is foundational for scientific machine learning, enabling data-efficient and physically consistent solutions to inverse problems in systems modeled by ordinary and partial differential equations.
 
-### Key Capabilities and Usage
+#### Key Capabilities and Usage
 
 - **Parameter Recovery & Inference** *(e.g., calendar ageing kinetic parameters)*
 - **System Identification** *(discovering governing terms/fields)*
 - **Robustness with Sparse and Noisy Data**
 - **Uncertainty Quantification**
 
-## Problem Statement
+### Problem Statement
 
 > Battery calendar ageing is strongly influenced by storage temperature. Engineers often require degradation-rate parameters to:
 >
@@ -61,15 +61,15 @@ To demonstrate the concept, potential, and elegance of **PINNs** and **inverse P
 The goal is to infer physically meaningful degradation-rate parameters from limited observations(data) while leveraging known governing equations to constrain the learning process.
 
 
-## Dataset
+### Dataset
 
 The experimental data used in this **Inverse Physics-Informed Neural Network (iPINN)** demonstration corresponds to calendar-ageing measurements of a commercial **Lithium Iron Phosphate (LFP)** cell. The objective of the original study was to investigate the impact of **storage temperature** on battery degradation under high State-of-Charge (SoC) conditions.
 
-### Cell Specifications
+#### Cell Specifications
 
 The experiments were performed on a commercial **Sony US26650FTC1** cell designed for stationary energy-storage applications.
 
-#### Cell Characteristics
+##### Cell Characteristics
 
 - **Format:** 26650 Cylindrical Cell
 - **Chemistry:** Lithium Iron Phosphate (LiFePO₄)
@@ -79,7 +79,7 @@ The experiments were performed on a commercial **Sony US26650FTC1** cell designe
 
 ---
 
-### Calendar Ageing Test Conditions
+#### Calendar Ageing Test Conditions
 
 - **Storage State:** Constant **100% State of Charge (SoC)**
 - **Temperature Matrix:** **15°C, 25°C, 35°C, and 45°C**
@@ -104,7 +104,7 @@ Using remaining capacity instead of capacity loss allows the network to directly
 
 ---
 
-### Source
+#### Source
 
 The experimental data was extracted from:
 
@@ -114,7 +114,7 @@ The experimental data was extracted from:
 https://iopscience.iop.org/article/10.1149/2.1181714jes
 
 
-## Physics Model
+### Physics Model
 
 The degradation of lithium-ion batteries is a complex, multidimensional phenomenon involving several interacting ageing mechanisms. While numerous degradation pathways exist, calendar ageing is primarily driven by **SEI (Solid Electrolyte Interphase) growth** and other parasitic side reactions occurring at the electrode-electrolyte interface.
 
@@ -129,7 +129,7 @@ The derivation of the governing equation is presented below.
 
 ---
 
-### Step 1: Capacity-Loss Model
+#### Step 1: Capacity-Loss Model
 
 The battery capacity loss is represented using a semi-empirical ageing model:
 
