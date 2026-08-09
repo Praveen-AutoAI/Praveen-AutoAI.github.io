@@ -100,7 +100,7 @@ Using remaining capacity instead of capacity loss allows the network to directly
 
 ### Experimental Data: Impact of Temperature on Calendar Ageing
 
-/assets/images/Experimental_Data.jpg
+![Experimental Data Impact of Temperature on Calendar Ageing](/assets/images/Experimental_Data.jpg)
 
 ---
 
