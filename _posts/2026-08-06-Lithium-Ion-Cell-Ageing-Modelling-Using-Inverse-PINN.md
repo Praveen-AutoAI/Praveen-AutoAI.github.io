@@ -6,7 +6,7 @@ categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
-<h3>Introduction</h3>
+#### <h3>Introduction</h3>
 
 <div style="font-size: 16px;
 border-left: 5px solid #2e86de;
