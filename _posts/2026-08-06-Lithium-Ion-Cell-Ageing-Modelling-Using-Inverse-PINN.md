@@ -253,7 +253,7 @@ The reformulated equation preserves the underlying physics while removing the si
 
 ---
 
-### Physics Loss 
+#### Physics Loss 
 
 Using the singularity-free formulation, the residual becomes
 
