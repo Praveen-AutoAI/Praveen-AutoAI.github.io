@@ -1,6 +1,9 @@
 {% if page.math %}
 <script>
   window.MathJax = {
+    chtml: {
+      scale: 1.15 /* Scale all math to 115% */
+    },
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
