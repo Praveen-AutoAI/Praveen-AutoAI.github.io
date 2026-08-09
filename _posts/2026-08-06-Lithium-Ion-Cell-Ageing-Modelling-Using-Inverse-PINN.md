@@ -306,3 +306,74 @@ This formulation ensures that the network simultaneously:
 
 while discovering physically meaningful degradation parameters directly from sparse experimental observations.
 
+## PINN Loss Function
+
+The overall loss formulation answers three core questions:
+* Does the model match the measured capacity fade?
+* Does the model obey the governing degradation physics?
+* Does the model start from the correct initial battery state?
+
+---
+
+### Singularity Issue and Reformulation
+
+The original governing differential equation contains the term $$t^{-0.5}$$, which approaches infinity as $$t \to 0$$:
+
+$$ \Large \frac{dQ}{dt} + k\,t^{-0.5} + b = 0 $$
+
+To prevent severe numerical instability and vanishing/exploding gradients during training near $t=0$, the residual equation is reformulated by multiplying through by $$\sqrt{t}$$:
+
+$$ \Large \sqrt{t}\frac{dQ}{dt} + k + b\sqrt{t} = 0 $$
+
+This multiplication removes the division-by-zero singularity at time step zero while strictly preserving the underlying degradation kinetics.
+
+---
+
+### Physics Loss
+
+Using the singularity-free formulation, the continuous physics residual $$R(t)$$ is defined as:
+
+$$ \Large R(t) = \sqrt{t}\frac{dQ_{\text{PINN}}}{dt} + k + b\sqrt{t} $$
+
+The physics loss enforces the differential equation across unlabelled collocation points sampled throughout the time domain:
+
+$$ \Large L_{\text{Physics}} = \frac{1}{N_f} \sum_{i=1}^{N_f} \left| R(t_i) \right|^2 $$
+
+---
+
+### Data Loss
+
+The data loss evaluates model fidelity against the sparse measured State-of-Health (SoH) checkpoints:
+
+$$ \Large L_{\text{Data}} = \frac{1}{N_d} \sum_{j=1}^{N_d} \left( Q_{\text{PINN}}(t_j) - Q_{\text{Data}}(t_j) \right)^2 $$
+
+---
+
+### Initial-Condition Loss
+
+Because the cell begins at 100% normalized capacity ($1.0$), an explicit loss constraint anchors the neural network surrogate at $t = 0$:
+
+$$ \Large L_{\text{IC}} = \left( Q_{\text{PINN}}(0) - 1.0 \right)^2 $$
+
+---
+
+### Enforcing Parameter Positivity Constraints
+
+In an **inverse PINN**, parameters $k$ and $b$ are learned dynamically via backpropagation alongside the network weights. Because kinetic rates cannot be negative ($k, b \ge 0$), we parameterize them using softplus or exponential transformations to guarantee physical plausibility:
+
+$$ \Large k = \text{softplus}(\hat{k}), \quad b = \text{softplus}(\hat{b}) $$
+
+This prevents non-physical predictions where capacity would spontaneously increase over time.
+
+---
+
+### Total Multi-Objective Loss Function
+
+The complete loss function balances data fitting, differential equation compliance, and initial conditions using weighting factors ($\lambda$):
+
+$$ \Large L_{\text{Total}} = \lambda_{\text{Data}} L_{\text{Data}} + \lambda_{\text{Physics}} L_{\text{Physics}} + \lambda_{\text{IC}} L_{\text{IC}} $$
+
+* $$\lambda_{\text{Physics}}$$ balances the trade-off between strict physics adherence and data fitting.
+* $$\lambda_{\text{IC}}$$ ensures the trajectory is strongly tied to $Q(0) = 1.0$.
+
+> **Implementation Note:** Setting $\lambda_{\text{Data}} = 1.0$, $\lambda_{\text{Physics}} = 0.1$, and $\lambda_{\text{IC}} = 10.0$ often provides robust initial optimization convergence, mitigating gradient pathologies between data and physics losses.
