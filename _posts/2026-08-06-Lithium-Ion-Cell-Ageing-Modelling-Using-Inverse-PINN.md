@@ -139,7 +139,7 @@ where:
 * $$a$$ = degradation parameter due to SEI growth
 * $$b$$ = represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the diffusion-limited SEI term
 * $$t$$ = storage time
-
+---
 #### Step 2: Define Remaining Capacity
 
 The iPINN is trained on **normalized remaining capacity** rather than capacity loss.
@@ -150,6 +150,49 @@ Substituting the capacity-loss model:
 
 $$ Q(t) = 1 - a\sqrt{t} - bt $$
 The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI growth, while the linear term ($$bt$$) represents slower, continuous ageing mechanisms.
+
+
+---
+
+### Step 3: Differentiate with Respect to Time
+
+PINNs enforce governing differential equations, so we require the rate of change of capacity.
+
+Differentiating with respect to time:
+
+$$
+\frac{dQ}{dt}
+=
+-\frac{d}{dt}
+\left(
+a\sqrt{t}+bt
+\right)
+$$
+
+Since
+
+$$
+\frac{d}{dt}
+\left(
+\sqrt{t}
+\right)
+=
+\frac{1}{2}t^{-0.5}
+$$
+
+we obtain
+
+$$
+\frac{dQ}{dt}
+=
+-\left(
+0.5a\,t^{-0.5}
++
+b
+\right)
+$$
+
+---
 
 ---
 
