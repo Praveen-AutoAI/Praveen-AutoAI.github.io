@@ -155,7 +155,7 @@ The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI
 
 
 ---
-### Step 3: Differentiate with Respect to Time
+#### Step 3: Differentiate with Respect to Time
 
 PINNs enforce governing differential equations, so we require the rate of change of capacity.
 
@@ -173,7 +173,7 @@ $$ \frac{dQ}{dt} = -\left( 0.5a\,t^{-0.5} + b \right) $$
 
 ---
 
-### Step 4: Rearranging into a Governing Equation
+#### Step 4: Rearranging into a Governing Equation
 
 Defining
 
@@ -187,7 +187,7 @@ This differential equation will be used as the governing degradation law for the
 
 ---
 
-### Step 5: Physical Interpretation
+#### Step 5: Physical Interpretation
 
 The governing equation contains two physically meaningful degradation mechanisms:
 
