@@ -146,18 +146,15 @@ The $\sqrt{t}$ term captures the rapid initial degradation associated with SEI g
 
 ---
 
+
 ### Step 1: Capacity-Loss Model
 
-The battery capacity loss is represented using a semi-empirical ageing model:
+A commonly used semi-empirical representation of calendar ageing is
 
 $$
-Loss(t) = a\sqrt{t} + bt
+Loss(t)=a\sqrt{t}+bt
 $$
 
-where:
+where \(a\) quantifies diffusion-limited SEI growth and \(b\) captures long-term parasitic ageing reactions.
 
-- $a$ = degradation due to SEI growth
-- $b$ = degradation due to long-term ageing reactions
-- $t$ = storage time
-
-The $\sqrt{t}$ term captures the rapid initial degradation associated with SEI growth, while the linear term represents slower continuous ageing mechanisms.
+The first term dominates during the early stages of storage and decreases with time, while the second term represents a persistent linear degradation process.
