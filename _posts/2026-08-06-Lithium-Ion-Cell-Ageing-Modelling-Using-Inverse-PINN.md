@@ -271,7 +271,7 @@ which enforces the governing degradation physics.
 
 The data loss evaluates model fidelity against the sparse measured State-of-Health (SoH) checkpoints:
 
-$$ \Large L_{\text{Data}} = \frac{1}{N_d} \sum_{j=1}^{N_d} \left( Q_{\text{PINN}}(t_j) - Q_{\text{Data}}(t_j) \right)^2 $$
+$$ L_{\text{Data}} = \frac{1}{N_d} \sum_{j=1}^{N_d} \left( Q_{\text{PINN}}(t_j) - Q_{\text{Data}}(t_j) \right)^2 $$
 
 ---
 
