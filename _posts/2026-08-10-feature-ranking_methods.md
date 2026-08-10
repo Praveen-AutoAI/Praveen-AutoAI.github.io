@@ -38,8 +38,8 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 # Pearson Correlation
 
-**Landscape of Feature Selection/Importance**
-![Landscape of Feature Selection/Importance](/assets/images/feature_Engineering_methods.jpg)
+**Pearson's Correlation**
+!(/assets/images/pearson.jpg)
 
 ## 1. What is it?
 
