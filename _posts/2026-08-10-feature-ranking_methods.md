@@ -163,9 +163,7 @@ The algorithm assigns an importance score to each feature based on its ability t
 ReliefF evaluates feature importance by comparing each sample with its nearest neighbors having similar and different target values.
 
 $$
-W[A] = W[A]
-- \frac{diff(A,Hit)}{m}
-+ \frac{diff(A,Miss)}{m}
+W[A] = W[A] - \frac{diff(A,Hit)}{m} + \frac{diff(A,Miss)}{m}
 $$
 
 where:
