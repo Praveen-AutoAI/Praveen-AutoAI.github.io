@@ -160,12 +160,7 @@ The algorithm assigns an importance score to each feature based on its ability t
 
 ## 2. Mathematical Foundation
 
-For each sampled observation, ReliefF compares the feature values of:
-
-- Nearest neighbors with similar target values (**Nearest Hits**)
-- Nearest neighbors with different target values (**Nearest Misses**)
-
-The feature weight is updated as:
+ReliefF evaluates feature importance by comparing each sample with its nearest neighbors having similar and different target values.
 
 $$
 W[A] = W[A]
@@ -176,11 +171,11 @@ $$
 where:
 
 - $$W[A]$$ = Importance score of feature $$A$$
-- $$diff(A,Hit)$$ = Difference between feature values of similar observations
-- $$diff(A,Miss)$$ = Difference between feature values of dissimilar observations
+- $$diff(A,Hit)$$ = Difference between feature values of neighboring samples with similar target values
+- $$diff(A,Miss)$$ = Difference between feature values of neighboring samples with different target values
 - $$m$$ = Number of sampled observations
 
-A feature receives a higher score when neighboring samples with different target values exhibit large differences in that feature.
+A feature receives a higher score when it consistently distinguishes observations with different target values while remaining similar for observations with comparable target values.
 
 ---
 
