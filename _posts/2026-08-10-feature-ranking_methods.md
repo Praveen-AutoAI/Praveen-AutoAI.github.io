@@ -40,6 +40,15 @@ Based on my experimentation with many methods and I found handfull of methods th
 ## **#1 Pearson's Correlation**
 ![Pearsons_Correlation](/assets/images/pearson.jpg)
 
+>**Relevance to Automotive Feature Ranking**
+
+- Rapidly screens thousands of recorded vehicle signals to identify variables with strong linear relationships to the target.
+- Helps reduce large datasets (e.g., 1,500+ signals) to a manageable set of candidate features.
+- Supports calibration activities by highlighting parameters that directly influence vehicle performance.
+- Useful for root-cause investigations involving thermal, electrical, and powertrain systems.
+- Computationally efficient and suitable for automated feature-ranking pipelines.
+- Best used as an initial filtering technique before applying advanced nonlinear feature-ranking methods.
+
 
 ## **#2 Spearman's Correlation**
 ![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
