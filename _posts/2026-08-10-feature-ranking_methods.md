@@ -36,3 +36,53 @@ Feature selection/importance area is pretty vast and consists of numerous method
 
 Based on my experimentation with many methods and I found handfull of methods that are really robust that can help you identify the signals trapped in the noise. Let's begin!!!
 
+#### Pearson Correlation: The Engineer's First Diagnostic Tool
+
+**Pearson correlation** measures the strength and direction of the **linear relationship** between a feature \(X\) and the target variable \(Y\).
+
+$$
+r_{XY} =
+\frac{
+\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})
+}{
+\sqrt{\sum_{i=1}^{n}(X_i-\bar{X})^2}
+\sqrt{\sum_{i=1}^{n}(Y_i-\bar{Y})^2}
+}
+$$
+
+## Intuitive Example
+
+When the recorded current increases, the measured temperature may also increase:
+
+- **Current** ↑  
+- **Temperature** ↑  
+
+A strong linear trend between the two variables produces a high absolute Pearson correlation score.
+
+## Why Engineers Love It
+
+- **Fast** to calculate across a large number of recorded variables
+- **Easy to interpret**
+- Works well for **first-pass feature screening**
+- Indicates both the **strength** and **direction** of a linear relationship
+- Helps quickly reduce a large feature set to potentially relevant variables
+
+## Why It Can Fail
+
+Pearson correlation fundamentally assumes that an important relationship can be represented by a **straight line**:
+
+> **Important relationship = Straight-line relationship**
+
+However, physical systems rarely behave in a completely linear manner.
+
+Examples of nonlinear behaviour include:
+
+- Battery degradation
+- Thermal runaway
+- Motor efficiency
+- Fluid-flow dynamics
+- Component saturation
+- Threshold-based control responses
+
+Therefore, a variable may have a significant influence on the target while still receiving a low Pearson correlation score. Pearson correlation should consequently be used as an **initial diagnostic and screening tool**, rather than as the only method for identifying high-impact variables.
+
