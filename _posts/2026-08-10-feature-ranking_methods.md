@@ -161,6 +161,16 @@ Each technique evaluates feature importance from a different perspective and the
 
 # Ensemble Score Estimation
 
+## Why is an Ensemble Score Needed?
+
+Each feature-ranking method evaluates feature importance from a different perspective. Pearson and Spearman focus on statistical relationships, ReliefF identifies local patterns, Random Forest captures nonlinear interactions, mRMR reduces redundancy, Boruta validates relevance against noise, and Permutation Importance measures impact on model performance.
+
+As a result, the ranking of a feature can vary significantly across methods. Relying on a single technique may overlook important variables or introduce bias toward a specific type of relationship.
+
+An **ensemble score** combines the strengths of multiple feature-ranking methods into a single, more robust metric. This approach improves feature-selection reliability, reduces method-specific bias, and increases confidence that highly ranked features genuinely influence the target variable.
+
+For large automotive datasets containing
+
 To improve feature-ranking reliability, normalized scores from multiple methods (Pearson, Spearman, ReliefF, Random Forest, mRMR, Boruta, and Permutation Importance) are combined into a single ensemble score.
 
 ## Average Ensemble Score
