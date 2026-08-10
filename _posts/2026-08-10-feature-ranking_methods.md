@@ -48,7 +48,9 @@ For feature ranking, variables are ranked based on the absolute correlation coef
 
 ## 2. Mathematical Foundation
 
-\[
+Pearson Correlation measures the linear dependency between a feature \(X\) and a target variable \(Y\).
+
+$$
 r_{XY} =
 \frac{
 \sum_{i=1}^{n}(X_i-\bar X)(Y_i-\bar Y)
@@ -57,17 +59,17 @@ r_{XY} =
 \sqrt{\sum_{i=1}^{n}(X_i-\bar X)^2}
 \sqrt{\sum_{i=1}^{n}(Y_i-\bar Y)^2}
 }
-\]
+$$
 
-Where:
+where:
 
-- \(X\) = Feature variable
-- \(Y\) = Target variable
-- \(\bar X\) = Mean of feature values
-- \(\bar Y\) = Mean of target values
-- \(r_{XY}\) = Pearson correlation coefficient
+- $$X$$ = Feature variable
+- $$Y$$ = Target variable
+- $$\bar X$$ = Mean of feature values
+- $$\bar Y$$ = Mean of target values
+- $$r_{XY}$$ = Pearson correlation coefficient
 
-The coefficient quantifies how strongly the feature and target vary together relative to their individual variations.
+A value of $$|r_{XY}|$$ closer to 1 indicates a stronger linear relationship between the feature and the target.
 
 ---
 
@@ -105,18 +107,20 @@ The Spearman coefficient ranges from **-1 to +1**, with larger absolute values i
 
 ## 2. Mathematical Foundation
 
-\[
+Spearman Correlation evaluates the relationship between the ranked values of a feature and a target variable.
+
+$$
 \rho =
 1 - \frac{6\sum d_i^2}{n(n^2-1)}
-\]
+$$
 
-Where:
+where:
 
-- \(\rho\) = Spearman correlation coefficient
-- \(d_i\) = Difference between the ranks of corresponding observations
-- \(n\) = Number of observations
+- $$\rho$$ = Spearman correlation coefficient
+- $$d_i$$ = Difference between the ranks of corresponding observations
+- $$n$$ = Number of observations
 
-Instead of comparing actual values, Spearman evaluates how consistently the rankings of a feature and target move together.
+Instead of using actual values, Spearman Correlation uses ranks to measure whether the feature and target exhibit a consistent increasing or decreasing trend. A value of $$|\rho|$$ closer to 1 indicates a stronger monotonic relationship.
 
 ---
 
