@@ -170,7 +170,7 @@ As a result, the ranking of a feature can vary significantly across methods. Rel
 An **ensemble score** combines the strengths of multiple feature-ranking methods into a single, more robust metric. This approach improves feature-selection reliability, reduces method-specific bias, and increases confidence that highly ranked features genuinely influence the target variable.
 
 
-Given a set of normalized feature importance scores from multiple feature-ranking methods:
+The raw scores are normalized to equate all the importance score on same scale. Given a set of normalized feature importance scores from multiple feature-ranking methods:
 
 - Pearson Correlation
 - Spearman Correlation
