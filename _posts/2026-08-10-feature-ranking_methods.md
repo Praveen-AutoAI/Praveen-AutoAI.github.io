@@ -242,7 +242,7 @@ The increasing complexity of modern vehicle systems has led to the generation of
 
 Key outcomes of this methodology include:
 
-- Reduces approximately **1,500 recorded signals** to a focused set of **50-100 high-impact features**. Normally the analysis is done by domain experts to list the variables, with this approach fresh engineers can do the ***first level data analysis** and second level of filtration can be done by the experts.
+- Reduces approximately **1,500 recorded signals** to a focused set of **50-100 high-impact features**. Normally the analysis is done by domain experts to list the variables, with this approach fresh engineers can do the **first level data analysis** and second level of filtration can be done by the experts.
 - Combines multiple feature-ranking techniques to capture **linear, nonlinear, interaction-based, and information-theoretic relationships**.
 - Minimizes noise and redundant information, enabling more efficient engineering analysis.
 - Supports **performance calibration**, **drivability**, **thermal management studies** by identifying the variables that most strongly influence vehicle behavior.
