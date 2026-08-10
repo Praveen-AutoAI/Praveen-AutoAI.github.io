@@ -199,7 +199,7 @@ A feature receives a higher score when it consistently distinguishes observation
 - Helps uncover important variables missed by Pearson or Spearman analysis.
 - Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
 
-  # Random Forest Importance
+# Random Forest Importance
 
 ## 1. What is it?
 
