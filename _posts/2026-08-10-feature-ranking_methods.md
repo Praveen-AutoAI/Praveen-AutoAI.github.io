@@ -36,29 +36,19 @@ Feature selection/importance area is pretty vast and consists of numerous method
 
 Based on my experimentation with many methods and I found handfull of methods that are really robust that can help you identify the signals trapped in the noise. Let's begin!!!
 
-#### Pearson Correlation: The Engineer's First Diagnostic Tool
-
 # Pearson Correlation
 
 ## 1. What is it?
 
-Pearson Correlation is one of the simplest and most widely used feature-ranking methods. It quantifies the strength and direction of a linear relationship between a predictor variable and a target variable.
+Pearson Correlation is a statistical technique used to measure the strength and direction of a **linear relationship** between a feature and a target variable. The correlation coefficient ranges from **-1 to +1**, where positive values indicate that the target increases as the feature increases, negative values indicate an inverse relationship, and values close to zero indicate little or no linear dependency.
 
-The Pearson coefficient ranges from:
-
-- +1 : Perfect positive relationship
-- 0 : No linear relationship
-- -1 : Perfect negative relationship
-
-Features with larger absolute correlation values are considered more influential on the target.
+For feature ranking, variables are ranked based on the absolute correlation coefficient, with larger values indicating stronger influence on the target.
 
 ---
 
 ## 2. Mathematical Foundation
 
-The Pearson correlation coefficient is defined as:
-
-$$
+\[
 r_{XY} =
 \frac{
 \sum_{i=1}^{n}(X_i-\bar X)(Y_i-\bar Y)
@@ -67,136 +57,101 @@ r_{XY} =
 \sqrt{\sum_{i=1}^{n}(X_i-\bar X)^2}
 \sqrt{\sum_{i=1}^{n}(Y_i-\bar Y)^2}
 }
-$$
+\]
 
-where:
+Where:
 
-- X = feature
-- Y = target variable
-- n = number of observations
-- rXY = correlation coefficient
+- \(X\) = Feature variable
+- \(Y\) = Target variable
+- \(\bar X\) = Mean of feature values
+- \(\bar Y\) = Mean of target values
+- \(r_{XY}\) = Pearson correlation coefficient
 
----
-
-## 3. How It Works
-
-1. Select a target variable.
-2. Calculate the Pearson correlation between every feature and the target.
-3. Rank features based on absolute correlation magnitude.
-4. Retain the highest-ranking features for further analysis.
-
-Example:
-
-- Feature Count = 1500
-- Ranked Features = 1500
-- Selected Features = Top 50-100
+The coefficient quantifies how strongly the feature and target vary together relative to their individual variations.
 
 ---
 
-## 4. Engineering Intuition
+## 3. Strengths and Weaknesses
 
-Consider an electric vehicle thermal test.
-
-Target:
-
-- Battery Cell Temperature
-
-Available signals:
-
-- Motor Current
-- Coolant Flow Rate
-- Pump Speed
-- Ambient Temperature
-- Vehicle Speed
-
-If motor current increases and battery temperature increases almost proportionally, Pearson correlation will assign a high positive score.
-
-For example:
-
-Current ↑ → Temperature ↑
-
-Such behavior indicates a strong linear relationship and therefore a high ranking.
+| Strengths | Weaknesses |
+|------------|------------|
+| Fast and computationally efficient | Detects only linear relationships |
+| Easy to understand and interpret | Misses nonlinear dependencies |
+| Suitable for large datasets | Sensitive to outliers |
+| Provides direction of influence | Cannot capture feature interactions |
+| Effective for preliminary screening | Produces redundant rankings for correlated features |
+| Widely accepted and easy to communicate | May overlook physically important nonlinear variables |
 
 ---
 
-## 5. Strengths
+## 4. Relevance to Automotive Feature Ranking
 
-- Extremely fast computationally
-- Easy to understand and explain
-- Scales well to thousands of signals
-- Useful as an initial screening method
-- Provides directional information (positive or negative influence)
+Modern vehicle testing programs typically record more than 1,500 signals from powertrain, battery, thermal, electrical, and control systems. Pearson Correlation serves as an effective first-pass feature ranking tool by identifying variables that exhibit strong linear relationships with a target parameter.
 
----
+Typical applications include:
 
-## 6. Weaknesses
+- Battery temperature prediction
+- Energy consumption analysis
+- Motor torque investigation
+- Thermal system calibration
+- Root-cause analysis
 
-- Captures only linear relationships
-- Sensitive to outliers
-- Misses nonlinear dependencies
-- Cannot identify feature interactions
-- Can underestimate physically important variables
+Its primary advantage is the ability to rapidly reduce thousands of signals to a manageable set of potentially influential variables. However, automotive systems frequently exhibit nonlinear behaviors such as thermal saturation, battery aging effects, efficiency maps, and control logic thresholds. As a result, Pearson Correlation should be viewed as an initial screening method rather than a standalone feature-selection technique.
 
-For example, battery cooling systems often exhibit threshold behavior. Such relationships may be highly influential but poorly captured by Pearson correlation.
+It is most effective when used as part of a broader feature-ranking framework alongside nonlinear methods such as Spearman Correlation, ReliefF, Random Forest Importance, mRMR, and Boruta.
 
----
+# Spearman Correlation
 
-## 7. Relevance to Automotive Feature Ranking
+## 1. What is it?
 
-Modern vehicle tests routinely generate more than 1000 recorded signals.
+Spearman Correlation is a non-parametric statistical technique that measures the strength and direction of a **monotonic relationship** between a feature and a target variable. Unlike Pearson Correlation, it operates on ranked data and can identify relationships that consistently increase or decrease, even when the relationship is nonlinear.
 
-Pearson correlation is particularly useful as a first-level filter because it:
-
-- Quickly eliminates irrelevant variables
-- Highlights dominant physical relationships
-- Reduces computational burden for more advanced methods
-- Accelerates calibration investigations
-- Supports root-cause analysis during validation
-
-For feature-reduction pipelines, Pearson correlation is often used before applying machine-learning-based methods such as Random Forest, Boruta, or mRMR.
+The Spearman coefficient ranges from **-1 to +1**, with larger absolute values indicating stronger monotonic relationships.
 
 ---
 
-## 8. Practical Interpretation of Scores
+## 2. Mathematical Foundation
 
-| Absolute Correlation | Interpretation |
-|---------------------|---------------|
-| > 0.80 | Very Strong Relationship |
-| 0.60 - 0.80 | Strong Relationship |
-| 0.40 - 0.60 | Moderate Relationship |
-| 0.20 - 0.40 | Weak Relationship |
-| < 0.20 | Very Weak Relationship |
+\[
+\rho =
+1 - \frac{6\sum d_i^2}{n(n^2-1)}
+\]
 
-Note: Thresholds should be treated as guidelines and may vary depending on the application.
+Where:
 
----
+- \(\rho\) = Spearman correlation coefficient
+- \(d_i\) = Difference between the ranks of corresponding observations
+- \(n\) = Number of observations
 
-## 9. When Should Engineers Use It?
-
-Recommended for:
-
-- Initial feature screening
-- Large signal databases
-- Exploratory analysis
-- Validation studies
-- Quick health checks of logged datasets
+Instead of comparing actual values, Spearman evaluates how consistently the rankings of a feature and target move together.
 
 ---
 
-## 10. When Should Engineers Avoid It?
+## 3. Strengths and Weaknesses
 
-Avoid using Pearson correlation as the sole ranking method when:
-
-- Relationships are nonlinear
-- Strong feature interactions exist
-- Threshold effects are expected
-- Battery aging studies are involved
-- Thermal systems exhibit saturation behavior
+| Strengths | Weaknesses |
+|------------|------------|
+| Detects linear and monotonic nonlinear relationships | Cannot detect complex non-monotonic relationships |
+| Less sensitive to outliers | Loses some information through ranking |
+| Suitable for skewed and noisy data | Cannot model feature interactions |
+| Computationally efficient | May miss operating-region-dependent behavior |
+| Captures dependencies missed by Pearson | Correlated variables may receive similar scores |
+| Well suited for real-world engineering datasets | Less directly interpretable than Pearson |
 
 ---
 
-## 11. Final Verdict
+## 4. Relevance to Automotive Feature Ranking
 
-Pearson correlation is best viewed as the engineer's first diagnostic tool rather than a complete feature-ranking solution. It offers exceptional speed and interpretability for large vehicle-testing datasets and serves as an effective first-stage filter before applying more sophisticated techniques capable of capturing nonlinear relationships and feature interactions.
-Therefore, a variable may have a significant influence on the target while still receiving a low Pearson correlation score. Pearson correlation should consequently be used as an **initial diagnostic and screening tool**, rather than as the only method for identifying high-impact variables.
+Many automotive systems exhibit nonlinear but monotonic behavior. Examples include battery temperature versus current, inverter temperature versus load, battery voltage versus state of charge, and aerodynamic losses versus vehicle speed. While these relationships may not be linear, they often maintain a consistent increasing or decreasing trend.
 
+Spearman Correlation is particularly valuable because it can identify such relationships more effectively than Pearson Correlation. By focusing on ranked trends rather than actual values, it also becomes more robust to measurement noise and outliers, which are commonly encountered during vehicle testing.
+
+This makes Spearman Correlation highly suitable for:
+
+- Battery performance studies
+- Thermal system analysis
+- Powertrain efficiency investigations
+- Calibration support activities
+- Validation and root-cause analysis
+
+For large-scale vehicle datasets containing thousands of logged signals, Spearman Correlation provides a reliable screening mechanism for identifying high-impact variables. It often serves as an intermediate feature-ranking method between simple linear analysis and more advanced machine-learning-based approaches such as Random Forest Importance, Permutation Importance, ReliefF, mRMR, and Boruta.
