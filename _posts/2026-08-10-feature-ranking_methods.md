@@ -169,10 +169,6 @@ As a result, the ranking of a feature can vary significantly across methods. Rel
 
 An **ensemble score** combines the strengths of multiple feature-ranking methods into a single, more robust metric. This approach improves feature-selection reliability, reduces method-specific bias, and increases confidence that highly ranked features genuinely influence the target variable.
 
-For large automotive datasets containing
-
-To improve feature-ranking reliability, normalized scores from multiple methods (Pearson, Spearman, ReliefF, Random Forest, mRMR, Boruta, and Permutation Importance) are combined into a single ensemble score.
-
 ## Average Ensemble Score
 
 The primary ranking score is computed as:
