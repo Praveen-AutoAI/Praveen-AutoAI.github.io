@@ -18,13 +18,21 @@ This method sounds like a simple correlation study, but developing a pipeline th
 Most engineering datasets contain hundreds of sensors, calculated signals, timestamps, operational flags, and derived parameters. Many of these variables are redundant, some are pure noise, and a few contain the information that ultimately affects the target variable. **Determine the variables that are potentially impact the target variable**. 
 > Can a pure statistically driven method can do? To what extent?
 
-### Introduction to Feature Ranking(/Engineering/Selection) Methods
+### Introduction to Feature Ranking(/Importance/Selection) Methods
 
-
-I suggest to go through the overview and general methods of feature engineering/selection from the below link.
+Feature selection/importance area is pretty vast and consists of numerous methods, I suggest to go through the overview and general methods of feature engineering/selection from the below link. 
 #### Before jumping deep into the ocean, I let you surf a little
 * [Feature Selection — Exhaustive Overview (Analytics Vidhya)](https://medium.com/analytics-vidhya/feature-selection-extended-overview-b58f1d524c1c)
 * [Feature Selection Techniques in Machine Learning (GeeksforGeeks)](https://www.geeksforgeeks.org/machine-learning/feature-selection-techniques-in-machine-learning/)
 
 **Landscape of Feature Selection/Importance**
 ![Landscape of Feature Selection/Importance](/assets/images/feature_Engineering_methods.jpg)
+
+> Yes, the landscape is vast and still there are lot of methods. Generally we can group them into 3 class:
+> Filter Method: Evaluates each feature independently with respect to the target variable
+> Wrapper Method: Evaluates different combinations of features by measuring their impact on model performance
+> Embedded Method: Performs feature selection during the model training process
+> Check out the links to understand more about the classes
+
+Based on my experimentation with many methods and I found handfull of methods that are really robust that can help you identify the signals trapped in the noise. Let's begin!!!
+
