@@ -38,6 +38,8 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 
 ## **#1 Pearson's Correlation**
+Pearson Correlation is a statistical technique used to measure the strength and direction of a **linear relationship** between a feature and a target variable. The correlation coefficient ranges from **-1 to +1**, where positive values indicate that the target increases as the feature increases, negative values indicate an inverse relationship, and values close to zero indicate little or no linear dependency.
+
 ![Pearsons_Correlation](/assets/images/pearson.jpg)
 
 >**Relevance to Automotive Feature Ranking**
@@ -51,6 +53,8 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 
 ## **#2 Spearman's Correlation**
+Spearman Correlation is a non-parametric statistical technique that measures the strength and direction of a **monotonic relationship** between a feature and a target variable. Unlike Pearson Correlation, it operates on ranked data and can identify relationships that consistently increase or decrease, even when the relationship is nonlinear.
+
 ![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
 
 > **Relevance to Automotive Feature Ranking**
@@ -63,6 +67,8 @@ Based on my experimentation with many methods and I found handfull of methods th
 - Serves as an effective intermediate
 
 ## **#3 Random Forest Importance**
+Random Forest Importance is a machine-learning-based feature-ranking method that evaluates the contribution of each feature toward predicting a target variable. It is derived from an ensemble of decision trees and can capture nonlinear relationships and feature interactions.
+
 ![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
 
 > **Relevance to Automotive Feature Ranking**
@@ -75,6 +81,8 @@ Based on my experimentation with many methods and I found handfull of methods th
 - Effective for reducing large signal sets to the most influential variables for detailed engineering analysis.
 
 ## **#4 ReliefF Importance**
+ReliefF is a feature-ranking algorithm that evaluates how well a feature distinguishes between similar observations with different target values. Unlike correlation-based methods, ReliefF considers the local neighborhood of data points and can detect complex relationships between features and the target.
+
 ![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
 
 > **Relevance to Automotive Feature Ranking**
@@ -248,62 +256,6 @@ A feature receives a higher score when it consistently distinguishes observation
 - Helps uncover important variables missed by Pearson or Spearman analysis.
 - Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
 
-# Random Forest Importance
 
-## 1. What is it?
 
-Random Forest Importance is a machine-learning-based feature-ranking method that evaluates the contribution of each feature toward predicting a target variable. It is derived from an ensemble of decision trees and can capture nonlinear relationships and feature interactions.
 
-Features that contribute more to reducing prediction error across the forest receive higher importance scores.
-
----
-
-## 2. Mathematical Foundation
-
-For each decision tree split, the reduction in impurity is calculated.
-
-$$
-Importance(A) = \sum_{nodes}\Delta Impurity(A)
-$$
-
-where
-
-$$
-\Delta Impurity = Impurity_{parent} - (Impurity_{left} + Impurity_{right})
-$$
-
-The feature importance is obtained by summing impurity reductions contributed by a feature across all trees and normalizing the result.
-
-where:
-
-- $$Importance(A)$$ = Overall importance of feature $$A$$
-- $$\Delta Impurity$$ = Reduction in node impurity after a split
-- $$Impurity_{parent}$$ = Impurity before splitting
-- $$Impurity_{left}$$ = Impurity of the left child node
-- $$Impurity_{right}$$ = Impurity of the right child node
-
-Features producing larger reductions in prediction error receive higher importance scores.
-
----
-
-## 3. Strengths and Weaknesses
-
-| Strengths | Weaknesses |
-|------------|------------|
-| Captures nonlinear relationships | Can favor high-variance features |
-| Detects feature interactions automatically | Importance scores may be biased |
-| Handles large feature sets efficiently | Less interpretable than correlation methods |
-| Robust to noise and outliers | Correlated features may split importance |
-| Requires minimal data assumptions | Computationally heavier than correlation methods |
-| Generally provides highly accurate rankings | Does not directly indicate causality |
-
----
-
-## 4. Relevance to Automotive Feature Ranking
-
-- Well suited for complex vehicle datasets containing thousands of logged signals.
-- Captures nonlinear effects present in battery, thermal, and electrical systems.
-- Identifies interacting variables that influence performance targets.
-- Provides reliable rankings even when signal relationships are complex.
-- Frequently used for calibration support and root-cause investigations.
-- Effective for reducing large signal sets to the most influential variables for detailed engineering analysis.
