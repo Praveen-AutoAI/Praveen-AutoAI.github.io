@@ -27,3 +27,4 @@ I suggest to go through the overview and general methods of feature engineering/
 * [Feature Selection Techniques in Machine Learning (GeeksforGeeks)](https://www.geeksforgeeks.org/machine-learning/feature-selection-techniques-in-machine-learning/)
 
 Landscape of feature engineering
+![Landscape of Feature Selection/Importance](/assets/images/feature_Engineering_methods.jpg)
