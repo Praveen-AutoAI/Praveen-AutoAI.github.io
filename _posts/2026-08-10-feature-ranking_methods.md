@@ -37,12 +37,12 @@ Feature selection/importance area is pretty vast and consists of numerous method
 Based on my experimentation with many methods and I found handfull of methods that are really robust that can help you identify the signals trapped in the noise. Let's begin!!!
 
 
-## **Pearson's Correlation**
+## **#1 Pearson's Correlation**
 ![Pearsons_Correlation](/assets/images/pearson.jpg)
 
 
-## **Pearson's Correlation**
-![Pearsons_Correlation](/assets/images/pearson.jpg)
+## **#2 Spearman's Correlation**
+![Spearman_Correlation](/assets/images/pearson.jpg)
 
 
 ## 1. What is it?
