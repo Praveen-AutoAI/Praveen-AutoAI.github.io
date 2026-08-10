@@ -238,11 +238,12 @@ $$
 E_{hybrid}=0.7E_{avg}+0.3E_{geo}
 $$
 
-### Interpretation
+> **Interpretation**
+> - $$E_{avg}$$ captures overall support.
+> - $$E_{geo}$$ captures consensus among methods.
+> - $$E_{hybrid}$$ balances both aspects.
 
-- $$E_{avg}$$ captures overall support.
-- $$E_{geo}$$ captures consensus among methods.
-- $$E_{hybrid}$$ balances both aspects.
+Hybrid method is very relevant for engineering dataset but it demands some study before you confirm the weights of the two components.
 
 ## Recommended Interpretation
 
