@@ -98,6 +98,7 @@ ReliefF is a feature-ranking algorithm that evaluates how well a feature disting
 Permutation Importance is a model-based feature-ranking technique that measures how much a model's prediction performance deteriorates when a feature is randomly shuffled.
 The underlying idea is simple: if shuffling a feature significantly reduces model accuracy, then that feature must contain important information about the target variable.
 Unlike Random Forest Importance, Permutation Importance evaluates a feature's contribution directly through its impact on model performance.
+![Boruta_Correlation](/assets/images/Feature_Ranking/perImp.jpg)
 
 > **Relevance to Automotive Feature Ranking**
 
