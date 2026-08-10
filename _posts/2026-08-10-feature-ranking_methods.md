@@ -41,7 +41,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 **Pearson's Correlation**
 ![Pearsons_Correlation](/assets/images/pearson.jpg)
 
-#2. Pearson Correlation
+#2. Spearman Correlation
 
 **Pearson's Correlation**
 ![Pearsons_Correlation](/assets/images/pearson.jpg)
