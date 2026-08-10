@@ -86,19 +86,12 @@ The coefficient quantifies how strongly the feature and target vary together rel
 
 ## 4. Relevance to Automotive Feature Ranking
 
-Modern vehicle testing programs typically record more than 1,500 signals from powertrain, battery, thermal, electrical, and control systems. Pearson Correlation serves as an effective first-pass feature ranking tool by identifying variables that exhibit strong linear relationships with a target parameter.
-
-Typical applications include:
-
-- Battery temperature prediction
-- Energy consumption analysis
-- Motor torque investigation
-- Thermal system calibration
-- Root-cause analysis
-
-Its primary advantage is the ability to rapidly reduce thousands of signals to a manageable set of potentially influential variables. However, automotive systems frequently exhibit nonlinear behaviors such as thermal saturation, battery aging effects, efficiency maps, and control logic thresholds. As a result, Pearson Correlation should be viewed as an initial screening method rather than a standalone feature-selection technique.
-
-It is most effective when used as part of a broader feature-ranking framework alongside nonlinear methods such as Spearman Correlation, ReliefF, Random Forest Importance, mRMR, and Boruta.
+- Rapidly screens thousands of recorded vehicle signals to identify variables with strong linear relationships to the target.
+- Helps reduce large datasets (e.g., 1,500+ signals) to a manageable set of candidate features.
+- Supports calibration activities by highlighting parameters that directly influence vehicle performance.
+- Useful for root-cause investigations involving thermal, electrical, and powertrain systems.
+- Computationally efficient and suitable for automated feature-ranking pipelines.
+- Best used as an initial filtering technique before applying advanced nonlinear feature-ranking methods.
 
 # Spearman Correlation
 
@@ -142,16 +135,9 @@ Instead of comparing actual values, Spearman evaluates how consistently the rank
 
 ## 4. Relevance to Automotive Feature Ranking
 
-Many automotive systems exhibit nonlinear but monotonic behavior. Examples include battery temperature versus current, inverter temperature versus load, battery voltage versus state of charge, and aerodynamic losses versus vehicle speed. While these relationships may not be linear, they often maintain a consistent increasing or decreasing trend.
-
-Spearman Correlation is particularly valuable because it can identify such relationships more effectively than Pearson Correlation. By focusing on ranked trends rather than actual values, it also becomes more robust to measurement noise and outliers, which are commonly encountered during vehicle testing.
-
-This makes Spearman Correlation highly suitable for:
-
-- Battery performance studies
-- Thermal system analysis
-- Powertrain efficiency investigations
-- Calibration support activities
-- Validation and root-cause analysis
-
-For large-scale vehicle datasets containing thousands of logged signals, Spearman Correlation provides a reliable screening mechanism for identifying high-impact variables. It often serves as an intermediate feature-ranking method between simple linear analysis and more advanced machine-learning-based approaches such as Random Forest Importance, Permutation Importance, ReliefF, mRMR, and Boruta.
+- Identifies influential variables exhibiting monotonic but nonlinear relationships with the target.
+- Well suited for battery, thermal, and powertrain systems where behavior is often nonlinear.
+- More robust to noisy sensor measurements and outliers commonly found in test data.
+- Captures important dependencies that may be missed by Pearson Correlation.
+- Helps prioritize high-impact signals for calibration, validation, and performance optimization.
+- Serves as an effective intermediate
