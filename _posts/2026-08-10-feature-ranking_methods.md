@@ -156,26 +156,16 @@ ReliefF is a feature-ranking algorithm that evaluates how well a feature disting
 
 The algorithm assigns an importance score to each feature based on its ability to differentiate between neighboring samples with different outcomes. Features with higher scores are considered more influential.
 
-<br>
-
 ---
 
-<br>
-
 ## 2. Mathematical Foundation
-
-<br>
 
 For each sampled observation, ReliefF compares the feature values of:
 
 - Nearest neighbors with similar target values (**Nearest Hits**)
 - Nearest neighbors with different target values (**Nearest Misses**)
 
-<br>
-
 The feature weight is updated as:
-
-<br>
 
 $$
 W[A] = W[A]
@@ -183,30 +173,18 @@ W[A] = W[A]
 + \frac{diff(A,Miss)}{m}
 $$
 
-<br>
-
 where:
-
-<br>
 
 - $$W[A]$$ = Importance score of feature $$A$$
 - $$diff(A,Hit)$$ = Difference between feature values of similar observations
 - $$diff(A,Miss)$$ = Difference between feature values of dissimilar observations
 - $$m$$ = Number of sampled observations
 
-<br>
-
 A feature receives a higher score when neighboring samples with different target values exhibit large differences in that feature.
-
-<br>
 
 ---
 
-<br>
-
 ## 3. Strengths and Weaknesses
-
-<br>
 
 | Strengths | Weaknesses |
 |------------|------------|
@@ -217,15 +195,9 @@ A feature receives a higher score when neighboring samples with different target
 | Effective for complex engineering systems | Requires parameter tuning |
 | Identifies influential variables missed by correlation methods | Less intuitive than correlation-based approaches |
 
-<br>
-
 ---
 
-<br>
-
 ## 4. Relevance to Automotive Feature Ranking
-
-<br>
 
 - Captures nonlinear relationships commonly observed in vehicle systems.
 - Effective for identifying variables influencing battery, thermal, and powertrain performance.
