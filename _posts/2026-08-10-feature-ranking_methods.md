@@ -42,8 +42,16 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 
 ## **#2 Spearman's Correlation**
-![Spearman_Correlation](/assets/images/pearson.jpg)
+![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
 
+
+## **#3 Random Forest Importance**
+![RF_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
+
+
+## **#4 ReliefF Importance**
+![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
+assets/images/Feature_Ranking
 
 ## 1. What is it?
 
