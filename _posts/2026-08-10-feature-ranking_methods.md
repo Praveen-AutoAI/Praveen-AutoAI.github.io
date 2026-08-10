@@ -39,7 +39,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 # Pearson Correlation
 
 **Pearson's Correlation**
-!(/assets/images/pearson.jpg)
+![Pearsons_Correlation](/assets/images/pearson.jpg)
 
 ## 1. What is it?
 
