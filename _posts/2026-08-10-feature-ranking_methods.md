@@ -35,7 +35,8 @@ Feature selection/importance area is pretty vast and consists of numerous method
 > Check out the links to understand more about the classes
 
 Based on my experimentation with many methods and I found handfull of methods that are really robust that can help you identify the signals trapped in the noise. Let's begin!!!
-
+## **Methods Used**
+![Pearsons_Correlation](/assets/images/classification_.jpg)
 
 ## **#1 Pearson's Correlation**
 Pearson Correlation is a statistical technique used to measure the strength and direction of a **linear relationship** between a feature and a target variable. The correlation coefficient ranges from **-1 to +1**, where positive values indicate that the target increases as the feature increases, negative values indicate an inverse relationship, and values close to zero indicate little or no linear dependency.
