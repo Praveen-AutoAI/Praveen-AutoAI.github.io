@@ -159,4 +159,158 @@ No single method provides the complete picture.
 Each technique evaluates feature importance from a different perspective and therefore captures different aspects of the underlying system behavior. The strongest feature selection pipelines combine multiple methods into an ensemble ranking framework, leveraging the strengths of each technique while mitigating individual weaknesses. Combining multiple methods enables a more robust and reliable identification of influential variables, particularly in complex automotive systems where linear, nonlinear, interaction-based, and redundant relationships often coexist.
 
 
+# Ensemble Feature Ranking: Combining Multiple Feature Selection Methods
+
+When multiple feature selection techniques are used (Pearson, Spearman, ReliefF, Random Forest Importance, mRMR, Boruta, and Permutation Importance), their scores are typically normalized and combined into an **ensemble score**.
+
+The underlying principle is:
+
+> A truly important feature should be recognized by multiple independent feature-ranking methods.
+
+---
+
+# 1. Sum-Based Ensemble Score
+
+## Formula
+
+For a feature with normalized scores $$s_1, s_2, ..., s_n$$ from $$n$$ methods:
+
+$$
+E_{sum} = \sum_{i=1}^{n} s_i
+$$
+
+or
+
+$$
+E_{sum} = \frac{1}{n}\sum_{i=1}^{n} s_i
+$$
+
+## Key Idea
+
+The sum method measures the **overall evidence** supporting a feature.
+
+A feature can still rank highly even if some methods assign low scores, provided several other methods strongly support it.
+
+### Advantages
+
+- Robust to disagreement between methods
+- Allows compensation across feature-ranking techniques
+- Produces stable rankings
+- Suitable for heterogeneous datasets
+- Most commonly used ensemble approach
+
+### Limitation
+
+- Features may rank highly even when only a subset of methods strongly support them
+
+---
+
+# 2. Product-Based Ensemble Score
+
+## Formula
+
+$$
+E_{prod} = \prod_{i=1}^{n} s_i
+$$
+
+or
+
+$$
+E_{prod} = \left(\prod_{i=1}^{n} s_i\right)^{1/n}
+$$
+
+(Geometric Mean)
+
+## Key Idea
+
+The product method measures **consensus among methods**.
+
+A feature receives a high score only when most or all methods agree that it is important. Even a single very low score can significantly reduce the overall ranking.
+
+### Advantages
+
+- Rewards agreement across methods
+- Identifies universally important features
+- Reduces false positives
+- More conservative than the sum method
+
+### Limitation
+
+- Highly sensitive to low scores
+- A single disagreement can significantly reduce the ranking
+
+---
+
+# Engineering Interpretation
+
+### Sum Method
+
+Asks:
+
+> "How much overall evidence supports this feature?"
+
+### Product Method
+
+Asks:
+
+> "Do all methods agree that this feature is important?"
+
+---
+
+# Recommended Usage
+
+### Use Sum Method When
+
+- Working with noisy sensor datasets
+- Different methods capture different relationships
+- Performing exploratory analysis
+- Ranking features for battery, thermal, and vehicle performance studies
+
+### Use Product Method When
+
+- Only highly reliable features are required
+- False positives are costly
+- Strong agreement among methods is desired
+- Working on safety-critical or highly regulated applications
+
+---
+
+# Best Practice: Two-Score Framework
+
+Use both metrics simultaneously:
+
+$$
+E_{sum} = \sum_{i=1}^{n} s_i
+$$
+
+$$
+E_{prod} = \prod_{i=1}^{n} s_i
+$$
+
+### Interpretation
+
+| Sum Score | Product Score | Interpretation |
+|------------|------------|------------|
+| High | High | Strong feature with broad consensus |
+| High | Low | Important feature, but methods disagree |
+| Low | Low | Weak feature with limited evidence |
+| Low | Moderate | Consistent but weak support across methods |
+
+---
+
+# Recommendation for Automotive Feature Ranking
+
+For ensemble ranking of features obtained from:
+
+- Pearson Correlation
+- Spearman Correlation
+- ReliefF
+- Random Forest Importance
+- mRMR
+- Boruta
+- Permutation Importance
+
+use the **Sum Score as the primary ranking metric** because each method captures a different aspect of feature relevance. Use the **Product Score as a confidence metric** to measure agreement among methods.
+
+This dual-score approach provides both **feature importance** and **method consensus**, resulting in a more robust and informative ranking framework for large-scale automotive testing datasets.
 
