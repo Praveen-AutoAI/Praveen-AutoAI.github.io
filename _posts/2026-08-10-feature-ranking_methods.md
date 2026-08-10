@@ -143,5 +143,20 @@ Unlike Random Forest Importance, Permutation Importance evaluates a feature's co
 - Enables robust prioritization of the most influential variables from large vehicle-testing datasets.
 
 
+Every feature selection method represents a different philosophy:
+
+| Method | Key Question |
+|----------|-------------|
+| Pearson Correlation | Is the relationship linear? |
+| Spearman Correlation | Is the relationship monotonic? |
+| ReliefF | Does the feature separate local behaviors? |
+| Random Forest Importance | Does it improve decisions? |
+| mRMR | Does it provide new information? |
+| Boruta | Is it better than noise? |
+| Permutation Importance | Does the model fail without it? |
+
+No single method provides the complete picture.
+Each technique evaluates feature importance from a different perspective and therefore captures different aspects of the underlying system behavior. The strongest feature selection pipelines combine multiple methods into an ensemble ranking framework, leveraging the strengths of each technique while mitigating individual weaknesses. Combining multiple methods enables a more robust and reliable identification of influential variables, particularly in complex automotive systems where linear, nonlinear, interaction-based, and redundant relationships often coexist.
+
 
 
