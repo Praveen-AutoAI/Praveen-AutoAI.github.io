@@ -50,7 +50,7 @@ Pearson Correlation is a statistical technique used to measure the strength and 
 - Computationally efficient and suitable for automated feature-ranking pipelines.
 - Best used as an initial filtering technique before applying advanced nonlinear feature-ranking methods.
 
-### **#2 Spearman's Correlation**
+### #2 Spearman's Correlation
 Spearman Correlation is a non-parametric statistical technique that measures the strength and direction of a **monotonic relationship** between a feature and a target variable. Unlike Pearson Correlation, it operates on ranked data and can identify relationships that consistently increase or decrease, even when the relationship is nonlinear.
 
 ![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
@@ -62,7 +62,7 @@ Spearman Correlation is a non-parametric statistical technique that measures the
 - Captures important dependencies that may be missed by Pearson Correlation.
 - Serves as an effective intermediate
 
-### **#3 ReliefF Importance**
+### #3 ReliefF Importance
 ReliefF is a feature-ranking algorithm that evaluates how well a feature distinguishes between similar observations with different target values. Unlike correlation-based methods, ReliefF considers the local neighborhood of data points and can detect complex relationships between features and the target.
 
 ![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
@@ -75,7 +75,7 @@ ReliefF is a feature-ranking algorithm that evaluates how well a feature disting
 - Helps uncover important variables missed by Pearson or Spearman analysis.
 - Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
 
-### **#4 mRMR Importance**
+### #4 mRMR Importance
 mRMR (Minimum Redundancy Maximum Relevance) is a feature-selection technique that aims to identify variables that are highly relevant to the target while minimizing redundancy among selected features.
 Unlike correlation-based ranking methods that evaluate each feature independently, mRMR considers both feature-target relevance and feature-feature dependency. The objective is to select a compact set of informative and non-duplicative features.
 
@@ -88,7 +88,7 @@ Unlike correlation-based ranking methods that evaluate each feature independentl
 - Reduces engineering effort by focusing on unique contributors to target performance.
 
 
-### **#5 Random Forest Importance**
+### #5 Random Forest Importance
 Random Forest Importance is a machine-learning-based feature-ranking method that evaluates the contribution of each feature toward predicting a target variable. It is derived from an ensemble of decision trees and can capture nonlinear relationships and feature interactions.
 
 ![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
@@ -98,7 +98,7 @@ Random Forest Importance is a machine-learning-based feature-ranking method that
 - Well suited for complex vehicle datasets containing thousands of logged signals.
 - Identifies interacting variables that influence performance targets.
 
-### **#6 Boruta Importance**
+### #6 Boruta Importance
 Boruta is an all-relevant feature selection method built around Random Forest. Unlike methods that identify only the minimum set of features required for prediction, Boruta aims to identify **all features that have a statistically significant influence** on the target variable.
 
 The algorithm compares the importance of real features against randomized copies, called **shadow features**, and retains only those features that consistently outperform the random baseline.
@@ -112,7 +112,7 @@ The algorithm compares the importance of real features against randomized copies
  
 ---
 
-### **#7 Permutation Importance**
+### #7 Permutation Importance
 Permutation Importance is a model-based feature-ranking technique that measures how much a model's prediction performance deteriorates when a feature is randomly shuffled.
 The underlying idea is simple: if shuffling a feature significantly reduces model accuracy, then that feature must contain important information about the target variable.
 Unlike Random Forest Importance, Permutation Importance evaluates a feature's contribution directly through its impact on model performance.
@@ -180,7 +180,7 @@ $$
 $$
 
 
-### **#1 Average Ensemble Score**
+### #1 Average Ensemble Score
 
 The primary ranking score is computed as:
 
@@ -199,7 +199,7 @@ where:
 
 ---
 
-### **#2 Geometric Mean Score**
+### #2 Geometric Mean Score
 
 A confidence score is computed as:
 
