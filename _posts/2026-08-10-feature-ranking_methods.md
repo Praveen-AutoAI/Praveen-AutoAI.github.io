@@ -169,6 +169,36 @@ As a result, the ranking of a feature can vary significantly across methods. Rel
 
 An **ensemble score** combines the strengths of multiple feature-ranking methods into a single, more robust metric. This approach improves feature-selection reliability, reduces method-specific bias, and increases confidence that highly ranked features genuinely influence the target variable.
 
+
+Given a set of normalized feature importance scores from multiple feature-ranking methods:
+
+- Pearson Correlation
+- Spearman Correlation
+- ReliefF
+- Random Forest Importance
+- mRMR
+- Boruta
+- Permutation Importance
+
+let the normalized score from each method be:
+
+$$
+s_{Pearson},
+s_{Spearman},
+s_{ReliefF},
+s_{RF},
+s_{mRMR},
+s_{Boruta},
+s_{Perm}
+$$
+
+where each score is typically normalized into the range:
+
+$$
+0 \le s_i \le 1
+$$
+
+
 ## Average Ensemble Score
 
 The primary ranking score is computed as:
@@ -207,3 +237,211 @@ $$
 | Low $$E_{avg}$$ + Low $$E_{geo}$$ | Weak feature with limited evidence |
 
 For automotive feature ranking, $$E_{avg}$$ can be used as the **primary ranking metric**, while $$E_{geo}$$ serves as a **confidence indicator**, providing both feature importance and consensus across methods.
+
+# Ensemble Score Estimation
+
+Given a set of normalized feature importance scores from multiple feature-ranking methods:
+
+- Pearson Correlation
+- Spearman Correlation
+- ReliefF
+- Random Forest Importance
+- mRMR
+- Boruta
+- Permutation Importance
+
+let the normalized score from each method be:
+
+$$
+s_{Pearson},
+s_{Spearman},
+s_{ReliefF},
+s_{RF},
+s_{mRMR},
+s_{Boruta},
+s_{Perm}
+$$
+
+where each score is typically normalized into the range:
+
+$$
+0 \le s_i \le 1
+$$
+
+---
+
+## 1. Sum Ensemble Score
+
+The simplest ensemble score is the sum of all normalized feature scores:
+
+$$
+E_{sum}
+=
+s_{Pearson}
++
+s_{Spearman}
++
+s_{ReliefF}
++
+s_{RF}
++
+s_{mRMR}
++
+s_{Boruta}
++
+s_{Perm}
+$$
+
+or equivalently,
+
+$$
+E_{sum}
+=
+\sum_{i=1}^{7} s_i
+$$
+
+A normalized average score can also be used:
+
+$$
+E_{avg}
+=
+\frac{1}{7}
+\sum_{i=1}^{7}
+s_i
+$$
+
+### Interpretation
+
+- Higher score → More overall evidence supporting the feature.
+- Lower score → Limited support across methods.
+
+---
+
+## 2. Product Ensemble Score
+
+The product score evaluates agreement among methods.
+
+$$
+E_{prod}
+=
+s_{Pearson}
+\times
+s_{Spearman}
+\times
+s_{ReliefF}
+\times
+s_{RF}
+\times
+s_{mRMR}
+\times
+s_{Boruta}
+\times
+s_{Perm}
+$$
+
+or
+
+$$
+E_{prod}
+=
+\prod_{i=1}^{7}
+s_i
+$$
+
+To reduce scaling effects, the geometric mean is often used:
+
+$$
+E_{geo}
+=
+\left(
+\prod_{i=1}^{7}
+s_i
+\right)^{1/7}
+$$
+
+### Interpretation
+
+- High score → Most methods agree the feature is important.
+- Low score → One or more methods disagree strongly.
+
+---
+
+## 3. Hybrid Ensemble Score (Recommended)
+
+A weighted combination of Sum and Product scores provides both importance and consensus.
+
+$$
+E_{hybrid}
+=
+\alpha E_{avg}
++
+(1-\alpha)E_{geo}
+$$
+
+where:
+
+$$
+0 \le \alpha \le 1
+$$
+
+Typical value:
+
+$$
+\alpha = 0.7
+$$
+
+giving:
+
+$$
+E_{hybrid}
+=
+0.7E_{avg}
++
+0.3E_{geo}
+$$
+
+### Interpretation
+
+- $$E_{avg}$$ captures overall support.
+- $$E_{geo}$$ captures consensus among methods.
+- $$E_{hybrid}$$ balances both aspects.
+
+---
+
+# Recommended Formula for Automotive Feature Ranking
+
+For ranking the top 50-100 variables from approximately 1500 logged vehicle-test signals:
+
+### Primary Ranking Score
+
+$$
+E_{avg}
+=
+\frac{
+s_{Pearson}
++s_{Spearman}
++s_{ReliefF}
++s_{RF}
++s_{mRMR}
++s_{Boruta}
++s_{Perm}
+}{7}
+$$
+
+### Confidence Score
+
+$$
+E_{geo}
+=
+\left(
+s_{Pearson}
+s_{Spearman}
+s_{ReliefF}
+s_{RF}
+s_{mRMR}
+s_{Boruta}
+s_{Perm}
+\right)^{1/7}
+$$
+
+The final feature ranking can be based on **Average Ensemble Score**, while the **Geometric Mean Score** can be reported as a measure of confidence or consensus among the feature-ranking methods.
