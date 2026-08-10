@@ -66,6 +66,20 @@ Spearman Correlation is a non-parametric statistical technique that measures the
 - Helps prioritize high-impact signals for calibration, validation, and performance optimization.
 - Serves as an effective intermediate
 
+## **#3 ReliefF Importance**
+ReliefF is a feature-ranking algorithm that evaluates how well a feature distinguishes between similar observations with different target values. Unlike correlation-based methods, ReliefF considers the local neighborhood of data points and can detect complex relationships between features and the target.
+
+![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
+
+> **Relevance to Automotive Feature Ranking**
+
+- Captures nonlinear relationships commonly observed in vehicle systems.
+- Effective for identifying variables influencing battery, thermal, and powertrain performance.
+- Can detect interacting signals that jointly affect a target parameter.
+- Useful when physical behavior depends on operating conditions and control strategies.
+- Helps uncover important variables missed by Pearson or Spearman analysis.
+- Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
+- 
 ## **#3 Random Forest Importance**
 Random Forest Importance is a machine-learning-based feature-ranking method that evaluates the contribution of each feature toward predicting a target variable. It is derived from an ensemble of decision trees and can capture nonlinear relationships and feature interactions.
 
