@@ -16,4 +16,4 @@ This method sounds like a simple correlation study, but developing a pipeline th
 ### Objective
 
 Most engineering datasets contain hundreds of sensors, calculated signals, timestamps, operational flags, and derived parameters. Many of these variables are redundant, some are pure noise, and a few contain the information that ultimately affects the target variable. **Determine the variables that are potentially impact the target variable**. 
-Can a pure statistically driven method can do? To what extent?
+> Can a pure statistically driven method can do? To what extent?
