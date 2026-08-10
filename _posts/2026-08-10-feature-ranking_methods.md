@@ -212,7 +212,10 @@ where:
 - $$s_i$$ = Normalized score from feature-ranking method $$i$$
 - $$n$$ = Number of feature-ranking methods
 
-**Interpretation:** Measures the overall evidence supporting a feature across all methods.
+### Interpretation
+
+- High score → Most methods agree the feature is important.
+- Low score → One or more methods disagree strongly.
 
 ---
 
@@ -224,7 +227,10 @@ $$
 E_{geo} = \left(\prod_{i=1}^{n}s_i\right)^{1/n}
 $$
 
-**Interpretation:** Measures the level of agreement among the different feature-ranking methods.
+### Interpretation
+
+- High score → Most methods agree the feature is important.
+- Low score → One or more methods disagree strongly.
 
 ---
 
