@@ -46,7 +46,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 
 ## **#3 Random Forest Importance**
-![RF_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
+![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
 
 
 ## **#4 ReliefF Importance**
