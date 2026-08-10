@@ -237,11 +237,7 @@ $$
 There is a way to combine, advantage of both the methods using hybrid score as given,
 
 $$
-E_{hybrid}
-=
-0.7E_{avg}
-+
-0.3E_{geo}
+E_{hybrid}=0.7E_{avg}+0.3E_{geo}
 $$
 
 ### Interpretation
