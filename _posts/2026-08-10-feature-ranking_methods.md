@@ -79,8 +79,24 @@ ReliefF is a feature-ranking algorithm that evaluates how well a feature disting
 - Useful when physical behavior depends on operating conditions and control strategies.
 - Helps uncover important variables missed by Pearson or Spearman analysis.
 - Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
-- 
-## **#3 Random Forest Importance**
+
+## **#4 mRMR Importance**
+mRMR (Minimum Redundancy Maximum Relevance) is a feature-selection technique that aims to identify variables that are highly relevant to the target while minimizing redundancy among selected features.
+Unlike correlation-based ranking methods that evaluate each feature independently, mRMR considers both feature-target relevance and feature-feature dependency. The objective is to select a compact set of informative and non-duplicative features.
+
+![RF_Correlation](/assets/images/Feature_Ranking/mRMR.jpg)
+
+> **Relevance to Automotive Feature Ranking**
+
+- Particularly useful when hundreds of logged signals contain overlapping information.
+- Eliminates redundant variables that represent the same physical behavior.
+- Helps construct compact and informative feature sets for calibration activities.
+- Reduces engineering effort by focusing on unique contributors to target performance.
+- Effective for battery, thermal, electrical, and powertrain investigations.
+- Enables selection of a high-quality subset of 50–100 features from thousands of recorded signals.
+
+
+## **#5 Random Forest Importance**
 Random Forest Importance is a machine-learning-based feature-ranking method that evaluates the contribution of each feature toward predicting a target variable. It is derived from an ensemble of decision trees and can capture nonlinear relationships and feature interactions.
 
 ![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
@@ -94,34 +110,6 @@ Random Forest Importance is a machine-learning-based feature-ranking method that
 - Frequently used for calibration support and root-cause investigations.
 - Effective for reducing large signal sets to the most influential variables for detailed engineering analysis.
 
-## **#4 ReliefF Importance**
-ReliefF is a feature-ranking algorithm that evaluates how well a feature distinguishes between similar observations with different target values. Unlike correlation-based methods, ReliefF considers the local neighborhood of data points and can detect complex relationships between features and the target.
-
-![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
-
-> **Relevance to Automotive Feature Ranking**
-
-- Captures nonlinear relationships commonly observed in vehicle systems.
-- Effective for identifying variables influencing battery, thermal, and powertrain performance.
-- Can detect interacting signals that jointly affect a target parameter.
-- Useful when physical behavior depends on operating conditions and control strategies.
-- Helps uncover important variables missed by Pearson or Spearman analysis.
-- Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
-
-## **#5 Permutation Importance**
-Permutation Importance is a model-based feature-ranking technique that measures how much a model's prediction performance deteriorates when a feature is randomly shuffled.
-The underlying idea is simple: if shuffling a feature significantly reduces model accuracy, then that feature must contain important information about the target variable.
-Unlike Random Forest Importance, Permutation Importance evaluates a feature's contribution directly through its impact on model performance.
-![Boruta_Correlation](/assets/images/Feature_Ranking/perImp.jpg)
-
-> **Relevance to Automotive Feature Ranking**
-
-- Measures the actual contribution of a signal toward prediction accuracy.
-- Effective for ranking variables influencing thermal, electrical, and performance targets.
-- Captures nonlinear effects commonly observed in vehicle systems.
-- Helps validate whether highly ranked features genuinely impact model predictions.
-- Useful for calibration, root-cause analysis, and performance optimization studies.
-- Enables robust prioritization of the most influential variables from large vehicle-testing datasets.
 
 ## **#6 Boruta Importance**
 Boruta is an all-relevant feature selection method built around Random Forest. Unlike methods that identify only the minimum set of features required for prediction, Boruta aims to identify **all features that have a statistically significant influence** on the target variable.
@@ -138,3 +126,22 @@ The algorithm compares the importance of real features against randomized copies
 - Provides statistically validated feature selection for engineering investigations.
 - Well suited for reducing thousands of logged signals to a reliable set of high-impact variables.
 ---
+
+## **#7 Permutation Importance**
+Permutation Importance is a model-based feature-ranking technique that measures how much a model's prediction performance deteriorates when a feature is randomly shuffled.
+The underlying idea is simple: if shuffling a feature significantly reduces model accuracy, then that feature must contain important information about the target variable.
+Unlike Random Forest Importance, Permutation Importance evaluates a feature's contribution directly through its impact on model performance.
+![Boruta_Correlation](/assets/images/Feature_Ranking/perImp.jpg)
+
+> **Relevance to Automotive Feature Ranking**
+
+- Measures the actual contribution of a signal toward prediction accuracy.
+- Effective for ranking variables influencing thermal, electrical, and performance targets.
+- Captures nonlinear effects commonly observed in vehicle systems.
+- Helps validate whether highly ranked features genuinely impact model predictions.
+- Useful for calibration, root-cause analysis, and performance optimization studies.
+- Enables robust prioritization of the most influential variables from large vehicle-testing datasets.
+
+
+
+
