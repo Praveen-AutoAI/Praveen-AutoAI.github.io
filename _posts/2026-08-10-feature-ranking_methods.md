@@ -53,7 +53,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 ## **#2 Spearman's Correlation**
 ![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
 
-> ## 4. Relevance to Automotive Feature Ranking
+> **Relevance to Automotive Feature Ranking**
 
 - Identifies influential variables exhibiting monotonic but nonlinear relationships with the target.
 - Well suited for battery, thermal, and powertrain systems where behavior is often nonlinear.
@@ -65,7 +65,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 ## **#3 Random Forest Importance**
 ![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
 
-## 4. Relevance to Automotive Feature Ranking
+> **Relevance to Automotive Feature Ranking**
 
 - Well suited for complex vehicle datasets containing thousands of logged signals.
 - Captures nonlinear effects present in battery, thermal, and electrical systems.
@@ -77,7 +77,7 @@ Based on my experimentation with many methods and I found handfull of methods th
 ## **#4 ReliefF Importance**
 ![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
 
-## 4. Relevance to Automotive Feature Ranking
+> **Relevance to Automotive Feature Ranking**
 
 - Captures nonlinear relationships commonly observed in vehicle systems.
 - Effective for identifying variables influencing battery, thermal, and powertrain performance.
