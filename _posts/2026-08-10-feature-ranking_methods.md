@@ -226,7 +226,7 @@ $$
 
 Hybrid method is very relevant for engineering dataset but it demands some study before you confirm the weights of the two components.
 
-## Recommended Interpretation
+### Recommended Interpretation
 
 | Ensemble Score | Meaning |
 |---------------|---------|
