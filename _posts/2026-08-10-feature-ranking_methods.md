@@ -145,3 +145,91 @@ Instead of using actual values, Spearman Correlation uses ranks to measure wheth
 - Captures important dependencies that may be missed by Pearson Correlation.
 - Helps prioritize high-impact signals for calibration, validation, and performance optimization.
 - Serves as an effective intermediate
+
+# ReliefF
+
+
+## 1. What is it?
+
+
+ReliefF is a feature-ranking algorithm that evaluates how well a feature distinguishes between similar observations with different target values. Unlike correlation-based methods, ReliefF considers the local neighborhood of data points and can detect complex relationships between features and the target.
+
+The algorithm assigns an importance score to each feature based on its ability to differentiate between neighboring samples with different outcomes. Features with higher scores are considered more influential.
+
+<br>
+
+---
+
+<br>
+
+## 2. Mathematical Foundation
+
+<br>
+
+For each sampled observation, ReliefF compares the feature values of:
+
+- Nearest neighbors with similar target values (**Nearest Hits**)
+- Nearest neighbors with different target values (**Nearest Misses**)
+
+<br>
+
+The feature weight is updated as:
+
+<br>
+
+$$
+W[A] = W[A]
+- \frac{diff(A,Hit)}{m}
++ \frac{diff(A,Miss)}{m}
+$$
+
+<br>
+
+where:
+
+<br>
+
+- $$W[A]$$ = Importance score of feature $$A$$
+- $$diff(A,Hit)$$ = Difference between feature values of similar observations
+- $$diff(A,Miss)$$ = Difference between feature values of dissimilar observations
+- $$m$$ = Number of sampled observations
+
+<br>
+
+A feature receives a higher score when neighboring samples with different target values exhibit large differences in that feature.
+
+<br>
+
+---
+
+<br>
+
+## 3. Strengths and Weaknesses
+
+<br>
+
+| Strengths | Weaknesses |
+|------------|------------|
+| Captures nonlinear relationships | Computationally expensive for very large datasets |
+| Detects feature interactions | Sensitive to choice of nearest neighbors |
+| Works well with noisy data | Feature scores do not provide physical interpretation |
+| Does not assume linearity | Performance can degrade with irrelevant features |
+| Effective for complex engineering systems | Requires parameter tuning |
+| Identifies influential variables missed by correlation methods | Less intuitive than correlation-based approaches |
+
+<br>
+
+---
+
+<br>
+
+## 4. Relevance to Automotive Feature Ranking
+
+<br>
+
+- Captures nonlinear relationships commonly observed in vehicle systems.
+- Effective for identifying variables influencing battery, thermal, and powertrain performance.
+- Can detect interacting signals that jointly affect a target parameter.
+- Useful when physical behavior depends on operating conditions and control strategies.
+- Helps uncover important variables missed by Pearson or Spearman analysis.
+- Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
