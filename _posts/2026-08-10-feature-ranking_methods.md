@@ -38,51 +38,165 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 #### Pearson Correlation: The Engineer's First Diagnostic Tool
 
-**Pearson correlation** measures the strength and direction of the **linear relationship** between a feature \(X\) and the target variable \(Y\).
+# Pearson Correlation
+
+## 1. What is it?
+
+Pearson Correlation is one of the simplest and most widely used feature-ranking methods. It quantifies the strength and direction of a linear relationship between a predictor variable and a target variable.
+
+The Pearson coefficient ranges from:
+
+- +1 : Perfect positive relationship
+- 0 : No linear relationship
+- -1 : Perfect negative relationship
+
+Features with larger absolute correlation values are considered more influential on the target.
+
+---
+
+## 2. Mathematical Foundation
+
+The Pearson correlation coefficient is defined as:
 
 $$
 r_{XY} =
 \frac{
-\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})
-}{
-\sqrt{\sum_{i=1}^{n}(X_i-\bar{X})^2}
-\sqrt{\sum_{i=1}^{n}(Y_i-\bar{Y})^2}
+\sum_{i=1}^{n}(X_i-\bar X)(Y_i-\bar Y)
+}
+{
+\sqrt{\sum_{i=1}^{n}(X_i-\bar X)^2}
+\sqrt{\sum_{i=1}^{n}(Y_i-\bar Y)^2}
 }
 $$
 
-## Intuitive Example
+where:
 
-When the recorded current increases, the measured temperature may also increase:
+- X = feature
+- Y = target variable
+- n = number of observations
+- rXY = correlation coefficient
 
-- **Current** ↑  
-- **Temperature** ↑  
+---
 
-A strong linear trend between the two variables produces a high absolute Pearson correlation score.
+## 3. How It Works
 
-## Why Engineers Love It
+1. Select a target variable.
+2. Calculate the Pearson correlation between every feature and the target.
+3. Rank features based on absolute correlation magnitude.
+4. Retain the highest-ranking features for further analysis.
 
-- **Fast** to calculate across a large number of recorded variables
-- **Easy to interpret**
-- Works well for **first-pass feature screening**
-- Indicates both the **strength** and **direction** of a linear relationship
-- Helps quickly reduce a large feature set to potentially relevant variables
+Example:
 
-## Why It Can Fail
+- Feature Count = 1500
+- Ranked Features = 1500
+- Selected Features = Top 50-100
 
-Pearson correlation fundamentally assumes that an important relationship can be represented by a **straight line**:
+---
 
-> **Important relationship = Straight-line relationship**
+## 4. Engineering Intuition
 
-However, physical systems rarely behave in a completely linear manner.
+Consider an electric vehicle thermal test.
 
-Examples of nonlinear behaviour include:
+Target:
 
-- Battery degradation
-- Thermal runaway
-- Motor efficiency
-- Fluid-flow dynamics
-- Component saturation
-- Threshold-based control responses
+- Battery Cell Temperature
 
+Available signals:
+
+- Motor Current
+- Coolant Flow Rate
+- Pump Speed
+- Ambient Temperature
+- Vehicle Speed
+
+If motor current increases and battery temperature increases almost proportionally, Pearson correlation will assign a high positive score.
+
+For example:
+
+Current ↑ → Temperature ↑
+
+Such behavior indicates a strong linear relationship and therefore a high ranking.
+
+---
+
+## 5. Strengths
+
+- Extremely fast computationally
+- Easy to understand and explain
+- Scales well to thousands of signals
+- Useful as an initial screening method
+- Provides directional information (positive or negative influence)
+
+---
+
+## 6. Weaknesses
+
+- Captures only linear relationships
+- Sensitive to outliers
+- Misses nonlinear dependencies
+- Cannot identify feature interactions
+- Can underestimate physically important variables
+
+For example, battery cooling systems often exhibit threshold behavior. Such relationships may be highly influential but poorly captured by Pearson correlation.
+
+---
+
+## 7. Relevance to Automotive Feature Ranking
+
+Modern vehicle tests routinely generate more than 1000 recorded signals.
+
+Pearson correlation is particularly useful as a first-level filter because it:
+
+- Quickly eliminates irrelevant variables
+- Highlights dominant physical relationships
+- Reduces computational burden for more advanced methods
+- Accelerates calibration investigations
+- Supports root-cause analysis during validation
+
+For feature-reduction pipelines, Pearson correlation is often used before applying machine-learning-based methods such as Random Forest, Boruta, or mRMR.
+
+---
+
+## 8. Practical Interpretation of Scores
+
+| Absolute Correlation | Interpretation |
+|---------------------|---------------|
+| > 0.80 | Very Strong Relationship |
+| 0.60 - 0.80 | Strong Relationship |
+| 0.40 - 0.60 | Moderate Relationship |
+| 0.20 - 0.40 | Weak Relationship |
+| < 0.20 | Very Weak Relationship |
+
+Note: Thresholds should be treated as guidelines and may vary depending on the application.
+
+---
+
+## 9. When Should Engineers Use It?
+
+Recommended for:
+
+- Initial feature screening
+- Large signal databases
+- Exploratory analysis
+- Validation studies
+- Quick health checks of logged datasets
+
+---
+
+## 10. When Should Engineers Avoid It?
+
+Avoid using Pearson correlation as the sole ranking method when:
+
+- Relationships are nonlinear
+- Strong feature interactions exist
+- Threshold effects are expected
+- Battery aging studies are involved
+- Thermal systems exhibit saturation behavior
+
+---
+
+## 11. Final Verdict
+
+Pearson correlation is best viewed as the engineer's first diagnostic tool rather than a complete feature-ranking solution. It offers exceptional speed and interpretability for large vehicle-testing datasets and serves as an effective first-stage filter before applying more sophisticated techniques capable of capturing nonlinear relationships and feature interactions.
 Therefore, a variable may have a significant influence on the target while still receiving a low Pearson correlation score. Pearson correlation should consequently be used as an **initial diagnostic and screening tool**, rather than as the only method for identifying high-impact variables.
 
