@@ -53,14 +53,39 @@ Based on my experimentation with many methods and I found handfull of methods th
 ## **#2 Spearman's Correlation**
 ![Spearman_Correlation](/assets/images/Feature_Ranking/spearman.jpg)
 
+> ## 4. Relevance to Automotive Feature Ranking
+
+- Identifies influential variables exhibiting monotonic but nonlinear relationships with the target.
+- Well suited for battery, thermal, and powertrain systems where behavior is often nonlinear.
+- More robust to noisy sensor measurements and outliers commonly found in test data.
+- Captures important dependencies that may be missed by Pearson Correlation.
+- Helps prioritize high-impact signals for calibration, validation, and performance optimization.
+- Serves as an effective intermediate
 
 ## **#3 Random Forest Importance**
 ![RF_Correlation](/assets/images/Feature_Ranking/randomForest.jpg)
 
+## 4. Relevance to Automotive Feature Ranking
+
+- Well suited for complex vehicle datasets containing thousands of logged signals.
+- Captures nonlinear effects present in battery, thermal, and electrical systems.
+- Identifies interacting variables that influence performance targets.
+- Provides reliable rankings even when signal relationships are complex.
+- Frequently used for calibration support and root-cause investigations.
+- Effective for reducing large signal sets to the most influential variables for detailed engineering analysis.
 
 ## **#4 ReliefF Importance**
 ![RF_Correlation](/assets/images/Feature_Ranking/reliefF.jpg)
-assets/images/Feature_Ranking
+
+## 4. Relevance to Automotive Feature Ranking
+
+- Captures nonlinear relationships commonly observed in vehicle systems.
+- Effective for identifying variables influencing battery, thermal, and powertrain performance.
+- Can detect interacting signals that jointly affect a target parameter.
+- Useful when physical behavior depends on operating conditions and control strategies.
+- Helps uncover important variables missed by Pearson or Spearman analysis.
+- Well suited for narrowing thousands of logged signals to a smaller set of high-impact features.
+
 
 ## 1. What is it?
 
