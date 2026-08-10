@@ -38,6 +38,9 @@ Based on my experimentation with many methods and I found handfull of methods th
 
 # Pearson Correlation
 
+**Landscape of Feature Selection/Importance**
+![Landscape of Feature Selection/Importance](/assets/images/feature_Engineering_methods.jpg)
+
 ## 1. What is it?
 
 Pearson Correlation is a statistical technique used to measure the strength and direction of a **linear relationship** between a feature and a target variable. The correlation coefficient ranges from **-1 to +1**, where positive values indicate that the target increases as the feature increases, negative values indicate an inverse relationship, and values close to zero indicate little or no linear dependency.
