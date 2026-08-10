@@ -161,208 +161,43 @@ Each technique evaluates feature importance from a different perspective and the
 
 # Ensemble Score Estimation
 
-Given a set of normalized feature importance scores from multiple feature-ranking methods:
+To improve feature-ranking reliability, normalized scores from multiple methods (Pearson, Spearman, ReliefF, Random Forest, mRMR, Boruta, and Permutation Importance) are combined into a single ensemble score.
 
-- Pearson Correlation
-- Spearman Correlation
-- ReliefF
-- Random Forest Importance
-- mRMR
-- Boruta
-- Permutation Importance
+## Average Ensemble Score
 
-let the normalized score from each method be:
+The primary ranking score is computed as:
 
 $$
-s_{Pearson},
-s_{Spearman},
-s_{ReliefF},
-s_{RF},
-s_{mRMR},
-s_{Boruta},
-s_{Perm}
-$$
-
-where each score is typically normalized into the range:
-
-$$
-0 \le s_i \le 1
-$$
-
----
-
-## 1. Sum Ensemble Score
-
-The simplest ensemble score is the sum of all normalized feature scores:
-
-$$
-E_{sum}
-=
-s_{Pearson}
-+
-s_{Spearman}
-+
-s_{ReliefF}
-+
-s_{RF}
-+
-s_{mRMR}
-+
-s_{Boruta}
-+
-s_{Perm}
-$$
-
-or equivalently,
-
-$$
-E_{sum}
-=
-\sum_{i=1}^{7} s_i
-$$
-
-A normalized average score can also be used:
-
-$$
-E_{avg}
-=
-\frac{1}{7}
-\sum_{i=1}^{7}
-s_i
-$$
-
-### Interpretation
-
-- Higher score → More overall evidence supporting the feature.
-- Lower score → Limited support across methods.
-
----
-
-## 2. Product Ensemble Score
-
-The product score evaluates agreement among methods.
-
-$$
-E_{prod}
-=
-s_{Pearson}
-\times
-s_{Spearman}
-\times
-s_{ReliefF}
-\times
-s_{RF}
-\times
-s_{mRMR}
-\times
-s_{Boruta}
-\times
-s_{Perm}
-$$
-
-or
-
-$$
-E_{prod}
-=
-\prod_{i=1}^{7}
-s_i
-$$
-
-To reduce scaling effects, the geometric mean is often used:
-
-$$
-E_{geo}
-=
-\left(
-\prod_{i=1}^{7}
-s_i
-\right)^{1/7}
-$$
-
-### Interpretation
-
-- High score → Most methods agree the feature is important.
-- Low score → One or more methods disagree strongly.
-
----
-
-## 3. Hybrid Ensemble Score (Recommended)
-
-A weighted combination of Sum and Product scores provides both importance and consensus.
-
-$$
-E_{hybrid}
-=
-\alpha E_{avg}
-+
-(1-\alpha)E_{geo}
+E_{avg} = \frac{1}{n}\sum_{i=1}^{n}s_i
 $$
 
 where:
 
-$$
-0 \le \alpha \le 1
-$$
+- $$s_i$$ = Normalized score from feature-ranking method $$i$$
+- $$n$$ = Number of feature-ranking methods
 
-Typical value:
-
-$$
-\alpha = 0.7
-$$
-
-giving:
-
-$$
-E_{hybrid}
-=
-0.7E_{avg}
-+
-0.3E_{geo}
-$$
-
-### Interpretation
-
-- $$E_{avg}$$ captures overall support.
-- $$E_{geo}$$ captures consensus among methods.
-- $$E_{hybrid}$$ balances both aspects.
+**Interpretation:** Measures the overall evidence supporting a feature across all methods.
 
 ---
 
-# Recommended Formula for Automotive Feature Ranking
+## Geometric Mean Score
 
-For ranking the top 50-100 variables from approximately 1500 logged vehicle-test signals:
-
-### Primary Ranking Score
+A confidence score is computed as:
 
 $$
-E_{avg}
-=
-\frac{
-s_{Pearson}
-+s_{Spearman}
-+s_{ReliefF}
-+s_{RF}
-+s_{mRMR}
-+s_{Boruta}
-+s_{Perm}
-}{7}
+E_{geo} = \left(\prod_{i=1}^{n}s_i\right)^{1/n}
 $$
 
-### Confidence Score
+**Interpretation:** Measures the level of agreement among the different feature-ranking methods.
 
-$$
-E_{geo}
-=
-\left(
-s_{Pearson}
-s_{Spearman}
-s_{ReliefF}
-s_{RF}
-s_{mRMR}
-s_{Boruta}
-s_{Perm}
-\right)^{1/7}
-$$
+---
 
-The final feature ranking can be based on **Average Ensemble Score**, while the **Geometric Mean Score** can be reported as a measure of confidence or consensus among the feature-ranking methods.
+## Recommended Interpretation
+
+| Ensemble Score | Meaning |
+|---------------|---------|
+| High $$E_{avg}$$ + High $$E_{geo}$$ | Strong feature with broad consensus |
+| High $$E_{avg}$$ + Low $$E_{geo}$$ | Important feature, but methods disagree |
+| Low $$E_{avg}$$ + Low $$E_{geo}$$ | Weak feature with limited evidence |
+
+For automotive feature ranking, $$E_{avg}$$ can be used as the **primary ranking metric**, while $$E_{geo}$$ serves as a **confidence indicator**, providing both feature importance and consensus across methods.
