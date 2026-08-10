@@ -17,3 +17,11 @@ This method sounds like a simple correlation study, but developing a pipeline th
 
 Most engineering datasets contain hundreds of sensors, calculated signals, timestamps, operational flags, and derived parameters. Many of these variables are redundant, some are pure noise, and a few contain the information that ultimately affects the target variable. **Determine the variables that are potentially impact the target variable**. 
 > Can a pure statistically driven method can do? To what extent?
+
+### Introduction to Feature Ranking(/Engineering/Selection) Methods
+
+
+I suggest to go through the overview and general methods of feature engineering/selection from the below link.
+#### References & Further Reading
+* [Feature Selection — Exhaustive Overview (Analytics Vidhya)](https://medium.com/analytics-vidhya/feature-selection-extended-overview-b58f1d524c1c)
+* [Feature Selection Techniques in Machine Learning (GeeksforGeeks)](https://www.geeksforgeeks.org/machine-learning/feature-selection-techniques-in-machine-learning/)
