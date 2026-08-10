@@ -11,7 +11,7 @@ math: true
 
 **Vehicle development and validation involve the continuous acquisition** of a large number of signals representing performance, thermal, electrical, and operating conditions. In a typical test campaign, approximately 1,500 recorded variables or labels may be available, making it difficult to determine which parameters have the greatest influence on a specific target response. To address this challenge, a statistic based **feature-ranking methodology was developed to systematically identify and prioritize the variables** most relevant to the target variable. The method evaluates the strength and consistency of each feature’s relationship with the target, while also considering redundancy, data quality, and potential nonlinear effects. Based on the resulting importance scores, the complete feature set is reduced to a focused list of approximately 50 to 100 high-impact or potentially influential variables. This prioritized list enables engineers to concentrate their analysis on the parameters most likely to affect vehicle behavior, thereby improving the efficiency and interpretability of the development process. Identifying these critical variables **supports informed calibration decisions, accelerates root-cause investigation, and reduces the effort required to analyze large, complex datasets**. Ultimately, the methodology provides a data-driven basis for calibrating vehicle systems to satisfy performance targets and thermal and electrical requirements while improving testing efficiency and overall development robustness.
 
-This method sounds like a simple correlation study, but developing a pipeline that successfully works for various kinds of experimental data(vehicle/powertrain/component level testing, etc) and able to rank high impact variables consistently across the applications are real challenge. The **use-cases are immense and the value it add in terms of the Quality/Cost/Time (QCT) benefits is incredible**.
+This method sounds like a simple correlation study, but developing a pipeline that successfully works for various kinds of experimental data(vehicle/powertrain/component level testing, etc) and able to rank high impact variables consistently across the applications is a real challenge. The **use-cases are immense and the value it add in terms of the Quality/Cost/Time (QCT) benefits is incredible**.
 
 ### Objective
 
@@ -47,8 +47,6 @@ Pearson Correlation is a statistical technique used to measure the strength and 
 
 - Rapidly screens thousands of recorded vehicle signals to identify variables with strong linear relationships to the target.
 - Helps reduce large datasets (e.g., 1,500+ signals) to a manageable set of candidate features.
-- Supports calibration activities by highlighting parameters that directly influence vehicle performance.
-- Useful for root-cause investigations involving thermal, electrical, and powertrain systems.
 - Computationally efficient and suitable for automated feature-ranking pipelines.
 - Best used as an initial filtering technique before applying advanced nonlinear feature-ranking methods.
 
@@ -60,10 +58,8 @@ Spearman Correlation is a non-parametric statistical technique that measures the
 > **Relevance to Automotive Feature Ranking**
 
 - Identifies influential variables exhibiting monotonic but nonlinear relationships with the target.
-- Well suited for battery, thermal, and powertrain systems where behavior is often nonlinear.
 - More robust to noisy sensor measurements and outliers commonly found in test data.
 - Captures important dependencies that may be missed by Pearson Correlation.
-- Helps prioritize high-impact signals for calibration, validation, and performance optimization.
 - Serves as an effective intermediate
 
 ### **#3 ReliefF Importance**
@@ -74,7 +70,6 @@ ReliefF is a feature-ranking algorithm that evaluates how well a feature disting
 > **Relevance to Automotive Feature Ranking**
 
 - Captures nonlinear relationships commonly observed in vehicle systems.
-- Effective for identifying variables influencing battery, thermal, and powertrain performance.
 - Can detect interacting signals that jointly affect a target parameter.
 - Useful when physical behavior depends on operating conditions and control strategies.
 - Helps uncover important variables missed by Pearson or Spearman analysis.
@@ -90,10 +85,7 @@ Unlike correlation-based ranking methods that evaluate each feature independentl
 
 - Particularly useful when hundreds of logged signals contain overlapping information.
 - Eliminates redundant variables that represent the same physical behavior.
-- Helps construct compact and informative feature sets for calibration activities.
 - Reduces engineering effort by focusing on unique contributors to target performance.
-- Effective for battery, thermal, electrical, and powertrain investigations.
-- Enables selection of a high-quality subset of 50–100 features from thousands of recorded signals.
 
 
 ### **#5 Random Forest Importance**
@@ -104,12 +96,7 @@ Random Forest Importance is a machine-learning-based feature-ranking method that
 > **Relevance to Automotive Feature Ranking**
 
 - Well suited for complex vehicle datasets containing thousands of logged signals.
-- Captures nonlinear effects present in battery, thermal, and electrical systems.
 - Identifies interacting variables that influence performance targets.
-- Provides reliable rankings even when signal relationships are complex.
-- Frequently used for calibration support and root-cause investigations.
-- Effective for reducing large signal sets to the most influential variables for detailed engineering analysis.
-
 
 ### **#6 Boruta Importance**
 Boruta is an all-relevant feature selection method built around Random Forest. Unlike methods that identify only the minimum set of features required for prediction, Boruta aims to identify **all features that have a statistically significant influence** on the target variable.
@@ -121,10 +108,8 @@ The algorithm compares the importance of real features against randomized copies
 
 - Helps identify all variables that may influence a vehicle performance target.
 - Particularly useful when missing an important signal could impact calibration quality.
-- Captures nonlinear behaviors common in battery, thermal, and electrical systems.
-- Handles complex interactions between control, sensor, and actuator signals.
-- Provides statistically validated feature selection for engineering investigations.
-- Well suited for reducing thousands of logged signals to a reliable set of high-impact variables.
+- Handles complex interactions between variables (i.e. control, sensor, and actuator signals.)
+ 
 ---
 
 ### **#7 Permutation Importance**
@@ -136,12 +121,8 @@ Unlike Random Forest Importance, Permutation Importance evaluates a feature's co
 > **Relevance to Automotive Feature Ranking**
 
 - Measures the actual contribution of a signal toward prediction accuracy.
-- Effective for ranking variables influencing thermal, electrical, and performance targets.
 - Captures nonlinear effects commonly observed in vehicle systems.
 - Helps validate whether highly ranked features genuinely impact model predictions.
-- Useful for calibration, root-cause analysis, and performance optimization studies.
-- Enables robust prioritization of the most influential variables from large vehicle-testing datasets.
-
 
 Every feature selection method represents a different philosophy:
 
@@ -156,7 +137,7 @@ Every feature selection method represents a different philosophy:
 | Permutation Importance | Does the model fail without it? |
 
 No single method provides the complete picture.
-Each technique evaluates feature importance from a different perspective and therefore captures different aspects of the underlying system behavior. The strongest feature selection pipelines combine multiple methods into an ensemble ranking framework, leveraging the strengths of each technique while mitigating individual weaknesses. Combining multiple methods enables a more robust and reliable identification of influential variables, particularly in complex automotive systems where linear, nonlinear, interaction-based, and redundant relationships often coexist.
+Each technique evaluates feature importance from a different perspective and therefore captures different aspects of the underlying system behavior. The **strongest feature selection pipelines combine multiple methods into an ensemble ranking framework**, leveraging the strengths of each technique while mitigating individual weaknesses. Combining multiple methods enables a more robust and reliable identification of influential variables, particularly in complex automotive systems where linear, nonlinear, interaction-based, and redundant relationships often coexist.
 
 
 ### Ensemble Score Estimation
@@ -268,5 +249,6 @@ Key outcomes of this methodology include:
 - Accelerates **root-cause investigations** and reduces the effort required for manual data exploration.
 - Enables the development of more accurate reduced-order models for calibration and optimization activities.
 - Provides a data-driven and objective framework for feature prioritization across diverse vehicle testing applications.
+- It is worth rewriting "The **use-cases are immense and the value it add in terms of the Quality/Cost/Time (QCT) benefits is incredible**."
 
 Ultimately, this methodology transforms high-dimensional vehicle test data into actionable engineering knowledge, allowing calibration teams to focus on the variables that matter most and achieve performance, thermal, drivability targets more efficiently and reliably.
