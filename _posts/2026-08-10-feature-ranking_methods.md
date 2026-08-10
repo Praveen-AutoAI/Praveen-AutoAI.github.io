@@ -22,6 +22,6 @@ Most engineering datasets contain hundreds of sensors, calculated signals, times
 
 
 I suggest to go through the overview and general methods of feature engineering/selection from the below link.
-#### References & Further Reading
+#### Before jumping deep into the ocean, I let you surf a little
 * [Feature Selection — Exhaustive Overview (Analytics Vidhya)](https://medium.com/analytics-vidhya/feature-selection-extended-overview-b58f1d524c1c)
 * [Feature Selection Techniques in Machine Learning (GeeksforGeeks)](https://www.geeksforgeeks.org/machine-learning/feature-selection-techniques-in-machine-learning/)
