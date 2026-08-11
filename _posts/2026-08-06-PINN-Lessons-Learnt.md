@@ -18,7 +18,7 @@ I have listed the common bottlenecks while handling PINN projects.(most of these
 
 ---
 
-## 1. Gradient Pathology (Loss Balancing)
+### 1. Gradient Pathology (Loss Balancing)
 
 One of the most common reasons a PINN fails to converge is that the gradients coming from the various loss components compete with each other.
 
@@ -42,7 +42,7 @@ Finding the right balance between data, physics, and boundary-condition losses i
 
 ---
 
-## 2. Handling Mathematical Singularities
+### 2. Handling Mathematical Singularities
 
 Neural networks and automatic differentiation do not behave well when the governing equation contains singular terms.
 
@@ -90,7 +90,7 @@ For my battery-aging PINN, this reformulation was one of the most important impr
 
 ---
 
-## 3. Enforcing Physical Constraints on Parameters
+### 3. Enforcing Physical Constraints on Parameters
 
 Neural networks are excellent optimizers.
 
