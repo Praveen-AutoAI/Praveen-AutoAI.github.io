@@ -20,7 +20,7 @@ I have listed the common bottlenecks while handling PINN projects.(most of these
 ---
 
 ### 1. Selecting the Right Physics/Governing laws/Boundary and Initial Conditions
-One Line: High Physics fidelity does not mean good PINN modelling
+**One Line: High Physics fidelity does not mean good PINN modelling**
 Selecting the right governing physics equations is the foundational bottleneck in PINN design. Because a PINN uses physical laws as a regularizer in the loss function, embedding equations that under-represent the physical system or over-complicate it creates an immediate conflict during training. 
 Just because the governing laws are available(comprehensive but complex due to high-dimension PDE, Mutli-physics), it is not the right practice to implement the same as physics constraint. 
 This presents a "Goldilocks problem" where the equation set must be sophisticated enough to capture dominant system behaviors, but simple enough to avoid numerical stiffness during automatic differentiation.
@@ -34,7 +34,7 @@ This presents a "Goldilocks problem" where the equation set must be sophisticate
 ---
 
 ### 2. Noise in the Data (in case of Inverse PINN)
-One Line: Large noise may lead to nasty PINN
+**One Line: Large noise may lead to nasty PINN**
 When using real-world sensor/experimental data for inverse problems, noisy observations degrade parameter accuracy and can mislead the physics residual calculations. If the noise is within a threshold of less than 2%, as a matter of fact it helps in model generalization, so check the data credibility. (I always add a controlled noise for the generalization effect)
 
 #### Best Practices:
