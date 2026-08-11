@@ -98,7 +98,7 @@ Loss terms continuously fight each other → unstable convergence or oscillation
 ---
 
 ### 5. Enforcing Physical Constraints on Parameters
-**One Line: Do the reality check for sign and magnitude of parameters **
+**One Line: Do the reality check for sign and magnitude of parameters**
 
 Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters if those values happen to reduce the loss function. For example
 - negative degradation rates, negative mass
@@ -176,14 +176,8 @@ $$
 
 ---
 ### 7. Optimization Plateaus
-
-The optimization landscape of a PINN is considerably more complex than that of a conventional neural network.
-
-### The Pitfall
-
-Training can plateau early even when the physics residual remains relatively large.
-
-Adam often finds a reasonable solution quickly, but may struggle to achieve the precision required for scientific applications.
+**One Line: You need robust strategy to find the global minima of the majestic and wild Himalayan(loss landscape) range**
+The PINN loss function combines multiple objectives (data fitting, physics equations, boundary conditions), creating a highly complex and non-convex optimization landscape with many flat regions, saddle points, and local minima. Optimizers such as Adam rapidly reduce the loss during the initial stages of training but often stagnate once they reach a plateau. As a result, the model may appear converged while significant physics residuals still remain, leading to solutions that satisfy the data reasonably well but lack the accuracy required for scientific and engineering applications.
 
 ### The Fix
 
