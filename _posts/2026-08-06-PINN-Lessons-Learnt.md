@@ -92,11 +92,13 @@ For my battery-aging PINN, this reformulation was one of the most important impr
 ### 4. Gradient Pathology / Loss Balancing
 One Line: Find the right balance between the loss components for peace
 Total Loss function:
+
 $$
 L_{\text{total}} = \lambda_{\text{data}} L_{\text{data}}
 + \lambda_{\text{phys}} L_{\text{phys}}
 + \lambda_{\text{IC}} L_{\text{IC}}
 $$
+
 The problem occurs when one loss produces much larger gradients than the others.
 For example:
 Data loss gradients dominate → model fits experimental data well but violates physics.
