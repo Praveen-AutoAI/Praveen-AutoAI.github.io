@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Why I Love PINNs & You Will T2o :)"
+description: "Why PINN is far better than Deep Learning for Engineers"
 date: 2026-08-04
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
