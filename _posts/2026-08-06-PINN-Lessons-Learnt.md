@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Lessons Learned(& Learning) While Building Physics-Informed Neural Networks (PINNs)"
+title: "### Lessons Learned(& Learning) While Building Physics-Informed Neural Networks (PINNs)"
 date: 2026-08-06
 categories: [Machine Learning, Engineering, Physics]
 tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
