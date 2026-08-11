@@ -244,19 +244,23 @@ They are a conversation between data and physics.
 
 ### References
 
-1. Emergent Mind, *Inverse Physics-Informed Neural Networks (Inverse PINNs)*.  
-   Available at: https://www.emergentmind.com/topics/inverse-pinn
+[1] Emergent Mind, "Inverse Physics-Informed Neural Networks (Inverse PINNs)."  
+Available: https://www.emergentmind.com/topics/inverse-pinn
 
-2. Joris C., *Physics-Informed Machine Learning (PIML)*, Medium.  
-   Available at: https://medium.com/@joris.c/physics-informed-machine-learning-piml-debe8f856c10
+[2] Joris C., "Physics-Informed Machine Learning (PIML)," Medium.  
+Available: https://medium.com/@joris.c/physics-informed-machine-learning-piml-debe8f856c10
 
-3. Rathore, P., Lei, W., Frangella, Z., Lu, L., & Udell, M. (2024).  
-   *Challenges in Training PINNs: A Loss Landscape Perspective*.  
-   arXiv:2402.01868.  
-   Available at: https://arxiv.org/abs/2402.01868
+[3] P. Rathore, W. Lei, Z. Frangella, L. Lu, and M. Udell,  
+"Challenges in Training PINNs: A Loss Landscape Perspective,"  
+arXiv:2402.01868, 2024.  
+Available: https://arxiv.org/abs/2402.01868
 
-4. Mathematics (MDPI), *Physics-Informed Neural Networks: Recent Advances and Challenges*.  
-   Available at: https://www.mdpi.com/2227-7390/13/20/3289
+[4] S. M. Abbas, M. S. A. Ahamed, M. E. H. Chowdhury, et al.,  
+"Review of Physics-Informed Neural Networks: Challenges in Loss Function Design and Geometric Integration,"  
+Mathematics, vol. 13, no. 20, 3289, 2025.  
+Available: https://www.mdpi.com/2227-7390/13/20/3289
 
-5. Scientific Reports (Nature Portfolio), *Physics-Informed Neural Network Applications and Developments*.  
-   Available at: https://www.nature.com/articles/s41598-023-49977-3
+[5] Y. Wang, J. Fan, S. Wang, and X. Liu,  
+"Solving Real-World Optimization Tasks Using Physics-Informed Neural Computing,"  
+Scientific Reports, Nature Portfolio, 2023.  
+Available: https://www.nature.com/articles/s41598-023-49977-3
