@@ -20,7 +20,7 @@ I have listed the common bottlenecks while handling PINN projects.(most of these
 ---
 
 ### 1. Selecting the Right Physics/Governing laws/Boundary and Initial Conditions
-**One Line: High Physics fidelity does not mean good PINN modelling**
+**One Line: High Physics fidelity does not promise good PINN model**
 
 Selecting the right governing physics equations is the foundational bottleneck in PINN design. Because a PINN uses physical laws as a regularizer in the loss function, embedding equations that under-represent the physical system or over-complicate it creates an immediate conflict during training. 
 Just because the governing laws are available(comprehensive but complex due to high-dimension PDE, Mutli-physics), it is not the right practice to implement the same as physics constraint. 
@@ -76,7 +76,8 @@ For my battery-aging PINN demo project on my GitHub repo, this reformulation was
 ---
 
 ### 4. Gradient Pathology / Loss Balancing
-One Line: Find the right balance between the loss components to establish peace during trianing.
+**One Line: Find the right balance between the loss components to establish peace during trianing.**
+
 Total Loss function:
 
 $$
@@ -97,7 +98,8 @@ Loss terms continuously fight each other → unstable convergence or oscillation
 ---
 
 ### 5. Enforcing Physical Constraints on Parameters
-One Line: Do the reality check for sign and magnitude of parameters 
+**One Line: Do the reality check for sign and magnitude of parameters **
+
 Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters if those values happen to reduce the loss function. For example
 - negative degradation rates, negative mass
 - Out of range
@@ -143,7 +145,8 @@ throughout training.
 ---
 
 ### 6. Collocation Point Distribution Matters
-One Line: Sparse collocation points leads to a porous PINN model
+**One Line: Sparse collocation points leads to a porous PINN model**
+
 Physics is only enforced where the residual is evaluated. If points are too sparse or evenly distributed, the network might satisfy the equations at those specific dots but behave wildly elsewhere.
 
 #### Best Practices:
@@ -172,7 +175,7 @@ $$
 > A PINN learns physics only where you ask it to enforce physics.
 
 ---
-## 4. Optimizer Limitations
+### 7. Optimization Plateaus
 
 The optimization landscape of a PINN is considerably more complex than that of a conventional neural network.
 
