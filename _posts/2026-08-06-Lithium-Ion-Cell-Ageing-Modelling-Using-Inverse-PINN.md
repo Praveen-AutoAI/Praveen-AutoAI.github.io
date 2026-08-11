@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Discovering Lithium-Ion Cell Calendar-Ageing Rates Using Inverse Physics-Informed Neural Networks (iPINNs)"
+description: "Converting the Physics/Governing Equation to Loss Function for PINN framework"
 date: 2026-08-04
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
