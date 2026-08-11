@@ -100,7 +100,10 @@ Loss terms continuously fight each other → unstable convergence or oscillation
 
 ### 3. Enforcing Physical Constraints on Parameters
 One Line: Do the reality check for sign and magnitude of parameters 
-Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters (e.g., negative degradation rates, negative mass) if those values happen to reduce the loss function.
+Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters if those values happen to reduce the loss function. For example
+- negative degradation rates, negative mass
+- Out of range
+These are not useful simply because you cannot interpret physically.
 
 #### Best Practices:
 - Embed physical constraints directly into the model. 
