@@ -120,11 +120,15 @@ torch.nn.functional.softplus(parameter)
 theta = nn.Parameter(torch.randn(1))
 k = torch.sigmoid(theta)
 ```
+
+For a parameter ppp constrained to lie within a range [pmin⁡,pmax⁡][p_{\min}, p_{\max}][pmin​,pmax​], the general form is:
 $$
 p = p_{\min} + \left(p_{\max} - p_{\min}\right)\sigma(\theta)
-
+$$
+$$
 \sigma(\theta)=\frac{1}{1+e^{-\theta}}
-
+$$
+$$
 p_{\min} \leq p \leq p_{\max}
 $$
 
