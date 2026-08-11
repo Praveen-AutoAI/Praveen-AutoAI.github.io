@@ -96,6 +96,10 @@ $$
 L_total = λ_data L_data + λ_phys L_phys + λ_IC L_IC
 $$
 The problem occurs when one loss produces much larger gradients than the others
+For example:
+Data loss gradients dominate → model fits experimental data well but violates physics.
+Physics loss gradients dominate → model satisfies equations but poorly fits data.
+Loss terms continuously fight each other → unstable convergence or oscillations.
 
 ### The Pitfall
 
