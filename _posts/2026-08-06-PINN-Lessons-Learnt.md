@@ -6,15 +6,86 @@ categories: [Machine Learning, Engineering, Physics]
 tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
 ---
 
-# Lessons Learned While Building Physics-Informed Neural Networks (PINNs)
+## Lessons Learned While Building Physics-Informed Neural Networks (PINNs)
 
-One of the reasons I enjoy working with Physics-Informed Neural Networks (PINNs) is that they force me to think like both a machine learning engineer and a physicist.
+One of the reasons I(being an Automotive Engineer turned AUTO+AI guy) enjoy working with Physics-Informed Neural Networks (PINNs) is that they force me to think like both a machine learning engineer and a physicist.
 
 Unlike conventional neural networks that primarily focus on minimizing a data-driven loss, PINNs must simultaneously satisfy experimental observations and governing physical laws. This additional constraint is precisely what makes them powerful, but it is also that makes them vulnerable and challenging to train.
 
 During my journey building PINNS & Inverse PINNs in my projects, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems.
 
 I have listed the common bottlenecks while handling PINN projects.(most of these I have faced and I wanted to put them as lessons learned)
+
+---
+
+### 1. Selecting the Right Physics/Governing laws/Boundary and Initial Conditions
+One Line: High Physics fidelity does not mean good PINN modelling
+Selecting the right governing physics equations is the foundational bottleneck in PINN design. Because a PINN uses physical laws as a regularizer in the loss function, embedding equations that under-represent the physical system or over-complicate it creates an immediate conflict during training. 
+Just because the governing laws are available(comprehensive but complex due to high-dimension PDE, Mutli-physics), it is not the right practice to implement the same as physics constraint. 
+This presents a "Goldilocks problem" where the equation set must be sophisticated enough to capture dominant system behaviors, but simple enough to avoid numerical stiffness during automatic differentiation.
+
+#### Best Practices:
+- Always start with one fundamental law of the system(still keep it simple, check the Calendar ageing PINN demo link at the bottom), and try put additional constraint with multiple equations, boundary and initial conditions (Follow the "Occam's Razor Rule")
+- If you got high dimensional PDE, convert to first order PDE for simplicity. This will also help in faster training.
+- Add boundary & Initial conditions constraint that will support the learning of the system characteristics. Avoid non-essential stuffs.
+
+---
+
+### 2. Noise in the Data (in case of Inverse PINN)
+One Line: Large noise may lead to nasty PINN
+When using real-world sensor/experimental data for inverse problems, noisy observations degrade parameter accuracy and can mislead the physics residual calculations. If the noise is within a threshold of less than 2%, as a matter of fact it helps in model generalization, so check the data credibility. (I always add a controlled noise for the generalization effect)
+
+#### Best Practices:
+- Understand the source of data, check the spread and variability.
+- If you got the plant model (engine/vehicle performance model/ battery P2D model, etc.) a good way would be to add simulated data in order to reduce the dependency on the experimental data.
+
+---
+
+### 3. Handling Mathematical Singularities
+
+Neural networks and automatic differentiation do not behave well when the governing equation contains singular terms.
+
+### The Pitfall
+
+Expressions such as:
+
+```text
+1 / t
+1 / √t
+t⁻¹
+t⁻⁰·⁵
+```
+
+can generate extremely large residuals near zero.
+
+The result is often:
+
+- Unstable gradients
+- Parameter collapse
+- NaN values
+- Failed training runs
+
+NaN are serious problem in PINN training, monitoring the training loss of all the loss components (it will help you to diagnose PINN)
+
+### The Fix
+
+Whenever possible, reformulate the governing equation.
+
+For example:
+
+```text
+dQ/dt + k·t⁻⁰·⁵ = 0
+```
+
+can be rewritten as:
+
+```text
+√t·dQ/dt + k = 0
+```
+
+Both equations represent the same physics, but the second form is significantly more stable for neural network optimization.
+
+For my battery-aging PINN, this reformulation was one of the most important improvements I made.
 
 ---
 
