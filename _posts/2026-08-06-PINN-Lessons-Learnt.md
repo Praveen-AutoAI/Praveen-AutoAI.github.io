@@ -121,8 +121,7 @@ theta = nn.Parameter(torch.randn(1))
 k = torch.sigmoid(theta)
 ```
 
-For a parameter \(p\) constrained to lie within the range
-\([p_{\min}, p_{\max}]\), an unconstrained optimization variable
+For a parameter \(p\) constrained to lie within the range \([p_{\min}, p_{\max}]\), an unconstrained optimization variable
 \(\theta\) can be transformed as
 
 $$
