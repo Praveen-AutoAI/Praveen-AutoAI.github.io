@@ -189,8 +189,7 @@ L-BFGS is particularly effective at reducing the physics residual to very small 
 
 ---
 
-
-### 6. Learn to Read the Loss Components, Not Just the Total Loss
+### 8. Learn to Read the Loss Components, Not Just the Total Loss
 **One Line: Shape of the loss curves can deceive you, Scale can assert you**
 One of the biggest mistakes I made early on was assuming that a noisy loss curve automatically meant that something was wrong with the training.
 
@@ -203,7 +202,7 @@ PINNs optimize multiple objectives simultaneously:
 
 As a result, it is perfectly normal for one loss component (especially which has the smallest magnitude) to oscillate while the others converge smoothly.
 
-Check my GitHub project repo: For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
+Check **my GitHub project repo**: For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
 
 - The magnitude of the IC loss was extremely small (on the order of **10⁻⁷**).
 - The predicted initial capacity remained essentially equal to 1 (ie. 0.9999).
@@ -217,25 +216,23 @@ In other words, the network was behaving correctly despite the oscillations.
 - Focus on whether the predicted physical fields and parameter values make sense.
 - Verify that the model behaviour remains physically meaningful.
 
-### Key Takeaway
-
 > In PINNs, loss curves are diagnostic tools, not pass/fail indicators. Always interpret the meaning behind a loss component before concluding that the training is unstable.
 
-Sometimes a wildly oscillating loss is simply telling you that the error is already extremely small. Understanding the story behind the loss is often more important than the loss value itself.
-
-## Final Thoughts
+### Final Thoughts
 
 The hardest part of building a PINN is rarely the neural network.
 
 The real challenge lies in converting physical knowledge into a numerically stable optimization problem.
 
-In my experience, most PINN failures can be traced back to one of five causes:
+In my experience, most PINN failures can be traced back to one of the causes:
 
+- Too complicated physics constraints
 - Poor loss balancing
 - Mathematical singularities
 - Missing physical constraints
 - Optimizer limitations
-- Inadequate collocation-point selection
+- Unstable training and poor convergence
+- Inadequate collocation-point selection (not often, but for higher order PDEs)
 
 Once these challenges are addressed, PINNs become incredibly powerful tools for combining sparse experimental data with known physics and discovering hidden system parameters.
 
@@ -245,5 +242,21 @@ They are not just machine learning models.
 
 They are a conversation between data and physics.
 
-### References:
-- https://medium.com/@joris.c/physics-informed-machine-learning-piml-debe8f856c10
+### References
+
+1. Emergent Mind, *Inverse Physics-Informed Neural Networks (Inverse PINNs)*.  
+   Available at: https://www.emergentmind.com/topics/inverse-pinn
+
+2. Joris C., *Physics-Informed Machine Learning (PIML)*, Medium.  
+   Available at: https://medium.com/@joris.c/physics-informed-machine-learning-piml-debe8f856c10
+
+3. Rathore, P., Lei, W., Frangella, Z., Lu, L., & Udell, M. (2024).  
+   *Challenges in Training PINNs: A Loss Landscape Perspective*.  
+   arXiv:2402.01868.  
+   Available at: https://arxiv.org/abs/2402.01868
+
+4. Mathematics (MDPI), *Physics-Informed Neural Networks: Recent Advances and Challenges*.  
+   Available at: https://www.mdpi.com/2227-7390/13/20/3289
+
+5. Scientific Reports (Nature Portfolio), *Physics-Informed Neural Network Applications and Developments*.  
+   Available at: https://www.nature.com/articles/s41598-023-49977-3
