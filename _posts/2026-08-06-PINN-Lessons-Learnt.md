@@ -179,12 +179,11 @@ $$
 **One Line: You need robust strategy to find the global minima of the majestic and wild Himalayan(loss landscape) range**
 The PINN loss function combines multiple objectives (data fitting, physics equations, boundary conditions), creating a highly complex and non-convex optimization landscape with many flat regions, saddle points, and local minima. Optimizers such as Adam rapidly reduce the loss during the initial stages of training but often stagnate once they reach a plateau. As a result, the model may appear converged while significant physics residuals still remain, leading to solutions that satisfy the data reasonably well but lack the accuracy required for scientific and engineering applications.
 
-### The Fix
+#### Best Practices:
 
-A common PINN training strategy is:
-
-1. Train with **Adam** for rapid initial exploration.
-2. Switch to **L-BFGS** for fine tuning.
+- A common PINN training strategy is:
+1. Train with **Adam** for rapid initial exploration. (Glides through the slope quickly)
+2. Switch to **L-BFGS** for fine tuning. (utilizes curvature information to make more informed parameter updates)
 
 L-BFGS is particularly effective at reducing the physics residual to very small values and is used extensively in many successful PINN implementations.
 
