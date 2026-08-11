@@ -98,7 +98,7 @@ Loss terms continuously fight each other → unstable convergence or oscillation
 
 ---
 
-### 3. Enforcing Physical Constraints on Parameters
+### 5. Enforcing Physical Constraints on Parameters
 One Line: Do the reality check for sign and magnitude of parameters 
 Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters if those values happen to reduce the loss function. For example
 - negative degradation rates, negative mass
@@ -115,7 +115,18 @@ or preferably:
 ```python
 torch.nn.functional.softplus(parameter)
 ```
-help ensure that the learned parameters remain physically meaningful throughout training.
+- Let's we want a parameter to in the range of 0 to 1, 0≤k≤1 . Instead of training kkk directly, train an unconstrained variable θ\thetaθ and map it using a sigmoid function.
+```python
+theta = nn.Parameter(torch.randn(1))
+k = torch.sigmoid(theta)
+```
+$$
+p = p_{\min} + \left(p_{\max} - p_{\min}\right)\sigma(\theta)
+\sigma(\theta)=\frac{1}{1+e^{-\theta}}
+p_{\min} \leq p \leq p_{\max}
+$$
+
+These approaches ensures that the learned parameters remain physically meaningful throughout training.
 
 ---
 
