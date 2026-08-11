@@ -43,7 +43,7 @@ When using real-world sensor/experimental data for inverse problems, noisy obser
 ---
 
 ### 3. Handling Mathematical Singularities
-
+One Line: Blind implementation of the physics laws won't give the vision to the PINN model
 Neural networks and automatic differentiation do not behave well when the governing equation contains singular terms.
 
 ### The Pitfall
@@ -62,17 +62,12 @@ The result is often:
 NaN are serious problem in PINN training, monitoring the training loss of all the loss components (it will help you to diagnose PINN)
 
 #### Best Practices:
-
 - Whenever possible, reformulate the governing equation.
-
 For example:
-
 $$
 \frac{dQ}{dt} + k\,t^{-0.5} = 0 \quad \Rightarrow \quad \sqrt{t}\,\frac{dQ}{dt} + k = 0
 $$
-
 Both equations represent the same physics, but the second form is significantly more stable for neural network optimization. I suggest you to verify your physics constraints for singularities and adapt them.
-
 For my battery-aging PINN demo project on my GitHub repo, this reformulation was one of the most important improvements I made.
 
 ---
@@ -80,12 +75,10 @@ For my battery-aging PINN demo project on my GitHub repo, this reformulation was
 ### 4. Gradient Pathology / Loss Balancing
 One Line: Find the right balance between the loss components for peace
 Total Loss function:
-
 $$
 \begin{aligned}
 L_{\text{total}} =&\\lambda_{\text{data}} L_{\text{data}} \+ \lambda_{\text{phys}} L_{\text{phys}} \+ \lambda_{\text{IC}} L_{\text{IC}}\end{aligned}
 $$
-
 The problem occurs when one loss produces much larger gradients than the others.
 For example:
 Data loss gradients dominate → model fits experimental data well but violates physics.
