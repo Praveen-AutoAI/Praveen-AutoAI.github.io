@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Lessons Learned Building PINNs"
+title: "Lessons Learned(& Learning) While Building Physics-Informed Neural Networks (PINNs)"
 date: 2026-08-06
 categories: [Machine Learning, Engineering, Physics]
 tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
 ---
 
-## Lessons Learned(& Learning) While Building Physics-Informed Neural Networks (PINNs)
+## Solving the Mysteries of PINN training
 
 One of the reasons I(being an Automotive Engineer turned AUTO+AI guy) enjoy working with Physics-Informed Neural Networks (PINNs) is that they force me to think like both a machine learning engineer and a physicist.
 
