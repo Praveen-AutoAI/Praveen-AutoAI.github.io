@@ -54,15 +54,10 @@ $$
 \frac{1}{t} ; \frac{1}{\sqrt{t}} ; t^{-1} ; t^{-0.5}
 $$
 
-
 can generate extremely large residuals near zero.
 
 The result is often:
-
-- Unstable gradients
-- Parameter collapse
-- NaN values
-- Failed training runs
+- Unstable gradients ; Parameter collapse ; NaN values ; Failed training runs
 
 NaN are serious problem in PINN training, monitoring the training loss of all the loss components (it will help you to diagnose PINN)
 
