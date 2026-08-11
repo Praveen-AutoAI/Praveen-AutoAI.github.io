@@ -33,9 +33,8 @@ This presents a "Goldilocks problem" where the equation set must be sophisticate
 - Non-dimensionalize variables using characteristic length and time values
 - Add boundary & Initial conditions constraint that will support the learning of the system characteristics. Avoid non-essential stuffs.
 
-
-assets/images/PINN
-
+**Idea_of_PINN**
+![Idea_of_PINN/Importance](/assets/images/PINN/PIML.jpg)
 ---
 
 ### 2. Noise in the Data (in case of Inverse PINN)
