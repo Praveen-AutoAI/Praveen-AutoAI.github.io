@@ -25,7 +25,7 @@ Just because the governing laws are available(comprehensive but complex due to h
 This presents a "Goldilocks problem" where the equation set must be sophisticated enough to capture dominant system behaviors, but simple enough to avoid numerical stiffness during automatic differentiation.
 
 #### Best Practices:
-- Always start with one fundamental law of the system(still keep it simple, check the Calendar ageing PINN demo link at the bottom), and try put additional constraint with multiple equations, boundary and initial conditions (Follow the "Occam's Razor Rule")
+- Always start with one fundamental law of the system(still keep it simple, check the Calendar ageing PINN demo link at the bottom), and try put additional constraint with multiple equations, boundary and initial conditions (**Follow the "Occam's Razor Rule"**)
 - If you got high dimensional PDE, convert to first order PDE for simplicity. This will also help in faster training.
 - Add boundary & Initial conditions constraint that will support the learning of the system characteristics. Avoid non-essential stuffs.
 
