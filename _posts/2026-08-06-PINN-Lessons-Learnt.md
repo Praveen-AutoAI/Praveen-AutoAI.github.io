@@ -35,6 +35,9 @@ This presents a "Goldilocks problem" where the equation set must be sophisticate
 
 **Idea_of_PINN**
 ![Idea_of_PINN/Importance](/assets/images/PINN/PIML.jpg)
+
+Remember that even with some physics, the PINN will perform.
+
 ---
 
 ### 2. Noise in the Data (in case of Inverse PINN)
