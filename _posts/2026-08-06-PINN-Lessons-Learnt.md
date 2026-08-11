@@ -115,14 +115,16 @@ or preferably:
 ```python
 torch.nn.functional.softplus(parameter)
 ```
-- Let's we want a parameter to in the range of 0 to 1, 0≤k≤1 . Instead of training kkk directly, train an unconstrained variable θ\thetaθ and map it using a sigmoid function.
+- Let's we want a parameter to in the range of 0 to 1. Instead of training kkk directly, train an unconstrained variable θ\thetaθ and map it using a sigmoid function.
 ```python
 theta = nn.Parameter(torch.randn(1))
 k = torch.sigmoid(theta)
 ```
 $$
 p = p_{\min} + \left(p_{\max} - p_{\min}\right)\sigma(\theta)
+
 \sigma(\theta)=\frac{1}{1+e^{-\theta}}
+
 p_{\min} \leq p \leq p_{\max}
 $$
 
