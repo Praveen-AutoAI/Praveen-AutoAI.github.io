@@ -10,13 +10,11 @@ tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
 
 One of the reasons I enjoy working with Physics-Informed Neural Networks (PINNs) is that they force me to think like both a machine learning engineer and a physicist.
 
-Unlike conventional neural networks that primarily focus on minimizing a data-driven loss, PINNs must simultaneously satisfy experimental observations and governing physical laws. This additional constraint is precisely what makes them powerful, but it is also what makes them challenging to train.
+Unlike conventional neural networks that primarily focus on minimizing a data-driven loss, PINNs must simultaneously satisfy experimental observations and governing physical laws. This additional constraint is precisely what makes them powerful, but it is also that makes them vulnerable and challenging to train.
 
-During my journey building Inverse PINNs for battery degradation modeling, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems.
+During my journey building PINNS & Inverse PINNs in my projects, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems.
 
-I created this to list the problems I have faced and would add as I encounter new problems in my upcoming project.
-
-Here are the most important lessons I learned along the way.
+I have listed the common bottlenecks while handling PINN projects.(most of these I have faced and I wanted to put them as lessons learned)
 
 ---
 
