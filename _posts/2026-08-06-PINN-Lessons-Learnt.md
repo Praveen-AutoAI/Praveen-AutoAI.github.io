@@ -89,9 +89,13 @@ For my battery-aging PINN, this reformulation was one of the most important impr
 
 ---
 
-### 1. Gradient Pathology (Loss Balancing)
-
-One of the most common reasons a PINN fails to converge is that the gradients coming from the various loss components compete with each other.
+### 4. Gradient Pathology / Loss Balancing
+One Line: How the different loss terms are weighted during training.
+Total Loss function:
+$$
+L_total = λ_data L_data + λ_phys L_phys + λ_IC L_IC
+$$
+The problem occurs when one loss produces much larger gradients than the others
 
 ### The Pitfall
 
