@@ -115,7 +115,7 @@ or preferably:
 ```python
 torch.nn.functional.softplus(parameter)
 ```
-- Let's we want a parameter to in the range of 0 to 1. Instead of training kkk directly, train an unconstrained variable θ\thetaθ and map it using a sigmoid function.
+- Let's we want a parameter to in the range of 0 to 1. Instead of training k directly, train an unconstrained variable θ\thetaθ and map it using a sigmoid function (squeezes the output between 0 to 1).
 ```python
 theta = nn.Parameter(torch.randn(1))
 k = torch.sigmoid(theta)
