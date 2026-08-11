@@ -121,18 +121,27 @@ theta = nn.Parameter(torch.randn(1))
 k = torch.sigmoid(theta)
 ```
 
-For a parameter ppp constrained to lie within a range [pmin⁡,pmax⁡][p_{\min}, p_{\max}][pmin​,pmax​], the general form is:
+For a parameter \(p\) constrained to lie within the range
+\([p_{\min}, p_{\max}]\), an unconstrained optimization variable
+\(\theta\) can be transformed as
+
 $$
 p = p_{\min} + \left(p_{\max} - p_{\min}\right)\sigma(\theta)
 $$
+
+where
+
 $$
-\sigma(\theta)=\frac{1}{1+e^{-\theta}}
+\sigma(\theta) = \frac{1}{1 + e^{-\theta}}
 $$
+
+is the sigmoid function. This guarantees that
+
 $$
 p_{\min} \leq p \leq p_{\max}
 $$
 
-These approaches ensures that the learned parameters remain physically meaningful throughout training.
+throughout training.
 
 ---
 
