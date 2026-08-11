@@ -191,10 +191,8 @@ L-BFGS is particularly effective at reducing the physics residual to very small 
 
 
 ### 6. Learn to Read the Loss Components, Not Just the Total Loss
-
+**One Line: Shape of the loss curves can deceive you, Scale can assert you**
 One of the biggest mistakes I made early on was assuming that a noisy loss curve automatically meant that something was wrong with the training.
-
-### The Pitfall
 
 PINNs optimize multiple objectives simultaneously:
 
@@ -203,28 +201,21 @@ PINNs optimize multiple objectives simultaneously:
 - Initial-condition loss
 - Boundary-condition loss (if present)
 
-As a result, it is perfectly normal for one loss component to oscillate while the others converge smoothly.
+As a result, it is perfectly normal for one loss component (especially which has the smallest magnitude) to oscillate while the others converge smoothly.
 
-For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
+Check my GitHub project repo: For example, during the Calendar Ageing iPINN  project, the Initial Condition (IC) loss exhibited noticeable fluctuations throughout training. At first glance, it appeared unstable. However, a deeper investigation revealed that:
 
 - The magnitude of the IC loss was extremely small (on the order of **10⁻⁷**).
-- The predicted initial capacity remained essentially equal to 1.
+- The predicted initial capacity remained essentially equal to 1 (ie. 0.9999).
 - The total loss, data loss, and physics loss had already converged.
 
 In other words, the network was behaving correctly despite the oscillations.
 
-### The Fix
-
-Do not judge PINN training solely by the appearance of a loss curve.
-
-Instead:
-
-- Examine the magnitude of each loss component.
+#### Best Practices:
+- Do not judge PINN training solely by shape of the curves. Examine the magnitude of each loss component.
 - Check whether the associated physical constraint is actually being satisfied.
-- Look at the learned parameters and predicted solutions.
+- Focus on whether the predicted physical fields and parameter values make sense.
 - Verify that the model behaviour remains physically meaningful.
-
-A noisy loss term is not necessarily a problem. What matters is whether the underlying physical constraint is being violated.
 
 ### Key Takeaway
 
