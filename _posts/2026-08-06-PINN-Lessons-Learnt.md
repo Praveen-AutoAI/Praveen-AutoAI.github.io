@@ -64,21 +64,25 @@ NaN are serious problem in PINN training, monitoring the training loss of all th
 #### Best Practices:
 - Whenever possible, reformulate the governing equation.
 For example:
+
 $$
 \frac{dQ}{dt} + k\,t^{-0.5} = 0 \quad \Rightarrow \quad \sqrt{t}\,\frac{dQ}{dt} + k = 0
 $$
+
 Both equations represent the same physics, but the second form is significantly more stable for neural network optimization. I suggest you to verify your physics constraints for singularities and adapt them.
 For my battery-aging PINN demo project on my GitHub repo, this reformulation was one of the most important improvements I made.
 
 ---
 
 ### 4. Gradient Pathology / Loss Balancing
-One Line: Find the right balance between the loss components for peace
+One Line: Find the right balance between the loss components to establish peace during trianing.
 Total Loss function:
+
 $$
 \begin{aligned}
 L_{\text{total}} =&\\lambda_{\text{data}} L_{\text{data}} \+ \lambda_{\text{phys}} L_{\text{phys}} \+ \lambda_{\text{IC}} L_{\text{IC}}\end{aligned}
 $$
+
 The problem occurs when one loss produces much larger gradients than the others.
 For example:
 Data loss gradients dominate → model fits experimental data well but violates physics.
@@ -137,6 +141,30 @@ throughout training.
 
 ---
 
+## 6. Collocation Point Distribution Matters
+One Line: Sparse collocation points leads to a porous PINN model
+Physics is only enforced where the residual is evaluated. If points are too sparse or evenly distributed, the network might satisfy the equations at those specific dots but behave wildly elsewhere.
+
+### The Fix
+- Use sufficient number of collocation points across the domain, specifically clustering them in regions with rapid physical changes or steep gradients (like the initial period lithium-ion cell ageing since the degradation is rapid)
+- There is no standard to choose the number of Collocation points, but typical I choose 25 times the experimental data points.
+- And the number of collocation points should be increased incase of higher order PDEs
+- 
+$$
+N_{\text{collocation}} \approx
+\begin{cases}
+10^{2} - 10^{3}, & \text{Simple ODE} \\[4pt]
+10^{3} - 10^{[44}, & \text{Coupled ODEs} \\pt]
+10^{4} - 10^{5}, & \text{1D PDE} \\[4pt]
+>10^{5}, & \text{2D PDE} \\[4pt]
+\text{Adaptive Sampling}, & \text{Sharp Fronts / Discontinuities}
+\end{cases}
+$$
+
+> A PINN learns physics only where you ask it to enforce physics.
+
+
+---
 ## 4. Optimizer Limitations
 
 The optimization landscape of a PINN is considerably more complex than that of a conventional neural network.
@@ -158,30 +186,6 @@ L-BFGS is particularly effective at reducing the physics residual to very small 
 
 ---
 
-## 5. Collocation Point Distribution Matters
-
-Physics is only enforced where the residual is evaluated.
-
-### The Pitfall
-
-If collocation points are sparse, the network may satisfy the governing equation at those locations while behaving poorly between them.
-
-In other words, the physics is only learned where it is enforced.
-
-### The Fix
-
-Use a sufficiently dense set of collocation points across the domain.
-
-Even better, concentrate additional collocation points in regions where rapid physical changes occur.
-
-For battery-aging problems, this often means placing more collocation points near the beginning of life where degradation occurs more rapidly.
-
-> A PINN learns physics only where you ask it to enforce physics.
-
-The distribution of collocation points is therefore just as important as the experimental measurements themselves.
-
----
----
 
 ### 6. Learn to Read the Loss Components, Not Just the Total Loss
 
