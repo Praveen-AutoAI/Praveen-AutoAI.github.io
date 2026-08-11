@@ -27,6 +27,7 @@ This presents a "Goldilocks problem" where the equation set must be sophisticate
 #### Best Practices:
 - Always start with one fundamental law of the system(still keep it simple, check the Calendar ageing PINN demo link at the bottom), and try put additional constraint with multiple equations, boundary and initial conditions (**Follow the "Occam's Razor Rule"**)
 - If you got high dimensional PDE, convert to first order PDE for simplicity. This will also help in faster training.
+- Non-dimensionalize variables using characteristic length and time values
 - Add boundary & Initial conditions constraint that will support the learning of the system characteristics. Avoid non-essential stuffs.
 
 ---
@@ -55,6 +56,23 @@ Expressions such as:
 t⁻¹
 t⁻⁰·⁵
 ```
+
+$$
+\frac{1}{t}
+$$
+
+$$
+\frac{1}{\sqrt{t}}
+$$
+
+$$
+t^{-1}
+$$
+
+$$
+t^{-0.5}
+$$
+
 
 can generate extremely large residuals near zero.
 
@@ -315,3 +333,6 @@ And perhaps that is what makes PINNs so fascinating.
 They are not just machine learning models.
 
 They are a conversation between data and physics.
+
+### References:
+- https://medium.com/@joris.c/physics-informed-machine-learning-piml-debe8f856c10
