@@ -67,7 +67,7 @@ The result is often:
 
 NaN are serious problem in PINN training, monitoring the training loss of all the loss components (it will help you to diagnose PINN)
 
-### The Fix
+#### Best Practices:
 
 Whenever possible, reformulate the governing equation.
 
@@ -90,25 +90,24 @@ For my battery-aging PINN, this reformulation was one of the most important impr
 ---
 
 ### 4. Gradient Pathology / Loss Balancing
-One Line: How the different loss terms are weighted during training.
+One Line: Find the right balance between the loss components for peace
 Total Loss function:
 $$
-L_total = λ_data L_data + λ_phys L_phys + λ_IC L_IC
+L_{\text{total}} = \lambda_{\text{data}} L_{\text{data}}
++ \lambda_{\text{phys}} L_{\text{phys}}
++ \lambda_{\text{IC}} L_{\text{IC}}
 $$
-The problem occurs when one loss produces much larger gradients than the others
+The problem occurs when one loss produces much larger gradients than the others.
 For example:
 Data loss gradients dominate → model fits experimental data well but violates physics.
 Physics loss gradients dominate → model satisfies equations but poorly fits data.
 Loss terms continuously fight each other → unstable convergence or oscillations.
 
-### The Pitfall
+#### Best Practices:
+- If you are lucky manually weighing lambdas would work ;) , Check the scale of loss while training and you can methodically adjust the weights.
+- Implementing dynamic loss weighting using GradNorm, self-adaptive weights is a wise option if you got really a complex and competing loss components
 
-The model may:
-
-- Ignore the physics and focus entirely on fitting the data.
-- Satisfy the governing equation perfectly while ignoring the measurements.
-- Oscillate indefinitely because different loss components pull the model in conflicting directions.
-
+  
 ### The Fix
 
 Carefully balance the loss terms using weighting factors such as:
