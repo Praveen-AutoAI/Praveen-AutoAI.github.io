@@ -36,7 +36,7 @@ This presents a "Goldilocks problem" where the equation set must be sophisticate
 **Idea_of_PINN**
 ![Idea_of_PINN/Importance](/assets/images/PINN/PIML.jpg)
 
-Remember that even with some physics, the PINN will perform.
+Remember that even with some appropriate physics, the PINN will perform.
 
 ---
 
