@@ -151,14 +151,21 @@ Physics is only enforced where the residual is evaluated. If points are too spar
 - And the number of collocation points should be increased incase of higher order PDEs
 
 $$
-N_{\text{collocation}} \approx
-\begin{cases}
-10^{2} - 10^{3}, & \text{Simple ODE} \\[4pt]
-10^{3} - 10^{[44}, & \text{Coupled ODEs} \\pt]
-10^{4} - 10^{5}, & \text{1D PDE} \\[4pt]
->10^{5}, & \text{2D PDE} \\[4pt]
-\text{Adaptive Sampling}, & \text{Sharp Fronts / Discontinuities}
-\end{cases}
+\begin{array}{|l|c|}
+\hline
+\textbf{Problem\ Type} & \textbf{Typical\ Collocation\ Points} \\
+\hline
+\text{Simple ODE} & 10^{2} - 10^{3} \\
+\hline
+\text{Coupled ODEs} & 10^{3} - 10^{4} \\
+\hline
+\text{1D PDE} & 10^{4} - 10^{5} \\
+\hline
+\text{2D PDE} & >10^{5} \\
+\hline
+\text{Sharp Fronts / Discontinuities} & \text{Adaptive Sampling Required} \\
+\hline
+\end{array}
 $$
 
 > A PINN learns physics only where you ask it to enforce physics.
