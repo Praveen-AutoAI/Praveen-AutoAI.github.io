@@ -149,7 +149,7 @@ Physics is only enforced where the residual is evaluated. If points are too spar
 - Use sufficient number of collocation points across the domain, specifically clustering them in regions with rapid physical changes or steep gradients (like the initial period lithium-ion cell ageing since the degradation is rapid)
 - There is no standard to choose the number of Collocation points, but typical I choose 25 times the experimental data points.
 - And the number of collocation points should be increased incase of higher order PDEs
-- 
+
 $$
 N_{\text{collocation}} \approx
 \begin{cases}
