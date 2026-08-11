@@ -12,7 +12,8 @@ One of the reasons I(being an Automotive Engineer turned AUTO+AI guy) enjoy work
 
 Unlike conventional neural networks that primarily focus on minimizing a data-driven loss, PINNs must simultaneously satisfy experimental observations and governing physical laws. This additional constraint is precisely what makes them powerful, but it is also that makes them vulnerable and challenging to train.
 
-During my journey building PINNS & Inverse PINNs in my projects, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems, but all were like mysterious issues at first. This post could save you from lot of mysterious problems that you would encounter during your first PINN project. ;)
+During my journey building PINNS & Inverse PINNs in my projects, I ran into several practical challenges. Some were numerical, some were physical, and some were simply optimization problems disguised as physics problems, but all were like mysterious issues at first. 
+**This post could save you from lot of mysterious problems that you would encounter during your first PINN project.** ;)
 
 I have listed the common bottlenecks while handling PINN projects.(most of these I have faced and I wanted to put them as lessons learned)
 
