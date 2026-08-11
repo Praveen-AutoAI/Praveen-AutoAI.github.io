@@ -96,100 +96,22 @@ Loss terms continuously fight each other → unstable convergence or oscillation
 - If you are lucky manually weighing lambdas would work ;) , Check the scale of loss while training and you can methodically adjust the weights.
 - Implementing dynamic loss weighting using GradNorm, self-adaptive weights is a wise option if you got really a complex and competing loss components
 
-  
-### The Fix
-
-Carefully balance the loss terms using weighting factors such as:
-
-```text
-L_total = λ_data L_data + λ_phys L_phys + λ_IC L_IC
-```
-
-Finding the right balance between data, physics, and boundary-condition losses is often one of the most important tuning activities in PINN training.
-
----
-
-### 2. Handling Mathematical Singularities
-
-Neural networks and automatic differentiation do not behave well when the governing equation contains singular terms.
-
-### The Pitfall
-
-Expressions such as:
-
-```text
-1 / t
-1 / √t
-t⁻¹
-t⁻⁰·⁵
-```
-
-can generate extremely large residuals near zero.
-
-The result is often:
-
-- Unstable gradients
-- Parameter collapse
-- NaN values
-- Failed training runs
-
-NaN are serious problem in PINN training, when monitoring the training loss when you see NaN, you will feel real depressed ;)
-
-### The Fix
-
-Whenever possible, reformulate the governing equation.
-
-For example:
-
-```text
-dQ/dt + k·t⁻⁰·⁵ = 0
-```
-
-can be rewritten as:
-
-```text
-√t·dQ/dt + k = 0
-```
-
-Both equations represent the same physics, but the second form is significantly more stable for neural network optimization.
-
-For my battery-aging PINN, this reformulation was one of the most important improvements I made.
-
 ---
 
 ### 3. Enforcing Physical Constraints on Parameters
+One Line: Do the reality check for sign and magnitude of parameters 
+Neural networks are excellent at function approximation. They are not physicists. PINN may find mathematically convenient but physically impossible parameters (e.g., negative degradation rates, negative mass) if those values happen to reduce the loss function.
 
-Neural networks are excellent optimizers.
-
-They are not physicists.
-
-### The Pitfall
-
-An Inverse PINN may happily discover:
-
-- Negative degradation rates
-- Negative diffusivities
-- Negative reaction constants
-- Other mathematically convenient but physically impossible solutions
-
-if those values happen to reduce the loss function.
-
-### The Fix
-
-Embed physical constraints directly into the model.
-
+#### Best Practices:
+- Embed physical constraints directly into the model. 
 For positive-only parameters, transformations such as:
-
 ```python
 torch.abs(parameter)
 ```
-
 or preferably:
-
 ```python
 torch.nn.functional.softplus(parameter)
 ```
-
 help ensure that the learned parameters remain physically meaningful throughout training.
 
 ---
