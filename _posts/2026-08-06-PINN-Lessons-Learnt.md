@@ -94,9 +94,12 @@ One Line: Find the right balance between the loss components for peace
 Total Loss function:
 
 $$
-L_{\text{total}} = \lambda_{\text{data}} L_{\text{data}}
-+ \lambda_{\text{phys}} L_{\text{phys}}
-+ \lambda_{\text{IC}} L_{\text{IC}}
+\begin{aligned}
+L_{\text{total}} =&\;
+\lambda_{\text{data}} L_{\text{data}} \\
+&+ \lambda_{\text{phys}} L_{\text{phys}} \\
+&+ \lambda_{\text{IC}} L_{\text{IC}}
+\end{aligned}
 $$
 
 The problem occurs when one loss produces much larger gradients than the others.
