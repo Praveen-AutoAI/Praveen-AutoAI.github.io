@@ -50,27 +50,8 @@ Neural networks and automatic differentiation do not behave well when the govern
 
 Expressions such as:
 
-```text
-1 / t
-1 / √t
-t⁻¹
-t⁻⁰·⁵
-```
-
 $$
-\frac{1}{t}
-$$
-
-$$
-\frac{1}{\sqrt{t}}
-$$
-
-$$
-t^{-1}
-$$
-
-$$
-t^{-0.5}
+\frac{1}{t} ; \frac{1}{\sqrt{t}} ; t^{-1} ; t^{-0.5}
 $$
 
 
