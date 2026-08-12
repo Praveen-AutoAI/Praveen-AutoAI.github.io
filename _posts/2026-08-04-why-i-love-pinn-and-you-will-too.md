@@ -201,8 +201,9 @@ And that is why PINN is given the name **"Scientific" Machine Learning (SciML).*
 Though not fully transparent, it's as translucent Glass-Box and not a Black-Box anymore!!!
 </h3>
 
+<h3 style="color:#2563eb;">
 > **💡 Though not transparent it's as translucent Glass-Box and not a Black-Box anymore!!!**
-
+</h3>
 
 ### Gentle References
 
