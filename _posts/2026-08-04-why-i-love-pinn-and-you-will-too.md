@@ -115,6 +115,7 @@ where:
 
 ### PINN Architecture
 ![PINN Architecture](/assets/images/PINN_Intro.png)
+
 ---
 
 ### Why This Is Beautiful
@@ -191,6 +192,8 @@ Most important advantage in my experience are, they help in encountering both:
 ### And that is why I love PINNs and you will t2o.
 
 ### PINN is also called as "scientific" machine leanring (SciML)
+### SciML
+![PINN Architecture](/assets/images/PINN_Intro.png)
 
 ### Gentle References
 
