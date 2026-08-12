@@ -91,12 +91,7 @@ For my battery-aging PINN demo project on my GitHub repo, this reformulation was
 Total Loss function:
 
 $$
-\begin{aligned}
-L_{\text{total}} =&\;
-\lambda_{\text{data}} L_{\text{data}} \\
-&+ \lambda_{\text{phys}} L_{\text{phys}} \\
-&+ \lambda_{\text{IC}} L_{\text{IC}}
-\end{aligned}
+L_{total}=\lambda_{data}L_{data}+\lambda_{phys}L_{phys}+\lambda_{IC}L_{IC}
 $$
 
 The problem occurs when one loss produces much larger gradients than the others.
