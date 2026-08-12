@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Why I Love PINNs & You Will T2o :)"
+title: "Why I Love PINNs & You Will T2o0 :)"
 description: "Why PINN is far better than Deep Learning for Engineers"
 date: 2026-08-04
 categories: [Machine Learning, Engineering, Scientific Machine Learning, PINN]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
 
-### Why I Love PINNs & You will T00oo :)
+### Why I Love PINNs & You will T20oo :)
 
 The datasets I typically encounter in engineering projects fall into two categories:
 
