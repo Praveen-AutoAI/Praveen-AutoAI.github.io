@@ -6,7 +6,6 @@ date: 2026-08-04
 categories: [Machine Learning, Engineering, Scientific Machine Learning, PINN]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
-### Machine Learning as a Scientific tool?
 
 ### Why I Love PINNs & You will T00oo :)
 
@@ -87,6 +86,8 @@ Always the challenge. Even after building a highly accurate model, the first que
 And honestly, that is a perfectly reasonable question. Engineering experts trust physics more than black-box models. I should admit that those critical questions from them was the drive for me to learn and apply PINN at my work.
 
 ---
+
+### Can Machine Learning be used as a Scientific tool? How to make it "Scientific"?
 
 ### Enter Physics-Informed Neural Networks (PINNs)
 
