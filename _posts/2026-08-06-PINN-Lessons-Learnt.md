@@ -72,9 +72,11 @@ NaN are serious problem in PINN training, monitoring the training loss of all th
 - Whenever possible, reformulate the governing equation.
 For example:
 
-$$
-\frac{dQ}{dt} + k\,t^{-0.5} = 0 \quad \Rightarrow \quad \sqrt{t}\,\frac{dQ}{dt} + k = 0
-$$
+\[
+\frac{dQ}{dt} + k\,t^{-0.5} = 0
+\quad \Rightarrow \quad
+\sqrt{t}\,\frac{dQ}{dt} + k = 0
+\]
 
 Both equations represent the same physics, but the second form is significantly more stable for neural network optimization. I suggest you to verify your physics constraints for singularities and adapt them.
 For my battery-aging PINN demo project on my GitHub repo, this reformulation was one of the most important improvements I made.
