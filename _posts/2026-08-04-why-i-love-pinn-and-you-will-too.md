@@ -198,3 +198,4 @@ Most important advantage in my experience are, they help in encountering both:
 3. [So What Is a Physics-Informed Neural Network?](https://benmoseley.blog/my-research/so-what-is-a-physics-informed-neural-network/)
 4. [PINNs Introductory Code for the Heat Equation](https://dcn.nat.fau.eu/pinns-introductory-code-for-the-heat-equation/)
 5. [PINNs-TF2.x GitHub Repository](https://github.com/Vaezi92/PINNs-TF2.x)
+6. [Steve_Brunton_PINN_Intro (cool video series)](https://www.youtube.com/watch?v=JoFW2uSd3Uo&list=PLMrJAkhIeNNQ0BaKuBKY43k4xMo6NSbBa)
