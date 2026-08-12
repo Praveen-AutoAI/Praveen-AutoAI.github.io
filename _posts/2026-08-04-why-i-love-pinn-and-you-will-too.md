@@ -194,7 +194,7 @@ Most important advantage in my experience are, they help in encountering both:
 ### And that is why I love PINNs and you will t2o.
 
 ### And that is why PINN is given the name "Scientific" Machine Learning (SciML). 
-**Though not transparent it's as translucent Glass-Box and not a black-box anymore!!!**
+### **Though not transparent it's as translucent Glass-Box and not a black-box anymore!!!**
 ![Scientific_Machine_Learning](/assets/images/PINN/SciML.png)
 
 ### Gentle References
