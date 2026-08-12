@@ -190,6 +190,7 @@ Most important advantage in my experience are, they help in encountering both:
 
 ### And that is why I love PINNs and you will t2o.
 
+### PINN is also called as "scientific" machine leanring (SciML)
 
 ### Gentle References
 
