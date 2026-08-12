@@ -193,7 +193,7 @@ Most important advantage in my experience are, they help in encountering both:
 
 ### PINN is also called as "scientific" machine leanring (SciML)
 ### SciML
-![PINN Architecture](/assets/images/PINN_Intro.png)
+![Scientific_Machine_Learning](/assets/images/PINN/SciML.png)
 
 ### Gentle References
 
