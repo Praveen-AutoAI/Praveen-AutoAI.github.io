@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "Why I Love PINNs & You Will T2o :)"
-description: "Why PINN is far better than Deep Learning for Engineers"
+description: "Why PINN is far better than Deep Learning for Engineers - Machine Learning to Scientific Machine Learning"
 date: 2026-08-04
 categories: [Machine Learning, Engineering]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
+### Machine Learning to Scientific Machine Learning
 
 ### Why I Love PINNs & You will T00oo :)
 
@@ -191,7 +192,7 @@ Most important advantage in my experience are, they help in encountering both:
 
 ### And that is why I love PINNs and you will t2o.
 
-### And that is why PINN is given the name "Scientific" Machine Learning (SciML). It's as Glass-Box and not a black-box anymore!!!
+### And that is why PINN is given the name "Scientific" Machine Learning (SciML). Though not transparent it's as translucent Glass-Box and not a black-box anymore!!!
 ![Scientific_Machine_Learning](/assets/images/PINN/SciML.png)
 
 ### Gentle References
