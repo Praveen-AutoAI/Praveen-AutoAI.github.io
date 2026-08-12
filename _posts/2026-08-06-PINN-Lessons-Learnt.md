@@ -5,6 +5,7 @@ description: "Practical challenges and solutions when developing PINNs for engin
 date: 2026-08-06
 categories: [Machine Learning, Engineering, Physics]
 tags: [PINN, Deep Learning, Scientific Computing, Engineering AI]
+math: true
 ---
 
 ## Solving the Mysteries of PINN training
