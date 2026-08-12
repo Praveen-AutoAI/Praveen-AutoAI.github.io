@@ -58,7 +58,7 @@ Neural networks and automatic differentiation do not behave well when the govern
 Expressions such as:
 
 $$
-\frac{1}{t} ; \frac{1}{\sqrt{t}} ; t^{-1} ; t^{-0.5}
+\frac{1}{t}, \qquad \frac{1}{\sqrt{t}}, \qquad t^{-1}, \qquad t^{-0.5}
 $$
 
 can generate extremely large residuals near zero.
