@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Why I Love PINNs & You Will T2o :)"
-description: "Why PINN is far better than Deep Learning for Engineers - Machine Learning to Scientific Machine Learning"
+description: "Why PINN is far better than Deep Learning for Engineers"
 date: 2026-08-04
-categories: [Machine Learning, Engineering]
+categories: [Machine Learning, Engineering, Scientific Machine Learning, PINN]
 tags: [PINN, Physics, Deep Learning, AI]
 ---
-### Machine Learning to Scientific Machine Learning
+### Machine Learning as a Scientific tool?
 
 ### Why I Love PINNs & You will T00oo :)
 
