@@ -1,4 +1,11 @@
-
+---
+layout: post
+title: "Engineering Application of PINN -  Three-way Catalyst Modelling for Accelerated Product Development"
+description: "Automotive Emission modelling using PINN"
+date: 2026-08-04
+categories: [Machine Learning, Engineering, Scientific Machine Learning, PINN]
+tags: [PINN, Physics, Deep Learning, AI]
+---
 
 ## Background
 
