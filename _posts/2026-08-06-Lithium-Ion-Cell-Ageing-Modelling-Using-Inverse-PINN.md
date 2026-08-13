@@ -152,6 +152,7 @@ $$ Q(t) = 1 - Loss(t) $$
 Substituting the capacity-loss model:
 
 $$ Q(t) = 1 - a\sqrt{t} - bt $$
+
 The $$\sqrt{t}$$ term captures the rapid initial degradation associated with SEI growth, while the linear term ($$bt$$) represents slower, continuous ageing mechanisms.
 
 
