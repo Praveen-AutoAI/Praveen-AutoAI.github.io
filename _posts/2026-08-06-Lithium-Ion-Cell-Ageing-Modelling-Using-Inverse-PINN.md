@@ -137,13 +137,10 @@ A commonly used semi-empirical representation of calendar ageing assumes that ca
 $$ Loss(t) = a\sqrt{t} + bt $$
 
 where:
-* $$a$$ = degradation parameter due to SEI growth
-* $$b$$ = represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the diffusion-limited SEI term
-* $$t$$ = storage time
 
-* $a\sqrt{t}$ is the degradation parameter due to diffusion-limited SEI growth, dominating early storage times.
-* $bt$ represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the parabolic term, dominating extended calendar storage.
-* $t$ is the storage duration.
+* $$a\sqrt{t}$$ is the degradation parameter due to diffusion-limited SEI growth, dominating early storage times.
+* $$bt$$ represents an aggregate long-term ageing contribution arising from slow parasitic reactions not captured by the parabolic term, dominating extended calendar storage.
+* $$t$$ is the storage duration.
   
 ---
 
