@@ -30,10 +30,10 @@ tags: [PINN, Physics, Deep Learning, AI]
 ### Three-way Catalytic Converter Simplified Reactions
 
 ### a) CO Oxidation
-* **Reaction 1:** $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | **Catalyst:** Pt, Pd
+* **Reaction 1:** $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | 
 
 ### b) HC Oxidation
-* **Reaction 2:** $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ | **Catalyst:** Pt, Pd
+* **Reaction 2:** $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ |
 
 ### c) NOx Reduction
 * **Reaction 3:** $2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2$ | 
