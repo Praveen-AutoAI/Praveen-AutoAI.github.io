@@ -56,7 +56,7 @@ For sufficient accuracy in modelling and to have enough degree of freedom to cal
 
 ### Kinetic Parameters for Calibration: Reaction 1 (CO Oxidation)
 
-To model the chemical kinetics of **Reaction 1**, a Langmuir-Hinshelwood (L-H) type rate expression is standard. This accounts for both the Arrhenius temperature dependence and the competitive adsorption (inhibition) of species on the active catalyst sites (Pt/Pd). 
+To model the chemical kinetics of **Reaction 1**, rate expression is standard. This accounts for both the Arrhenius temperature dependence and the competitive adsorption (inhibition) of species on the active catalyst sites (Pt/Pd). 
 
 The reaction rate $R_1$ is typically expressed as:
 
