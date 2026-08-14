@@ -49,6 +49,20 @@ tags: [PINN, Physics, Deep Learning, AI]
 * **Reaction 9:** $\text{CO} + \text{H}_2\text{O} \rightarrow \text{CO}_2 + \text{H}_2$
 * **Reaction 10:** $\text{HC} + \text{H}_2\text{O} \rightarrow \text{CO} + \text{H}_2$
 
+
+### Kinetic Parameters for Calibration: Reaction 1 (CO Oxidation)
+
+To model the chemical kinetics of **Reaction 1**, a Langmuir-Hinshelwood (L-H) type rate expression is standard. This accounts for both the Arrhenius temperature dependence and the competitive adsorption (inhibition) of species on the active catalyst sites (Pt/Pd). 
+
+The reaction rate $R_1$ is typically expressed as:
+
+$$R_1 = \frac{A \exp\left(-\frac{E_a}{R_u T_s}\right) y_{\text{CO}} y_{\text{O}_2}}{G(T_s, y_i)}$$
+
+To calibrate this specific reaction, the following empirical parameters must be identified:
+
+**1. Main Arrhenius Kinetic Parameters**
+* **$A$ (Pre-exponential or Frequency Factor):** Represents the collision frequency of the reacting molecules.
+* **$E_a$ (Activation Energy):** The minimum energy barrier required to initiate the CO oxidation reaction (typically in $\text{J/mol}$).
 #### f) Hydrogen Oxidation (Uncategorized)
 * **Reaction 11:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | 
 
