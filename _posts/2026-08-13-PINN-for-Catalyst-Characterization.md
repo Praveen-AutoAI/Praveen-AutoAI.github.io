@@ -29,17 +29,28 @@ tags: [PINN, Physics, Deep Learning, AI]
 
 ### Three-way Catalytic Converter Simplified Reactions
 
-| # | Reaction | Active Catalyst |
-| :--- | :--- | :--- |
-| **1** | $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | Pt, Pd |
-| **2** | $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | Pt, Pd |
-| **3** | $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ | Pt, Pd |
-| **4** | $2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2$ | Rh |
-| **5** | $2\text{CeO}_2 + \text{CO} \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2$ | Ce |
-| **6** | $\text{THC} + \text{CeO}_2 \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2 + \text{H}_2\text{O}$ | Ce |
-| **7** | $\text{Ce}_2\text{O}_3 + \frac{1}{2}\text{O}_2 \rightarrow 2\text{CeO}_2$ | Ce |
-| **8** | $\text{Ce}_2\text{O}_3 + \text{NO} \rightarrow 2\text{CeO}_2 + \frac{1}{2}\text{N}_2$ | Ce |
-| **9** | $\text{NO} + \frac{1}{2}\text{O}_2 \leftrightarrow \text{NO}_2$ | Pt, Pd |
+### a) CO Oxidation
+* **Reaction 1:** $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | **Catalyst:** Pt, Pd
 
+### b) HC Oxidation
+* **Reaction 3:** $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ | **Catalyst:** Pt, Pd
+
+### c) NOx Reduction
+* **Reaction 4:** $2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2$ | **Catalyst:** Rh
+* **Reaction 9:** $\text{NO} + \frac{1}{2}\text{O}_2 \leftrightarrow \text{NO}_2$ | **Catalyst:** Pt, Pd
+
+### d) Ceria Reactions (Oxygen Storage Capacity)
+* **Reaction 5:** $2\text{CeO}_2 + \text{CO} \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2$ | **Catalyst:** Ce
+* **Reaction 6:** $\text{THC} + \text{CeO}_2 \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2 + \text{H}_2\text{O}$ | **Catalyst:** Ce
+* **Reaction 7:** $\text{Ce}_2\text{O}_3 + \frac{1}{2}\text{O}_2 \rightarrow 2\text{CeO}_2$ | **Catalyst:** Ce
+* **Reaction 8:** $\text{Ce}_2\text{O}_3 + \text{NO} \rightarrow 2\text{CeO}_2 + \frac{1}{2}\text{N}_2$ | **Catalyst:** Ce
+
+### e) Steam Reforming and Water-Gas Shift Reaction
+*(Note: Not present in the provided list, but standard reference equations are below)*
+* **Water-Gas Shift:** $\text{CO} + \text{H}_2\text{O} \rightarrow \text{CO}_2 + \text{H}_2$
+* **Steam Reforming:** $\text{HC} + \text{H}_2\text{O} \rightarrow \text{CO} + \text{H}_2$
+
+### f) Hydrogen Oxidation (Uncategorized)
+* **Reaction 2:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | **Catalyst:** Pt, Pd
 
 > **Note:** Equations of total hydrocarbon content (THC) are unbalanced.
