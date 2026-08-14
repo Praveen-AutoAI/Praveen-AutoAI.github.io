@@ -40,7 +40,6 @@ tags: [PINN, Physics, Deep Learning, AI]
 | **7** | $\text{Ce}_2\text{O}_3 + \frac{1}{2}\text{O}_2 \rightarrow 2\text{CeO}_2$ | Ce |
 | **8** | $\text{Ce}_2\text{O}_3 + \text{NO} \rightarrow 2\text{CeO}_2 + \frac{1}{2}\text{N}_2$ | Ce |
 | **9** | $\text{NO} + \frac{1}{2}\text{O}_2 \leftrightarrow \text{NO}_2$ | Pt, Pd |
-| **10** | $\text{BaO} + 2\text{NO}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{Ba(NO}_3\text{)}_2$ | Ba |
-| **11** | $\text{Ba(NO}_3\text{)}_2 + 3\text{CO} \rightarrow \text{BaO} + 2\text{NO} + 3\text{CO}_2$ | Ba |
+
 
 > **Note:** Equations of total hydrocarbon content (THC) are unbalanced.
