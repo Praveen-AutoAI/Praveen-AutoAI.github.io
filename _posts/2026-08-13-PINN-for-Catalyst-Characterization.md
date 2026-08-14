@@ -27,7 +27,7 @@ tags: [PINN, Physics, Deep Learning, AI]
 - The objective of this work is to **develop a data-driven Physics-Informed Neural Network (PINN) based TWC model that combines physical knowledge with experimental data to capture catalyst dynamics efficiently**. The proposed approach aims to support digital vehicle emission simulations, improve calibration efficiency, and reduce the overall development and testing effort while maintaining the level of accuracy required for engineering applications.
 
 
-### Three-way Catalytic Converter & NOx Absorber Reactions
+### Three-way Catalytic Converter Simplified Reactions
 
 | # | Reaction | Active Catalyst |
 | :--- | :--- | :--- |
