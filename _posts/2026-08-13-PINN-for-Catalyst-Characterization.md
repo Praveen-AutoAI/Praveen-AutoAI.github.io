@@ -25,3 +25,22 @@ tags: [PINN, Physics, Deep Learning, AI]
 - A faster and sufficiently accurate TWC modeling approach can significantly **accelerate early-stage powertrain and aftertreatment development** by enabling rapid assessment of emission system performance, reducing dependency on extensive test campaigns, and supporting key design decisions during upstream development.
 
 - The objective of this work is to **develop a data-driven Physics-Informed Neural Network (PINN) based TWC model that combines physical knowledge with experimental data to capture catalyst dynamics efficiently**. The proposed approach aims to support digital vehicle emission simulations, improve calibration efficiency, and reduce the overall development and testing effort while maintaining the level of accuracy required for engineering applications.
+
+
+### Three-way Catalytic Converter & NOx Absorber Reactions
+
+| # | Reaction | Active Catalyst |
+| :--- | :--- | :--- |
+| **1** | $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | Pt, Pd |
+| **2** | $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | Pt, Pd |
+| **3** | $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ | Pt, Pd |
+| **4** | $2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2$ | Rh |
+| **5** | $2\text{CeO}_2 + \text{CO} \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2$ | Ce |
+| **6** | $\text{THC} + \text{CeO}_2 \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2 + \text{H}_2\text{O}$ | Ce |
+| **7** | $\text{Ce}_2\text{O}_3 + \frac{1}{2}\text{O}_2 \rightarrow 2\text{CeO}_2$ | Ce |
+| **8** | $\text{Ce}_2\text{O}_3 + \text{NO} \rightarrow 2\text{CeO}_2 + \frac{1}{2}\text{N}_2$ | Ce |
+| **9** | $\text{NO} + \frac{1}{2}\text{O}_2 \leftrightarrow \text{NO}_2$ | Pt, Pd |
+| **10** | $\text{BaO} + 2\text{NO}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{Ba(NO}_3\text{)}_2$ | Ba |
+| **11** | $\text{Ba(NO}_3\text{)}_2 + 3\text{CO} \rightarrow \text{BaO} + 2\text{NO} + 3\text{CO}_2$ | Ba |
+
+> **Note:** Equations of total hydrocarbon content (THC) are unbalanced.
