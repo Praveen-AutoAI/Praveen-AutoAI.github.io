@@ -51,3 +51,4 @@ tags: [PINN, Physics, Deep Learning, AI]
 
 ### f) Hydrogen Oxidation (Uncategorized)
 * **Reaction 11:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | 
+
