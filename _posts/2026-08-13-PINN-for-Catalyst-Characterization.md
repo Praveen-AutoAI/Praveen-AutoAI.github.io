@@ -15,6 +15,8 @@ tags: [PINN, Physics, Deep Learning, AI]
 
 - In Automotive OEMs, we **use TWC models for ECU control strategy development, model-based calibration, onboard diagnostics (OBD), and virtual vehicle simulations, helping improve calibration efficiency, reduce development and testing effort**, and support the design of emission-compliant powertrain systems.
 
+## Automotive Catalytic Converter
+![Catalytic Converter](/assets/images/Emissions/Catalyst.jpg)
 
 ## Objective
 
