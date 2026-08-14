@@ -49,6 +49,10 @@ tags: [PINN, Physics, Deep Learning, AI]
 * **Reaction 9:** $\text{CO} + \text{H}_2\text{O} \rightarrow \text{CO}_2 + \text{H}_2$
 * **Reaction 10:** $\text{HC} + \text{H}_2\text{O} \rightarrow \text{CO} + \text{H}_2$
 
+#### f) Hydrogen Oxidation 
+* **Reaction 11:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | 
+
+For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a practice to use a more comprehensive set of reactions(I have ued 16 reactions).
 
 ### Kinetic Parameters for Calibration: Reaction 1 (CO Oxidation)
 
@@ -63,6 +67,5 @@ To calibrate this specific reaction, the following empirical parameters must be 
 **1. Main Arrhenius Kinetic Parameters**
 * **$A$ (Pre-exponential or Frequency Factor):** Represents the collision frequency of the reacting molecules.
 * **$E_a$ (Activation Energy):** The minimum energy barrier required to initiate the CO oxidation reaction (typically in $\text{J/mol}$).
-#### f) Hydrogen Oxidation (Uncategorized)
-* **Reaction 11:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | 
 
+For each reaction you will have 2 unknown parameters to calibrate. For a reaction set of 15+ the calibration parameters is so large that it become difficult to calibrate. This actually demands a good domain experience to understand the multi-dimensional effect of the parameters to reach a succesfull parameter set aggreging to the test data.
