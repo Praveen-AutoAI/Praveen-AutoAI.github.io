@@ -26,12 +26,7 @@ tags: [PINN, Physics, Deep Learning, AI]
 
 - The objective of this work is to **develop a data-driven Physics-Informed Neural Network (PINN) based TWC model that combines physical knowledge with experimental data to capture catalyst dynamics efficiently**. The proposed approach aims to support digital vehicle emission simulations, improve calibration efficiency, and reduce the overall development and testing effort while maintaining the level of accuracy required for engineering applications.
 
-### Three-way Catalytic Converter Simplified Reactions
-![Catalytic Converter_Reactions](/assets/images/Emissions/Reactions.png)
-
-
-For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a practice to use a more comprehensive set of reactions(I have ued 16 reactions).
-
+## Need for Some Chemistry!!!
 For a general chemical reaction,
 
 $$
@@ -56,4 +51,10 @@ To model the reaction, the key parameters that typically need to be identified a
 - **Activation Energy ($E_a$):** Defines the temperature sensitivity of the reaction.
 - **Reaction Orders ($m$, $n$):** Describe the influence of reactant concentrations on the reaction rate.
 
-For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
+![Catalytic Converter_Reactions](/assets/images/Emissions/Reactions.png)
+
+By the way, this is a simplified reaction set. For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a **practice to use a more comprehensive set of reactions(I have used 16 reactions)**. 
+
+We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, totalling 25+ parameters to be calibrated.
+
+### Remember This: For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
