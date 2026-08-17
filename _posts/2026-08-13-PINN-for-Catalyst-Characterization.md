@@ -81,7 +81,7 @@ To represent the spatial variation in catalyst performance, the monolith is divi
 While this approach provides a detailed and physically meaningful representation of catalyst behavior, it comes with several challenges:
 
 - Large numbers of reactions introduce **many kinetic parameters(40+) that must be calibrated**.
-- Calibration requires extensive experimental data and significant engineering effort.
+- Calibration requires **extensive experimental data and significant engineering effort**.
 - **Computational complexity** increases with model fidelity and catalyst discretization.
 - Model accuracy is **sensitive to catalyst aging and operating condition variations**.
 - Achieving a robust parameter set often **requires substantial domain expertise**.
