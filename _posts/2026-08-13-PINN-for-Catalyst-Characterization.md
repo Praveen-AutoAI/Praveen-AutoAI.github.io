@@ -49,27 +49,6 @@ tags: [PINN, Physics, Deep Learning, AI]
 
 For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a practice to use a more comprehensive set of reactions(I have ued 16 reactions).
 
-### Kinetic Parameters for Calibration: Reaction 1 (CO Oxidation)
-
-To model the chemical kinetics of **Reaction 1**, rate expression is standard. This accounts for both the Arrhenius temperature dependence and the competitive adsorption (inhibition) of species on the active catalyst sites (Pt/Pd). 
-
-
-The reaction rate of a catalyst reaction is typically represented using an Arrhenius-based expression:
-
-$$
-R = \frac{A \exp\left(-\frac{E_a}{R_u T_s}\right) f(y_i)}{G(T_s,y_i)}
-$$
-
-where the reaction rate is governed by the catalyst temperature, species concentrations, and a set of kinetic parameters that define the reaction characteristics.
-
-For each reaction, the primary calibration parameters are:
-
-- **Pre-exponential Factor ($A$):** Determines the magnitude of the reaction rate and reflects the frequency of effective molecular interactions.
-- **Activation Energy ($E_a$):** Represents the energy barrier that must be overcome for the reaction to occur.
-
-As a result, every reaction introduces at least two unknown kinetic parameters that must be identified through calibration. In a typical three-way catalyst model containing 15 or more reactions, the total number of calibration parameters can become significant. The strong nonlinear coupling between reactions, temperature dynamics, oxygen storage behavior, and species concentrations makes the calibration process highly complex and computationally intensive. Consequently, achieving a parameter set that accurately reproduces experimental data often requires extensive testing, iterative optimization, and considerable domain expertise.
-
-
 For a general chemical reaction,
 
 $$
