@@ -70,14 +70,28 @@ For each reaction, the primary calibration parameters are:
 As a result, every reaction introduces at least two unknown kinetic parameters that must be identified through calibration. In a typical three-way catalyst model containing 15 or more reactions, the total number of calibration parameters can become significant. The strong nonlinear coupling between reactions, temperature dynamics, oxygen storage behavior, and species concentrations makes the calibration process highly complex and computationally intensive. Consequently, achieving a parameter set that accurately reproduces experimental data often requires extensive testing, iterative optimization, and considerable domain expertise.
 
 
-The reaction rate $R_1$ is typically expressed as:
+For a general chemical reaction,
 
-$$R_1 = \frac{A \exp\left(-\frac{E_a}{R_u T_s}\right) y_{\text{CO}} y_{\text{O}_2}}{G(T_s, y_i)}$$
+$$
+A + B \rightarrow C
+$$
 
-To calibrate this specific reaction, the following empirical parameters must be identified:
+the reaction rate can be expressed as:
 
-**1. Main Arrhenius Kinetic Parameters**
-* **$A$ (Pre-exponential or Frequency Factor):** Represents the collision frequency of the reacting molecules.
-* **$E_a$ (Activation Energy):** The minimum energy barrier required to initiate the CO oxidation reaction (typically in $\text{J/mol}$).
+$$
+R = k \, [A]^m [B]^n
+$$
 
-For each reaction you will have 2 unknown parameters to calibrate. For a reaction set of 15+ the calibration parameters is so large that it become difficult to calibrate. This actually demands a good domain experience to understand the multi-dimensional effect of the parameters to reach a succesfull parameter set aggreging to the test data.
+where the rate constant follows the Arrhenius equation:
+
+$$
+k = A \exp\left(-\frac{E_a}{RT}\right)
+$$
+
+To model the reaction, the key parameters that typically need to be identified are:
+
+- **Pre-exponential Factor ($A$):** Determines the overall magnitude of the reaction rate.
+- **Activation Energy ($E_a$):** Defines the temperature sensitivity of the reaction.
+- **Reaction Orders ($m$, $n$):** Describe the influence of reactant concentrations on the reaction rate.
+
+For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
