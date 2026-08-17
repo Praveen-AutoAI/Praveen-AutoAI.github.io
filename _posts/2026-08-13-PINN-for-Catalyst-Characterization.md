@@ -21,7 +21,7 @@ math: true
 
 ## Objective
 
-- Conventional three-way catalyst (TWC) modeling is typically based on **detailed reaction kinetics and distributed parameter formulations, requiring significant calibration effort and domain expertise**. Although commercial tools provide high-fidelity modeling capabilities, the calibration process is often time-intensive, typically requiring 6-8 weeks of dedicated engineering effort.
+- Conventional three-way catalyst (TWC) modeling is typically based on **detailed reaction kinetics and distributed parameter formulations, requiring significant calibration effort and domain expertise**. Although commercial tools provide high-fidelity modeling capabilities, the calibration process is often time-intensive, typically requiring **6-8 weeks of dedicated engineering effort**.
 
 - A faster and sufficiently accurate TWC modeling approach can significantly **accelerate early-stage powertrain and aftertreatment development** by enabling rapid assessment of emission system performance, reducing dependency on extensive test campaigns, and supporting key design decisions during upstream development.
 
