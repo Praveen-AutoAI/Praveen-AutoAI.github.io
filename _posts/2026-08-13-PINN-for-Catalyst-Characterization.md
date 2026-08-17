@@ -51,7 +51,8 @@ To model the reaction, the key parameters that typically need to be identified a
 - **Activation Energy ($E_a$):** Defines the temperature sensitivity of the reaction.
 - **Reaction Orders ($m$, $n$):** Describe the influence of reactant concentrations on the reaction rate.
 
-### Remember This: For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
+<p style="color:blue;">
+#### Remember This: For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
 
 ![Catalytic Converter_Reactions](/assets/images/Emissions/Reactions.png)
 
