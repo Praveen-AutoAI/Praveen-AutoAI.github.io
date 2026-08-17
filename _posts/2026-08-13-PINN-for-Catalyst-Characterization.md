@@ -51,10 +51,12 @@ To model the reaction, the key parameters that typically need to be identified a
 - **Activation Energy ($E_a$):** Defines the temperature sensitivity of the reaction.
 - **Reaction Orders ($m$, $n$):** Describe the influence of reactant concentrations on the reaction rate.
 
+### Remember This: For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
+
 ![Catalytic Converter_Reactions](/assets/images/Emissions/Reactions.png)
 
 By the way, this is a simplified reaction set. For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a **practice to use a more comprehensive set of reactions(I have used 16 reactions)**. 
 
-We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, totalling 25+ parameters to be calibrated.
+We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, totalling 25+ parameters to be calibrated to achieve accurate enough model with target error less than +/-20%. Yeah, Emission system modelling is highly challenging and achieving +/-20% for different inlet conditions is actually amazing.
 
-### Remember This: For catalyst reaction networks, each reaction introduces multiple kinetic parameters that must be calibrated from experimental data. As the number of reactions increases, the parameter space grows rapidly, making calibration a high-dimensional optimization problem that requires significant computational effort and domain expertise.
+
