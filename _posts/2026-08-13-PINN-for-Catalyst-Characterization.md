@@ -60,6 +60,6 @@ To model the reaction, the key parameters that typically need to be identified a
 
 By the way, this is a simplified reaction set. For sufficient accuracy in modelling and to have enough degree of freedom to calibrate against the test data, It is a **practice to use a more comprehensive set of reactions(I have used 16 reactions)**. 
 
-We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, totalling **25+ parameters to be calibrated to achieve accurate enough model** with target error less than +/-20%. Yeah, Emission system modelling is highly challenging and achieving +/-20% for different inlet conditions is actually amazing.
+We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, summing upto **25+ parameters to calibrate in order to achieve accurate enough model** with target error less than +/-20%. Yeah, Emission system modelling is highly challenging and achieving +/-20% for different inlet conditions is actually amazing.
 
-
+## 
