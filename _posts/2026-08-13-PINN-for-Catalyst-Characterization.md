@@ -88,3 +88,6 @@ While this approach provides a detailed and physically meaningful representation
 
 As a result, although traditional 1D reaction-kinetics-based models remain the industry standard for high-fidelity catalyst simulation, their calibration effort and computational cost have motivated the development of reduced-order, data-driven, and Physics-Informed Neural Network (PINN) based alternatives.
 
+<p style="color:blue;">
+<strong>Remember This:</strong> A three-way catalyst model typically represents the complex and coupled phenomena of exhaust gas flow, heat transfer, oxygen storage and release, and catalytic reaction kinetics occurring within the catalyst substrate. It is a multi-dimensional calibration challenge across chemical kinetics, thermal and gas-exchange.
+</p>
