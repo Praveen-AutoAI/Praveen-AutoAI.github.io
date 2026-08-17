@@ -5,6 +5,7 @@ description: "Automotive Emission modelling using PINN"
 date: 2026-08-04
 categories: [Machine Learning, Engineering, Scientific Machine Learning, PINN]
 tags: [PINN, Physics, Deep Learning, AI]
+math: true
 ---
 
 ## Background
@@ -61,24 +62,4 @@ By the way, this is a simplified reaction set. For sufficient accuracy in modell
 
 We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, totalling **25+ parameters to be calibrated to achieve accurate enough model** with target error less than +/-20%. Yeah, Emission system modelling is highly challenging and achieving +/-20% for different inlet conditions is actually amazing.
 
-### Three-way Catalytic Converter Simplified Reactions
 
-#### a) CO Oxidation
-* **Reaction 1:** $\text{CO} + \frac{1}{2}\text{O}_2 \rightarrow \text{CO}_2$ | 
-#### b) HC Oxidation
-* **Reaction 2:** $\text{THC} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ |
-#### c) NOx Reduction
-* **Reaction 3:** $2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2$ | 
-* **Reaction 4:** $\text{NO} + \frac{1}{2}\text{O}_2 \leftrightarrow \text{NO}_2$ |
-#### d) Ceria Reactions (Oxygen Storage Capacity)
-* **Reaction 5:** $2\text{CeO}_2 + \text{CO} \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2$ | 
-* **Reaction 6:** $\text{THC} + \text{CeO}_2 \rightarrow \text{Ce}_2\text{O}_3 + \text{CO}_2 + \text{H}_2\text{O}$ |
-* **Reaction 7:** $\text{Ce}_2\text{O}_3 + \frac{1}{2}\text{O}_2 \rightarrow 2\text{CeO}_2$ | 
-* **Reaction 8:** $\text{Ce}_2\text{O}_3 + \text{NO} \rightarrow 2\text{CeO}_2 + \frac{1}{2}\text{N}_2$ | 
-#### e) Steam Reforming and Water-Gas Shift Reaction
-* **Reaction 9:** $\text{CO} + \text{H}_2\text{O} \rightarrow \text{CO}_2 + \text{H}_2$
-* **Reaction 10:** $\text{HC} + \text{H}_2\text{O} \rightarrow \text{CO} + \text{H}_2$
-#### f) Hydrogen Oxidation 
-* **Reaction 11:** $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ | 
-
-i need the image of this reaction sets in compact way
