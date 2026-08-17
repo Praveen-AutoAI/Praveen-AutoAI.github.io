@@ -62,4 +62,29 @@ By the way, this is a simplified reaction set. For sufficient accuracy in modell
 
 We know Reaction Orders, but the **Pre-exponential Factor and Activation Energy need be calibrated for each reaction**, summing upto **25+ parameters to calibrate in order to achieve accurate enough model** with target error less than +/-20%. Yeah, Emission system modelling is highly challenging and achieving +/-20% for different inlet conditions is actually amazing.
 
-## 
+## Traditional TWC Modeling Approach
+
+The conventional approach to Three-Way Catalyst (TWC) modeling is based on a **physics-driven 1D distributed parameter framework** combined with **reaction kinetics**. The catalyst monolith is represented as a one-dimensional domain along the exhaust flow direction, assuming that temperature and species concentration variations across(radial direction) the catalyst cross-section are negligible.
+
+The model predicts catalyst behavior by solving:
+
+- **Mass conservation** to track exhaust gas flow through the catalyst.
+- **Species conservation** to track the conversion of pollutants such as CO, HC, and NOx.
+- **Energy conservation** to capture catalyst temperature dynamics and light-off behavior.
+- **Reaction kinetics** to model oxidation, reduction, and oxygen storage reactions using Arrhenius-rate expressions.
+- **Oxygen Storage Capacity (OSC) dynamics** to capture the storage and release of oxygen during rich-lean air-fuel ratio transitions.
+
+To represent the spatial variation in catalyst performance, the monolith is divided into multiple axial cells, and reaction rates are calculated within each cell. This enables the model to predict the evolution of species concentrations, catalyst temperature, and oxygen storage state along the catalyst length.
+
+### Why is it Challenging?
+
+While this approach provides a detailed and physically meaningful representation of catalyst behavior, it comes with several challenges:
+
+- Large numbers of reactions introduce **many kinetic parameters(40+) that must be calibrated**.
+- Calibration requires extensive experimental data and significant engineering effort.
+- **Computational complexity** increases with model fidelity and catalyst discretization.
+- Model accuracy is **sensitive to catalyst aging and operating condition variations**.
+- Achieving a robust parameter set often **requires substantial domain expertise**.
+
+As a result, although traditional 1D reaction-kinetics-based models remain the industry standard for high-fidelity catalyst simulation, their calibration effort and computational cost have motivated the development of reduced-order, data-driven, and Physics-Informed Neural Network (PINN) based alternatives.
+
