@@ -91,3 +91,6 @@ As a result, although traditional 1D reaction-kinetics-based models remain the i
 <p style="color:blue;">
 <strong>Remember This:</strong> A three-way catalyst model typically represents the complex and coupled phenomena of exhaust gas flow, heat transfer, oxygen storage and release, and catalytic reaction kinetics occurring within the catalyst substrate. It is a multi-dimensional calibration challenge across chemical kinetics, thermal and gas-exchange.
 </p>
+
+## Use Cases
+
