@@ -96,4 +96,13 @@ As a result, although traditional 1D reaction-kinetics-based models remain the i
 </p>
 
 ## Use Cases
+The virtual model once calibrated and characterized, becomes a powerful due to the wide range of use-cases as mentioned below:
+- **System-Level Aftertreatment Integration** with various engines
+- **catalyst sizing & PGM Loading optimization for cost** (critical during upstream development)
+- **Virtual calibration and testing** to optimize the control strategies
+- **Thermal management optimization** to achieve quicker light-off
+- **Hybrid Powertrain Emission Analysis**
+- **Virtual Sensor Development** to support OBD
+- and ...
+
 
