@@ -76,6 +76,8 @@ The model predicts catalyst behavior by solving:
 
 To represent the spatial variation in catalyst performance, the monolith is divided into multiple axial cells, and reaction rates are calculated within each cell. This enables the model to predict the evolution of species concentrations, catalyst temperature, and oxygen storage state along the catalyst length.
 
+![Catalytic Converter](/assets/images/Emissions/Catalyst_Modelling.jpg)
+
 ### Why is it Challenging?
 
 While this approach provides a detailed and physically meaningful representation of catalyst behavior, it comes with several challenges:
