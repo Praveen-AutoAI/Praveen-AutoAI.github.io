@@ -106,9 +106,11 @@ The virtual model once calibrated and characterized, becomes a potential tool du
 - and ...
 
 <p style="color:blue;">
-<strong>Remember This:</strong> During upstream studies, it is a common practice to check the catalyst for cross-car line application to evaluate the effectiveness of the serial life catalyst (i.e. already developed for some engine/vehicle application and it is in production) for a new engine/vehicle application. This is a challenge and opportunity for a Data Scientist to make use of the existing emissions data and evaluate the emission performance for the new vehicle.
+<strong>Classic Use-Case:</strong> During upstream studies, it is a common practice to check the catalyst for cross-car line application to evaluate the effectiveness of the serial life catalyst (i.e. already developed for some engine/vehicle application and it is in production) for a new engine/vehicle application. This is a challenge and opportunity for a Data Scientist to make use of the existing emissions data and evaluate the emission performance for the new vehicle.
 </p>
 
 ### Meeting the Project Needs:
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.png)
 
+## Data-driven Method: The Solution with a Shortage
+The emission system 
