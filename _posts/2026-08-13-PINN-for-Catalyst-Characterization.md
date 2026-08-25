@@ -96,7 +96,7 @@ As a result, although traditional 1D reaction-kinetics-based models remain the i
 </p>
 
 ## Use Cases
-The virtual model once calibrated and characterized, becomes a powerful due to the wide range of use-cases as mentioned below:
+The virtual model once calibrated and characterized, becomes a potential tool due to the wide range of use-cases as mentioned below:
 - **System-Level Aftertreatment Integration** with various engines
 - **catalyst sizing & PGM Loading optimization for cost** (critical during upstream development)
 - **Virtual calibration and testing** to optimize the control strategies
@@ -105,4 +105,10 @@ The virtual model once calibrated and characterized, becomes a powerful due to t
 - **Virtual Sensor Development** to support OBD
 - and ...
 
+<p style="color:blue;">
+<strong>Remember This:</strong> During upstream studies, it is a common practice to check the catalyst for cross-car line application to evaluate the effectiveness of the serial life catalyst (i.e. already developed for some engine/vehicle application and it is in production) for a new engine/vehicle application. This is a challenge and opportunity for a Data Scientist to make use of the existing emissions data and evaluate the emission performance for the new vehicle.
+</p>
+
+### Meeting the Project Needs:
+![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.jpg)
 
