@@ -110,5 +110,5 @@ The virtual model once calibrated and characterized, becomes a potential tool du
 </p>
 
 ### Meeting the Project Needs:
-![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.jpg)
+![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.png)
 
