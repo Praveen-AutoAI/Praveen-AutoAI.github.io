@@ -113,4 +113,8 @@ The virtual model once calibrated and characterized, becomes a potential tool du
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.png)
 
 ## Data-driven Method: The Solution with a Shortage
-The emission system 
+To characterize the catalyst behaviour you need to know the catalyst upstream and downstream pollutant composition for drive cycles. Such kind of data is always available for a developed vehicle, where the experimental data actually comes from dedicated emissions optimization test, drive cycle test and homologation test.
+Typical features required for the 
+
+
+
