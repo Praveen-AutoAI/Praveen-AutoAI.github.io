@@ -126,6 +126,12 @@ Typical features required to develop the data-driven catalyst model are shown in
 - **Poor Extrapolation & Out-of-Distribution (OOD) Failures :**  When operating outside their training distribution—such as under extreme ambient temperatures, rare transient driving maneuvers, the prediction degrades.
 - **Model development complexities :** The catalyst modelling demands a model that is capable of working with time-series data. Models like RNN, LSTM are best suitable than models like, GPR, SVM , XGBoost etc. Time-series modelling is challenging because capturing fine transient dynamics without memorizing measurement noise requires careful tuning of sequence lengths, network architectures, and regularization methods.
 
+<p style="color:blue;">
+<strong>My Experience with Machine Learning modelling for Emissions:</strong> I do not consider these as major challenge, since these can be solved with
+- #1 Right data from a highly dynamic test cycle that can help the model learn the extreme and diverse behaviour
+- #2 Some modelling experience and trying out powerful time-series models (LSTM, Phrophet(by Facebook) , Transformers). Also there are Timeseries foundational models like TimesFM are available. (Reference https://arxiv.org/abs/2504.04011)
+</p>
 
+- **Real challenge is the cold-start behaviour characterization:** The working of TWC is very interesting because the performance of the catalyst evolves with temperature of the brick.
 
 
