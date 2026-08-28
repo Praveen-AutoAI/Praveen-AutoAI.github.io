@@ -113,17 +113,15 @@ The virtual model once calibrated and characterized, becomes a potential tool du
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Development.png)
 
 ## Data-driven Method: The Solution with a Shortage
-To characterize the catalyst behaviour you need to know the catalyst upstream and downstream pollutant composition for drive cycles. Such kind of data is always available for a developed vehicle, where the experimental data actually comes from dedicated emissions optimization test, drive cycle test and homologation test.
-Typical features required to develop the data-driven catalyst model are shown in the below image.
+To characterize the catalyst behaviour you need to know the catalyst upstream and downstream pollutant composition for drive cycles. Such kind of data is always available for a developed vehicle, where the experimental data actually comes from dedicated emissions optimization test, drive cycle test and homologation test. Data is collected during emission drive cycle test to measure the tail-pipe emissions in a chassis dynamometer facility.
+
+Typical features required to develop the data-driven catalyst model are shown in the below image. 
 
 ###  Features required for Catalyst Modelling: 
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Data_Required.png)
 
-- Exhaust gas Flowrate
-- Gas temperature
-- Upstream and downstream Pollutant concentrations (HC, CO, NOx, O2, CO2, H20)
-- Catalyst brick temperature
-- Downstream gas temperature
+Data is collected during emission drive cycle test to measure the tail-pipe emissions
+
 
 
 
