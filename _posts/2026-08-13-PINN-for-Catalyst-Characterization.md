@@ -132,6 +132,14 @@ Typical features required to develop the data-driven catalyst model are shown in
 - #2 Some modelling experience and trying out powerful time-series models (LSTM, Phrophet(by Facebook) , Transformers). Also there are Timeseries foundational models like TimesFM are available. (Reference https://arxiv.org/abs/2504.04011)
 </p>
 
-- **Real challenge is the cold-start behaviour characterization:** The working of TWC is very interesting because the performance of the catalyst evolves with temperature of the brick.
+- **Real challenge is the cold-start behaviour characterization:** The working of TWC is very interesting because the performance of the catalyst evolves with temperature of the brick. Check the image to understand how the catalyst convertion efficiency increases with brick temperature.
+- **Lack of Physics credibility and interpretability:** Pure data-driven lack intrinsic awareness of domain physics. neural networks can output physically impossible predictions when the input data distribution is out-of-bounds. And there is no way to infer and explain the predictions.
+
+<p style="color:blue;">
+<strong>Check out my blog article here:</strong> I do not consider these as major challenge, since these can be solved with
+- #1 Right data from a highly dynamic test cycle that can help the model learn the extreme and diverse behaviour
+- #2 Some modelling experience and trying out powerful time-series models (LSTM, Phrophet(by Facebook) , Transformers). Also there are Timeseries foundational models like TimesFM are available. (Reference https://arxiv.org/abs/2504.04011)
+</p>
+
 
 
