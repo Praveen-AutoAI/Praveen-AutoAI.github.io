@@ -121,7 +121,10 @@ Typical features required to develop the data-driven catalyst model are shown in
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Data_Required.png)
 
 
-
+## Data-driven modeling faces several fundamental engineering and algorithmic challenges, particularly when applied to complex physical systems like catalytic converters
+- **Demands High Quality Training Data :** Quality of the data determines the quality of the model
+- **Poor Extrapolation & Out-of-Distribution (OOD) Failures :**  When operating outside their training distribution—such as under extreme ambient temperatures, rare transient driving maneuvers, the prediction degrades.
+- **Model development complexities :** The catalyst modelling demands a model that is capable of working with time-series data. Models like RNN, LSTM are best suitable than models like, GPR, SVM , XGBoost etc. Time-series modelling is challenging because capturing fine transient dynamics without memorizing measurement noise requires careful tuning of sequence lengths, network architectures, and regularization methods.
 
 
 
