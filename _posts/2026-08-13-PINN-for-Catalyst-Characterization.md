@@ -120,7 +120,6 @@ Typical features required to develop the data-driven catalyst model are shown in
 ###  Features required for Catalyst Modelling: 
 ![Catalytic Converter](/assets/images/Emissions/Catalyst_Data_Required.png)
 
-Data is collected during emission drive cycle test to measure the tail-pipe emissions
 
 
 
