@@ -196,8 +196,25 @@ For a mini-batch containing $m$ samples, $\mathcal{B} = \{x_1, x_2, \dots, x_m\}
 
 
 ### B. Layer Normalization (BatchNorm)
-LayerNorm normalizes all features within a single sample instead of using batch statistics. Unlike BatchNorm, every sample is treated independently, making LayerNorm particularly suitable for sequence models.
-LayerNorm normalizes each example independently across the feature dimension. Unlike BatchNorm, it doesn’t maintain running statistics because it operates independently on each example.
+### Layer Normalization (LayerNorm)
+
+Layer Normalization (LayerNorm) normalizes the activations of each sample independently by computing the mean and variance across that sample's feature dimensions. Unlike BatchNorm, it does not depend on other samples in the batch, so it does not require mini-batch statistics or running averages.
+
+#### Math & Formula
+
+For a single sample vector $\mathbf{x} = [x_1, x_2, \dots, x_d]$ containing $d$ features:
+
+$$
+\begin{aligned}
+\text{1. Calculate Feature Mean:} \quad & \mu = \frac{1}{d} \sum_{i=1}^{d} x_i \\[10pt]
+\text{2. Calculate Feature Variance:} \quad & \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\[10pt]
+\text{3. Normalize Activations:} \quad & \hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\sigma^2 + \epsilon}} \\[10pt]
+\text{4. Scale and Shift:} \quad & \mathbf{y} = \gamma \odot \hat{\mathbf{x}} + \beta
+\end{aligned}
+$$
+
+> **Key Concept:** $\mu$ and $\sigma^2$ are calculated strictly across the feature dimensions of a **single sample**, making execution completely independent of batch size or batch structure during both training and inference.
+
 
 ### Comparison: Activation Normalization Techniques
 
