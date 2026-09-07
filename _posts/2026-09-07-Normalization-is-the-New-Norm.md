@@ -216,6 +216,15 @@ $$
 > **Key Concept:** $\mu$ and $\sigma^2$ are calculated strictly across the feature dimensions of a **single sample**, making execution completely independent of batch size or batch structure during both training and inference.
 
 
+<p style="color:blue;">
+<strong>Remember This:</strong> 
+BatchNorm asks: "How does this sample compare to other samples in the batch?"
+LayerNorm asks: "How do the features within this sample compare to one another?"
+RMSNorm asks: "How large is the overall signal in this sample?"
+</p>
+
+
+
 ### Comparison: Activation Normalization Techniques
 
 | Aspect | Batch Normalization (BatchNorm) | Layer Normalization (LayerNorm) | RMS Normalization (RMSNorm) |
