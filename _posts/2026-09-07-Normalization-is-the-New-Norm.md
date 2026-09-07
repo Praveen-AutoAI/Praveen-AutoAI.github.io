@@ -181,8 +181,6 @@ BatchNorm normalizes activations using the statistics of the mini-batch. It was 
 
 Batch Normalization stabilizes deep network training by standardizing hidden layer activations across each mini-batch, resetting feature distributions to zero mean and unit variance before applying a learnable scale and shift.
 
----
-
 #### 1. Compact Mathematical Formulation
 
 Given a mini-batch $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$ of size $m$:
@@ -195,7 +193,6 @@ $$
 \end{aligned}
 $$
 
----
 
 #### 2. Flowchart Intuition
 
