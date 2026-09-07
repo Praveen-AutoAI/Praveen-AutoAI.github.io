@@ -218,9 +218,9 @@ $$
 
 <p style="color:blue;">
 <strong>Remember This:</strong> 
-- BatchNorm asks: "How does this sample compare to other samples in the batch?"
-- LayerNorm asks: "How do the features within this sample compare to one another?"
-- RMSNorm asks: "How large is the overall signal in this sample?"
+- BatchNorm asks: "How does this sample compare to other samples in the batch?" - compares samples to other samples
+- LayerNorm asks: "How do the features within this sample compare to one another?" - compares features within a sample
+- RMSNorm asks: "How large is the overall signal in this sample?" - measures and controls only the overall magnitude of the sample's feature vector
 </p>
 
 
