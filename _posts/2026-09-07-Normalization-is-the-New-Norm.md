@@ -21,15 +21,15 @@ where:
 * $\mu$ = mean
 * $\sigma$ = standard deviation
 
-<p style="color:blue;">
-<strong>Remember This:</strong> The goal is not to change the information contained in the data, but to make its numerical representation more suitable for computation/optimization.
-</p>
-
 In deep learning, normalization can be applied to:
 
 - Input data **(feature normalization)**   We all know this obvious step that we do in the feature engineering process.
 - Intermediate activations **(BatchNorm, LayerNorm, RMSNorm)**
 - Model parameters/weights **(WeightNorm, SpectralNorm)**
+
+<p style="color:blue;">
+<strong>Remember This:</strong> The goal is not to change the information contained in the data, but to make its numerical representation more suitable for computation/optimization. Normalization controls the scale of signals inside a neural network, making optimization faster, more stable, and more reliable. Depending on what is being normalized, normalization techniques can be broadly classified into Weight Normalization (normalizing model parameters) and Activation Normalization (normalizing intermediate feature activations).
+</p>
 
 ### What is the Motivation in the Context of ML Model Training?
 
