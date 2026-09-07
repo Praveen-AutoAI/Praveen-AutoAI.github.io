@@ -121,21 +121,22 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 
 ### B. Spectral Normalization: Installing a Universal Gain Limiter
 
-Imagine chaining ten audio amplifiers in a row. If each stage boosts signal magnitude by just $2\times$, small input variations are blown up by over $1,000\times$ down the line—causing harsh distortion, feedback shrieks, and system failure. In deep neural networks, unconstrained weight matrices do the exact same thing: they excessively amplify activations across layers, leading to unstable training and exploding gradients.
+### Spectral Normalization: Installing a Powertrain Rev Limiter
 
-Spectral Normalization (SpectralNorm) solves this by installing a strict mathematical **gain limiter** directly onto the weight matrix:
+Imagine driving a vehicle equipped with multiple stacked turbochargers in series. If every stage boosts intake pressure exponentially without limits, a small tap on the accelerator multiplies boost through stage after stage—ultimately over-pressurizing the intake, blowing the seals, and destroying the engine. In deep neural networks, unconstrained weight matrices act like runaway turbochargers: they excessively amplify activations across layers, causing numerical instabilities and exploding gradients.
+
+Spectral Normalization (SpectralNorm) solves this by installing a strict **mechanical torque governor** directly onto the weight matrix:
 
 $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 
-* **$\sigma_{\max}(\mathbf{W})$ (Peak Spectral Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum amplification factor the layer can apply to any input direction.
-* **$\mathbf{W}_{\text{SN}}$ (Normalized Matrix):** The rescaled matrix whose maximum possible signal amplification is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
+* **$\sigma_{\max}(\mathbf{W})$ (Peak Mechanical Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum force amplification factor the layer can apply across any directional axis.
+* **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak multiplication factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
 
 ---
 
-#### Why Capping Gain Changes the Game
+#### Why Capping Peak Gain Changes the Game
 
-* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the singular value to $1$ guarantees that no vector passing through the layer is ever stretched beyond its original length.
-* **Explosion-Proof Deep Networks:** By keeping every layer's maximum amplification factor bounded at $1$, small perturbations and transient gradients cannot cascade into exploding signals—even across extremely deep architectures or unstable setups like GAN discriminators.
-* **Surgical Directional Clipping:** Rather than shrinking all parameters uniformly, SpectralNorm selectively scales down only the most aggressively expanding directional axis of the matrix, preserving subtle spatial features while completely eliminating uncontrolled signal growth.
-
+* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the peak singular value to $1$ guarantees that no force vector entering the layer is amplified beyond a $1:1$ ratio ($\|\mathbf{W}\mathbf{x}\| \le \|\mathbf{x}\|$).
+* **Explosion-Proof Deep Pipelines:** By ensuring no individual layer can boost signal energy beyond unity, transient noise and dynamic sensor spikes cannot cascade into exploding gradients—even across deep architectures or sensitive feedback loops.
+* **Selective Directional Limiting:** Rather than choking engine power across all driving conditions, SpectralNorm scales down only the specific high-gain vector axis threatening instability, leaving all other maneuver directions fully intact.
 
