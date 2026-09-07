@@ -21,11 +21,14 @@ where:
 * $\mu$ = mean
 * $\sigma$ = standard deviation
 
-
-The goal is not to change the information contained in the data, but to make its numerical representation more suitable for optimization.
+<p style="color:blue;">
+<strong>Remember This:</strong> The goal is not to change the information contained in the data, but to make its numerical representation more suitable for computation/optimization.
+</p>
 
 In deep learning, normalization can be applied to:
 
 - Input data **(feature normalization)**
 - Intermediate activations **(BatchNorm, LayerNorm, RMSNorm)**
 - Model parameters/weights **(WeightNorm, SpectralNorm)**
+
+- 
