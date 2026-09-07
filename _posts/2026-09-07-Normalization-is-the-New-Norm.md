@@ -149,7 +149,7 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 | Feature / Dimension | Weight Normalization (WeightNorm) | Spectral Normalization (SpectralNorm) |
 | :--- | :--- | :--- |
 | **Primary Goal** | Streamline optimization by decoupling weight magnitude from direction | Bound layer gain to guarantee stability and prevent gradient explosion |
-| **What It Controls** | Weight vector magnitude ($\|\mathbf{w}\|$) | Maximum matrix amplification / Lipschitz constant ($\sigma_{\max}(\mathbf{W})$) |
+| **What It Controls** | Weight vector magnitude ($\|\mathbf{w}\|$) | Maximum matrix amplification (Lipschitz constant) ($\sigma_{\max}(\mathbf{W})$) |
 | **Mathematical Constraint** | $\|\mathbf{w}\| = g$ | $\sigma_{\max}(\mathbf{W}) = 1$ |
 | **Computational Cost** | **Low** (Simple scalar reparameterization) | **Moderate** (Requires iterative power iteration) |
 | **Key Advantages** | • Accelerates optimization convergence<br>• Completely independent of mini-batch size<br>• Highly effective for recurrent and streaming models<br>• Improves directional gradient flow | • Exceptional training stability in GANs<br>• Bounds layer gain to prevent exploding gradients<br>• Strong mathematical guarantees ($L \le 1$)<br>• Damps high-gain directions without choking overall capacity |
