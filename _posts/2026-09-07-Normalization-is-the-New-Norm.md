@@ -62,6 +62,11 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Improves Training Stability** | Maintains consistent activation distributions across layers for a smoother loss landscape. |
 | **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
 
+## Feature Normalization Methods:
+
+Feature normalization is a preprocessing technique that transforms input features to a common scale before they are fed into a machine learning model. Since real-world datasets often contain features with vastly different ranges (e.g., age: 0-100, income: 0-1,000,000), normalization prevents large-scale features from disproportionately influencing the learning process.
+
+The primary goal of feature normalization is to ensure that all features contribute fairly during optimization. By reducing scale differences and stabilizing feature distributions, normalization improves gradient-based learning, accelerates convergence, and often leads to better model performance and numerical stability.
 
 | Method                                     | Formula                                   | Output Range          | Unique Advantage                                             | Best Used For                         |    
 | ------------------------------------------ | ----------------------------------------- | --------------------- | ------------------------------------------------------------ | ------------------------------------- |
