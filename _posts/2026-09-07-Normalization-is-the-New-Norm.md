@@ -152,3 +152,11 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 | **Key Advantages** | • Accelerates optimization convergence<br>• Completely independent of mini-batch size<br>• Highly effective for recurrent and streaming models<br>• Improves directional gradient flow | • Exceptional training stability in GANs<br>• Bounds layer gain to prevent exploding gradients<br>• Strong mathematical guarantees ($L \le 1$)<br>• Damps high-gain directions without choking overall capacity |
 | **Limitations** | • Does not directly normalize layer activations<br>• Less effective than BatchNorm in deep CNNs<br>• Rarely used in modern Transformer architectures | • Introduces extra matrix computation per forward step<br>• Strict gain capping can slightly restrict expressive flexibility |
 | **Recommended Use Cases** | • Sequential models (RNNs, LSTMs)<br>• Reinforcement Learning agents<br>• Small-batch or streaming real-time applications | • GAN Discriminators<br>• Diffusion models & generative sampling architectures<br>• Deep stability-critical or physics-constrained networks |
+
+
+
+####
+This is the key insight: WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
+The histogram can look nearly identical while the network behavior changes dramatically.
+
+
