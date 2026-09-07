@@ -50,3 +50,14 @@ Normalization helps maintain a consistent scale of signals flowing through the n
 * Faster convergence
 
 From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
+
+### Why Normalization Matters
+
+| Benefit | Impact on Training |
+| :--- | :--- |
+| **Mitigates Vanishing & Exploding Gradients** | Keeps activations and weights bounded so gradients remain numerically stable during backpropagation. |
+| **Accelerates Convergence** | Reduces the number of training iterations needed to achieve high accuracy. |
+| **Allows Larger Learning Rates** | Makes weight updates more predictable, enabling faster optimization without divergence. |
+| **Reduces Initialization Sensitivity** | Makes training less dependent on meticulously chosen initial weight schemes. |
+| **Improves Training Stability** | Maintains consistent activation distributions across layers for a smoother loss landscape. |
+| **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
