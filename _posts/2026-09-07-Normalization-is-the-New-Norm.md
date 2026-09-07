@@ -174,24 +174,8 @@ The histogram can look nearly identical while the network behavior changes drama
 Activation normalization methods stabilize the **intermediate feature representations (activations)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the training of deeper architectures.
 
 ### A. Batch Normalization (BatchNorm)
-BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift during training and improve optimization stability.
+BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift.
 
-
-### Batch Normalization: Math & Intuition
-
-Batch Normalization stabilizes deep network training by standardizing hidden layer activations across each mini-batch, resetting feature distributions to zero mean and unit variance before applying a learnable scale and shift.
-
-#### 1. Compact Mathematical Formulation
-
-Given a mini-batch $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$ of size $m$:
-
-$$
-\begin{aligned}
-\text{Batch Statistics:} \quad & \mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i, \qquad \sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2 \\[8pt]
-\text{Normalization:} \quad & \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\[8pt]
-\text{Scale \& Shift:} \quad & y_i = \gamma \hat{x}_i + \beta \quad (\text{where } \gamma, \beta \text{ are learnable parameters})
-\end{aligned}
-$$
 
 
 #### 2. Flowchart Intuition
