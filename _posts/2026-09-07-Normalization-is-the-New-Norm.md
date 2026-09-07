@@ -8,9 +8,9 @@ tags: [Data Science, Deep Learning, AI]
 math: true
 ---
 
+## Introduction to Normalization
 
-### Normalization of Data
-
+### What's Normalization?
 Normalization is the process of transforming data, weights, or activations to a standardized scale so that their magnitudes remain within a controlled range.
 
 Mathematically, normalization often involves centering and scaling a variable:
@@ -27,8 +27,26 @@ where:
 
 In deep learning, normalization can be applied to:
 
-- Input data **(feature normalization)**
+- Input data **(feature normalization)**   We all know this obvious step that we do in the feature engineering process.
 - Intermediate activations **(BatchNorm, LayerNorm, RMSNorm)**
 - Model parameters/weights **(WeightNorm, SpectralNorm)**
 
-- 
+### What is the Motivation in the Context of ML Model Training?
+
+Deep neural networks learn by propagating information forward and gradients backward through many layers. During this process, numerical instabilities can arise:
+
+* Activations may become excessively large or small.
+* Gradients can vanish or explode.
+* Training becomes highly sensitive to initialization.
+* Small parameter updates in one layer can have amplified effects in deeper layers.
+
+As networks become deeper, even slight changes in activation or weight distributions can compound across layers, making optimization difficult.
+
+Normalization helps maintain a consistent scale of signals flowing through the network, resulting in:
+
+* Better-conditioned optimization
+* Smoother loss landscapes
+* More stable gradient propagation
+* Faster convergence
+
+From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
