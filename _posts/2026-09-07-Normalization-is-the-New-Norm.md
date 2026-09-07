@@ -135,8 +135,7 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 #### Why Capping Peak Gain Changes the Game
 
 * **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the peak singular value to $1$ guarantees that no input vector (steering angle or throttle force) is amplified beyond a $1:1$ ratio ($\|\mathbf{W}\mathbf{x}\| \le \|\mathbf{x}\|$), eliminating runaway oversteer.
-* **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, minor steering jitter, sensor noise, or dynamic updates cannot cascade into exploding gradients—even across deep architectures or transient feedback loops.
-* **Selective Directional Stability Control:** Rather than deadening steering and throttle response across all driving conditions, SpectralNorm scales down only the specific high-gain vector axis that causes spin-outs, leaving all other maneuver directions fully responsive.
+* **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, no problem of exploding gradients—even across deep architectures or transient feedback loops.
 
 <p style="color:blue;">
 <strong>Remember This:</strong> WeightNorm improves optimization by separating weight magnitude from weight direction (deoupling the steering and accelerator pedal), while SpectralNorm improves stability by limiting the maximum amplification capability of a layer (by reducing the sensitivity of the input). In simple terms, WeightNorm helps the model learn more efficiently, whereas SpectralNorm helps the model learn more safely.
