@@ -154,9 +154,8 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 | **Recommended Use Cases** | • Sequential models (RNNs, LSTMs)<br>• Reinforcement Learning agents<br>• Small-batch or streaming real-time applications | • GAN Discriminators<br>• Diffusion models & generative sampling architectures<br>• Deep stability-critical or physics-constrained networks |
 
 
-
-####
-This is the key insight: WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
-The histogram can look nearly identical while the network behavior changes dramatically.
-
+<p style="color:blue;">
+<strong>Remember This:</strong> This is the key insight: WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
+The histogram can look nearly identical while the network behavior changes dramatically. Similar weight distributions do not imply similar network dynamics.
+</p>
 
