@@ -168,3 +168,92 @@ Note: The high density is not indicating that WeightNorm or SpectralNorm are cre
 The histogram can look nearly identical while the network behavior changes dramatically. Similar weight distributions do not imply similar network dynamics.
 </p>
 
+
+## 3.Activation Normalization 
+
+Activation normalization methods stabilize the **intermediate feature representations (activations)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the training of deeper architectures.
+
+### A. Batch Normalization (BatchNorm)
+BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift during training and improve optimization stability.
+
+### Batch Normalization: Math & Intuition
+
+Batch Normalization stabilizes deep network training by standardizing hidden layer activations across each mini-batch, resetting feature distributions to zero mean and unit variance before applying a learnable scale and shift.
+
+---
+
+#### 1. Compact Mathematical Formulation
+
+Given a mini-batch $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$ of size $m$:
+
+$$
+\begin{aligned}
+\text{Batch Statistics:} \quad & \mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i, \qquad \sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2 \\[8pt]
+\text{Normalization:} \quad & \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\[8pt]
+\text{Scale \& Shift:} \quad & y_i = \gamma \hat{x}_i + \beta \quad (\text{where } \gamma, \beta \text{ are learnable parameters})
+\end{aligned}
+$$
+
+---
+
+#### 2. Flowchart Intuition
+
+```markdown
+### Batch Normalization: Math & Intuition
+
+Batch Normalization stabilizes deep network training by standardizing hidden layer activations across each mini-batch, resetting feature distributions to zero mean and unit variance before applying a learnable scale and shift.
+
+---
+
+#### 1. Compact Mathematical Formulation
+
+Given a mini-batch $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$ of size $m$:
+
+$$
+\begin{aligned}
+\text{Batch Statistics:} \quad & \mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i, \qquad \sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2 \\[8pt]
+\text{Normalization:} \quad & \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\[8pt]
+\text{Scale \& Shift:} \quad & y_i = \gamma \hat{x}_i + \beta \quad (\text{where } \gamma, \beta \text{ are learnable parameters})
+\end{aligned}
+$$
+
+---
+
+#### 2. Flowchart Intuition
+
+
+```
+
+[ Input Mini-Batch: {x₁, x₂, ..., x_m} ]
+│
+▼
+┌───────────────────────────────────┐
+│   Compute Batch Statistics        │
+│   μ_B (Mean)  &  σ_B² (Variance)  │
+└───────────────────────────────────┘
+│
+▼
+┌───────────────────────────────────┐
+│   Standardize Activations         │
+│   x̂_i = (x_i - μ_B) / √(σ_B² + ε) │
+└───────────────────────────────────┘
+│
+▼
+┌───────────────────────────────────┐
+│   Scale & Shift (Restore Capacity)│
+│   y_i = γ * x̂_i + β               │
+└───────────────────────────────────┘
+│
+▼
+[ Output Activations: {y₁, y₂, ..., y_m} ]
+
+```
+
+* **Core Takeaway:** Every sample $x_i$ in a batch is normalized using collective information ($\mu_B, \sigma_B^2$) from all other samples in that mini-batch. The learnable parameters $\gamma$ and $\beta$ allow the network to undo the normalization if the optimal representation requires it.
+
+```
+
+### B. Layer Normalization (BatchNorm)
+LayerNorm normalizes all features within a single sample instead of using batch statistics. Unlike BatchNorm, every sample is treated independently, making LayerNorm particularly suitable for sequence models.
+
+
