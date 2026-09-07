@@ -62,7 +62,7 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Improves Training Stability** | Maintains consistent activation distributions across layers for a smoother loss landscape. |
 | **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
 
-## Feature Normalization Methods:
+## 1.Feature Normalization Methods:
 
 Feature normalization is a preprocessing technique that transforms input features to a common scale before they are fed into a machine learning model. Since real-world datasets often contain features with vastly different ranges (e.g., age: 0-100, income: 0-1,000,000), normalization prevents large-scale features from disproportionately influencing the learning process.
 
@@ -75,3 +75,21 @@ The primary goal of feature normalization is to ensure that all features contrib
 | **Robust Scaling**                         | $$x'=\frac{x-\text{Median}}{\text{IQR}}$$ | Not fixed             | Resistant to outliers                                        | Sensor data, finance, industrial data |                
 | **Unit Vector (L1/L2) Normalization**      | $$x'=\frac{x}{\|x\|}$$                    | Vector norm = 1       | Focuses on direction rather than magnitude                   | Similarity search, embeddings         |           
 | **Log Transform**                          | $$x'=\log(x+c)$$                          | Depends on data       | Compresses large values and reduces skewness                 | Heavy-tailed distributions            |         
+
+| Method | Formula | Output Range | When to Use | Best Used For |
+| :--- | :--- | :--- | :--- | :--- |
+| **Min-Max Scaling** | $x' = \frac{x - x_{\text{min}}}{x_{\text{max}} - x_{\text{min}}}$ | Typically $[0,1]$ | Use when feature bounds are known and preserving relative distances between values is important. Avoid if significant outliers are present, since they can compress most data into a narrow range. | Neural networks, image pixel scaling |
+| **Standardization (Z-Score)** | $x' = \frac{x - \mu}{\sigma}$ | Mean = 0, Std = 1 | Use as the default choice for most machine learning algorithms, especially gradient-based methods. Effective when features approximately follow a Gaussian distribution or have different scales. | General ML, Deep Learning |
+| **Robust Scaling** | $x' = \frac{x - \text{Median}}{\text{IQR}}$ | Not fixed | Use when the dataset contains outliers that could distort mean and standard deviation based scaling methods. | Sensor data, finance, industrial data |
+| **Unit Vector ($L_1$/$L_2$) Normalization** | $x' = \frac{x}{\|x\|}$ | Vector norm = 1 | Use when the direction of a feature vector is more important than its magnitude. Frequently applied before computing similarity metrics such as cosine similarity. | Similarity search, embeddings, text mining |
+| **Log Transform** | $x' = \log(x+c)$ | Depends on data | Use for highly skewed or long-tailed distributions where a few very large values dominate the dataset. Often followed by Standardization. | Financial data, count data, heavy-tailed distributions |
+
+
+| Method | Controls |
+| :--- | :--- |
+| **Min-Max** | Feature range |
+| **Standardization** | Mean and variance |
+| **Robust Scaling** | Median and IQR |
+| **L2 Normalization** | Vector magnitude |
+| **Log Transform** | Skewness |
+
