@@ -195,8 +195,18 @@ For a mini-batch containing $m$ samples, $\mathcal{B} = \{x_1, x_2, \dots, x_m\}
 *where $\gamma$ (scale) and $\beta$ (shift) are learnable parameters that allow the network to restore representation power, and $\epsilon$ is a tiny constant for numerical stability.*
 
 
-
 ### B. Layer Normalization (BatchNorm)
 LayerNorm normalizes all features within a single sample instead of using batch statistics. Unlike BatchNorm, every sample is treated independently, making LayerNorm particularly suitable for sequence models.
+LayerNorm normalizes each example independently across the feature dimension. Unlike BatchNorm, it doesn’t maintain running statistics because it operates independently on each example.
 
+### Comparison: Activation Normalization Techniques
 
+| Aspect | Batch Normalization (BatchNorm) | Layer Normalization (LayerNorm) | RMS Normalization (RMSNorm) |
+| :--- | :--- | :--- | :--- |
+| **Intuition** | Normalize activations using statistics computed from the entire mini-batch. Each sample benefits from information provided by other samples in the batch. | Normalize all features within a single sample, making each sample self-contained and independent of others. | Normalize only the overall signal magnitude (RMS) of a sample without subtracting the mean. |
+| **Uniqueness & Advantage** | • Uses batch-level statistics<br>• Acts as both normalization and regularization<br>• Enables higher learning rates<br>• Highly effective for CNNs | • Independent of batch size<br>• No running statistics required<br>• Same behavior during training and inference<br>• Ideal for sequence models and transformers | • Removes mean-centering step from LayerNorm<br>• Fewer computations<br>• Lower memory overhead<br>• Similar performance to LayerNorm with better efficiency |
+| **Limitations** | • Performance degrades with small batches<br>• Requires running mean and variance<br>• Synchronizing statistics in distributed training creates overhead<br>• Less suitable for sequence models | • Provides less benefit for CNNs compared to BatchNorm<br>• Slightly more computationally expensive than RMSNorm | • Does not explicitly center activations around zero<br>• Less theoretically studied than LayerNorm<br>• May not be ideal when mean-centering is critical |
+| **Where to Use** | • CNNs<br>• Computer Vision models<br>• Large-batch training<br>• Feed-forward networks | • Transformers (BERT, GPT)<br>• RNNs and LSTMs<br>• Variable-length sequences<br>• Small-batch or distributed training | • Modern LLMs (LLaMA, PaLM)<br>• Large-scale transformers<br>• Compute-efficient architectures |
+| **Normalization Scope** | Across the Batch Dimension | Across Features within a Sample | Across the RMS of Features |
+| **Batch-Size Dependency** | ✅ Depends on Batch Size | ❌ Independent | ❌ Independent |
+| **Training vs. Inference** | Different behavior (running statistics used during inference) | Same behavior | Same behavior |
