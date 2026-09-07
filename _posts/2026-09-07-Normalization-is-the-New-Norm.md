@@ -78,6 +78,8 @@ The primary goal of feature normalization is to ensure that all features contrib
 | **Unit Vector ($L_1$ & $L_2$) Normalization** | $x' = \frac{x}{\|x\|}$ | Vector norm = 1 | Use when the direction of a feature vector is more important than its magnitude. Frequently applied before computing similarity metrics such as cosine similarity. | Similarity search, embeddings, text mining |
 | **Log Transform** | $x' = \log(x+c)$ | Depends on data | Use for highly skewed or long-tailed distributions where a few very large values dominate the dataset. Often followed by Standardization. | Financial data, count data, heavy-tailed distributions |
 
+### Summary of Feature Normalization
+![Normalization_Effect](/assets/images/Normalization/Normalization_1.png)
 
 ## 2.Weight Normalization: Controlling Model Parameters
 
