@@ -34,23 +34,26 @@ In deep learning, normalization can be applied to:
 
 ### What is the Motivation in the Context of ML Model Training?
 
-Deep neural networks learn by propagating information forward and gradients backward through many layers. During this process, numerical instabilities can arise:
+Machine learning models learn by processing input data through multiple layers and continuously updating their parameters based on the prediction error. During this process, numerical instabilities can arise from both the input features and the internal computations of the network.
 
-* Activations may become excessively large or small.
-* Gradients can vanish or explode.
-* Training becomes highly sensitive to initialization.
-* Small parameter updates in one layer can have amplified effects in deeper layers.
+Common challenges include:
 
-As networks become deeper, even slight changes in activation or weight distributions can compound across layers, making optimization difficult.
+Input features may have vastly different scales (e.g., age in years vs. salary in millions).
+Activations may become excessively large or small as they propagate through layers.
+Gradients can vanish or explode during backpropagation.
+Training becomes highly sensitive to parameter initialization.
+Small parameter updates in one layer can have amplified effects in deeper layers.
 
-Normalization helps maintain a consistent scale of signals flowing through the network, resulting in:
+As networks become deeper, even slight changes in feature distributions, activation distributions, or weight magnitudes can compound across layers, making optimization increasingly difficult.
 
-* Better-conditioned optimization
-* Smoother loss landscapes
-* More stable gradient propagation
-* Faster convergence
-
+Normalization addresses these challenges at different stages of the learning pipeline.
 From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
+
+| Normalization Type | Applied To | Primary Goal | Key Benefits |
+| :--- | :--- | :--- | :--- |
+| **Feature Normalization** | Input Features | Bring all input variables to a comparable scale before training | • Prevents large-scale features from dominating smaller ones<br>• Improves gradient-based and distance-based optimization<br>• Accelerates convergence<br>• Improves numerical stability |
+| **Weight Normalization** | Model Parameters (Weights) | Control weight magnitudes and amplification characteristics | • Improves optimization conditioning<br>• Controls weight magnitude or gain<br>• Stabilizes training dynamics<br>• Prevents uncontrolled weight growth |
+| **Activation Normalization** | Hidden Layer Activations | Maintain stable feature distributions during training | • Reduces activation drift<br>• Improves gradient propagation<br>• Enables deeper architectures<br>• Supports higher learning rates and faster convergence |
 
 ### Why Normalization Matters
 
