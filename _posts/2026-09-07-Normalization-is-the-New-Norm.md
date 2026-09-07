@@ -174,9 +174,28 @@ The histogram can look nearly identical while the network behavior changes drama
 Activation normalization methods stabilize the **intermediate feature representations (activations)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the training of deeper architectures.
 
 ### A. Batch Normalization (BatchNorm)
-BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift.
+BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift(internal covariate shift)  during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift.
+
+#### Math & Intuition
+
+For a mini-batch containing $m$ samples, $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$:
+
+1. **Calculate Mini-Batch Mean:**
+   $$\mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i$$
+
+2. **Calculate Mini-Batch Variance:**
+   $$\sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2$$
+
+3. **Normalize Activations:**
+   $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
+
+4. **Scale and Shift:**
+   $$y_i = \gamma \hat{x}_i + \beta$$
+
+*where $\gamma$ (scale) and $\beta$ (shift) are learnable parameters that allow the network to restore representation power, and $\epsilon$ is a tiny constant for numerical stability.*
 
 
+#### Mini-Batch Flow Intuition
 
 #### 2. Flowchart Intuition
 
