@@ -178,22 +178,21 @@ BatchNorm normalizes activations using the statistics of the mini-batch. It was 
 
 #### Math & Intuition
 
-Given a mini-batch $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$ containing $m$ samples:
+For a mini-batch containing $m$ samples, $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$:
 
-$$
-\begin{aligned}
-\text{1. Calculate Mini-Batch Mean:} \quad & \mu_B = \frac{1}{m} \sum_{i=1}^{m} x_i \\[10pt]
-\text{2. Calculate Mini-Batch Variance:} \quad & \sigma_B^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_B)^2 \\[10pt]
-\text{3. Normalize Activations:} \quad & \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\[10pt]
-\text{4. Scale and Shift:} \quad & y_i = \gamma \hat{x}_i + \beta
-\end{aligned}
-$$
+1. **Calculate Mini-Batch Mean:**
+   $$\mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i$$
 
-> **Parameters:**
-> * $\gamma$ (scale) and $\beta$ (shift) are learnable parameters that allow the network to restore representation power.
-> * $\epsilon > 0$ is a small constant added to prevent division by zero.
+2. **Calculate Mini-Batch Variance:**
+   $$\sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2$$
 
+3. **Normalize Activations:**
+   $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
 
+4. **Scale and Shift:**
+   $$y_i = \gamma \hat{x}_i + \beta$$
+
+*where $\gamma$ (scale) and $\beta$ (shift) are learnable parameters that allow the network to restore representation power, and $\epsilon$ is a tiny constant for numerical stability.*
 
 
 
