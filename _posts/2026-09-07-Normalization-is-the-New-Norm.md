@@ -79,4 +79,45 @@ The primary goal of feature normalization is to ensure that all features contrib
 | **Log Transform** | $x' = \log(x+c)$ | Depends on data | Use for highly skewed or long-tailed distributions where a few very large values dominate the dataset. Often followed by Standardization. | Financial data, count data, heavy-tailed distributions |
 
 
+## 2.Weight Normalization: Controlling Model Parameters
+
+Weight normalization techniques directly constrain the model parameters, making optimization more stable and efficient.
+
+### Why Weight Normalization?
+
+Consider a neuron:
+
+$$y = f(\mathbf{w}^T \mathbf{x} + b)$$
+
+The behavior of the neuron depends on:
+* **Weight direction:** Where the weight vector points
+* **Weight magnitude:** How large the weight vector is
+
+During training, the optimizer must learn both simultaneously, which can make optimization difficult. Weight normalization methods simplify this process by controlling weight magnitudes while preserving useful directional information. 
+
+<p style="color:blue;">
+<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
+</p>
+
+
+### A. Weight Normalization
+
+By default, a weight vector $\mathbf{w}$ entangles both **direction** (where the neuron looks) and **magnitude** (how strongly it fires) into a single array of parameters. A weight update intended to adjust feature alignment accidentally alters signal amplitude, forcing the optimizer to constantly re-calibrate its line.
+
+Weight Normalization (WeightNorm) decouples steering from speed control with a surgical mathematical reparameterization:
+
+$$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
+
+* **$\mathbf{v}$ (Steering Wheel):** A learnable parameter vector controlling feature orientation without affecting power output.
+* **$g$ (Accelerator & Brake):** A learnable scalar explicitly dictating overall signal magnitude ($\|\mathbf{w}\| = g$).
+
+---
+
+#### Why Decoupling Changes the Game
+
+* **Independent Trajectory & Power Control:** Gradient descent updates the scalar $g$ purely along the weight vector's length while adjusting $\mathbf{v}$ strictly orthogonal (perpendicular) to it. You can adjust your heading without surging forward, or punch the accelerator without drifting out of your lane.
+* **Built-in Dynamic Stability Control:** The effective learning rate for directional updates scales inversely with $\|\mathbf{v}\|$. If steering vectors grow excessively large, directional updates automatically scale down—acting as an automatic governor that prevents over-steering and guards against gradient explosions.
+
+
+
 
