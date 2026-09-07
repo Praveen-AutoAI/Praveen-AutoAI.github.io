@@ -78,11 +78,4 @@ The primary goal of feature normalization is to ensure that all features contrib
 | **Log Transform** | $x' = \log(x+c)$ | Depends on data | Use for highly skewed or long-tailed distributions where a few very large values dominate the dataset. Often followed by Standardization. | Financial data, count data, heavy-tailed distributions |
 
 
-| Method | Controls |
-| :--- | :--- |
-| **Min-Max** | Feature range |
-| **Standardization** | Mean and variance |
-| **Robust Scaling** | Median and IQR |
-| **L2 Normalization** | Vector magnitude |
-| **Log Transform** | Skewness |
 
