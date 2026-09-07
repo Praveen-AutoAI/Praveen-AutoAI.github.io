@@ -38,11 +38,11 @@ Machine learning models learn by processing input data through multiple layers a
 
 Common challenges include:
 
-Input features may have vastly different scales (e.g., age in years vs. salary in millions).
-Activations may become excessively large or small as they propagate through layers.
-Gradients can vanish or explode during backpropagation.
-Training becomes highly sensitive to parameter initialization.
-Small parameter updates in one layer can have amplified effects in deeper layers.
+- Input features may have vastly different scales (e.g., age in years vs. salary in millions).
+- Activations may become excessively large or small as they propagate through layers.
+- Gradients can vanish or explode during backpropagation.
+- Training becomes highly sensitive to parameter initialization.
+- Small parameter updates in one layer can have amplified effects in deeper layers.
 
 As networks become deeper, even slight changes in feature distributions, activation distributions, or weight magnitudes can compound across layers, making optimization increasingly difficult.
 
