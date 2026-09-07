@@ -153,6 +153,10 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 | **Limitations** | • Does not directly normalize layer activations<br>• Less effective than BatchNorm in deep CNNs<br>• Rarely used in modern Transformer architectures | • Introduces extra matrix computation per forward step<br>• Strict gain capping can slightly restrict expressive flexibility |
 | **Recommended Use Cases** | • Sequential models (RNNs, LSTMs)<br>• Reinforcement Learning agents<br>• Small-batch or streaming real-time applications | • GAN Discriminators<br>• Diffusion models & generative sampling architectures<br>• Deep stability-critical or physics-constrained networks |
 
+### Effect of Normalization
+![Normalization_Effect](assets/images/Normalization/Normalization_2.png)
+
+Note: The high density is not indicating that WeightNorm or SpectralNorm are creating more data points. It happens because both methods compress the distribution into a much narrower range, and a probability density must become taller to preserve a total area of 1.
 
 <p style="color:blue;">
 <strong>Remember This:</strong> This is the key insight: WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
