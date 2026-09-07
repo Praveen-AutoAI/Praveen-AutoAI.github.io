@@ -140,3 +140,18 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 * **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, minor steering jitter, sensor noise, or dynamic updates cannot cascade into exploding gradients—even across deep architectures or transient feedback loops.
 * **Selective Directional Stability Control:** Rather than deadening steering and throttle response across all driving conditions, SpectralNorm scales down only the specific high-gain vector axis that causes spin-outs, leaving all other maneuver directions fully responsive.
 
+<p style="color:blue;">
+<strong>Remember This:</strong> WeightNorm improves optimization by separating weight magnitude from weight direction (deoupling the steering and accelerator pedal), while SpectralNorm improves stability by limiting the maximum amplification capability of a layer (by reducing the sensitivity of the input). In simple terms, WeightNorm helps the model learn more efficiently, whereas SpectralNorm helps the model learn more safely.
+</p>
+
+### Summary Comparison: Weight Normalization vs. Spectral Normalization
+
+| Feature / Dimension | Weight Normalization (WeightNorm) | Spectral Normalization (SpectralNorm) |
+| :--- | :--- | :--- |
+| **Primary Goal** | Streamline optimization by decoupling weight magnitude from direction | Bound layer gain to guarantee stability and prevent gradient explosion |
+| **What It Controls** | Weight vector magnitude ($\|\mathbf{w}\|$) | Maximum matrix amplification / Lipschitz constant ($\sigma_{\max}(\mathbf{W})$) |
+| **Mathematical Constraint** | $\|\mathbf{w}\| = g$ | $\sigma_{\max}(\mathbf{W}) = 1$ |
+| **Computational Cost** | **Low** (Simple scalar reparameterization) | **Moderate** (Requires iterative power iteration) |
+| **Key Advantages** | • Accelerates optimization convergence<br>• Completely independent of mini-batch size<br>• Highly effective for recurrent and streaming models<br>• Improves directional gradient flow | • Exceptional training stability in GANs<br>• Bounds layer gain to prevent exploding gradients<br>• Strong mathematical guarantees ($L \le 1$)<br>• Damps high-gain directions without choking overall capacity |
+| **Limitations** | • Does not directly normalize layer activations<br>• Less effective than BatchNorm in deep CNNs<br>• Rarely used in modern Transformer architectures | • Introduces extra matrix computation per forward step<br>• Strict gain capping can slightly restrict expressive flexibility |
+| **Recommended Use Cases** | • Sequential models (RNNs, LSTMs)<br>• Reinforcement Learning agents<br>• Small-batch or streaming real-time applications | • GAN Discriminators<br>• Diffusion models & generative sampling architectures<br>• Deep stability-critical or physics-constrained networks |
