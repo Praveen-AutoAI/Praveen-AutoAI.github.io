@@ -68,20 +68,13 @@ Feature normalization is a preprocessing technique that transforms input feature
 
 The primary goal of feature normalization is to ensure that all features contribute fairly during optimization. By reducing scale differences and stabilizing feature distributions, normalization improves gradient-based learning, accelerates convergence, and often leads to better model performance and numerical stability.
 
-| Method                                     | Formula                                   | Output Range          | Unique Advantage                                             | Best Used For                         |    
-| ------------------------------------------ | ----------------------------------------- | --------------------- | ------------------------------------------------------------ | ------------------------------------- |
-| **Min-Max Scaling**                        | $$x'=\frac{x-x_{min}}{x_{max}-x_{min}}$$  | Typically \[0,1]      | Preserves relative distances and original distribution shape | Neural networks, image pixel scaling  |         
-| **Standardization (Z-Score)**              | $$x'=\frac{x-\mu}{\sigma}$$               | Mean = 0, Std = 1     | Most widely used; works well for gradient-based optimization | General ML, Deep Learning             |     
-| **Robust Scaling**                         | $$x'=\frac{x-\text{Median}}{\text{IQR}}$$ | Not fixed             | Resistant to outliers                                        | Sensor data, finance, industrial data |                
-| **Unit Vector (L1/L2) Normalization**      | $$x'=\frac{x}{\|x\|}$$                    | Vector norm = 1       | Focuses on direction rather than magnitude                   | Similarity search, embeddings         |           
-| **Log Transform**                          | $$x'=\log(x+c)$$                          | Depends on data       | Compresses large values and reduces skewness                 | Heavy-tailed distributions            |         
 
 | Method | Formula | Output Range | When to Use | Best Used For |
 | :--- | :--- | :--- | :--- | :--- |
 | **Min-Max Scaling** | $x' = \frac{x - x_{\text{min}}}{x_{\text{max}} - x_{\text{min}}}$ | Typically $[0,1]$ | Use when feature bounds are known and preserving relative distances between values is important. Avoid if significant outliers are present, since they can compress most data into a narrow range. | Neural networks, image pixel scaling |
 | **Standardization (Z-Score)** | $x' = \frac{x - \mu}{\sigma}$ | Mean = 0, Std = 1 | Use as the default choice for most machine learning algorithms, especially gradient-based methods. Effective when features approximately follow a Gaussian distribution or have different scales. | General ML, Deep Learning |
 | **Robust Scaling** | $x' = \frac{x - \text{Median}}{\text{IQR}}$ | Not fixed | Use when the dataset contains outliers that could distort mean and standard deviation based scaling methods. | Sensor data, finance, industrial data |
-| **Unit Vector ($L_1$/$L_2$) Normalization** | $x' = \frac{x}{\|x\|}$ | Vector norm = 1 | Use when the direction of a feature vector is more important than its magnitude. Frequently applied before computing similarity metrics such as cosine similarity. | Similarity search, embeddings, text mining |
+| **Unit Vector ($L_1$ & $L_2$) Normalization** | $x' = \frac{x}{\|x\|}$ | Vector norm = 1 | Use when the direction of a feature vector is more important than its magnitude. Frequently applied before computing similarity metrics such as cosine similarity. | Similarity search, embeddings, text mining |
 | **Log Transform** | $x' = \log(x+c)$ | Depends on data | Use for highly skewed or long-tailed distributions where a few very large values dominate the dataset. Often followed by Standardization. | Financial data, count data, heavy-tailed distributions |
 
 
