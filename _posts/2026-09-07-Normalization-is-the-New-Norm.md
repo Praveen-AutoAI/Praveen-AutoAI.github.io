@@ -154,7 +154,7 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 | **Recommended Use Cases** | • Sequential models (RNNs, LSTMs)<br>• Reinforcement Learning agents<br>• Small-batch or streaming real-time applications | • GAN Discriminators<br>• Diffusion models & generative sampling architectures<br>• Deep stability-critical or physics-constrained networks |
 
 ### Effect of Normalization
-![Normalization_Effect](assets/images/Normalization/Normalization_2.png)
+![Normalization_Effect](/assets/images/Normalization/Normalization_2.png)
 
 Note: The high density is not indicating that WeightNorm or SpectralNorm are creating more data points. It happens because both methods compress the distribution into a much narrower range, and a probability density must become taller to preserve a total area of 1.
 
