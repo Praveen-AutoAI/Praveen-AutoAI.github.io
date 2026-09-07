@@ -22,23 +22,6 @@ where:
 * $\sigma$ = standard deviation
 
 
-Generic Normalization Formula
-
-Most activation normalization methods follow:
-
-x^=x−μσ2+ϵ\hat{x} = \frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}x^=σ2+ϵ​x−μ​
-
-followed by:
-
-y=γx^+βy=\gamma\hat{x}+\betay=γx^+β
-
-where:
-
-μ\muμ = mean
-σ\sigmaσ = standard deviation
-γ,β\gamma,\betaγ,β = learnable parameters
-
-
 The goal is not to change the information contained in the data, but to make its numerical representation more suitable for optimization.
 
 In deep learning, normalization can be applied to:
