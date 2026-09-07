@@ -119,13 +119,11 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 * **Built-in Dynamic Stability Control:** The effective learning rate for directional updates scales inversely with $\|\mathbf{v}\|$. If steering vectors grow excessively large, directional updates automatically scale down—acting as an automatic governor that prevents over-steering and guards against gradient explosions.
 
 
-### B. Spectral Normalization: Installing a Universal Gain Limiter
+### B. Spectral Normalization:
 
-### Spectral Normalization: Installing an Active Stability & Steering Governor
+Imagine driving a vehicle where steering or acc pedal sensitivity is very high and leads to the erratic driving. If turning the wheel 5 degrees amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering or throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
 
-Imagine driving a vehicle where steering sensitivity and throttle response multiply uncontrollably through every transmission stage. If turning the wheel 5 degrees or tapping the accelerator along a specific cornering axis amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering and throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
-
-Spectral Normalization (SpectralNorm) solves this by installing an **Electronic Stability Governor** directly onto the weight matrix:
+Spectral Normalization (SpectralNorm) solves this by installing an **Gain Limiter** directly onto the weight matrix for the stability control:
 
 $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 
