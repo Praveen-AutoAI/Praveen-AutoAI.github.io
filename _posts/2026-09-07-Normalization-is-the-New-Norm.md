@@ -119,5 +119,23 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 * **Built-in Dynamic Stability Control:** The effective learning rate for directional updates scales inversely with $\|\mathbf{v}\|$. If steering vectors grow excessively large, directional updates automatically scale down—acting as an automatic governor that prevents over-steering and guards against gradient explosions.
 
 
+### B. Spectral Normalization: Installing a Universal Gain Limiter
+
+Imagine chaining ten audio amplifiers in a row. If each stage boosts signal magnitude by just $2\times$, small input variations are blown up by over $1,000\times$ down the line—causing harsh distortion, feedback shrieks, and system failure. In deep neural networks, unconstrained weight matrices do the exact same thing: they excessively amplify activations across layers, leading to unstable training and exploding gradients.
+
+Spectral Normalization (SpectralNorm) solves this by installing a strict mathematical **gain limiter** directly onto the weight matrix:
+
+$$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
+
+* **$\sigma_{\max}(\mathbf{W})$ (Peak Spectral Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum amplification factor the layer can apply to any input direction.
+* **$\mathbf{W}_{\text{SN}}$ (Normalized Matrix):** The rescaled matrix whose maximum possible signal amplification is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
+
+---
+
+#### Why Capping Gain Changes the Game
+
+* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the singular value to $1$ guarantees that no vector passing through the layer is ever stretched beyond its original length.
+* **Explosion-Proof Deep Networks:** By keeping every layer's maximum amplification factor bounded at $1$, small perturbations and transient gradients cannot cascade into exploding signals—even across extremely deep architectures or unstable setups like GAN discriminators.
+* **Surgical Directional Clipping:** Rather than shrinking all parameters uniformly, SpectralNorm selectively scales down only the most aggressively expanding directional axis of the matrix, preserving subtle spatial features while completely eliminating uncontrolled signal growth.
 
 
