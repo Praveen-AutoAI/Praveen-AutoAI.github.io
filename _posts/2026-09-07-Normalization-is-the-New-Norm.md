@@ -121,22 +121,22 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 
 ### B. Spectral Normalization: Installing a Universal Gain Limiter
 
-### Spectral Normalization: Installing a Powertrain Rev Limiter
+### Spectral Normalization: Installing an Active Stability & Steering Governor
 
-Imagine driving a vehicle equipped with multiple stacked turbochargers in series. If every stage boosts intake pressure exponentially without limits, a small tap on the accelerator multiplies boost through stage after stage—ultimately over-pressurizing the intake, blowing the seals, and destroying the engine. In deep neural networks, unconstrained weight matrices act like runaway turbochargers: they excessively amplify activations across layers, causing numerical instabilities and exploding gradients.
+Imagine driving a vehicle where steering sensitivity and throttle response multiply uncontrollably through every transmission stage. If turning the wheel 5 degrees or tapping the accelerator along a specific cornering axis amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering and throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
 
-Spectral Normalization (SpectralNorm) solves this by installing a strict **mechanical torque governor** directly onto the weight matrix:
+Spectral Normalization (SpectralNorm) solves this by installing an **Electronic Stability Governor** directly onto the weight matrix:
 
 $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 
-* **$\sigma_{\max}(\mathbf{W})$ (Peak Mechanical Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum force amplification factor the layer can apply across any directional axis.
-* **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak multiplication factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
+* **$\sigma_{\max}(\mathbf{W})$ (Peak Steering/Throttle Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
+* **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
 
 ---
 
 #### Why Capping Peak Gain Changes the Game
 
-* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the peak singular value to $1$ guarantees that no force vector entering the layer is amplified beyond a $1:1$ ratio ($\|\mathbf{W}\mathbf{x}\| \le \|\mathbf{x}\|$).
-* **Explosion-Proof Deep Pipelines:** By ensuring no individual layer can boost signal energy beyond unity, transient noise and dynamic sensor spikes cannot cascade into exploding gradients—even across deep architectures or sensitive feedback loops.
-* **Selective Directional Limiting:** Rather than choking engine power across all driving conditions, SpectralNorm scales down only the specific high-gain vector axis threatening instability, leaving all other maneuver directions fully intact.
+* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the peak singular value to $1$ guarantees that no input vector (steering angle or throttle force) is amplified beyond a $1:1$ ratio ($\|\mathbf{W}\mathbf{x}\| \le \|\mathbf{x}\|$), eliminating runaway oversteer.
+* **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, minor steering jitter, sensor noise, or dynamic updates cannot cascade into exploding gradients—even across deep architectures or transient feedback loops.
+* **Selective Directional Stability Control:** Rather than deadening steering and throttle response across all driving conditions, SpectralNorm scales down only the specific high-gain vector axis that causes spin-outs, leaving all other maneuver directions fully responsive.
 
