@@ -88,6 +88,14 @@ The primary goal of feature normalization is to ensure that all features contrib
 ### Summary of Feature Normalization
 ![Normalization_Effect](/assets/images/Normalization/Normalization_1.png)
 
+### Benefits of Feature Normalization
+- Prevents large-magnitude features from dominating model learning
+- Ensures all input variables contribute equally
+- Improves gradient-based and distance-based optimization
+- Accelerates initial training convergence
+- Enhances numerical stability
+
+
 ## 2.Weight Normalization: Controlling Model Parameters
 
 Weight normalization techniques directly constrain the model parameters, making optimization more stable and efficient.
