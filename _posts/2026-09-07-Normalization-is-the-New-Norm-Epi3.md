@@ -162,14 +162,6 @@ Given a single sample vector **x = [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>d</
 * **PINN / Scientific ML Advantage:** Avoids coupling distinct spatial/temporal collocation points, ensuring clean autograd computation of exact PDE derivatives (**∂u / ∂x**) without introducing mini-batch noise.
 
 
-### B. LayerNOrm
-**Asks : "How do the features within this sample compare to one another?"**
-
-Layer Normalization (LayerNorm) normalizes the activations of each sample independently by computing the mean and variance across that sample's feature dimensions. Unlike BatchNorm, it does not depend on other samples in the batch, so it does not require mini-batch statistics or running averages.
-
-> **Key Concept:** $\mu$ and $\sigma^2$ are calculated strictly across the feature dimensions of a **single sample**, making execution completely independent of batch size or batch structure during both training and inference.
-
-
 ### B. RMSNorm
 **Asks : "How large is the overall signal in this sample?"**
 
