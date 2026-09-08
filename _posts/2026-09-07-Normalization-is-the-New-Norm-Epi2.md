@@ -241,7 +241,7 @@ $$
 
 1. **Geometry Preservation**
 
-   The relative geometry of the transformation is preserved. The principal directions and feature-alignment axes remain unchanged; only the overall scale is reduced.
+   The relative geometry of the transformation is preserved. The **principal directions and feature-alignment axes remain unchanged**; only the overall scale is reduced.
 
 2. **Gain Capping**
 
@@ -251,16 +251,11 @@ $$
 \sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1
 $$
 
-   which guarantees:
-
-$$
-\|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\| \qquad \forall \, \mathbf{x}
-$$
 
 3. **Controlled Signal Amplification**
 
    No input direction can be amplified beyond a factor of **1.0**, preventing runaway growth of activations and exploding gradients in deep PINN architectures.
    
 
-> 💡 **Core Engineering Takeaway:**  
+> **key Insight:**  
 > The original matrix **W** can strongly amplify certain input directions, leading to unstable activations and exploding gradients. Spectral Normalization rescales the matrix so that its maximum possible gain is capped at **1.0**. The transformation geometry is preserved, while excessive amplification is eliminated, resulting in more stable optimization and gradient propagation in deep neural networks.
