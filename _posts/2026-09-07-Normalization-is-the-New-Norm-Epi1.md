@@ -56,6 +56,8 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Weight Stage** | **Weight Normalization**<br>*(e.g., WeightNorm, SpectralNorm)* | Learnable model parameters / weight matrices ($\mathbf{W}$) | Controls weight magnitude or bounds matrix singular values (decouples magnitude from direction) | • Improves optimization conditioning and smoothes the loss landscape<br>• Operates independently of mini-batch size or batch dependencies<br>• Stabilizes training dynamics and prevents uncontrolled weight growth<br>• Caps directional signal amplification to prevent exploding gradients |
 | **Output / Hidden Stage** | **Activation Normalization**<br>*(e.g., BatchNorm, LayerNorm, RMSNorm)* | Hidden layer outputs ($\mathbf{H} = \mathbf{W}\mathbf{X} + \mathbf{b}$) before or after activation | Standardizes hidden activation distributions across batch, feature, or channel dimensions | • Mitigates internal covariate shift and activation drift<br>• Improves gradient flow throughout deep network layers<br>• Enables stable training of substantially deeper architectures<br>• Allows higher learning rates for significantly faster convergence |
 
+### Normalization at Different Stages of the Pipeline
+![Normalization_Effect](/assets/images/Normalization/Normalization_4.png)
 
 ### Why Normalization Matters
 
