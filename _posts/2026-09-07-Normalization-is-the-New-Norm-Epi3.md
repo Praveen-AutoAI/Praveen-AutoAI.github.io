@@ -146,11 +146,12 @@ Given a single sample vector **x = [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>d</
    *(where **γ** and **β** are learnable element-wise parameters that allow the network to recover original scales if optimal)*
 
 
+
+
 > #### Key Properties
 
 * **Batch Independence:** Computes statistics strictly per individual sample, enabling identical execution regardless of mini-batch size (including batch size = 1) and sequence length.
 * **Training–Inference Consistency:** The exact same mathematical operation is applied during both training and evaluation—eliminating the need to track global running averages (**μ<sub>run</sub>**, **σ<sub>run</sub><sup>2</sup>**).
-* **PINN / Scientific ML Advantage:** Avoids coupling distinct spatial/temporal collocation points, ensuring clean autograd computation of exact PDE derivatives (**∂u / ∂x**) without introducing mini-batch noise.
 
 
 ### B. RMSNorm
