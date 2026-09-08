@@ -171,55 +171,123 @@ While weightNorm is obvious to visualize and understand, the effect of SpectralN
 
 <img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
 
-\subsection*{Geometric Effect of Spectral Normalization}
+### Geometric Effect of Spectral Normalization
 
-Consider the raw weight matrix $\mathbf{W}$:
-\[
-\mathbf{W} = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}
-\]
+Consider the raw weight matrix **W**:
 
-Its largest singular value (peak directional amplification factor) is $\sigma_{\max}(\mathbf{W}) \approx 5.12$.
+$$
+\mathbf{W} =
+\begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix}
+$$
 
-Applying Spectral Normalization rescales $\mathbf{W}$ by this maximum gain factor:
-\[
-\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})} = \begin{bmatrix} 0.782 & 0.391 \\ 0.195 & 0.586 \end{bmatrix}
-\]
+Its largest singular value (peak directional amplification factor) is:
 
-\vspace{1em}
-\hrule
-\vspace{1em}
+$$
+\sigma_{\max}(\mathbf{W}) \approx 5.12
+$$
 
-\subsubsection*{Geometric Interpretation}
+Applying Spectral Normalization rescales **W** by this maximum gain factor:
 
-\begin{itemize}
-    \item \textbf{Input Space:} The unit circle represents all possible unit-length input vectors where $\|\mathbf{x}\| = 1$.
-    \item \textbf{Original Transformation ($\mathbf{y} = \mathbf{W}\mathbf{x}$):} Transformed by $\mathbf{W}$, the unit circle becomes a stretched red ellipse. Different input directions are amplified by different amounts.
-    
-    For example, evaluating input vector $\mathbf{x} = \begin{bmatrix} 1 & 0 \end{bmatrix}^T$:
-    \[
-    \mathbf{W}\mathbf{x} = \begin{bmatrix} 4 \\ 1 \end{bmatrix} \implies \|\mathbf{W}\mathbf{x}\| = \sqrt{4^2 + 1^2} \approx 4.12
-    \]
-    The unconstrained layer significantly amplifies signal energy along this trajectory ($\|\mathbf{W}\mathbf{x}\| \approx 4.12$ vs. $\|\mathbf{x}\| = 1.0$).
+$$
+\mathbf{W}_{\text{SN}}
+=
+\frac{\mathbf{W}}
+{\sigma_{\max}(\mathbf{W})}
+=
+\begin{bmatrix}
+0.782 & 0.391 \\
+0.195 & 0.586
+\end{bmatrix}
+$$
 
-    \item \textbf{Governed Transformation ($\mathbf{y} = \mathbf{W}_{\text{SN}}\mathbf{x}$):} Transformed by $\mathbf{W}_{\text{SN}}$, the unit circle becomes the blue ellipse.
-\end{itemize}
+---
 
-\vspace{1em}
-\hrule
-\vspace{1em}
+#### Geometric Interpretation
 
-\subsubsection*{Key Takeaways \& Mathematical Guarantees}
+- **Input Space:** The unit circle represents all possible unit-length input vectors, where
 
-\begin{enumerate}
-    \item \textbf{Geometric Preservation:} The shape, principal orientation, and feature-alignment axes of the transformation matrix remain identical.
-    \item \textbf{Gain Capping:} The maximum stretching factor is strictly bounded to unity:
-    \begin{itemize}
-        \item $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1.0$
-        \item $\|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\|$ for all input vectors $\mathbf{x}$
-    \end{itemize}
-\end{enumerate}
+$$
+\|\mathbf{x}\| = 1
+$$
 
-\begin{quote}
-\textbf{Core Engineering Takeaway:} The original matrix $\mathbf{W}$ heavily amplifies specific signal directions, risking numerical instability in deep architectures. Spectral Normalization scales the entire matrix so that the maximum possible gain is capped at $1.0$. Signal geometry is preserved while over-amplification is eliminated, ensuring stable gradient propagation across PINNs and deep networks.
-\end{quote}
+- **Original Transformation (\(\mathbf{y} = \mathbf{W}\mathbf{x}\)):**  
+  When transformed by **W**, the unit circle becomes the **red ellipse**. Different input directions are amplified by different amounts.
 
+  For example, consider the input vector:
+
+$$
+\mathbf{x}
+=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+$$
+
+Then,
+
+$$
+\mathbf{W}\mathbf{x}
+=
+\begin{bmatrix}
+4 \\
+1
+\end{bmatrix}
+$$
+
+and
+
+$$
+\|\mathbf{W}\mathbf{x}\|
+=
+\sqrt{4^2 + 1^2}
+\approx 4.12
+$$
+
+The unconstrained layer significantly amplifies signal energy along this direction:
+
+$$
+\|\mathbf{W}\mathbf{x}\|
+\approx 4.12
+\qquad \text{vs} \qquad
+\|\mathbf{x}\| = 1
+$$
+
+- **Spectrally Normalized Transformation (\(\mathbf{y} = \mathbf{W}_{SN}\mathbf{x}\)):**  
+  When transformed by **W<sub>SN</sub>**, the unit circle becomes the **blue ellipse**. The transformation retains its geometric structure but its maximum amplification is bounded.
+
+---
+
+#### Key Takeaways and Mathematical Guarantees
+
+1. **Geometry Preservation**
+
+   The relative geometry of the transformation is preserved. The principal directions and feature-alignment axes remain unchanged; only the overall scale is reduced.
+
+2. **Gain Capping**
+
+   The maximum stretching factor is constrained to unity:
+
+$$
+\sigma_{\max}(\mathbf{W}_{SN}) = 1
+$$
+
+which guarantees:
+
+$$
+\|\mathbf{W}_{SN}\mathbf{x}\|
+\le
+\|\mathbf{x}\|
+\qquad
+\forall \mathbf{x}
+$$
+
+3. **Controlled Signal Amplification**
+
+   No input direction can be amplified beyond a factor of **1**, preventing runaway growth of activations and gradients.
+
+> 💡 **Core Engineering Takeaway:**  
+> The original matrix **W** can strongly amplify certain input directions, leading to unstable activations and exploding gradients. Spectral Normalization rescales the matrix so that its maximum possible gain is capped at **1.0**. The transformation geometry is preserved, while excessive amplification is eliminated, resulting in more stable optimization and gradient propagation in deep neural networks.
