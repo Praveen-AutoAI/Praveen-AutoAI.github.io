@@ -65,8 +65,8 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
 
 
-<br>
-Check out [Episode 1: Feature Normalization Methods][epi1-norm] before proceeding with Weight Normalization.
+
+Check out my article [Episode 1: Feature Normalization Methods][epi1-norm] before proceeding with Weight Normalization.
 
 [epi1-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
 
