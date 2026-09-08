@@ -167,5 +167,56 @@ Note: The high density is not indicating that WeightNorm or SpectralNorm are cre
 The histogram can look nearly identical while the network behavior changes dramatically. Similar weight distributions do not imply similar network dynamics.
 </p>
 
+While weightNorm is obvious to visualize and understand, the effect of SpectralNorm could be better caught with a visualization showing its geometric effect.
+
+### Geometric Effect of Spectral Normalization
+
+Consider the raw weight matrix $\mathbf{W}$:
+
+$$
+\mathbf{W} = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}
+$$
+
+Its largest singular value (peak directional amplification factor) is:
+
+$$
+\sigma_{\max}(\mathbf{W}) \approx 5.12
+$$
+
+Applying Spectral Normalization rescales $\mathbf{W}$ by this maximum gain factor:
+
+$$
+\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})} = \begin{bmatrix} 0.782 & 0.391 \\ 0.195 & 0.586 \end{bmatrix}
+$$
+
+---
+
+#### Geometric Interpretation
+
+* **Input Space:** The unit circle represents all possible unit-length input vectors where **||x|| = 1**.
+* **Original Transformation (y = Wx):** Transformed by **W**, the unit circle becomes a stretched **red ellipse**. Different input directions are amplified by different amounts.
+  * For example, evaluating input vector **x = [1, 0]<sup>T</sup>**:
+
+    $$
+    \mathbf{W}\mathbf{x} = \begin{bmatrix} 4 \\ 1 \end{bmatrix} \implies \|\mathbf{W}\mathbf{x}\| = \sqrt{4^2 + 1^2} \approx 4.12
+    $$
+
+    The unconstrained layer significantly amplifies signal energy along this trajectory.
+
+* **Governed Transformation (y = W<sub>SN</sub>x):** Transformed by **W<sub>SN</sub>**, the unit circle becomes the **blue ellipse**.
+
+---
+
+#### Key Takeaways & Mathematical Guarantees
+
+1. **Geometric Preservation:** The shape, principal orientation, and feature-alignment axes of the transformation matrix remain identical.
+2. **Gain Capping:** The maximum stretching factor is strictly bounded to unity:
+
+$$
+\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1 \implies \|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\| \quad \forall \, \mathbf{x}
+$$
+
+> **Core Engineering Takeaway:** The original matrix **W** heavily amplifies specific signal directions, risking numerical instability. Spectral Normalization scales the entire matrix so that the maximum possible gain is capped at **1.0**. Signal geometry is preserved while over-amplification is eliminated, ensuring stable gradient propagation across deep architectures.
+
 <img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
 
