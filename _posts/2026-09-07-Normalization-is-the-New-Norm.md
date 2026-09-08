@@ -135,46 +135,6 @@ $$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
 * **$\sigma_{\max}(\mathbf{W})$ (Peak Steering/Throttle Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
 * **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
 
-
-
-#### Why Capping Peak Gain Changes the Game
-
-* **Enforced Lipschitz Continuity ($L \le 1$):** Because $\max_{\mathbf{x}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W})$, capping the peak singular value to $1$ guarantees that no input vector (steering angle or throttle force) is amplified beyond a $1:1$ ratio ($\|\mathbf{W}\mathbf{x}\| \le \|\mathbf{x}\|$), eliminating runaway oversteer.
-* **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, no problem of exploding gradients—even across deep architectures or transient feedback loops.
-
-### A. Weight Normalization
-
-By default, a weight vector $\mathbf{w}$ entangles both **direction** (where the neuron looks) and **magnitude** (how strongly it fires) into a single array of parameters. A weight update intended to adjust feature alignment accidentally alters signal amplitude, forcing the optimizer to constantly re-calibrate its line.
-
-Weight Normalization (WeightNorm) decouples steering from speed control with a surgical mathematical reparameterization:
-
-$$
-\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}
-$$
-
-* **$\mathbf{v}$ (Steering Vector):** A learnable parameter vector controlling feature orientation without affecting power output.
-* **$g$ (Accelerator & Brake Scalar):** A learnable scalar explicitly dictating overall signal magnitude ($\|\mathbf{w}\| = g$).
-
-#### Why Decoupling Changes the Game
-
-* **Independent Trajectory & Power Control:** Gradient descent updates the scalar $g$ purely along the weight vector's length while adjusting $\mathbf{v}$ strictly orthogonal (perpendicular) to it. You can adjust your heading without surging forward, or punch the accelerator without drifting out of your lane.
-* **Built-in Dynamic Stability Control:** The effective learning rate for directional updates scales inversely with $\|\mathbf{v}\|$. If steering vectors grow excessively large, directional updates automatically scale down—acting as an automatic governor that prevents over-steering and guards against gradient explosions.
-
----
-
-### B. Spectral Normalization
-
-Imagine driving a vehicle where steering or accelerator pedal sensitivity is extremely high, leading to erratic driving. If turning the wheel just 5 degrees amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering or throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
-
-Spectral Normalization (SpectralNorm) solves this by installing a **Gain Limiter** directly onto the weight matrix for stability control:
-
-$$
-\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}
-$$
-
-* **$\sigma_{\max}(\mathbf{W})$ (Peak Steering/Throttle Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
-* **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
-
 #### Why Capping Peak Gain Changes the Game
 
 * **Enforced Lipschitz Continuity ($L \le 1$):** Isolating the maximum signal gain into an explicit mathematical constraint guarantees bounded amplification:
