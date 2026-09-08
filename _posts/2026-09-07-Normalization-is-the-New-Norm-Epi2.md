@@ -233,7 +233,10 @@ $$
 \|\mathbf{W}\mathbf{x}\| \approx 4.12 \qquad \text{vs} \qquad \|\mathbf{x}\| = 1
 $$
 
-<img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
+<p align="center">
+  <img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
+</p>
+
 
 * **Spectrally Normalized Transformation (y = W<sub>SN</sub>x):**  
   When transformed by **W<sub>SN</sub>**, the unit circle becomes the **blue ellipse**. The transformation retains its geometric structure, but its maximum amplification is strictly bounded.
