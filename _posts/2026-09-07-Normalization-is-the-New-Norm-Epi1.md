@@ -24,8 +24,8 @@ where:
 In deep learning, normalization can be applied to:
 
 - Input data **(feature normalization)**   We all know this obvious step that we do in the feature engineering process.
-- Model parameters/weights **(WeightNorm, SpectralNorm)**  
-- Intermediate activations(activation functions) **(BatchNorm, LayerNorm, RMSNorm)**
+- Model parameters/weights **(Weight Normalization)**  
+- Intermediate activations(activation functions) **(Activation Normalization)**
 
 
 <p style="color:blue;">
