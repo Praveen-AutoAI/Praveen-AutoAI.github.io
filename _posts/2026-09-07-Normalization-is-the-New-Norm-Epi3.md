@@ -145,6 +145,83 @@ Given a single sample vector **x = [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>d</
    $$
    *(where **γ** and **β** are learnable element-wise parameters that allow the network to recover original scales if optimal)*
 
+#### Core Mechanism & Formulation
+
+Given a single sample vector:
+
+**x = [x₁, x₂, ..., xᵈ]ᵀ**
+
+containing **d feature (hidden-state) dimensions**, LayerNorm computes normalization statistics from the features of that sample itself.
+
+##### 1. Calculate Feature Mean
+
+```text
+μL = (1/d) · Σ xᵢ
+```
+
+##### 2. Calculate Feature Variance
+
+```text
+σ²L = (1/d) · Σ (xᵢ − μL)²
+```
+
+##### 3. Normalize Activations
+
+```text
+x̂ᵢ = (xᵢ − μL) / √(σ²L + ε)
+```
+
+where:
+
+- **ε > 0** is a small constant for numerical stability.
+- **x̂ᵢ** is the normalized activation.
+
+##### 4. Apply Learnable Scale and Shift
+
+```text
+yᵢ = γ · x̂ᵢ + β
+```
+
+where:
+
+- **γ** = learnable scaling parameter
+- **β** = learnable bias (shift) parameter
+
+These parameters allow the network to recover an optimal scale and offset if required.
+
+---
+
+#### Intuition
+
+LayerNorm computes statistics **within a single sample**:
+
+```text
+Sample = [x₁, x₂, x₃, ..., xᵈ]
+              ↓
+      Compute μL and σ²L
+              ↓
+         Normalize
+```
+
+Unlike BatchNorm:
+
+```text
+BatchNorm:
+"How does this sample compare to
+other samples in the batch?"
+
+LayerNorm:
+"How do the features within this
+sample compare to one another?"
+```
+
+Because every sample is normalized independently, LayerNorm works well for:
+
+- Transformers
+- RNNs and LSTMs
+- Variable-length sequences
+- Small-batch training
+- Distributed training
 
 
 
