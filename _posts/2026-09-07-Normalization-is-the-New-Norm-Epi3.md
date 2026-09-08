@@ -85,31 +85,39 @@ Activation normalization methods stabilize the **intermediate feature representa
 
 BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift(internal covariate shift)  during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift. 
 
-### Batch Normalization (BatchNorm)
+#### Core Mechanism & Formulation
 
-#### Mathematical Formulation
+Given a mini-batch **B = {x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>}** of size *m* for a specific feature dimension:
 
-For a mini-batch **B** of size *m*, activations are normalized and transformed via:
-
+1. **Calculate Mini-Batch Mean:**
 $$
-\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i, \qquad \sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
+\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
 $$
 
+2. **Calculate Mini-Batch Variance:**
+$$
+\sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
+$$
+
+3. **Normalize Activations:**
 $$
 \hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}
 $$
+*(where **ε > 0** is a small numerical stability constant preventing division by zero)*
 
+4. **Apply Learnable Scale and Shift (Affine Transformation):**
 $$
 y_i = \gamma \hat{x}_i + \beta
 $$
+*(where **γ** and **β** are learnable parameters that allow the network to recover original activation scales if optimal)*
 
 ---
 
-#### Key Characteristics
+#### Key Properties
 
-* **Batch Dependency:** Normalizes across the batch dimension. Requires sufficiently large batch sizes ($m \ge 32$) to estimate accurate mean and variance.
-* **Affine Parameters:** Learnable parameters **γ** (scale) and **β** (shift) preserve model expressivity.
-* **Inference Behavior:** Replaces mini-batch statistics with cumulative running averages ($\mu_{\text{running}}$, $\sigma^2_{\text{running}}$).
+* **Training Phase:** Mini-batch statistics (**μ<sub>B</sub>**, **σ<sub>B</sub><sup>2</sup>**) are calculated dynamically per batch while updating running exponential averages.
+* **Inference Phase:** Mini-batch statistics are bypassed. Fixed global running statistics (**μ<sub>run</sub>**, **σ<sub>run</sub><sup>2</sup>**) ensure deterministic predictions for individual inputs.
+* **Optimization Benefit:** Smooths the loss landscape, enables higher learning rates, and mitigates sensitivity to parameter initialization.
 
 
 ### B. LayerNOrm
