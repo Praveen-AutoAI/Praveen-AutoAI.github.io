@@ -197,8 +197,8 @@ Given a mini-batch **B = {x₁, x₂, ..., xₘ}** of size *m* across a specific
 
 3. **Normalize Activations:**
    $$\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}$$
-   *(where **ε > 0** is a small constant for numerical stability)*
+*(where **ε > 0** is a small constant for numerical stability)*
 
 4. **Apply Learnable Scale & Shift:**
    $$y_i = \gamma \hat{x}_i + \beta$$
-   *(where **γ** [scale] and **β** [shift] allow the network to recover optimal representations)*
+ *(where **γ** [scale] and **β** [shift] allow the network to recover optimal representations)*
