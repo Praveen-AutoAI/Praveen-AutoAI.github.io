@@ -119,6 +119,48 @@ Given a mini-batch **B = {x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>}** of
 * **Inference Phase:** Mini-batch statistics are bypassed. Fixed global running statistics (**μ<sub>run</sub>**, **σ<sub>run</sub><sup>2</sup>**) ensure deterministic predictions for individual inputs.
 * **Optimization Benefit:** Smooths the loss landscape, enables higher learning rates, and mitigates sensitivity to parameter initialization.
 
+### B. LayerNorm
+
+--Asks: "How does a feature in a sample compare to other features within the same sample?"**
+
+LayerNorm normalizes activations across all feature dimensions for a single data point rather than across the mini-batch. Introduced by Ba et al. to address BatchNorm’s dependencies on batch size, LayerNorm stabilizes hidden representations independently of batch dynamics, making it exceptionally well-suited for sequence models, Transformers, and PINNs.
+
+---
+
+#### Core Mechanism & Formulation
+
+Given a single sample vector **x = [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>d</sub>]<sup>T</sup>** across *d* feature/hidden dimensions:
+
+1. **Calculate Feature Mean:**
+   $$
+   \mu_L = \frac{1}{d} \sum_{i=1}^{d} x_i
+   $$
+
+2. **Calculate Feature Variance:**
+   $$
+   \sigma_L^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu_L)^2
+   $$
+
+3. **Normalize Activations:**
+   $$
+   \hat{x}_i = \frac{x_i - \mu_L}{\sqrt{\sigma_L^2 + \epsilon}}
+   $$
+   *(where **ε > 0** is a numerical stability constant preventing division by zero)*
+
+4. **Apply Learnable Scale & Shift (Affine Transformation):**
+   $$
+   y_i = \gamma \hat{x}_i + \beta
+   $$
+   *(where **γ** and **β** are learnable element-wise parameters that allow the network to recover original scales if optimal)*
+
+---
+
+#### Key Properties
+
+* **Batch Independence:** Computes statistics strictly per individual sample, enabling identical execution regardless of mini-batch size (including batch size = 1) and sequence length.
+* **Training–Inference Consistency:** The exact same mathematical operation is applied during both training and evaluation—eliminating the need to track global running averages (**μ<sub>run</sub>**, **σ<sub>run</sub><sup>2</sup>**).
+* **PINN / Scientific ML Advantage:** Avoids coupling distinct spatial/temporal collocation points, ensuring clean autograd computation of exact PDE derivatives (**∂u / ∂x**) without introducing mini-batch noise.
+
 
 ### B. LayerNOrm
 **Asks : "How do the features within this sample compare to one another?"**
