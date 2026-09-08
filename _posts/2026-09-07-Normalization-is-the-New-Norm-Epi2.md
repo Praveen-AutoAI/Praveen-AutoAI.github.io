@@ -137,12 +137,9 @@ $$
 * **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, the network guarantees global stability—eliminating exploding gradients even across deep architectures or transient feedback loops.
 
 <p style="color:blue;">
-<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
-</p>
-
-
-<p style="color:blue;">
-<strong>Remember This:</strong> WeightNorm improves optimization by separating weight magnitude from weight direction (deoupling the steering and accelerator pedal), while SpectralNorm improves stability by limiting the maximum amplification capability of a layer (by reducing the sensitivity of the input). In simple terms, WeightNorm helps the model learn more efficiently, whereas SpectralNorm helps the model learn more safely.
+<strong>Remember This:</strong> Imagine driving a car where steering and acceleration are hard to control. In a standard neural network, the weight vector simultaneously determines <em>where to look</em> (direction) and <em>how strongly to respond</em> (magnitude), making optimization difficult. <strong>WeightNorm</strong> separates these two controls, allowing the model to learn more efficiently.
+<br><br>
+Now imagine the car is overly sensitive, where a tiny steering or throttle adjustment causes a dramatic reaction. Similarly, some neural network layers can excessively amplify signals, leading to unstable training and exploding gradients. <strong>SpectralNorm</strong> acts as a gain limiter, restricting the maximum amplification a layer can apply. In short, <strong>WeightNorm improves optimization efficiency, while SpectralNorm improves training stability.</strong>
 </p>
 
 ### Summary of Weight Normalization Methods
