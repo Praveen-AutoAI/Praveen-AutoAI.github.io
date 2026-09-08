@@ -113,7 +113,7 @@ $$
 
 * $\sigma_{\max}(\mathbf{W})$ **(Peak Steering/Throttle Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
 * $\mathbf{W}_{\text{SN}}$ **(Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
-
+$\mathbf{W}_{\text{SN}}$ **(Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
 
 #### Why Capping Peak Gain Changes the Game
 
