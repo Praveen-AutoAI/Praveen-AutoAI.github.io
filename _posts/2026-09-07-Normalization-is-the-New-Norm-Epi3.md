@@ -71,7 +71,7 @@ The histogram can look nearly identical while the network behavior changes drama
 
 
 
-Check out my article [Episode 1: Feature Normalization Methods][epi1-norm] and [Episode 2: Weight Normalization Methods][epi2-norm] before proceeding with Weight Normalization.
+**Check out my articles** [Episode 1: Feature Normalization Methods][epi1-norm] and [Episode 2: Weight Normalization Methods][epi2-norm] before proceeding with Activation Normalization.
 
 [epi1-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
 [epi2-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi2.html
