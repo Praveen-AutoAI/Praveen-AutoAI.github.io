@@ -8,6 +8,7 @@ tags: [Data Science, Deep Learning, AI]
 math: true
 ---
 
+
 ## Introduction to Normalization
 
 ### What's Normalization?
@@ -23,9 +24,10 @@ where:
 
 In deep learning, normalization can be applied to:
 
-- Input data **(feature normalization)**   We all know this obvious step that we do in the feature engineering process.
-- Model parameters/weights **(WeightNorm, SpectralNorm)**  
-- Intermediate activations(activation functions) **(BatchNorm, LayerNorm, RMSNorm)**
+- Input data - **Feature normalization** 
+- Model parameters/weights - **Weight Normalization**  
+- Output of activations - **Activation Normalization**
+
 
 <p style="color:blue;">
 <strong>Remember This:</strong> The goal is not to change the information contained in the data, but to make its numerical representation more suitable for computation/optimization. Normalization controls the scale of signals inside a neural network, making optimization faster, more stable, and more reliable. Depending on what is being normalized, normalization techniques can be broadly classified into Weight Normalization (normalizing model parameters) and Activation Normalization (normalizing intermediate feature activations).
@@ -48,11 +50,8 @@ As networks become deeper, even slight changes in feature distributions, activat
 Normalization addresses these challenges at different stages of the learning pipeline.
 From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
 
-| Normalization Type | Applied To | Primary Goal | Key Benefits |
-| :--- | :--- | :--- | :--- |
-| **Feature Normalization** | Input Features | Bring all input variables to a comparable scale before training | • Prevents large-scale features from dominating smaller ones<br>• Improves gradient-based and distance-based optimization<br>• Accelerates convergence<br>• Improves numerical stability |
-| **Weight Normalization** | Model Parameters (Weights) | Control weight magnitudes and amplification characteristics | • Improves optimization conditioning<br>• Controls weight magnitude or gain<br>• Stabilizes training dynamics<br>• Prevents uncontrolled weight growth |
-| **Activation Normalization** | Hidden Layer Activations | Maintain stable feature distributions during training | • Reduces activation drift<br>• Improves gradient propagation<br>• Enables deeper architectures<br>• Supports higher learning rates and faster convergence |
+### Normalization at Different Stages of the Pipeline
+![Normalization_Effect](/assets/images/Normalization/Normalization_4.png)
 
 ### Why Normalization Matters
 
