@@ -64,6 +64,11 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Improves Training Stability** | Maintains consistent activation distributions across layers for a smoother loss landscape. |
 | **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
 
+
+Check out [Episode 1: Normalization strategies][epi1-norm] before proceeding with Weight Normalization.
+
+[epi1-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
+
 ## 2.Weight Normalization: Controlling Model Parameters
 
 Weight normalization techniques directly constrain the model parameters, making optimization more stable and efficient.
