@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New Norm is to Normalize - Types and Methods of Normalization in ML Models - Episode_#1 : Feature Norm"
+title: "The New Norm is to Normalize - Episode_#1 : Feature Normalization"
 description: "Why we normalize data? How it affects the training process"
 date: 2026-09-07
 categories: [Machine Learning, Engineering, Scientific Machine Learning,]
