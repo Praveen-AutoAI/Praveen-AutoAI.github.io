@@ -111,52 +111,6 @@ Given a mini-batch **B = {x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>}** of
    $$
    *(where **γ** and **β** are learnable parameters that allow the network to recover original scales if optimal)*
 
-#### Core Mechanism & Formulation
-
-Given a mini-batch **B = {x₁, x₂, ..., xₘ}** of size *m*:
-
-1. **Calculate Mini-Batch Mean**
-
-$$
-\mu_{\mathcal{B}}
-=
-\frac{1}{m}
-\sum_{i=1}^{m}
-x_i
-$$
-
-2. **Calculate Mini-Batch Variance**
-
-$$
-\sigma_{\mathcal{B}}^2
-=
-\frac{1}{m}
-\sum_{i=1}^{m}
-(x_i-\mu_{\mathcal{B}})^2
-$$
-
-3. **Normalize Activations**
-
-$$
-\hat{x}_i
-=
-\frac{x_i-\mu_{\mathcal{B}}}
-{\sqrt{\sigma_{\mathcal{B}}^2+\epsilon}}
-$$
-
-where **ε** is a small constant for numerical stability.
-
-4. **Apply Learnable Scale and Shift**
-
-$$
-y_i
-=
-\gamma \hat{x}_i + \beta
-$$
-
-where **γ** and **β** are learnable parameters.
-
-
 #### Key Properties
 
 * **Training Phase:** Mini-batch statistics (**μ<sub>B</sub>**, **σ<sub>B</sub><sup>2</sup>**) are computed dynamically per batch while updating running exponential averages.
