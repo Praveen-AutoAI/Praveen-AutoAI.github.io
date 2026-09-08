@@ -87,35 +87,35 @@ BatchNorm normalizes activations using the statistics of the mini-batch. It was 
 
 #### Core Mechanism & Formulation
 
-Given a mini-batch **B = {x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>}** of size *m* for a specific feature dimension:
+Given a mini-batch **B = {x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>}** of size *m* across a specific feature dimension:
 
 1. **Calculate Mini-Batch Mean:**
-$$
-\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
-$$
+   $$
+   \mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i
+   $$
 
 2. **Calculate Mini-Batch Variance:**
-$$
-\sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
-$$
+   $$
+   \sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
+   $$
 
 3. **Normalize Activations:**
-$$
-\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}
-$$
-*(where **ε > 0** is a small numerical stability constant preventing division by zero)*
+   $$
+   \hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}
+   $$
+   *(where **ε > 0** is a numerical stability constant preventing division by zero)*
 
-4. **Apply Learnable Scale and Shift (Affine Transformation):**
-$$
-y_i = \gamma \hat{x}_i + \beta
-$$
-*(where **γ** and **β** are learnable parameters that allow the network to recover original activation scales if optimal)*
+4. **Apply Learnable Scale & Shift (Affine Transformation):**
+   $$
+   y_i = \gamma \hat{x}_i + \beta
+   $$
+   *(where **γ** and **β** are learnable parameters that allow the network to recover original scales if optimal)*
 
 ---
 
 #### Key Properties
 
-* **Training Phase:** Mini-batch statistics (**μ<sub>B</sub>**, **σ<sub>B</sub><sup>2</sup>**) are calculated dynamically per batch while updating running exponential averages.
+* **Training Phase:** Mini-batch statistics (**μ<sub>B</sub>**, **σ<sub>B</sub><sup>2</sup>**) are computed dynamically per batch while updating running exponential averages.
 * **Inference Phase:** Mini-batch statistics are bypassed. Fixed global running statistics (**μ<sub>run</sub>**, **σ<sub>run</sub><sup>2</sup>**) ensure deterministic predictions for individual inputs.
 * **Optimization Benefit:** Smooths the loss landscape, enables higher learning rates, and mitigates sensitivity to parameter initialization.
 
