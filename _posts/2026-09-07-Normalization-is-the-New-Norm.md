@@ -130,10 +130,22 @@ Imagine driving a vehicle where steering or acc pedal sensitivity is very high a
 
 Spectral Normalization (SpectralNorm) solves this by installing an **Gain Limiter** directly onto the weight matrix for the stability control:
 
-$$\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}$$
+$$
+\mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})}
+$$
+
+where the governing components are defined as:
+
+$$
+\begin{aligned}
+\sigma_{\max}(\mathbf{W}) \quad &\rightarrow \quad \text{Largest singular value of } \mathbf{W} \text{ (Peak steering/throttle gain)} \\[8pt]
+\mathbf{W}_{\text{SN}} \quad &\rightarrow \quad \text{Rescaled weight matrix capped at } \sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1
+\end{aligned}
+$$
 
 * **$\sigma_{\max}(\mathbf{W})$ (Peak Steering/Throttle Gain):** The largest singular value of matrix $\mathbf{W}$, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
 * **$\mathbf{W}_{\text{SN}}$ (Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
+
 
 #### Why Capping Peak Gain Changes the Game
 
