@@ -82,7 +82,7 @@ During training, the optimizer must learn both simultaneously, which can make op
 
 
 ### A. WeightNorm 
-**Asks: How to decouple the magnitude and direction and handle them separately.**
+**Asks: How to decouple the magnitude and direction of weights and handle them separately.**
 
 By default, a weight vector $\mathbf{w}$ entangles both **direction** (where the neuron looks) and **magnitude** (how strongly it fires) into a single array of parameters. A weight update intended to adjust feature alignment accidentally alters signal amplitude, forcing the optimizer to constantly re-calibrate its line.
 
@@ -93,9 +93,6 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 * **$\mathbf{v}$ (Steering Wheel):** A learnable parameter vector controlling feature orientation without affecting power output.
 * **$g$ (Accelerator & Brake):** A learnable scalar explicitly dictating overall signal magnitude ($\|\mathbf{w}\| = g$).
 
-<p style="color:blue;">
-<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
-</p>
 
 #### Why Decoupling Changes the Game
 
@@ -104,7 +101,7 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 
 
 ### B. SpectralNorm
-**Asks: How to decouple the magnitude and direction and handle them separately.**
+**Asks: How to reduce the sudden explosion/vanishing of weights and make the learning stable**
 
 Imagine driving a vehicle where steering or acc pedal sensitivity is very high and leads to the erratic driving. If turning the wheel 5 degrees amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering or throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
 
@@ -139,12 +136,16 @@ $$
 
 * **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, the network guarantees global stability—eliminating exploding gradients even across deep architectures or transient feedback loops.
 
+<p style="color:blue;">
+<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
+</p>
+
 
 <p style="color:blue;">
 <strong>Remember This:</strong> WeightNorm improves optimization by separating weight magnitude from weight direction (deoupling the steering and accelerator pedal), while SpectralNorm improves stability by limiting the maximum amplification capability of a layer (by reducing the sensitivity of the input). In simple terms, WeightNorm helps the model learn more efficiently, whereas SpectralNorm helps the model learn more safely.
 </p>
 
-### Summary of Weight Normalization
+### Summary of Weight Normalization Methods
 ![Normalization_Effect](/assets/images/Normalization/Normalization_5.png)
 
 ### Summary Comparison: Weight Normalization vs. Spectral Normalization
