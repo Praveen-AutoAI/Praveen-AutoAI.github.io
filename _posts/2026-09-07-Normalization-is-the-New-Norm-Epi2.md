@@ -167,4 +167,5 @@ Note: The high density is not indicating that WeightNorm or SpectralNorm are cre
 The histogram can look nearly identical while the network behavior changes dramatically. Similar weight distributions do not imply similar network dynamics.
 </p>
 
+<img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
 
