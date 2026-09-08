@@ -170,6 +170,7 @@ The histogram can look nearly identical while the network behavior changes drama
 While weightNorm is obvious to visualize and understand, the effect of SpectralNorm could be better caught with a visualization showing its geometric effect.
 
 <img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
+
 ### Geometric Effect of Spectral Normalization
 
 Consider the raw weight matrix **W**:
