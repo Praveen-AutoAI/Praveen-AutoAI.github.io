@@ -139,7 +139,7 @@ In short, <strong>WeightNorm improves optimization efficiency, while SpectralNor
 ### Summary of Weight Normalization Methods
 ![Normalization_Effect](/assets/images/Normalization/Normalization_5.png)
 
-### Summary Comparison: Weight Normalization vs. Spectral Normalization
+### Comparison: Weight Normalization vs. Spectral Normalization
 
 | Feature / Dimension | Weight Normalization (WeightNorm) | Spectral Normalization (SpectralNorm) |
 | :--- | :--- | :--- |
