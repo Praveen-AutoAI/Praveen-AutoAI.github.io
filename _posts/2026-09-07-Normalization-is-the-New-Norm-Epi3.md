@@ -70,6 +70,13 @@ The histogram can look nearly identical while the network behavior changes drama
 </p>
 
 
+
+Check out my article [Episode 1: Feature Normalization Methods][epi1-norm] and [Episode 2: Weight Normalization Methods][epi2-norm] before proceeding with Weight Normalization.
+
+[epi1-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
+[epi2-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
+
+
 ## 3.Activation Normalization 
 
 Activation normalization methods stabilize the **intermediate feature representations (activations)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the training of deeper architectures.
