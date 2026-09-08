@@ -171,45 +171,55 @@ While weightNorm is obvious to visualize and understand, the effect of SpectralN
 
 <img width="482" height="369" alt="image" src="https://github.com/user-attachments/assets/2cbea046-5335-403e-b980-36fd4c7dc324" />
 
-### Geometric Effect of Spectral Normalization
+\subsection*{Geometric Effect of Spectral Normalization}
 
-Consider the raw weight matrix **W**:
-
-$$
+Consider the raw weight matrix $\mathbf{W}$:
+\[
 \mathbf{W} = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}
-$$
+\]
 
-Its largest singular value (peak directional amplification factor) is **σ<sub>max</sub>(W) ≈ 5.12**.
+Its largest singular value (peak directional amplification factor) is $\sigma_{\max}(\mathbf{W}) \approx 5.12$.
 
-Applying Spectral Normalization rescales **W** by this maximum gain factor:
-
-$$
+Applying Spectral Normalization rescales $\mathbf{W}$ by this maximum gain factor:
+\[
 \mathbf{W}_{\text{SN}} = \frac{\mathbf{W}}{\sigma_{\max}(\mathbf{W})} = \begin{bmatrix} 0.782 & 0.391 \\ 0.195 & 0.586 \end{bmatrix}
-$$
+\]
 
----
+\vspace{1em}
+\hrule
+\vspace{1em}
 
-#### Geometric Interpretation
+\subsubsection*{Geometric Interpretation}
 
-* **Input Space:** The unit circle represents all possible unit-length input vectors where **||x|| = 1**.
-* **Original Transformation (y = Wx):** Transformed by **W**, the unit circle becomes a stretched **red ellipse**. Different input directions are amplified by different amounts.
-  * For example, evaluating input vector **x = [1, 0]<sup>T</sup>**:
-
-    $$
+\begin{itemize}
+    \item \textbf{Input Space:} The unit circle represents all possible unit-length input vectors where $\|\mathbf{x}\| = 1$.
+    \item \textbf{Original Transformation ($\mathbf{y} = \mathbf{W}\mathbf{x}$):} Transformed by $\mathbf{W}$, the unit circle becomes a stretched red ellipse. Different input directions are amplified by different amounts.
+    
+    For example, evaluating input vector $\mathbf{x} = \begin{bmatrix} 1 & 0 \end{bmatrix}^T$:
+    \[
     \mathbf{W}\mathbf{x} = \begin{bmatrix} 4 \\ 1 \end{bmatrix} \implies \|\mathbf{W}\mathbf{x}\| = \sqrt{4^2 + 1^2} \approx 4.12
-    $$
+    \]
+    The unconstrained layer significantly amplifies signal energy along this trajectory ($\|\mathbf{W}\mathbf{x}\| \approx 4.12$ vs. $\|\mathbf{x}\| = 1.0$).
 
-    The unconstrained layer significantly amplifies signal energy along this trajectory (**||Wx|| ≈ 4.12** vs **||x|| = 1.0**).
+    \item \textbf{Governed Transformation ($\mathbf{y} = \mathbf{W}_{\text{SN}}\mathbf{x}$):} Transformed by $\mathbf{W}_{\text{SN}}$, the unit circle becomes the blue ellipse.
+\end{itemize}
 
-* **Governed Transformation (y = W<sub>SN</sub>x):** Transformed by **W<sub>SN</sub>**, the unit circle becomes the **blue ellipse**.
+\vspace{1em}
+\hrule
+\vspace{1em}
 
----
+\subsubsection*{Key Takeaways \& Mathematical Guarantees}
 
-#### Key Takeaways & Mathematical Guarantees
+\begin{enumerate}
+    \item \textbf{Geometric Preservation:} The shape, principal orientation, and feature-alignment axes of the transformation matrix remain identical.
+    \item \textbf{Gain Capping:} The maximum stretching factor is strictly bounded to unity:
+    \begin{itemize}
+        \item $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1.0$
+        \item $\|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\|$ for all input vectors $\mathbf{x}$
+    \end{itemize}
+\end{enumerate}
 
-1. **Geometric Preservation:** The shape, principal orientation, and feature-alignment axes of the transformation matrix remain identical.
-2. **Gain Capping:** The maximum stretching factor is strictly bounded to unity:
-   * **σ<sub>max</sub>(W<sub>SN</sub>) = 1.0**
-   * **||W<sub>SN</sub>x|| ≤ ||x||** for all input vectors **x**
+\begin{quote}
+\textbf{Core Engineering Takeaway:} The original matrix $\mathbf{W}$ heavily amplifies specific signal directions, risking numerical instability in deep architectures. Spectral Normalization scales the entire matrix so that the maximum possible gain is capped at $1.0$. Signal geometry is preserved while over-amplification is eliminated, ensuring stable gradient propagation across PINNs and deep networks.
+\end{quote}
 
-> 💡 **Core Engineering Takeaway:** The original matrix **W** heavily amplifies specific signal directions, risking numerical instability in deep architectures. Spectral Normalization scales the entire matrix so that the maximum possible gain is capped at **1.0**. Signal geometry is preserved while over-amplification is eliminated, ensuring stable gradient propagation across PINNs and deep networks.
