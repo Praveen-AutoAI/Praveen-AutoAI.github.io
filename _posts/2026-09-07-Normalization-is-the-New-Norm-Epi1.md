@@ -23,9 +23,9 @@ where:
 
 In deep learning, normalization can be applied to:
 
-- Input data - **feature normalization** 
+- Input data - **Feature normalization** 
 - Model parameters/weights - **Weight Normalization**  
-- Output of activations - **(Activation Normalization)**
+- Output of activations - **Activation Normalization**
 
 
 <p style="color:blue;">
