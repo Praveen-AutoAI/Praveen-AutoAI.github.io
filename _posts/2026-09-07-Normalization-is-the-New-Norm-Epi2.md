@@ -257,7 +257,7 @@ $$
 
 3. **Controlled Signal Amplification**
 
-   No input direction can be amplified beyond a factor of **1.0**, preventing runaway growth of activations and exploding gradients in deep PINN architectures.
+   No input direction can be amplified beyond a factor of **1.0**, preventing runaway growth of activations and exploding gradients in deep neural network architectures.
    
 
 > **key Insight:**  
