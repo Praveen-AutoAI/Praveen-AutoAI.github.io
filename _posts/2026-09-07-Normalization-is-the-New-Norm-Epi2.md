@@ -164,7 +164,7 @@ $$
 Note: The high density is not indicating that WeightNorm or SpectralNorm are creating more data points. It happens because both methods compress the distribution into a much narrower range, and a probability density must become taller to preserve a total area of 1.
 
 <p style="color:blue;">
-<strong>Remember This:</strong> This is the key insight: WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
+<strong>Remember This key INSIGHT:</strong> WeightNorm and SpectralNorm are not trying to change the weight distribution. They control different geometric properties of the weight matrix.
 The histogram can look nearly identical while the network behavior changes dramatically. Similar weight distributions do not imply similar network dynamics.
 </p>
 
