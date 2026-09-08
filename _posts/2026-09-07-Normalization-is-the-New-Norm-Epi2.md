@@ -129,10 +129,13 @@ Capping the peak singular value to $1$ guarantees that no input vector (steering
 
 * **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, the network guarantees global stability—eliminating exploding gradients even across deep architectures or transient feedback loops.
 
+>
 <p style="color:blue;">
 <strong>Remember This:</strong> Imagine driving a car where steering and acceleration are hard to control. In a standard neural network, the weight vector simultaneously determines <em>where to look</em> (direction) and <em>how strongly to respond</em> (magnitude), making optimization difficult. <strong>WeightNorm</strong> separates these two controls, allowing the model to learn more efficiently.
 <br><br>
-Now imagine the car is overly sensitive, where a tiny steering or throttle adjustment causes a dramatic reaction. Similarly, some neural network layers can excessively amplify signals, leading to unstable training and exploding gradients. <strong>SpectralNorm</strong> acts as a gain limiter, restricting the maximum amplification a layer can apply. In short, <strong>WeightNorm improves optimization efficiency, while SpectralNorm improves training stability.</strong>
+Now imagine the car is overly sensitive, where a tiny steering or throttle adjustment causes a dramatic reaction. Similarly, some neural network layers can excessively amplify signals, leading to unstable training and exploding gradients. <strong>SpectralNorm</strong> acts as a gain limiter, restricting the maximum amplification a layer can apply. 
+<br><br>
+In short, <strong>WeightNorm improves optimization efficiency, while SpectralNorm improves training stability.</strong>
 </p>
 
 ### Summary of Weight Normalization Methods
