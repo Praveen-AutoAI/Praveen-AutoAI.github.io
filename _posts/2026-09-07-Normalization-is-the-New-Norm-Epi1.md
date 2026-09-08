@@ -49,20 +49,8 @@ As networks become deeper, even slight changes in feature distributions, activat
 Normalization addresses these challenges at different stages of the learning pipeline.
 From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
 
-| Normalization Type | Applied To | Primary Goal | Key Benefits |
-| :--- | :--- | :--- | :--- |
-| **Feature Normalization** | Input Features | Bring all input variables to a comparable scale before training | • Prevents large-scale features from dominating smaller ones<br>• Improves gradient-based and distance-based optimization<br>• Accelerates convergence<br>• Improves numerical stability |
-| **Weight Normalization** | Model Parameters (Weights) | Control weight magnitudes and amplification characteristics | • Improves optimization conditioning<br>• Controls weight magnitude or gain<br>• Stabilizes training dynamics<br>• Prevents uncontrolled weight growth |
-| **Activation Normalization** | Hidden Layer Activations | Maintain stable feature distributions during training | • Reduces activation drift<br>• Improves gradient propagation<br>• Enables deeper architectures<br>• Supports higher learning rates and faster convergence |
 
-| Stage | Technique | What it Normalizes | How it Works | Primary Benefit |
-| :--- | :--- | :--- | :--- | :--- |
-| **Input Stage** | **Feature Normalization**<br>*(e.g., Standardization, MinMax)* | Raw input data ($\mathbf{X}$) before entering the network or layer | Scales features to a standard range (e.g., mean $0$, variance $1$) | Ensures all input features contribute equally; prevents features with large magnitudes from dominating |
-| **Weight Stage** | **Weight Normalization**<br>*(e.g., WeightNorm, SpectralNorm)* | The layer's learnable parameters/weights ($\mathbf{W}$) | Decouples the length (magnitude) of the weight vector from its direction | Accelerates optimization; smoothes the loss landscape without batch dependencies |
-| **Output Stage** | **Activation Normalization**<br>*(e.g., BatchNorm, LayerNorm)* | The hidden layer outputs ($\mathbf{H} = \mathbf{W}\mathbf{X} + \mathbf{b}$) before or after activation | Normalizes activations across a specific dimension (batch, layer, or channel) | Eliminates internal covariate shift; allows for much higher learning rates |
-
-
-| Pipeline Stage | Normalization Type | Target (Applied To) | Core Mechanism & Goal | Combined Key Benefits |
+| ML Pipeline Stage | Normalization Type | Target (Applied To) | Core Mechanism & Goal | Key Benefits |
 | :--- | :--- | :--- | :--- | :--- |
 | **Input Stage** | **Feature Normalization**<br>*(e.g., Standardization, MinMax)* | Raw input data ($\mathbf{X}$) prior to network entry | Scales input variables to a standard numerical range (e.g., zero mean, unit variance) | • Prevents large-magnitude features from dominating model learning<br>• Ensures all input variables contribute equally<br>• Improves gradient-based and distance-based optimization<br>• Accelerates initial training convergence<br>• Enhances numerical stability |
 | **Weight Stage** | **Weight Normalization**<br>*(e.g., WeightNorm, SpectralNorm)* | Learnable model parameters / weight matrices ($\mathbf{W}$) | Controls weight magnitude or bounds matrix singular values (decouples magnitude from direction) | • Improves optimization conditioning and smoothes the loss landscape<br>• Operates independently of mini-batch size or batch dependencies<br>• Stabilizes training dynamics and prevents uncontrolled weight growth<br>• Caps directional signal amplification to prevent exploding gradients |
