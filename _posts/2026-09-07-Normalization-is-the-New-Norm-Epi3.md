@@ -185,52 +185,20 @@ Given a single sample vector **x = [x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>d</
 | **Batch-Size Dependency** | ✅ Depends on Batch Size | ❌ Independent | ❌ Independent |
 | **Training vs. Inference** | Different behavior (running statistics used during inference) | Same behavior | Same behavior |
 
-
 #### Core Mechanism & Formulation
 
 Given a mini-batch **B = {x₁, x₂, ..., xₘ}** of size *m* across a specific feature dimension:
 
-##### 1. Calculate Mini-Batch Mean
+1. **Calculate Mini-Batch Mean:**
+   $$\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i$$
 
-$$
-\mu_{\mathcal{B}}
-=
-\frac{1}{m}
-\sum_{i=1}^{m} x_i
-$$
+2. **Calculate Mini-Batch Variance:**
+   $$\sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2$$
 
-##### 2. Calculate Mini-Batch Variance
+3. **Normalize Activations:**
+   $$\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}$$
+   *(where **ε > 0** is a small constant for numerical stability)*
 
-$$
-\sigma_{\mathcal{B}}^2
-=
-\frac{1}{m}
-\sum_{i=1}^{m}
-(x_i - \mu_{\mathcal{B}})^2
-$$
-
-##### 3. Normalize Activations
-
-$$
-\hat{x}_i
-=
-\frac{x_i - \mu_{\mathcal{B}}}
-{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}
-$$
-
-where **ε > 0** is a small constant added for numerical stability.
-
-##### 4. Apply Learnable Scale and Shift
-
-$$
-y_i
-=
-\gamma \hat{x}_i + \beta
-$$
-
-where:
-
-- **γ** is a learnable scaling parameter.
-- **β** is a learnable shifting parameter.
-
-These parameters allow the network to recover the optimal activation scale and offset if required.
+4. **Apply Learnable Scale & Shift:**
+   $$y_i = \gamma \hat{x}_i + \beta$$
+   *(where **γ** [scale] and **β** [shift] allow the network to recover optimal representations)*
