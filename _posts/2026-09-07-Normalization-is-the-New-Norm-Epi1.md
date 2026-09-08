@@ -55,6 +55,14 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Weight Normalization** | Model Parameters (Weights) | Control weight magnitudes and amplification characteristics | • Improves optimization conditioning<br>• Controls weight magnitude or gain<br>• Stabilizes training dynamics<br>• Prevents uncontrolled weight growth |
 | **Activation Normalization** | Hidden Layer Activations | Maintain stable feature distributions during training | • Reduces activation drift<br>• Improves gradient propagation<br>• Enables deeper architectures<br>• Supports higher learning rates and faster convergence |
 
+| Stage | Technique | What it Normalizes | How it Works | Primary Benefit |
+| :--- | :--- | :--- | :--- | :--- |
+| **Input Stage** | **Feature Normalization**<br>*(e.g., Standardization, MinMax)* | Raw input data ($\mathbf{X}$) before entering the network or layer | Scales features to a standard range (e.g., mean $0$, variance $1$) | Ensures all input features contribute equally; prevents features with large magnitudes from dominating |
+| **Weight Stage** | **Weight Normalization**<br>*(e.g., WeightNorm, SpectralNorm)* | The layer's learnable parameters/weights ($\mathbf{W}$) | Decouples the length (magnitude) of the weight vector from its direction | Accelerates optimization; smoothes the loss landscape without batch dependencies |
+| **Output Stage** | **Activation Normalization**<br>*(e.g., BatchNorm, LayerNorm)* | The hidden layer outputs ($\mathbf{H} = \mathbf{W}\mathbf{X} + \mathbf{b}$) before or after activation | Normalizes activations across a specific dimension (batch, layer, or channel) | Eliminates internal covariate shift; allows for much higher learning rates |
+
+
+
 ### Why Normalization Matters
 
 | Benefit | Impact on Training |
