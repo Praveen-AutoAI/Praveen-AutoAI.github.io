@@ -78,50 +78,50 @@ The histogram can look nearly identical while the network behavior changes drama
 
 ## 3.Activation Normalization 
 
-Activation normalization methods stabilize the **intermediate feature representations (activations)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the training of deeper architectures.
+Activation normalization methods stabilize the **intermediate feature representations (activations outputs of hidden layers)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the stability during training of deeper architectures. Smoothing the loss landscape is an effect of normalization methods
 
-### A. Batch Normalization (BatchNorm)
-BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift(internal covariate shift)  during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift.
+### A. BatchNorm
+**Asks : "How does a sample compare to other samples in the batch?"**
 
-#### Math & Intuition
+BatchNorm normalizes activations using the statistics of the mini-batch. It was introduced to reduce activation distribution drift(internal covariate shift)  during training and improve optimization stability by resetting distributions to zero mean and unit variance before applying a learnable scale and shift. 
 
-For a mini-batch containing $m$ samples, $\mathcal{B} = \{x_1, x_2, \dots, x_m\}$:
+### Batch Normalization (BatchNorm)
 
-1. **Calculate Mini-Batch Mean:**
-   $$\mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i$$
+#### Mathematical Formulation
 
-2. **Calculate Mini-Batch Variance:**
-   $$\sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2$$
+For a mini-batch **B** of size *m*, activations are normalized and transformed via:
 
-3. **Normalize Activations:**
-   $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
+$$
+\mu_{\mathcal{B}} = \frac{1}{m} \sum_{i=1}^{m} x_i, \qquad \sigma_{\mathcal{B}}^2 = \frac{1}{m} \sum_{i=1}^{m} (x_i - \mu_{\mathcal{B}})^2
+$$
 
-4. **Scale and Shift:**
-   $$y_i = \gamma \hat{x}_i + \beta$$
+$$
+\hat{x}_i = \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}}
+$$
 
-*where $\gamma$ (scale) and $\beta$ (shift) are learnable parameters that allow the network to restore representation power, and $\epsilon$ is a tiny constant for numerical stability.*
+$$
+y_i = \gamma \hat{x}_i + \beta
+$$
+
+---
+
+#### Key Characteristics
+
+* **Batch Dependency:** Normalizes across the batch dimension. Requires sufficiently large batch sizes ($m \ge 32$) to estimate accurate mean and variance.
+* **Affine Parameters:** Learnable parameters **γ** (scale) and **β** (shift) preserve model expressivity.
+* **Inference Behavior:** Replaces mini-batch statistics with cumulative running averages ($\mu_{\text{running}}$, $\sigma^2_{\text{running}}$).
 
 
-### B. Layer Normalization (BatchNorm)
-### Layer Normalization (LayerNorm)
+### B. LayerNOrm
+**Asks : "How do the features within this sample compare to one another?"**
 
 Layer Normalization (LayerNorm) normalizes the activations of each sample independently by computing the mean and variance across that sample's feature dimensions. Unlike BatchNorm, it does not depend on other samples in the batch, so it does not require mini-batch statistics or running averages.
 
-#### Math & Formula
-
-For a single sample vector $\mathbf{x} = [x_1, x_2, \dots, x_d]$ containing $d$ features:
-
-$$
-\begin{aligned}
-\text{1. Calculate Feature Mean:} \quad & \mu = \frac{1}{d} \sum_{i=1}^{d} x_i \\[10pt]
-\text{2. Calculate Feature Variance:} \quad & \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\[10pt]
-\text{3. Normalize Activations:} \quad & \hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\sigma^2 + \epsilon}} \\[10pt]
-\text{4. Scale and Shift:} \quad & \mathbf{y} = \gamma \odot \hat{\mathbf{x}} + \beta
-\end{aligned}
-$$
-
 > **Key Concept:** $\mu$ and $\sigma^2$ are calculated strictly across the feature dimensions of a **single sample**, making execution completely independent of batch size or batch structure during both training and inference.
 
+
+### B. RMSNorm
+**Asks : "How large is the overall signal in this sample?"**
 
 <p style="color:blue;">
 <strong>Remember This:</strong> 
