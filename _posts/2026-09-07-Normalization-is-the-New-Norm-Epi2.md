@@ -121,11 +121,11 @@ $$
 
 * **Enforced Lipschitz Continuity ($L \le 1$):** Isolating the maximum signal gain into an explicit mathematical constraint guarantees bounded amplification:
 
-  $$
-  \max_{\mathbf{x} \neq \mathbf{0}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W}) \implies \|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\|
-  $$
+$$
+\max_{\mathbf{x} \neq \mathbf{0}} \frac{\|\mathbf{W}\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_{\max}(\mathbf{W}) \implies \|\mathbf{W}_{\text{SN}}\mathbf{x}\| \le \|\mathbf{x}\|
+$$
 
-  Capping the peak singular value to $1$ guarantees that no input vector (steering angle or throttle force) is amplified beyond a $1:1$ ratio, eliminating runaway oversteer.
+Capping the peak singular value to $1$ guarantees that no input vector (steering angle or throttle force) is amplified beyond a $1:1$ ratio, eliminating runaway oversteer.
 
 * **Explosion-Proof Handling Pipelines:** By ensuring no individual layer can amplify signal energy beyond unity, the network guarantees global stability—eliminating exploding gradients even across deep architectures or transient feedback loops.
 
