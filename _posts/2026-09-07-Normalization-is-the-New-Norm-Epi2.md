@@ -115,7 +115,10 @@ $$
 
 * $\mathbf{W}_{\text{SN}}$ **(Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at $\sigma_{\max}(\mathbf{W}_{\text{SN}}) = 1$.
 
+* **σ<sub>max</sub>(W) (Peak Steering/Throttle Gain):** The largest singular value of matrix **W**, representing the absolute maximum directional amplification the layer can apply to any combination of steering and acceleration inputs.
+* **W<sub>SN</sub> (Governed Weight Matrix):** The rescaled matrix whose peak directional amplification factor is strictly capped at **σ<sub>max</sub>(W<sub>SN</sub>) = 1**.
 
+  
 #### Why Capping Peak Gain Changes the Game
 
 * **Enforced Lipschitz Continuity ($L \le 1$):** Isolating the maximum signal gain into an explicit mathematical constraint guarantees bounded amplification:
