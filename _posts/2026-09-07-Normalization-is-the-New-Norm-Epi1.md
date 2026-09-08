@@ -49,13 +49,6 @@ As networks become deeper, even slight changes in feature distributions, activat
 Normalization addresses these challenges at different stages of the learning pipeline.
 From an optimization perspective, normalization allows gradient descent to focus on learning meaningful patterns rather than constantly adapting to changing signal magnitudes.
 
-
-| ML Pipeline Stage | Normalization Type | Target (Applied To) | Core Mechanism & Goal | Key Benefits |
-| :--- | :--- | :--- | :--- | :--- |
-| **Input Stage** | **Feature Normalization**<br>*(e.g., Standardization, MinMax)* | Raw input data ($\mathbf{X}$) prior to network entry | Scales input variables to a standard numerical range (e.g., zero mean, unit variance) | • Prevents large-magnitude features from dominating model learning<br>• Ensures all input variables contribute equally<br>• Improves gradient-based and distance-based optimization<br>• Accelerates initial training convergence<br>• Enhances numerical stability |
-| **Weight Stage** | **Weight Normalization**<br>*(e.g., WeightNorm, SpectralNorm)* | Learnable model parameters / weight matrices ($\mathbf{W}$) | Controls weight magnitude or bounds matrix singular values (decouples magnitude from direction) | • Improves optimization conditioning and smoothes the loss landscape<br>• Operates independently of mini-batch size or batch dependencies<br>• Stabilizes training dynamics and prevents uncontrolled weight growth<br>• Caps directional signal amplification to prevent exploding gradients |
-| **Output / Hidden Stage** | **Activation Normalization**<br>*(e.g., BatchNorm, LayerNorm, RMSNorm)* | Hidden layer outputs ($\mathbf{H} = \mathbf{W}\mathbf{X} + \mathbf{b}$) before or after activation | Standardizes hidden activation distributions across batch, feature, or channel dimensions | • Mitigates internal covariate shift and activation drift<br>• Improves gradient flow throughout deep network layers<br>• Enables stable training of substantially deeper architectures<br>• Allows higher learning rates for significantly faster convergence |
-
 ### Normalization at Different Stages of the Pipeline
 ![Normalization_Effect](/assets/images/Normalization/Normalization_4.png)
 
