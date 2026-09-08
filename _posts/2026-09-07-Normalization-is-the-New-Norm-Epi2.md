@@ -80,10 +80,6 @@ The behavior of the neuron depends on:
 
 During training, the optimizer must learn both simultaneously, which can make optimization difficult. Weight normalization methods simplify this process by controlling weight magnitudes while preserving useful directional information. 
 
-<p style="color:blue;">
-<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
-</p>
-
 
 ### A. Weight Normalization
 
@@ -96,7 +92,9 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 * **$\mathbf{v}$ (Steering Wheel):** A learnable parameter vector controlling feature orientation without affecting power output.
 * **$g$ (Accelerator & Brake):** A learnable scalar explicitly dictating overall signal magnitude ($\|\mathbf{w}\| = g$).
 
-
+<p style="color:blue;">
+<strong>Remember This:</strong> Imagine driving a high-performance vehicle where the steering wheel and accelerator pedal are mechanically fused together. Every time you make a subtle lane change, the engine unpredictably floors the throttle; every time you tap the brakes to adjust speed, the car violently jerks sideways. That is precisely what standard gradient descent forces every neuron in a deep network to do. Weight normalization techniques helps decouple and control it independently. 
+</p>
 
 #### Why Decoupling Changes the Game
 
