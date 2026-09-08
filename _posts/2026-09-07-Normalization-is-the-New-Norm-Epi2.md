@@ -81,7 +81,8 @@ The behavior of the neuron depends on:
 During training, the optimizer must learn both simultaneously, which can make optimization difficult. Weight normalization methods simplify this process by controlling weight magnitudes while preserving useful directional information. 
 
 
-### A. Weight Normalization
+### A. WeightNorm 
+**Asks: How to decouple the magnitude and direction and handle them separately.**
 
 By default, a weight vector $\mathbf{w}$ entangles both **direction** (where the neuron looks) and **magnitude** (how strongly it fires) into a single array of parameters. A weight update intended to adjust feature alignment accidentally alters signal amplitude, forcing the optimizer to constantly re-calibrate its line.
 
@@ -102,7 +103,8 @@ $$\mathbf{w} = \frac{g}{\|\mathbf{v}\|} \mathbf{v}$$
 * **Built-in Dynamic Stability Control:** The effective learning rate for directional updates scales inversely with $\|\mathbf{v}\|$. If steering vectors grow excessively large, directional updates automatically scale down—acting as an automatic governor that prevents over-steering and guards against gradient explosions.
 
 
-### B. Spectral Normalization:
+### B. SpectralNorm
+**Asks: How to decouple the magnitude and direction and handle them separately.**
 
 Imagine driving a vehicle where steering or acc pedal sensitivity is very high and leads to the erratic driving. If turning the wheel 5 degrees amplifies your trajectory exponentially, a minor steering correction causes violent oversteer, a spin-out, or a complete loss of control. In deep neural networks, unconstrained weight matrices act like an overly aggressive, ungoverned steering or throttle system: they excessively amplify input signals across layers, causing numerical instabilities and exploding gradients.
 
@@ -141,6 +143,9 @@ $$
 <p style="color:blue;">
 <strong>Remember This:</strong> WeightNorm improves optimization by separating weight magnitude from weight direction (deoupling the steering and accelerator pedal), while SpectralNorm improves stability by limiting the maximum amplification capability of a layer (by reducing the sensitivity of the input). In simple terms, WeightNorm helps the model learn more efficiently, whereas SpectralNorm helps the model learn more safely.
 </p>
+
+### Summary of Weight Normalization
+![Normalization_Effect](/assets/images/Normalization/Normalization_5.png)
 
 ### Summary Comparison: Weight Normalization vs. Spectral Normalization
 
