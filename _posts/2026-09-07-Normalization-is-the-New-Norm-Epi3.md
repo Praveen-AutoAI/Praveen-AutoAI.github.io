@@ -92,6 +92,9 @@ As data passes through multiple layers, activation values can develop vastly dif
 * Converge slowly
 * Become highly sensitive to parameter initialization
 
+### Loss Landscape Transformation
+![Normalization_Effect](/assets/images/Normalization/Normalization_8.png)
+
 #### 2. Internal Covariate Shift
 During training, updates to earlier layers continuously shift the distribution of inputs received by subsequent layers. As a result:
 
@@ -99,6 +102,9 @@ During training, updates to earlier layers continuously shift the distribution o
 * Layers must repeatedly adapt to new inputs
 * Training becomes unstable
 * Convergence slows down
+
+### Internal Covariate Shift
+![Normalization_Effect](/assets/images/Normalization/Normalization_9.png)
 
 #### How Batch Normalization Helps
 
@@ -109,6 +115,7 @@ Batch Normalization normalizes activations to maintain approximately zero mean a
 * Stabilizes the input distributions seen by intermediate layers
 * Accelerates training convergence and reduces total training time
 
+Deep learning training is difficult because activation distributions drift and change across layers, leading to slow optimization and unstable learning. Batch Normalization addresses these issues by keeping activations well-scaled and statistically stable.
 
 ## 3.Activation Normalization 
 
