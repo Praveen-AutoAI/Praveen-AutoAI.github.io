@@ -80,6 +80,36 @@ The histogram can look nearly identical while the network behavior changes drama
 [epi1-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi1.html
 [epi2-norm]: https://praveen-autoai.github.io/machine%20learning/engineering/scientific%20machine%20learning/2026/09/07/Normalization-is-the-New-Norm-Epi2.html
 
+### Problems in Deep Learning Training
+
+Deep neural networks face two major challenges during training:
+
+#### 1. Unstable and Slow Optimization
+As data passes through multiple layers, activation values can develop vastly different scales and distributions. This creates a poorly conditioned loss landscape with elongated valleys, causing gradient descent to:
+
+* Take inefficient zig-zag paths
+* Require smaller learning rates
+* Converge slowly
+* Become highly sensitive to parameter initialization
+
+#### 2. Internal Covariate Shift
+During training, updates to earlier layers continuously shift the distribution of inputs received by subsequent layers. As a result:
+
+* Each layer sees a constantly changing input distribution
+* Layers must repeatedly adapt to new inputs
+* Training becomes unstable
+* Convergence slows down
+
+#### How Batch Normalization Helps
+
+Batch Normalization normalizes activations to maintain approximately zero mean and unit variance at each layer. This:
+
+* Creates a smoother, better-conditioned optimization landscape
+* Enables the use of significantly higher learning rates
+* Stabilizes the input distributions seen by intermediate layers
+* Accelerates training convergence and reduces total training time
+
+
 ## 3.Activation Normalization 
 
 Activation normalization methods stabilize the **intermediate feature representations (activations outputs of hidden layers)** inside a neural network. By maintaining a consistent scale of activations across layers, they improve gradient flow, accelerate convergence, and enable the stability during training of deeper architectures. Smoothing the loss landscape is an effect of normalization methods
