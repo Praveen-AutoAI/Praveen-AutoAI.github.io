@@ -43,6 +43,7 @@ Common challenges include:
 - Gradients can vanish or explode during backpropagation.
 - Training becomes highly sensitive to parameter initialization.
 - Small parameter updates in one layer can have amplified effects in deeper layers.
+- Poor generalization
 
 As networks become deeper, even slight changes in feature distributions, activation distributions, or weight magnitudes can compound across layers, making optimization increasingly difficult.
 
@@ -62,6 +63,10 @@ From an optimization perspective, normalization allows gradient descent to focus
 | **Reduces Initialization Sensitivity** | Makes training less dependent on meticulously chosen initial weight schemes. |
 | **Improves Training Stability** | Maintains consistent activation distributions across layers for a smoother loss landscape. |
 | **Enables Deep Architectures** | Critical for scaling massive models (e.g., ResNet, Transformer variants like GPT, Llama, Mistral). |
+
+<p style="color:blue;">
+<strong>Remember This key insight:</strong> Normalization at different stages of the ML pipeline is a fundamental mechanism that enhanced convergence, stabilizes learning, and improves the generalization capabilities of deep neural networks.
+</p>
 
 ### 1.Feature Normalization Methods:
 
