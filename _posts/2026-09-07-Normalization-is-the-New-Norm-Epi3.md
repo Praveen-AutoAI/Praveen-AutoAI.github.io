@@ -43,6 +43,7 @@ Common challenges include:
 - Gradients can vanish or explode during backpropagation.
 - Training becomes highly sensitive to parameter initialization.
 - Small parameter updates in one layer can have amplified effects in deeper layers.
+- Generalization capability
 
 As networks become deeper, even slight changes in feature distributions, activation distributions, or weight magnitudes can compound across layers, making optimization increasingly difficult.
 
@@ -70,6 +71,9 @@ The histogram can look nearly identical while the network behavior changes drama
 </p>
 
 
+<p style="color:blue;">
+<strong>Remember This:</strong> This is the key insight: Normalization is a fundamental mechanism that enhanced convergence, stabilizes learning, and improves the generalization capabilities of deep neural networks.
+</p>
 
 **Check out my articles** [Episode 1: Feature Normalization Methods][epi1-norm] and [Episode 2: Weight Normalization Methods][epi2-norm] before proceeding with Activation Normalization.
 
