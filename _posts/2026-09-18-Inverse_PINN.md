@@ -124,7 +124,7 @@ Although **Forward PINNs** and **Inverse PINNs** are designed for different obje
 |-------------------|----------------------------------------|
 | **Mesh-Free Representation** | Both use deep neural networks that take continuous spatial coordinates $(x,y,z)$ and time $(t)$ as inputs and output physical state variables $u$. |
 | **Automatic Differentiation (AD)** | Both leverage the automatic differentiation engine used in backpropagation to compute exact analytical derivatives, such as $\frac{\partial u}{\partial t}$ and $\frac{\partial^2 u}{\partial x^2}$, without relying on grid discretization or finite-difference approximations. |
-| **Composite Loss Structure** | Both employ a multi-component loss function of the form: $$\text{Total Loss} = \text{Loss}_{\text{data}} + \text{Loss}_{\text{physics}}$$ |
+| **Composite Loss Structure** | Both employ a multi-component loss function of the form: $\text{Total Loss} = \text{Loss}_{\text{data}} + \text{Loss}_{\text{physics}}$. |
 | **Physics Regularization** | Both evaluate the governing PDE residual at randomly sampled interior collocation points $(x_m,t_m)$ to ensure physically meaningful and consistent solutions throughout the domain. |
 | **Optimization Algorithms** | Both use gradient-based optimization methods such as Adam and L-BFGS to minimize the total loss and update learnable parameters through backpropagation. |
 | **Noise Robustness** | Both exploit the governing physical equations as a regularizing constraint, helping suppress measurement noise and reducing the risk of overfitting to sparse data. |
