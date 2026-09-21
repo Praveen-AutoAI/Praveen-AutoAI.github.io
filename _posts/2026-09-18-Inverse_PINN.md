@@ -86,3 +86,10 @@ Sparse Measurements + Known Physics
 ```
 
 Unlike simple curve fitting, inverse problems must produce solutions that remain consistent with the governing physics of the system. This requirement makes inverse problems considerably more challenging, but also more valuable for engineering analysis, system monitoring, and digital twin applications.
+
+### Computational Paradigms
+
+| Forward Problems | Inverse Problems |
+| :--- | :--- |
+| **Given:**<br>• Governing physical laws (PDEs)<br>• Material properties/parameters<br>• Boundary & initial conditions | **Given:**<br>• Governing physical laws (PDEs)<br>• Sparse, noisy state observations |
+| **Find:**<br>• The system state field (e.g., temperature, velocity) | **Find:**<br>• Unknown physical parameters<br>• Boundary conditions<br>• The complete state field |
