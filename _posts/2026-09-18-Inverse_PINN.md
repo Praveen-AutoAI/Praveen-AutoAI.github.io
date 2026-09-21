@@ -94,13 +94,6 @@ Unlike simple curve fitting, inverse problems must produce solutions that remain
 | **Given:**<br>• Governing physical laws (PDEs)<br>• Material properties/parameters<br>• Boundary & initial conditions | **Given:**<br>• Governing physical laws (PDEs)<br>• Sparse, noisy state observations |
 | **Find:**<br>• The system state field (e.g., temperature, velocity) | **Find:**<br>• Unknown physical parameters<br>• Boundary conditions<br>• The complete state field |
 
-### Main Distinction
-
-A **Forward PINN** is used when the governing physics and all important physical parameters are already known. For example, consider a metal rod whose thermal conductivity ($\alpha$) has been measured experimentally. Since the value of $\alpha$ is known, the objective is simply to determine the temperature distribution $u(x,t)$ throughout the rod. In this case, the PINN behaves as a physics-constrained solver. During training, the neural network adjusts only its weights and biases so that its predicted solution satisfies both the available boundary or initial conditions and the governing differential equation. The unknown quantity is the **state field**, while the physical parameters remain fixed.
-
-An **Inverse PINN**, on the other hand, addresses a more realistic engineering scenario where some physical parameters are unknown. For instance, temperature measurements may be available from only a few thermocouples, while the thermal conductivity of the rod is uncertain. The goal is now twofold: reconstruct the complete temperature field $u(x,t)$ and estimate the unknown parameter $\alpha$. To achieve this, the parameter is treated as an additional trainable variable and optimized together with the network weights. The governing PDE acts as a physical constraint, ensuring that the estimated parameter and reconstructed state remain physically consistent.
-
-In summary, a **Forward PINN predicts the system behavior when the physics and parameters are known**, whereas an **Inverse PINN learns unknown physical parameters and system behavior simultaneously from sparse observations while enforcing the laws of physics**.
 
 # Core Differences: Forward PINN vs. Inverse PINN
 
@@ -115,7 +108,6 @@ In summary, a **Forward PINN predicts the system behavior when the physics and p
 | **Optimization Goal** | Adjust $(W,b)$ until $u(x,t)$ satisfies both boundary data and PDE residuals. | Adjust $(W,b)$ and $\lambda$ simultaneously until predicted states match measurements and satisfy the PDE. |
 
 ---
-
 
 
 ### Main Distinction
