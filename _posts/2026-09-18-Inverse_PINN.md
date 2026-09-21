@@ -32,7 +32,9 @@ Sparse measurements + Governing physics
        State and parameter estimation
                     ↓
  Complete physical field + Unknown properties
-```text
+```
+
+---
 
 # 2. Forward vs. Inverse Problems
 
