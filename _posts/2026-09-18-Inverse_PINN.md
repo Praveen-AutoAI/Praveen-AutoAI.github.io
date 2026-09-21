@@ -134,56 +134,6 @@ Although **Forward PINNs** and **Inverse PINNs** are designed for different obje
 | **Optimization Algorithms** | Both use gradient-based optimization methods such as Adam and L-BFGS to minimize the total loss and update learnable parameters through backpropagation. |
 | **Noise Robustness** | Both exploit governing physical equations as regularizing constraints, helping suppress measurement noise and reduce overfitting. |
 
-### Composite Loss Function
-
-Both paradigms use a combined loss function:
-
-$$
-\text{Total Loss}
-=
-\text{Loss}_{\text{data}}
-+
-\text{Loss}_{\text{physics}}
-$$
-
-where:
-
-- $\text{Loss}_{\text{data}}$ enforces agreement with measurements, boundary conditions, and initial conditions.
-- $\text{Loss}_{\text{physics}}$ enforces compliance with the governing differential equation.
-
----
-
-## Shared PINN Workflow
-
-```text
-Spatial Coordinates (x,y,z) + Time (t)
-                    │
-                    ▼
-            Neural Network
-                    │
-                    ▼
-       Predicted State u(x,t)
-                    │
-                    ▼
-      Automatic Differentiation
-                    │
-                    ▼
-       PDE Residual Evaluation
-                    │
-                    ▼
-     Data Loss + Physics Loss
-                    │
-                    ▼
-             Total Loss
-                    │
-                    ▼
-   Gradient-Based Optimization
-                    │
-                    ▼
-    Physics-Consistent Solution
-```
-
----
 
 ## Key Takeaway
 
@@ -191,10 +141,3 @@ Spatial Coordinates (x,y,z) + Time (t)
 
 > The primary distinction lies not in the architecture itself, but in **what is being learned**. A **Forward PINN** learns the **state field** $u(x,t)$ when physical parameters are known, whereas an **Inverse PINN** learns both the **state field** and the **unknown physical parameters** simultaneously from sparse observations.
 
----
-
-## Key Takeaway
-
-> Despite their different goals, both **Forward PINNs** and **Inverse PINNs** rely on the same core ingredients: neural-network function approximation, automatic differentiation, PDE-constrained learning, and gradient-based optimization.
-
-> The primary distinction is not in the architecture itself, but in **what is being learned**. Forward PINNs learn the **state field**, whereas Inverse PINNs learn both the **state field** and the **unknown physical parameters**.
