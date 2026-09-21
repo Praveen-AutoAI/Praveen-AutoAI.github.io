@@ -93,3 +93,49 @@ Unlike simple curve fitting, inverse problems must produce solutions that remain
 | :--- | :--- |
 | **Given:**<br>• Governing physical laws (PDEs)<br>• Material properties/parameters<br>• Boundary & initial conditions | **Given:**<br>• Governing physical laws (PDEs)<br>• Sparse, noisy state observations |
 | **Find:**<br>• The system state field (e.g., temperature, velocity) | **Find:**<br>• Unknown physical parameters<br>• Boundary conditions<br>• The complete state field |
+
+
+# Core Differences: Forward PINN vs. Inverse PINN
+
+| **Feature / Dimension** | **Forward PINN** | **Inverse PINN (I-PINN)** |
+|-------------------------|------------------|---------------------------|
+| **Primary Objective** | Solve the governing PDE to predict system state fields $u(x,t)$ across the domain. | Infer unknown physical parameters $\lambda$ while simultaneously reconstructing state fields $u(x,t)$. |
+| **Physical Parameters ($\lambda$)** | **Known and fixed** constants in the governing differential equation. | **Unknown and learnable** variables initialized with initial guesses. |
+| **Trainable Variables** | Network weights and biases $(W,b)$ only. | Network weights and biases $(W,b)$ **plus** physical parameters $(\lambda)$. |
+| **Primary Data Source** | Known initial conditions (ICs) and boundary conditions (BCs). | Sparse, noisy interior sensor measurements (e.g., thermocouples, accelerometers) alongside available ICs/BCs. |
+| **Role of Sensor Data** | Anchors domain boundaries and starting state. | Provides observational evidence to calibrate unknown physical constants and fill state gaps. |
+| **Traditional Alternative** | Numerical discretization solvers (FEA, CFD, Finite Difference Methods). | Iterative optimization loops wrapping thousands of repeated forward FEA/CFD runs. |
+| **Optimization Goal** | Adjust $(W,b)$ until $u(x,t)$ satisfies both boundary data and PDE residuals. | Adjust $(W,b)$ and $\lambda$ simultaneously until predicted states match measurements and satisfy the PDE. |
+
+---
+
+## Key Concept
+
+### Forward PINN
+
+```text
+Known Physics + Known Parameters
+                ↓
+              PINN
+                ↓
+      Predict State Field u(x,t)
+```
+
+### Inverse PINN
+
+```text
+Known Physics + Sparse Measurements
+                ↓
+            I-PINN
+                ↓
+  Learn State Field u(x,t)
+          and
+ Unknown Parameters λ
+```
+
+### Main Distinction
+
+> A **Forward PINN** uses known physical parameters to solve for the system state.
+
+> An **Inverse PINN** uses sparse observations and known governing physics to simultaneously estimate both the system state and the unknown physical parameters.
+
