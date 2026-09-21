@@ -32,3 +32,54 @@ Sparse measurements + Governing physics
        State and parameter estimation
                     ↓
  Complete physical field + Unknown properties
+
+# 2. Forward vs. Inverse Problems
+
+To understand inverse Physics-Informed Neural Networks (inverse PINNs), it is important to distinguish between **forward problems** and **inverse problems**, which represent two fundamentally different modeling paradigms in engineering and scientific computing.
+
+## The Forward Problem
+
+The forward problem represents the traditional engineering simulation workflow. In this setting, the geometry, material properties (e.g., thermal conductivity), boundary conditions (e.g., applied heat flux), and governing partial differential equations (PDEs) are known.
+
+The objective is to compute the resulting state field of the system.
+
+For example:
+
+- Given a rod's thermal conductivity and heating conditions, compute the temperature distribution.
+- Given a structure's material properties and loading conditions, compute the stress and deformation fields.
+- Given fluid properties and inlet conditions, compute the velocity and pressure fields.
+
+Tools such as **Finite Element Analysis (FEA)** and **Computational Fluid Dynamics (CFD)** are specifically designed to solve forward problems.
+
+```text
+Known Physics + Known Parameters
+                ↓
+         Solve PDEs
+                ↓
+       System Response
+```
+
+---
+
+## The Inverse Problem
+
+The inverse problem reverses this workflow. In this setting, some physical properties, boundary conditions, or internal source terms are unknown. However, measurements of the system's response are available at a limited number of locations.
+
+The objective is to work backward from these observations to infer the unknown quantities that produced them.
+
+For example:
+
+- Estimate thermal conductivity from a few temperature measurements.
+- Infer material degradation from strain sensor data.
+- Identify unknown heat-source characteristics from thermal imaging.
+- Estimate subsurface permeability from pressure measurements in wells.
+
+```text
+Sparse Measurements + Known Physics
+                  ↓
+     Parameter Identification
+                  ↓
+   Unknown Physical Quantities
+```
+
+Unlike simple curve fitting, inverse problems must produce solutions that remain consistent with the governing physics of the system. This requirement makes inverse problems considerably more challenging, but also more valuable for engineering analysis, system monitoring, and digital twin applications.
