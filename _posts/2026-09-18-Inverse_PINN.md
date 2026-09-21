@@ -7,66 +7,28 @@ categories: [Machine Learning, Engineering, Scientific Machine Learning,]
 tags: [Data Science, Deep Learning, AI]
 math: true
 ---
+##. Introduction
+### 1. Motivation and Real-World Relevance
 
+Consider a metal rod used as part of an industrial heating system. The rod is heated at one end, and engineers need to understand how quickly heat travels through the material. Temperature sensors can be installed at a few accessible locations, but placing sensors at every point along the rod is neither practical nor necessary. More importantly, the rod's effective thermal conductivity may be unknown because of manufacturing variation, material degradation, or uncertain operating conditions.
 
-# 1. Motivation and Real-World Relevance
+The available information is therefore incomplete. Engineers have a small number of temperature measurements, some knowledge of the heating conditions, and a physical law describing heat conduction. From this limited information, they would like to determine two things:
 
-Imagine you are evaluating a newly manufactured alloy rod designed for a high-performance heat exchanger, or monitoring a structural component inside an operating gas turbine. You need to know the material's exact thermal conductivity ($k$) or internal stress characteristics ($\sigma$) to ensure safety and performance. However, placing dense sensor arrays throughout the component is physically impossible without destroying its structural integrity.
+1. The complete temperature distribution throughout the rod.
+2. The unknown thermal conductivity of the material.
 
-In engineering practice, we regularly face this dilemma: key physical parameters, such as:
+This type of challenge appears throughout engineering:
 
-- Thermal conductivities ($k$)
-- Dynamic damping ratios ($\zeta$)
-- Fluid viscosities ($\mu$)
-- Material degradation rates ($\alpha$)
+- Battery engineers may need to estimate internal cell temperatures and heat-generation rates using only surface sensors.
+- Aerospace engineers may infer material degradation from strain measurements.
+- Manufacturing engineers may estimate heat-source characteristics from thermal camera data.
+- Energy engineers may reconstruct subsurface permeability using measurements from a small number of wells.
 
-cannot be measured directly. Instead, we are left with sparse, noisy measurements $\mathbf{y}_{\text{obs}}$ at a few accessible exterior locations.
+These problems share a common structure:
 
-The central engineering challenge becomes working backward from limited observations to infer the hidden physical parameters that produced those measurements. This task forms the cornerstone of **parameter identification**, **non-destructive evaluation (NDE)**, and **digital twin technology**.
-
----
-
-# 2. Forward vs. Inverse Problems
-
-To understand how modern Scientific Machine Learning (SciML) solves this challenge, we must first distinguish between forward and inverse modeling, as well as pure data-driven learning versus physics-informed learning.
-
-## Forward Problem
-
-Given known physical properties, boundary conditions, and governing equations, we calculate the state of the system over space and time.
-
-Mathematically, if $\mathcal{P}$ represents the governing differential operator (e.g., the heat equation) parameterized by physical properties $\theta$, and $u(\mathbf{x}, t)$ is the system state,
-
-$$
-\mathcal{P}(u; \theta) = f(\mathbf{x}, t)
-$$
-
-In a forward problem, we know the parameters $\theta$ and the source terms $f$, and we solve for the state field $u(\mathbf{x}, t)$.
-
-**Example:** Given a metal rod's thermal conductivity ($k$) and heat input ($q$), we calculate the temperature distribution $T(x,t)$ across the rod. Standard **Finite Element Analysis (FEA)** and **Computational Fluid Dynamics (CFD)** are built for forward problems.
-
----
-
-## Inverse Problem
-
-Given partial, noisy observations of the system's state, we work backward to infer the missing model inputs, such as unknown parameters, boundary conditions, or source terms.
-
-Mathematically, given sparse and noisy measurements $u_{\text{obs}}(\mathbf{x}_i, t_i)$ at discrete locations $\mathbf{x}_i$, we seek the optimal parameters $\theta^*$ that minimize the discrepancy between our physical model and the observations:
-
-$$
-\theta^* = \arg\min_{\theta}
-\left(
-\frac{1}{2}
-\sum_{i=1}^{N}
-\left\|
-u(\mathbf{x}_i,t_i;\theta)
--
-u_{\text{obs}}(\mathbf{x}_i,t_i)
-\right\|^2
-+
-\mathcal{R}(\theta)
-\right)
-$$
-
-where $\mathcal{R}(\theta)$ is a regularization term (e.g., Tikhonov regularization) used to stabilize the ill-posed nature of the inverse problem.
-
-**Example:** If we measure temperature at only two points on a rod, we can estimate its unknown thermal conductivity ($k$).
+```text
+Sparse measurements + Governing physics
+                    ↓
+       State and parameter estimation
+                    ↓
+ Complete physical field + Unknown properties
