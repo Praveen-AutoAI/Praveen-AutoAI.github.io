@@ -120,13 +120,23 @@ Unlike simple curve fitting, inverse problems must produce solutions that remain
 
 Although **Forward PINNs** and **Inverse PINNs** are designed for different objectives, they share the same underlying computational framework and physics-informed learning principles.
 
+
+# Common Features (Shared Foundations)
+
+Although **Forward PINNs** and **Inverse PINNs** are designed for different objectives, they share the same underlying computational framework and physics-informed learning principles.
+
 | **Common Aspect** | **Description across Both Paradigms** |
 |-------------------|----------------------------------------|
 | **Mesh-Free Representation** | Both use deep neural networks that take continuous spatial coordinates $(x,y,z)$ and time $(t)$ as inputs and output physical state variables $u$. |
-| **Automatic Differentiation (AD)** | Both leverage the automatic differentiation engine used in backpropagation to compute exact analytical derivatives, such as $\frac{\partial u}{\partial t}$ and $\frac{\partial^2 u}{\partial x^2}$, without relying on grid discretization or finite-difference approximations. |
+| **Automatic Differentiation (AD)** | Both leverage automatic differentiation to compute exact analytical derivatives such as $\frac{\partial u}{\partial t}$ and $\frac{\partial^2 u}{\partial x^2}$ without grid discretization or finite-difference approximations. |
 | **Composite Loss Structure** | Both employ a multi-component loss function that combines data fidelity and physics constraints. |
+| **Physics Regularization** | Both evaluate the governing PDE residual at randomly sampled collocation points $(x_m,t_m)$ to ensure physically meaningful solutions throughout the domain. |
+| **Optimization Algorithms** | Both use gradient-based optimization methods such as Adam and L-BFGS to minimize the total loss and update learnable parameters through backpropagation. |
+| **Noise Robustness** | Both exploit governing physical equations as regularizing constraints, helping suppress measurement noise and reduce overfitting. |
 
-The total loss is given by:
+### Composite Loss Function
+
+Both paradigms use a combined loss function:
 
 $$
 \text{Total Loss}
@@ -135,10 +145,51 @@ $$
 +
 \text{Loss}_{\text{physics}}
 $$
-``
-| **Physics Regularization** | Both evaluate the governing PDE residual at randomly sampled interior collocation points $(x_m,t_m)$ to ensure physically meaningful and consistent solutions throughout the domain. |
-| **Optimization Algorithms** | Both use gradient-based optimization methods such as Adam and L-BFGS to minimize the total loss and update learnable parameters through backpropagation. |
-| **Noise Robustness** | Both exploit the governing physical equations as a regularizing constraint, helping suppress measurement noise and reducing the risk of overfitting to sparse data. |
+
+where:
+
+- $\text{Loss}_{\text{data}}$ enforces agreement with measurements, boundary conditions, and initial conditions.
+- $\text{Loss}_{\text{physics}}$ enforces compliance with the governing differential equation.
+
+---
+
+## Shared PINN Workflow
+
+```text
+Spatial Coordinates (x,y,z) + Time (t)
+                    │
+                    ▼
+            Neural Network
+                    │
+                    ▼
+       Predicted State u(x,t)
+                    │
+                    ▼
+      Automatic Differentiation
+                    │
+                    ▼
+       PDE Residual Evaluation
+                    │
+                    ▼
+     Data Loss + Physics Loss
+                    │
+                    ▼
+             Total Loss
+                    │
+                    ▼
+   Gradient-Based Optimization
+                    │
+                    ▼
+    Physics-Consistent Solution
+```
+
+---
+
+## Key Takeaway
+
+> Despite their different objectives, both **Forward PINNs** and **Inverse PINNs** rely on the same foundational components: neural-network function approximation, automatic differentiation, PDE-constrained learning, and gradient-based optimization.
+
+> The primary distinction lies not in the architecture itself, but in **what is being learned**. A **Forward PINN** learns the **state field** $u(x,t)$ when physical parameters are known, whereas an **Inverse PINN** learns both the **state field** and the **unknown physical parameters** simultaneously from sparse observations.
 
 ---
 
