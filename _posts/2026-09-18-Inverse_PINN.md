@@ -120,11 +120,6 @@ Unlike simple curve fitting, inverse problems must produce solutions that remain
 
 Although **Forward PINNs** and **Inverse PINNs** are designed for different objectives, they share the same underlying computational framework and physics-informed learning principles.
 
-
-# Common Features (Shared Foundations)
-
-Although **Forward PINNs** and **Inverse PINNs** are designed for different objectives, they share the same underlying computational framework and physics-informed learning principles.
-
 | **Common Aspect** | **Description across Both Paradigms** |
 |-------------------|----------------------------------------|
 | **Mesh-Free Representation** | Both use deep neural networks that take continuous spatial coordinates $(x,y,z)$ and time $(t)$ as inputs and output physical state variables $u$. |
