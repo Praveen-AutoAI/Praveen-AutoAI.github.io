@@ -63,7 +63,7 @@ Known Physics + Known Parameters
                 ↓
          Solve PDEs
                 ↓
-       System Response
+       System Response/State Field
 ```
 
 ---
