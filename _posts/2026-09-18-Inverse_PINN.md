@@ -46,9 +46,9 @@ To understand inverse Physics-Informed Neural Networks (inverse PINNs), it is im
 
 ## The Forward Problem
 
-The forward problem represents the traditional engineering simulation workflow. In this setting, the geometry, material properties (e.g., thermal conductivity), boundary conditions (e.g., applied heat flux), and governing partial differential equations (PDEs) are known.
+The **forward problem represents the traditional engineering simulation workflow**. In this setting, the geometry, material properties (e.g., thermal conductivity), boundary conditions (e.g., applied heat flux), and governing partial differential equations (PDEs) are known.
 
-The objective is to compute the resulting state field of the system.
+The **objective is to compute the resulting state field of the system.**
 
 For example:
 
@@ -72,7 +72,7 @@ Known Physics + Known Parameters
 
 The inverse problem reverses this workflow. In this setting, some physical properties, boundary conditions, or internal source terms are unknown. However, measurements of the system's response are available at a limited number of locations.
 
-The objective is to work backward from these observations to infer the unknown quantities that produced them.
+The **objective is to work backward from these observations to infer the unknown quantities that produced them.**
 
 For example:
 
@@ -93,7 +93,6 @@ Sparse Measurements + Known Physics
 <div style="text-align: center;">
   <img src="/assets/images/PINN/I_PINN_4.png" alt="PINN Difference" width="800">
 </div>
-
 
 Unlike simple curve fitting, inverse problems must produce solutions that remain consistent with the governing physics of the system. This requirement makes inverse problems considerably more challenging, but also more valuable for engineering analysis, system monitoring, and digital twin applications.
 
