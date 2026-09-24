@@ -25,6 +25,11 @@ This type of challenge appears throughout engineering:
 - Energy engineers may reconstruct subsurface permeability using measurements from a small number of wells.
 
 ## These problems share a common structure:
+- Sparse measurements: Limited data from a few locations or sensors.
+- Physical laws: Governing equations that describe the system's behavior.
+- Unknowns to estimate: Parameters or states that are not directly measurable.
+- Reconstruction: Using the available data and physical laws to infer the unknowns.
+
 <img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="800">
 
 
