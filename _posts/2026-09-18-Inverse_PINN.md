@@ -30,9 +30,8 @@ This type of challenge appears throughout engineering:
 - Unknowns to estimate: Parameters or states that are not directly measurable.
 - Reconstruction: Using the available data and physical laws to infer the unknowns.
 
+## How PINNs solve this:
 <img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="800">
-
-
 
 
 ---
