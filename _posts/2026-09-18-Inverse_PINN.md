@@ -12,16 +12,16 @@ math: true
 
 Consider a metal rod used as part of an industrial heating system. The rod is heated at one end, and engineers need to understand how quickly heat travels through the material. Temperature sensors can be installed at a few accessible locations, but placing sensors at every point along the rod is neither practical nor necessary. More importantly, the rod's effective thermal conductivity may be unknown because of manufacturing variation, material degradation, or uncertain operating conditions.
 
-The available information is therefore incomplete. Engineers have a small number of temperature measurements, some knowledge of the heating conditions, and a physical law describing heat conduction. From this limited information, they would like to determine two things:
+The **available information from experiment is therefore incomplete**. Engineers have a small number of temperature measurements, some knowledge of the heating conditions, and a physical law describing heat conduction. From this limited information, they would like to determine two things:
 
 1. The complete temperature distribution throughout the rod.
 2. The unknown thermal conductivity of the material.
 
 This type of challenge appears throughout engineering:
 
-- Battery engineers may need to estimate internal cell temperatures and heat-generation rates using only surface sensors.
-- Aerospace engineers may infer material degradation from strain measurements.
-- Manufacturing engineers may estimate heat-source characteristics from thermal camera data.
+- Battery engineers may need to **estimate internal cell temperatures and heat-generation rates using only surface sensors.**
+- Aerospace engineers may **infer material degradation from strain measurements.**
+- Manufacturing engineers may **estimate heat-source characteristics from thermal camera data**.
 - Energy engineers may reconstruct subsurface permeability using measurements from a small number of wells.
 
 ## These problems share a common structure:
@@ -32,7 +32,6 @@ This type of challenge appears throughout engineering:
 
 ## How PINNs solve this:
 <img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="800">
-
 
 ---
 
