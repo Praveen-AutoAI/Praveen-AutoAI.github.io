@@ -6,7 +6,6 @@ date: 2026-09-07
 categories: [Machine Learning, Engineering, Scientific Machine Learning,]
 tags: [Data Science, Deep Learning, AI]
 math: true
-<link rel="stylesheet" href="/assets/css/custom.css">
 ---
 
 ## Inverse-PINN for Engineering Applications
@@ -36,6 +35,8 @@ This type of challenge appears throughout engineering:
 <div style="text-align: center;">
   <img src="/assets/images/PINN/I_PINN_1.png" alt="PINN-1" width="800">
 </div>
+
+<img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="500" style="display: block; margin-left: auto; margin-right: auto;">
 
 ---
 
