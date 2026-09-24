@@ -10,213 +10,70 @@ math: true
 
 # Paths to PINNs: Forward and Inverse Approaches for Solving Engineering Problems with Small Datasets
 
-## 1. Motivation and Real-World Relevance
+# PINN Loss Function Design: A Beginner's View
 
-Consider a metal rod used in an industrial heating system. The rod is heated at one end, and engineers need to understand how heat propagates through the material.
+The fundamental idea behind a Physics-Informed Neural Network (PINN) is remarkably simple:
 
-Temperature sensors can be installed at only a few accessible locations. Installing sensors throughout the entire rod is often impractical, expensive, or impossible. In addition, the effective thermal conductivity of the material may not be accurately known due to manufacturing variability, ageing, or changing operating conditions.
+> A neural network should not only fit the available data, but also obey the laws of physics.
 
-As a result, the available experimental information is incomplete.
+Traditional neural networks learn solely from observations. If sufficient data is available, they can achieve excellent predictions. However, when data is sparse, noisy, or expensive to collect, traditional models often struggle to generalize.
 
-Engineers may only have:
+PINNs address this challenge by introducing an additional source of knowledge: the governing physics of the system.
 
-- A small number of temperature measurements
-- Knowledge of the heating conditions
-- The governing heat-transfer equation
+Instead of asking:
 
-From this limited information, they would like to determine:
+> "How well does the model fit the measurements?"
 
-1. The complete temperature distribution throughout the rod
-2. The unknown thermal conductivity of the material
+PINNs ask:
 
-This challenge appears across many engineering domains:
+> "How well does the model fit the measurements while simultaneously obeying the governing physical laws?"
 
-- Battery engineers estimate internal cell temperatures and heat-generation rates using only surface measurements.
-- Aerospace engineers infer structural degradation from sparse strain measurements.
-- Manufacturing engineers estimate unknown heat-source characteristics from thermal imaging.
-- Energy engineers reconstruct underground permeability from measurements collected at a limited number of wells.
-
-### Common Characteristics of These Problems
-
-These applications share four key characteristics:
-
-- **Sparse measurements**: Only a limited number of sensors are available.
-- **Known physics**: Governing equations describing system behavior are available.
-- **Unknown quantities**: Parameters or internal states cannot be measured directly.
-- **Reconstruction objective**: Infer the unknown quantities from data and physics.
-
-## Overview: How Inverse PINNs Solve This Problem
-
-<div style="text-align:center;">
-/assets/images/PINN/I_PINN_1.png
-</div>
+This idea is implemented through the loss function.
 
 ---
 
-# 2. Forward vs. Inverse Problems
+## 1. Traditional Neural Network
 
-To understand Physics-Informed Neural Networks, it is important to distinguish between **forward problems** and **inverse problems**.
+A standard neural network learns only from data.
 
-These represent two fundamentally different ways of solving engineering problems.
-
-## The Forward Problem
-
-The forward problem represents the traditional engineering simulation workflow.
-
-In a forward problem:
-
-- Material properties are known.
-- Boundary conditions are known.
-- Governing equations are known.
-
-The objective is to compute the resulting system response.
-
-Examples include:
-
-- Computing temperature distribution from known thermal conductivity.
-- Computing structural deformation from known loads and material properties.
-- Computing fluid velocity and pressure from known flow conditions.
-
-Traditional simulation tools such as:
-
-- Finite Element Analysis (FEA)
-- Computational Fluid Dynamics (CFD)
-- Finite Difference Methods (FDM)
-
-are designed to solve forward problems.
-
-```text
-Known Physics + Known Parameters
-                ↓
-            Solve PDE
-                ↓
-      System State / Response
-```
-
----
-
-## The Inverse Problem
-
-The inverse problem reverses the workflow.
-
-Some physical quantities are unknown, but limited measurements of the system response are available.
-
-The objective is to infer the hidden quantities that produced the observed measurements.
-
-Examples include:
-
-- Estimating thermal conductivity from temperature measurements
-- Estimating material degradation from strain measurements
-- Identifying unknown heat sources from thermal images
-- Estimating underground permeability from pressure measurements
-
-```text
-Sparse Measurements + Known Physics
-                  ↓
-     Parameter Identification
-                  ↓
-   Unknown Physical Quantities
-```
-
-### U-Turn: Forward vs. Inverse PINNs
-
-<div style="text-align:center;">
-/assets/images/PINN/I_PINN_4.png
-</div>
-
-Unlike traditional curve fitting, inverse problems must remain consistent with the governing physics.
-
-This makes inverse problems more challenging but also far more valuable for:
-
-- Digital twins
-- Health monitoring
-- Condition estimation
-- Scientific discovery
-
----
-
-# 3. Core Differences Between Forward and Inverse PINNs
-
-| Feature | Forward PINN | Inverse PINN |
-|----------|----------|----------|
-| Objective | Predict state fields | Estimate unknown parameters and state fields |
-| Physical Parameters | Known | Unknown and trainable |
-| Trainable Variables | Neural network weights | Neural network weights + physical parameters |
-| Data Requirement | ICs and BCs | Sparse measurements + ICs/BCs |
-| Main Output | System response | Parameters + system response |
-| Classical Alternative | FEA / CFD | Optimization-based parameter identification |
-
-## In Simple Terms
-
-> A Forward PINN uses known physics and known parameters to predict the system state.
-
-> An Inverse PINN uses sparse observations and governing physics to estimate unknown parameters while simultaneously reconstructing the system state.
-
----
-
-# 4. Common Foundations Shared by Forward and Inverse PINNs
-
-Although their objectives differ, both approaches share the same mathematical framework.
-
-| Common Component | Description |
-|------------------|-------------|
-| Neural Networks | Represent unknown solution fields |
-| Automatic Differentiation | Computes PDE derivatives exactly |
-| Physics Loss | Enforces governing equations |
-| Collocation Points | Apply physics throughout the domain |
-| Gradient-Based Optimization | Adam, L-BFGS, etc. |
-| Physics Regularization | Reduces overfitting and improves generalization |
-
-## Key Takeaway
-
-> Forward PINNs and Inverse PINNs use the same learning framework.
-
-> The primary difference is **what is being learned**.
-
-- Forward PINNs learn the state field.
-- Inverse PINNs learn both the state field and unknown physical parameters.
-
----
-
-# 5. PINN Loss Function Design
-
-The key innovation behind a Physics-Informed Neural Network lies in its loss function.
-
-> A neural network should not only fit the data, but also obey the laws of physics.
-
-Traditional neural networks learn only from observations.
-
-PINNs learn from observations and governing equations simultaneously.
-
----
-
-## Traditional Neural Network
-
-A conventional neural network minimizes only data error:
+Its objective is typically to minimize the prediction error:
 
 $$
 L = L_{data}
 $$
 
-For example:
+where
 
 $$
 L_{data}
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-(y_{pred,i}-y_{true,i})^2
+\left(y_{pred,i}-y_{true,i}\right)^2
 $$
 
-The objective is simple:
+Here:
 
-> Fit the available data.
+- $y_{true}$ are the measured values
+- $y_{pred}$ are the network predictions
+
+During training, the model repeatedly adjusts its weights to reduce this error.
+
+### What is the limitation?
+
+Imagine we have only five temperature sensors placed along a heated rod.
+
+A conventional neural network can learn those five points, but nothing prevents it from producing physically unrealistic temperatures between the sensors.
+
+In other words:
+
+> Traditional neural networks can fit the data without understanding the physics.
 
 ---
 
-## Introducing Physics
+## 2. The PINN Idea
 
-Suppose the system is governed by:
+Now suppose the system is governed by a known Partial Differential Equation (PDE):
 
 $$
 \mathcal{N}(u)=0
@@ -224,8 +81,15 @@ $$
 
 where:
 
-- $u$ is the unknown solution
+- $u$ is the unknown solution field
 - $\mathcal{N}$ is the governing differential operator
+
+Examples include:
+
+- Heat equation
+- Wave equation
+- Diffusion equation
+- Navier-Stokes equations
 
 The neural network predicts:
 
@@ -233,23 +97,57 @@ $$
 u_\theta(x,t)
 $$
 
-A PDE residual is then defined as:
+using the spatial location and time as inputs.
+
+Unlike a traditional neural network, we now have additional information:
+
+> We know what equations the solution must satisfy.
+
+Therefore, if the neural network violates the PDE, we should penalize it.
+
+---
+
+## 3. Physics Residual: Measuring PDE Violation
+
+To determine whether the prediction obeys the governing physics, we substitute the neural-network prediction directly into the PDE.
+
+This produces a residual:
 
 $$
 R = \mathcal{N}(u_\theta)
 $$
 
-When physics is perfectly satisfied:
+Think of the residual as a "physics error."
+
+If the prediction perfectly satisfies the governing equation:
 
 $$
 R = 0
 $$
 
+If the prediction violates physics:
+
+$$
+R \neq 0
+$$
+
+The larger the residual, the greater the violation of the governing laws.
+
+### Intuition
+
+Consider the heat equation.
+
+If the predicted temperature field does not satisfy heat conservation, the residual becomes large.
+
+A large residual tells the network:
+
+> "Your prediction may fit the measurements, but it does not obey the physics."
+
 ---
 
-## Physics Loss
+## 4. Physics Loss
 
-Any violation of the governing PDE is penalized:
+The residual is converted into a loss term:
 
 $$
 L_{physics}
@@ -259,15 +157,25 @@ L_{physics}
 R_i^2
 $$
 
-This tells the neural network:
+The purpose of this term is to reward physically consistent solutions and penalize physically impossible ones.
 
-> Do not merely fit the measurements. Also satisfy the governing physics.
+### Conceptually
+
+The data loss asks:
+
+> "Did you match the measurements?"
+
+The physics loss asks:
+
+> "Did you obey the governing equations?"
+
+Both questions are equally important.
 
 ---
 
-## Basic PINN Loss
+## 5. Combining Data and Physics
 
-The first PINN loss function becomes:
+A PINN learns by minimizing both objectives:
 
 $$
 L
@@ -279,28 +187,50 @@ $$
 
 where:
 
-- $L_{data}$ measures prediction error
-- $L_{physics}$ measures PDE violation
-- $\lambda$ balances the two objectives
+- $L_{data}$ measures mismatch with observations
+- $L_{physics}$ measures violation of the PDE
+- $\lambda$ controls the importance of physics
+
+The network must now satisfy two teachers:
+
+### Teacher 1: Data
+
+Experimental measurements describe what was observed.
+
+### Teacher 2: Physics
+
+The governing equations describe what is physically possible.
+
+A valid solution must satisfy both.
 
 ---
 
-## Adding Boundary Conditions
+## 6. Why Boundary Conditions Matter
 
-Suppose the solution must satisfy:
+Most engineering problems also have known boundary conditions.
+
+For example, a heated rod may have:
 
 $$
 u(0,t)=100
 $$
 
-The boundary-condition loss becomes:
+meaning the left end is maintained at 100°C.
+
+Without enforcing this condition, the network could produce a solution that satisfies the PDE but violates the known boundary behavior.
+
+To prevent this, a boundary-condition loss is added:
 
 $$
 L_{BC}
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-(u_{pred,i}-u_{BC,i})^2
+\left(
+u_{pred,i}
+-
+u_{BC,i}
+\right)^2
 $$
 
 The total loss becomes:
@@ -315,27 +245,43 @@ L_{physics}
 L_{BC}
 $$
 
+### Intuition
+
+The PDE governs what happens inside the domain.
+
+Boundary conditions govern what happens at the edges.
+
+Both are required to obtain a physically meaningful solution.
+
 ---
 
-## Adding Initial Conditions
+## 7. Why Initial Conditions Matter
 
-For transient systems:
+For transient problems, the starting state is also known.
+
+For example:
 
 $$
 u(x,0)=u_0(x)
 $$
 
-The initial-condition loss is:
+A transient simulation without an initial condition is similar to watching a movie from the middle without knowing how it started.
+
+Therefore, we add:
 
 $$
 L_{IC}
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
-(u_{pred,i}-u_{0,i})^2
+\left(
+u_{pred,i}
+-
+u_{0,i}
+\right)^2
 $$
 
-The complete PINN loss becomes:
+The full PINN objective becomes:
 
 $$
 L
@@ -349,6 +295,15 @@ L_{BC}
 L_{IC}
 $$
 
+Now the solution must satisfy:
+
+- Experimental observations
+- Governing equations
+- Boundary conditions
+- Initial conditions
+
+simultaneously.
+
 ---
 
 ## Evolution of the PINN Loss Function
@@ -356,48 +311,59 @@ $$
 ### Traditional Neural Network
 
 $$
-L=L_{data}
+L = L_{data}
 $$
 
-**Goal:** Fit the data
+**Goal:** Match the observations.
+
+---
 
 ### Basic PINN
 
 $$
-L=L_{data}+L_{physics}
+L
+=
+L_{data}
++
+L_{physics}
 $$
 
-**Goal:** Fit the data and satisfy the PDE
+**Goal:** Match the observations and obey the PDE.
+
+---
 
 ### Practical Engineering PINN
 
 $$
-L=L_{data}+L_{physics}+L_{BC}+L_{IC}
+L
+=
+L_{data}
++
+L_{physics}
++
+L_{BC}
++
+L_{IC}
 $$
 
-**Goal:** Fit the data, satisfy the PDE, respect boundary conditions, and satisfy initial conditions.
+**Goal:** Match the observations while satisfying all known physical constraints.
 
 ---
 
 ## The Big Picture
 
-A PINN learns from two teachers.
+A useful way to think about PINNs is that they learn from both experiments and science.
 
-### Teacher 1: Data
+| Source of Knowledge | What It Tells the Network |
+|--------------------|---------------------------|
+| Data Loss | What was observed |
+| Physics Loss | What is physically possible |
+| Boundary Loss | How the system behaves at its boundaries |
+| Initial Loss | Where the system started |
 
-$$
-L_{data}
-$$
+A traditional neural network sees only the measurements.
 
-Measurements tell the network what happened.
-
-### Teacher 2: Physics
-
-$$
-L_{physics}
-$$
-
-The governing equations tell the network what is physically possible.
+A PINN sees both the measurements and the underlying physics.
 
 ---
 
@@ -405,7 +371,7 @@ The governing equations tell the network what is physically possible.
 
 $$
 \boxed{
-L=
+L =
 L_{data}
 +
 L_{physics}
@@ -416,11 +382,6 @@ L_{IC}
 }
 $$
 
-Unlike a traditional neural network, a PINN learns simultaneously from:
+The power of a PINN comes from augmenting the traditional data-fitting loss with physics-based constraints.
 
-- Experimental data
-- Governing PDEs
-- Boundary conditions
-- Initial conditions
-
-This simple modification enables PINNs to solve many engineering problems using only small amounts of data while remaining physically consistent.
+As a result, PINNs can often learn accurate and physically meaningful solutions from far fewer measurements than a conventional neural network, making them particularly attractive for engineering applications where data is scarce but physical laws are well understood.
