@@ -132,54 +132,68 @@ Although **Forward PINNs** and **Inverse PINNs** are designed for different obje
 > Despite their different objectives, both **Forward PINNs** and **Inverse PINNs** rely on the same foundational components: neural-network function approximation, automatic differentiation, PDE-constrained learning, and gradient-based optimization.
 
 > The primary distinction lies not in the architecture itself, but in **what is being learned**. A **Forward PINN** learns the **state field** $u(x,t)$ when physical parameters are known, whereas an **Inverse PINN** learns both the **state field** and the **unknown physical parameters** simultaneously from sparse observations.
+and accurate. The same framework naturally extends to inverse PINNs, where unknown physical parameters are learned alongside the solution field.
 
 # PINN Loss Function Design: A Beginner's View
 
 The main idea behind a PINN is simple:
 
-> A neural network should not only fit the data, it should also obey the laws of physics.
+> A neural network should not only fit the data, but also obey the laws of physics.
 
-To achieve this, PINNs modify the normal neural network loss function by adding extra physics-based penalties.
+To achieve this, PINNs extend the traditional neural network loss function by adding physics-based penalties.
 
 ---
 
 ## 1. Traditional Neural Network
 
-A normal neural network only learns from data:
+A standard neural network only learns from data:
 
 $$
-L = L_{\text{data}}
+L = L_{data}
 $$
 
-For example,
+For example:
 
 $$
-L_{\text{data}}
+L_{data}
 =
-\frac{1}{N}\sum (y_{\text{pred}}-y_{\text{true}})^2
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left(y_{pred,i}-y_{true,i}\right)^2
 $$
 
-The network tries to reduce prediction error only.
+The network simply tries to reduce prediction error.
 
 ---
 
 ## 2. PINN Idea
 
-Suppose the solution must satisfy a PDE:
+Suppose the system is governed by a PDE:
 
 $$
 \mathcal{N}(u)=0
 $$
 
-If the neural network prediction violates the PDE, we should penalize it.
+where:
 
-Define a PDE residual:
+- \(u\) = unknown solution
+- \(\mathcal{N}\) = differential operator
+
+The neural network predicts:
+
+$$
+u_\theta(x,t)
+$$
+
+If the prediction violates the PDE, we should penalize it.
+
+Define the PDE residual:
 
 $$
 R = \mathcal{N}(u_\theta)
 $$
 
-If physics is perfectly satisfied:
+If physics is satisfied perfectly:
 
 $$
 R = 0
@@ -189,62 +203,74 @@ $$
 
 ## 3. Physics Loss
 
-The violation of the PDE is converted into a loss term:
+The PDE residual is converted into a loss term:
 
 $$
-L_{\text{physics}}
+L_{physics}
 =
-\frac{1}{N}\sum R^2
+\frac{1}{N}
+\sum_{i=1}^{N}
+R_i^2
 $$
 
-This term teaches the network:
+This teaches the network:
 
-> "Don't just match the data, also obey the governing equation."
+> "Do not just fit the data. Also obey the governing equation."
 
 ---
 
 ## 4. Total PINN Loss
 
-Now the network minimizes both data error and physics error:
+Now the neural network minimizes both:
 
 $$
 L
 =
-L_{\text{data}}
+L_{data}
 +
-\lambda L_{\text{physics}}
+\lambda L_{physics}
 $$
 
-where \(\lambda\) controls the importance of physics.
+where:
+
+- \(L_{data}\) measures data fitting error
+- \(L_{physics}\) measures PDE violation
+- \(\lambda\) controls the importance of physics
 
 ---
 
 ## 5. Adding Boundary Conditions
 
-Suppose the PDE requires:
+Suppose the solution must satisfy:
 
 $$
 u(0,t)=100
 $$
 
-We add another loss term:
+The boundary-condition loss becomes:
 
 $$
-L_{\text{BC}}
+L_{BC}
 =
-\frac{1}{N}\sum
-(u_{\text{pred}}-u_{\text{BC}})^2
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left(
+u_{pred,i}
+-
+u_{BC,i}
+\right)^2
 $$
 
-The total loss becomes:
+The total loss is now:
 
 $$
-L =
-L_{\text{data}}
+L
+=
+L_{data}
 +
-L_{\text{physics}}
+L_{physics}
 +
-L_{\text{BC}}
+L_{BC}
 $$
 
 ---
@@ -257,82 +283,125 @@ $$
 u(x,0)=u_0(x)
 $$
 
-Add:
+The initial-condition loss becomes:
 
 $$
-L_{\text{IC}}
+L_{IC}
 =
-\frac{1}{N}\sum
-(u_{\text{pred}}-u_0)^2
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left(
+u_{pred,i}
+-
+u_{0,i}
+\right)^2
 $$
 
-Now:
+The complete PINN loss becomes:
 
 $$
-L =
-L_{\text{data}}
+L
+=
+L_{data}
 +
-L_{\text{physics}}
+L_{physics}
 +
-L_{\text{BC}}
+L_{BC}
 +
-L_{\text{IC}}
+L_{IC}
 $$
 
 ---
 
-## Conceptual Evolution of Loss Functions
+## Evolution of PINN Loss Functions
 
 ### Traditional Neural Network
 
 $$
-L = L_{\text{data}}
+L = L_{data}
 $$
 
-*"Fit the data."*
+**Goal:** Fit the data
 
-↓
+---
 
-### PINN
+### Basic PINN
 
 $$
-L =
-L_{\text{data}}
+L
+=
+L_{data}
 +
-L_{\text{physics}}
+L_{physics}
 $$
 
-*"Fit the data and obey the PDE."*
+**Goal:** Fit the data + obey the PDE
 
-↓
+---
 
 ### Practical PINN
 
 $$
-L =
-L_{\text{data}}
+L
+=
+L_{data}
 +
-L_{\text{physics}}
+L_{physics}
 +
-L_{\text{BC}}
+L_{BC}
 +
-L_{\text{IC}}
+L_{IC}
 $$
 
-*"Fit the data, obey the PDE, satisfy boundary conditions, and satisfy initial conditions."*
+**Goal:** Fit the data + obey physics + satisfy boundary conditions + satisfy initial conditions
 
 ---
 
-## Key Intuition
+## The Big Picture
 
-A PINN learns from **two teachers**:
+A PINN learns from two teachers:
 
-1. **Data** → Experimental measurements
-2. **Physics** → Governing equations
+### Teacher 1: Data
 
-The loss function is simply the mechanism used to combine these two sources of knowledge into a single training objective.
+$$
+L_{data}
+$$
 
-> **Traditional NN:** Learn from data only.  
-> **PINN:** Learn from data + learn from physics.
+Experimental measurements tell the network what the solution should look like.
 
-The PDE residual embeds the governing physics, while data, boundary, and initial condition losses ensure the learned solution remains physically realistic and accurate. The same framework naturally extends to inverse PINNs, where unknown physical parameters are learned alongside the solution field.
+### Teacher 2: Physics
+
+$$
+L_{physics}
+$$
+
+The governing PDE tells the network what solution is physically possible.
+
+---
+
+## Key Takeaway
+
+$$
+\boxed{
+L
+=
+L_{data}
++
+L_{physics}
++
+L_{BC}
++
+L_{IC}
+}
+$$
+
+A traditional neural network learns only from data.
+
+A Physics-Informed Neural Network (PINN) learns from:
+
+- Data
+- Governing PDEs
+- Boundary Conditions
+- Initial Conditions
+
+all through a single composite loss function.
