@@ -8,7 +8,7 @@ tags: [Data Science, Deep Learning, AI]
 math: true
 ---
 
-## Physics-Informed Neural Networks : Forward and Inverse ways of Solving Engineering Problems with (very)Small Dataset
+## Paths to PINN (Physics-Informed Neural Networks) : Forward and Inverse ways of Solving Engineering Problems with (very)Small Dataset
 ### 1. Motivation and Real-World Relevance
 
 Consider a metal rod used as part of an industrial heating system. The rod is heated at one end, and engineers need to understand how quickly heat travels through the material. Temperature sensors can be installed at a few accessible locations, but placing sensors at every point along the rod is neither practical nor necessary. More importantly, the rod's effective thermal conductivity may be unknown because of manufacturing variation, material degradation, or uncertain operating conditions.
