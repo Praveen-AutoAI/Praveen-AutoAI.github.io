@@ -25,8 +25,7 @@ This type of challenge appears throughout engineering:
 - Energy engineers may reconstruct subsurface permeability using measurements from a small number of wells.
 
 ## These problems share a common structure:
-# ![Catalytic Converter](/assets/images/PINN/I_PINN_1.png){: width="200px" }
-<img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="500">
+<img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="800">
 
 
 
