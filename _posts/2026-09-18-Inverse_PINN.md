@@ -37,10 +37,6 @@ This type of challenge appears throughout engineering:
   <img src="/assets/images/PINN/I_PINN_1.png" alt="PINN-1" width="800">
 </div>
 
-<img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="500" class="center-image">
-
-
-
 ---
 
 # 2. Forward vs. Inverse Problems
