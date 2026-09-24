@@ -35,6 +35,11 @@ This type of challenge appears throughout engineering:
   <img src="/assets/images/PINN/I_PINN_1.png" alt="PINN-1" width="800">
 </div>
 
+<center>
+  <img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="500">
+</center>
+
+
 
 ---
 
