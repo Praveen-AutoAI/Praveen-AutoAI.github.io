@@ -26,13 +26,7 @@ This type of challenge appears throughout engineering:
 
 These problems share a common structure:
 
-```text
-Sparse measurements + Governing physics
-                    ↓
-       State and parameter estimation
-                    ↓
- Complete physical field + Unknown properties
-```
+
 
 ---
 
