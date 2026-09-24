@@ -30,7 +30,7 @@ This type of challenge appears throughout engineering:
 - Unknowns to estimate: Parameters or states that are not directly measurable.
 - Reconstruction: Using the available data and physical laws to infer the unknowns.
 
-## How PINNs solve this:
+## Overview: How Inverse-PINNs solve this!
 <img src="/assets/images/PINN/I_PINN_1.png" alt="Catalytic Converter" width="800">
 
 ---
@@ -83,6 +83,8 @@ Sparse Measurements + Known Physics
                   ↓
    Unknown Physical Quantities
 ```
+## U-Turn : Forward and Inverse
+<img src="/assets/images/PINN/I_PINN_4.png" alt="PINN Difference" width="800">
 
 Unlike simple curve fitting, inverse problems must produce solutions that remain consistent with the governing physics of the system. This requirement makes inverse problems considerably more challenging, but also more valuable for engineering analysis, system monitoring, and digital twin applications.
 
