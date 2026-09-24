@@ -87,7 +87,7 @@ Sparse Measurements + Known Physics
    Unknown Physical Quantities
 ```
 
-## U-Turn : Forward and Inverse
+## U-Turn : Forward and Inverse PINNs
 <div style="text-align: center;">
   <img src="/assets/images/PINN/I_PINN_4.png" alt="PINN Difference" width="800">
 </div>
