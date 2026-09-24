@@ -133,3 +133,498 @@ Although **Forward PINNs** and **Inverse PINNs** are designed for different obje
 
 > The primary distinction lies not in the architecture itself, but in **what is being learned**. A **Forward PINN** learns the **state field** $u(x,t)$ when physical parameters are known, whereas an **Inverse PINN** learns both the **state field** and the **unknown physical parameters** simultaneously from sparse observations.
 
+# PINN Loss Function Design for General PDEs
+
+Physics-Informed Neural Networks (PINNs) solve Partial Differential Equations (PDEs) by embedding the governing physics directly into the neural network training process. Unlike conventional neural networks that rely purely on labeled data, PINNs optimize a composite loss function that simultaneously satisfies:
+
+- Observational data
+- Governing PDEs
+- Initial conditions (ICs)
+- Boundary conditions (BCs)
+
+The design of the loss function is the most critical aspect of a PINN because it determines how well the solution respects both the measurements and the underlying physics.
+
+---
+
+## General PDE Formulation
+
+Consider a generic PDE:
+
+$$
+\mathcal{N}[u(\mathbf{x},t;\lambda)] = 0
+\qquad
+(\mathbf{x},t)\in\Omega
+$$
+
+where:
+
+- $u(\mathbf{x},t)$ is the unknown state variable
+- $\mathbf{x}$ denotes the spatial coordinates
+- $t$ denotes time
+- $\lambda$ represents physical parameters
+- $\mathcal{N}[\cdot]$ is a differential operator
+- $\Omega$ is the computational domain
+
+Examples include:
+
+| PDE | State Variable |
+|-------|-------|
+| Heat Equation | Temperature |
+| Wave Equation | Displacement |
+| Burgers Equation | Velocity |
+| Navier-Stokes Equation | Velocity, Pressure |
+| Maxwell Equations | Electric and Magnetic Fields |
+
+---
+
+# Neural Network Approximation
+
+The neural network approximates the solution as:
+
+$$
+u_\theta(\mathbf{x},t)
+$$
+
+where:
+
+$$
+\theta = \{W,b\}
+$$
+
+represents all trainable weights and biases.
+
+The objective of training is to find:
+
+$$
+\theta^*
+=
+\arg \min L
+$$
+
+such that the learned solution satisfies both measurements and physics.
+
+---
+
+# PDE Residual Loss
+
+Using automatic differentiation, all required derivatives are computed directly from the network.
+
+The PDE residual is defined as
+
+$$
+R(\mathbf{x},t)
+=
+\mathcal{N}
+\left[
+u_\theta(\mathbf{x},t)
+\right]
+$$
+
+Ideally:
+
+$$
+R(\mathbf{x},t)=0
+$$
+
+everywhere in the solution domain.
+
+The Physics Loss becomes:
+
+$$
+L_{\text{PDE}}
+=
+\frac{1}{N_r}
+\sum_{i=1}^{N_r}
+R(\mathbf{x}_i,t_i)^2
+$$
+
+where:
+
+- $N_r$ = number of collocation points
+- $(\mathbf{x}_i,t_i)$ = interior sampling points
+
+This term forces the network to satisfy the governing PDE.
+
+---
+
+# Initial Condition Loss
+
+For transient PDEs, the solution at the initial time is known.
+
+Given
+
+$$
+u(\mathbf{x},0)
+=
+u_0(\mathbf{x})
+$$
+
+the Initial Condition Loss is
+
+$$
+L_{\text{IC}}
+=
+\frac{1}{N_{IC}}
+\sum_{i=1}^{N_{IC}}
+\left(
+u_\theta(\mathbf{x}_i,0)
+-
+u_0(\mathbf{x}_i)
+\right)^2
+$$
+
+This ensures the network starts from the physically correct state.
+
+---
+
+# Boundary Condition Loss
+
+The network must satisfy boundary conditions.
+
+---
+
+## Dirichlet Boundary Condition
+
+Given:
+
+$$
+u(\mathbf{x},t)
+=
+g(\mathbf{x},t)
+\qquad
+\text{on }
+\partial\Omega
+$$
+
+the loss becomes
+
+$$
+L_{\text{BC}}
+=
+\frac{1}{N_{BC}}
+\sum_{i=1}^{N_{BC}}
+\left(
+u_\theta
+-
+g
+\right)^2
+$$
+
+---
+
+## Neumann Boundary Condition
+
+Given:
+
+$$
+\frac{\partial u}{\partial n}
+=
+q
+$$
+
+the loss becomes
+
+$$
+L_{\text{BC}}
+=
+\frac{1}{N_{BC}}
+\sum_{i=1}^{N_{BC}}
+\left(
+\frac{\partial u_\theta}{\partial n}
+-
+q
+\right)^2
+$$
+
+---
+
+## Robin Boundary Condition
+
+Given:
+
+$$
+a u + b \frac{\partial u}{\partial n}
+=
+c
+$$
+
+the corresponding loss becomes
+
+$$
+L_{\text{BC}}
+=
+\frac{1}{N_{BC}}
+\sum_{i=1}^{N_{BC}}
+\left(
+a u_\theta
++
+b\frac{\partial u_\theta}{\partial n}
+-
+c
+\right)^2
+$$
+
+---
+
+# Data Loss
+
+If measurements are available, the network can be constrained using data.
+
+Suppose experimental observations are
+
+$$
+\{u_{\text{meas}}\}
+$$
+
+Then:
+
+$$
+L_{\text{data}}
+=
+\frac{1}{N_d}
+\sum_{i=1}^{N_d}
+\left(
+u_{\text{pred}}
+-
+u_{\text{meas}}
+\right)^2
+$$
+
+This term improves prediction accuracy and reduces ambiguity.
+
+---
+
+# Composite PINN Loss Function
+
+The complete PINN objective function is typically
+
+$$
+L=
+w_dL_{\text{data}}
++
+w_pL_{\text{PDE}}
++
+w_bL_{\text{BC}}
++
+w_iL_{\text{IC}}
+$$
+
+where:
+
+- $w_d$ = data weight
+- $w_p$ = PDE weight
+- $w_b$ = boundary weight
+- $w_i$ = initial condition weight
+
+Alternatively:
+
+$$
+L=
+\sum_k w_k L_k
+$$
+
+where each physics constraint contributes a separate loss term.
+
+---
+
+# Inverse PINN Loss Function
+
+For inverse problems, unknown physical parameters are also optimized.
+
+Suppose:
+
+$$
+\lambda
+=
+\{k,D,\alpha,\beta,\ldots\}
+$$
+
+contains unknown PDE parameters.
+
+The optimization becomes:
+
+$$
+\{\theta,\lambda\}
+=
+\arg\min L
+$$
+
+The loss structure remains identical:
+
+$$
+L=
+L_{\text{data}}
++
+L_{\text{PDE}}
++
+L_{\text{BC}}
++
+L_{\text{IC}}
+$$
+
+but now the gradients update both:
+
+- Neural network weights
+- Unknown physical parameters
+
+simultaneously.
+
+---
+
+# Example: Heat Equation PINN
+
+Consider
+
+$$
+\rho c_p
+\frac{\partial T}{\partial t}
+=
+k
+\frac{\partial^2 T}{\partial x^2}
+$$
+
+The PDE residual becomes
+
+$$
+R(x,t)
+=
+\rho c_p
+\frac{\partial T_\theta}{\partial t}
+-
+k
+\frac{\partial^2 T_\theta}{\partial x^2}
+$$
+
+Physics loss:
+
+$$
+L_{\text{PDE}}
+=
+\frac{1}{N_r}
+\sum R^2
+$$
+
+Total loss:
+
+$$
+L=
+w_dL_{\text{data}}
++
+w_pL_{\text{PDE}}
++
+w_bL_{\text{BC}}
++
+w_iL_{\text{IC}}
+$$
+
+Training drives the neural network toward a temperature field that simultaneously satisfies:
+
+- Experimental measurements
+- Heat-transfer physics
+- Initial conditions
+- Boundary conditions
+
+---
+
+# Practical Loss Design Considerations
+
+### 1. Loss Balancing
+
+Different loss terms may have vastly different magnitudes.
+
+A common issue is:
+
+$$
+L_{\text{PDE}}
+\gg
+L_{\text{data}}
+$$
+
+or
+
+$$
+L_{\text{data}}
+\gg
+L_{\text{PDE}}
+$$
+
+leading to poor convergence.
+
+Adaptive weighting methods are often used to balance gradients.
+
+---
+
+### 2. Residual Sampling
+
+The PDE residual is only evaluated at collocation points.
+
+Increasing the number and quality of collocation points generally improves physical consistency.
+
+---
+
+### 3. Hard vs Soft Constraints
+
+**Soft Constraints**
+
+Boundary and initial conditions are added through loss terms:
+
+$$
+L_{\text{BC}},\;
+L_{\text{IC}}
+$$
+
+**Hard Constraints**
+
+The network architecture is modified such that BCs or ICs are satisfied exactly.
+
+Hard constraints usually improve convergence.
+
+---
+
+### 4. Multi-Physics Problems
+
+For coupled physics systems:
+
+$$
+L=
+L_{\text{PDE}_1}
++
+L_{\text{PDE}_2}
++
+L_{\text{PDE}_3}
++
+L_{\text{BC}}
++
+L_{\text{IC}}
++
+L_{\text{data}}
+$$
+
+Examples:
+
+- Electro-thermal systems
+- Fluid-structure interaction
+- Battery electrochemistry
+- Motor thermal networks
+- Electromagnetic-thermal coupling
+
+---
+
+# Key Takeaway
+
+A PINN is fundamentally an optimization problem whose success depends on the design of its loss function. For a general PDE, the loss function combines:
+
+$$
+\boxed{
+L=
+L_{\text{data}}
++
+L_{\text{PDE}}
++
+L_{\text{BC}}
++
+L_{\text{IC}}
+}
+$$
+
+The PDE residual embeds the governing physics, while data, boundary, and initial condition losses ensure the learned solution remains physically realistic and accurate. The same framework naturally extends to inverse PINNs, where unknown physical parameters are learned alongside the solution field.
