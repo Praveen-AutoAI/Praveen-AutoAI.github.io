@@ -24,8 +24,8 @@ This type of challenge appears throughout engineering:
 - Manufacturing engineers may estimate heat-source characteristics from thermal camera data.
 - Energy engineers may reconstruct subsurface permeability using measurements from a small number of wells.
 
-These problems share a common structure:
-
+## These problems share a common structure:
+![Catalytic Converter](/assets/images/PINN/I_PINN_1.png){: width="50%" }
 
 
 ---
