@@ -110,12 +110,9 @@ Unlike simple curve fitting, inverse problems must produce solutions that remain
 
 ---
 
-<p style="color:blue;">
-<strong>Key Insight:</strong> 
 In Simple Terms:
 > A **Forward PINN** uses known physical parameters to solve for the system state.
 > An **Inverse PINN** uses sparse observations and known governing physics to simultaneously estimate both the system state and the unknown physical parameters.
-</p>
 
 # Common Features (Shared Foundations)
 
