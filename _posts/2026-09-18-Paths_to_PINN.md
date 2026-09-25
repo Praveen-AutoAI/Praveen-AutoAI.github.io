@@ -31,11 +31,6 @@ This type of challenge appears throughout engineering:
 - Unknowns to estimate: Parameters or states that are not directly measurable.
 - Reconstruction: Using the available data and physical laws to infer the unknowns.
 
-## Overview: How Inverse-PINNs solve this!
-<div style="text-align: center;">
-  <img src="/assets/images/PINN/I_PINN_1.png" alt="PINN-1" width="800">
-</div>
-
 ---
 
 # 2. Forward vs. Inverse Problems
