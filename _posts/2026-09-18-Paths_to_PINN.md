@@ -271,7 +271,7 @@ $L = L_{data} + L_{physics} + L_{BC} + L_{IC}$
 
 ---
 
-## U-Turn : Forward and Inverse PINNs
+## Training Loop for PINN
 <div style="text-align: center;">
   <img src="/assets/images/PINN/I_PINN_5.png" alt="PINN Difference" width="800">
 </div>
