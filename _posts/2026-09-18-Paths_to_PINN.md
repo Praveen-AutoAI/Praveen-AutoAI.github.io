@@ -221,35 +221,15 @@ Where:
 
 Suppose the solution must satisfy:
 
-$$
-u(0,t)=100
-$$
+$$ u(0,t)=100 $$
 
 The boundary-condition loss becomes:
 
-$$
-L_{BC}
-=
-\frac{1}{N}
-\sum_{i=1}^{N}
-\left(
-u_{pred,i}
--
-u_{BC,i}
-\right)^2
-$$
+$L_{BC} = \frac{1}{N} \sum_{i=1}^{N} \left(u_{pred,i} - u_{BC,i}\right)^2$
 
 The total loss is now:
 
-$$
-L
-=
-L_{data}
-+
-L_{physics}
-+
-L_{BC}
-$$
+$L = L_{data} + L_{physics} + L_{BC}$
 
 ---
 
@@ -257,37 +237,15 @@ $$
 
 For transient problems:
 
-$$
-u(x,0)=u_0(x)
-$$
+$$ u(x,0)=u_0(x) $$
 
 The initial-condition loss becomes:
 
-$$
-L_{IC}
-=
-\frac{1}{N}
-\sum_{i=1}^{N}
-\left(
-u_{pred,i}
--
-u_{0,i}
-\right)^2
-$$
+$L_{IC} = \frac{1}{N} \sum_{i=1}^{N} \left(u_{pred,i} - u_{0,i}\right)^2$
 
 The complete PINN loss becomes:
 
-$$
-L
-=
-L_{data}
-+
-L_{physics}
-+
-L_{BC}
-+
-L_{IC}
-$$
+$L = L_{data} + L_{physics} + L_{BC} + L_{IC}$
 
 ---
 
@@ -295,9 +253,7 @@ $$
 
 ### Traditional Neural Network
 
-$$
-L = L_{data}
-$$
+$$  L = L_{data} $$
 
 **Goal:** Fit the data
 
@@ -305,13 +261,7 @@ $$
 
 ### Basic PINN
 
-$$
-L
-=
-L_{data}
-+
-L_{physics}
-$$
+$L = L_{data} + L_{physics}$
 
 **Goal:** Fit the data + obey the PDE
 
@@ -319,17 +269,7 @@ $$
 
 ### Practical PINN
 
-$$
-L
-=
-L_{data}
-+
-L_{physics}
-+
-L_{BC}
-+
-L_{IC}
-$$
+$L = L_{data} + L_{physics} + L_{BC} + L_{IC}$
 
 **Goal:** Fit the data + obey physics + satisfy boundary conditions + satisfy initial conditions
 
@@ -341,17 +281,13 @@ A PINN learns from two teachers:
 
 ### Teacher 1: Data
 
-$$
-L_{data}
-$$
+$$ L_{data} $$
 
 Experimental measurements tell the network what the solution should look like.
 
 ### Teacher 2: Physics
 
-$$
-L_{physics}
-$$
+$$ L_{physics} $$
 
 The governing PDE tells the network what solution is physically possible.
 
@@ -359,19 +295,7 @@ The governing PDE tells the network what solution is physically possible.
 
 ## Key Takeaway
 
-$$
-\boxed{
-L
-=
-L_{data}
-+
-L_{physics}
-+
-L_{BC}
-+
-L_{IC}
-}
-$$
+$\boxed{L = L_{data} + L_{physics} + L_{BC} + L_{IC}}$
 
 A traditional neural network learns only from data.
 
