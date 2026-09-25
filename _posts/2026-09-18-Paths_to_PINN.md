@@ -165,9 +165,9 @@ Suppose the system is governed by a PDE:
 $$ \mathcal{N}(u)=0 $$
 
 where:
+- $u$ = unknown solution  
+- $\mathcal{N}$ = differential operator
 
-- \(u\) = unknown solution
-- \(\mathcal{N}\) = differential operator
 
 The neural network predicts:
 
