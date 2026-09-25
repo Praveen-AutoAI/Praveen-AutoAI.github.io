@@ -129,7 +129,8 @@ Although **Forward PINNs** and **Inverse PINNs** are designed for different obje
 > The primary distinction lies not in the architecture itself, but in **what is being learned**. A **Forward PINN** learns the **state field** $u(x,t)$ when physical parameters are known, whereas an **Inverse PINN** learns both the **state field** and the **unknown physical parameters** simultaneously from sparse observations.
 and accurate. The same framework naturally extends to inverse PINNs, where unknown physical parameters are learned alongside the solution field.
 
-# PINN Loss Function Design: A Beginner's View
+
+# PINN Loss Function: The Magic Math of Embedding Physics and Data into the model
 
 The main idea behind a PINN is simple:
 
@@ -267,6 +268,13 @@ $L = L_{data} + L_{physics}$
 $L = L_{data} + L_{physics} + L_{BC} + L_{IC}$
 
 **Goal:** Fit the data + obey physics + satisfy boundary conditions + satisfy initial conditions
+
+---
+
+## U-Turn : Forward and Inverse PINNs
+<div style="text-align: center;">
+  <img src="/assets/images/PINN/I_PINN_5.png" alt="PINN Difference" width="800">
+</div>
 
 ---
 
