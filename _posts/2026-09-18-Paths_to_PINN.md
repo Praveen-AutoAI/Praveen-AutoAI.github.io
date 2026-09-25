@@ -219,7 +219,7 @@ This teaches the network:
 
 <div style="border-left:4px solid #1E88E5; padding:10px; background:#f4f9ff;">
 <strong>Key Idea:</strong><br>
-Do not just fit the data. Also obey the governing equation.
+> Do not just fit the data. Also obey the governing equation.
 </div>
 
 ---
