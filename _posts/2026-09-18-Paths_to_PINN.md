@@ -148,9 +148,7 @@ To achieve this, PINNs extend the traditional neural network loss function by ad
 
 A standard neural network only learns from data:
 
-$$
-L = L_{data}
-$$
+$$ L = L_{data} $$
 
 For example:
 
@@ -162,7 +160,8 @@ L_{data}
 \left(y_{pred,i}-y_{true,i}\right)^2
 $$
 
-$L = \frac{1}{N} \sum_{i=1}^{N} \left(y_{pred,i} - y_{true,i}\right)^2$
+$$L_{data}=\frac{1}{N}\sum_{i=1}^{N}(y_{pred,i}-y_{true,i})^2$$
+
 
 
 The network simply tries to reduce prediction error.
