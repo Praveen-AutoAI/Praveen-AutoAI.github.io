@@ -162,6 +162,9 @@ L_{data}
 \left(y_{pred,i}-y_{true,i}\right)^2
 $$
 
+$L = \frac{1}{N} \sum_{i=1}^{N} \left(y_{pred,i} - y_{true,i}\right)^2$
+
+
 The network simply tries to reduce prediction error.
 
 ---
