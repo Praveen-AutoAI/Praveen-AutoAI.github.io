@@ -210,9 +210,9 @@ $$ L =L_{data}+\lambda L_{physics}$$
 
 where:
 
-- \(L_{data}\) measures data fitting error
-- \(L_{physics}\) measures PDE violation
-- \(\lambda\) controls the importance of physics
+\(L_{data}\) measures data fitting error
+\(L_{physics}\) measures PDE violation
+\(\lambda\) controls the importance of physics
 
 ---
 
