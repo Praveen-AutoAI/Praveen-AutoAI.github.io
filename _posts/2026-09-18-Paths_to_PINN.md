@@ -162,9 +162,7 @@ The network simply tries to reduce prediction error.
 
 Suppose the system is governed by a PDE:
 
-$$
-\mathcal{N}(u)=0
-$$
+$$ \mathcal{N}(u)=0 $$
 
 where:
 
@@ -173,23 +171,17 @@ where:
 
 The neural network predicts:
 
-$$
-u_\theta(x,t)
-$$
+$$ u_\theta(x,t) $$
 
 If the prediction violates the PDE, we should penalize it.
 
 Define the PDE residual:
 
-$$
-R = \mathcal{N}(u_\theta)
-$$
+$$ R = \mathcal{N}(u_\theta) $$
 
 If physics is satisfied perfectly:
 
-$$
-R = 0
-$$
+$$ R = 0 $$
 
 ---
 
@@ -204,6 +196,9 @@ L_{physics}
 \sum_{i=1}^{N}
 R_i^2
 $$
+
+$L_{physics} = \frac{1}{N} \sum_{i=1}^{N} R_i^2$
+
 
 This teaches the network:
 
