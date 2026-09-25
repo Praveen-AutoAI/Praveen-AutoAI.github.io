@@ -217,6 +217,10 @@ This teaches the network:
 
 > "Do not just fit the data. Also obey the governing equation."
 
+<p style="color:#1E88E5;">
+<strong>Key Idea:</strong> Do not just fit the data. Also obey the governing equation.
+</p>
+
 ---
 
 ## 4. Total PINN Loss
