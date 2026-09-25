@@ -189,16 +189,7 @@ $$ R = 0 $$
 
 The PDE residual is converted into a loss term:
 
-$$
-L_{physics}
-=
-\frac{1}{N}
-\sum_{i=1}^{N}
-R_i^2
-$$
-
 $L_{physics} = \frac{1}{N} \sum_{i=1}^{N} R_i^2$
-
 
 This teaches the network:
 
@@ -215,13 +206,7 @@ This teaches the network:
 
 Now the neural network minimizes both:
 
-$$
-L
-=
-L_{data}
-+
-\lambda L_{physics}
-$$
+$$ L =L_{data}+\lambda L_{physics}$$
 
 where:
 
