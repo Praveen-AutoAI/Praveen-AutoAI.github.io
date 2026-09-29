@@ -241,7 +241,8 @@ If the prediction perfectly satisfies the governing physics:
 
 $$ R = 0 $$
 
-During training, the PINN minimizes this residual over many collocation points throughout the domain. Consequently, the network is forced not only to fit available data but also to obey the governing physics, allowing accurate learning even when only a small amount of measured data is available.
+> KEY INSIGHT: During training, the PINN minimizes this residual over many collocation points throughout the domain. Consequently, the network is forced not only to fit available data but also to obey the governing physics, allowing accurate learning even when only a small amount of measured data is available.
+
 ---
 
 ## 3. Physics Loss
@@ -263,7 +264,7 @@ This teaches the network:
 
 ## 4. Total PINN Loss
 
-Now the neural network minimizes both:
+Now the neural network minimizes both: Total loss includes data and physics
 
 $$ L =L_{data}+\lambda L_{physics}$$
 
@@ -278,7 +279,7 @@ Where:
 
 ## 5. Adding Boundary Conditions
 
-Suppose the solution must satisfy:
+The loss function can get complex with multiple constraints. Suppose the solution must satisfy:
 
 $$ u(0,t)=100 $$
 
