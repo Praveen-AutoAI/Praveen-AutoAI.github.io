@@ -342,6 +342,11 @@ $L = L_{data} + L_{physics} + L_{BC} + L_{IC}$
 ---
 
 ## Training Loop for PINN
+
+The training process of the PINN model more or less remains the same. Two thing to note is that(Bang-Bang)
+- After the prediction of the output, evaluating the physical consistency using automatic differentiation step  
+- Total loss is the sum of both the data loss and physics loss.
+
 <div style="text-align: center;">
   <img src="/assets/images/PINN/I_PINN_5.png" alt="PINN Difference" width="800">
 </div>
