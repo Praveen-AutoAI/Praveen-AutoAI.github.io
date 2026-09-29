@@ -348,7 +348,7 @@ Even with very few measurements, physics prevents the network from producing unr
 
 ---
 
-### Example: 3 Inverse PINN for Heat Transfer Parameter Identification
+### Example: 3 Inverse-PINN for Heat Transfer Parameter Identification
 
 In a traditional heat transfer problem, the thermal conductivity $$k$$ of a material is already known. Engineers use the governing heat equation and boundary conditions to predict the temperature distribution inside the material. This is called a **forward problem**.
 
@@ -367,6 +367,9 @@ and
 $$
 \frac{d^2T}{dx^2}.
 $$
+
+$\frac{dT}{dx}$ and $\frac{d^2T}{dx^2}$
+
 
 These derivatives are substituted into the governing heat equation:
 
