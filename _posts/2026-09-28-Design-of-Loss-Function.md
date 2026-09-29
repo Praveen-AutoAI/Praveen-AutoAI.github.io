@@ -43,5 +43,5 @@ The real magic of PINNs lies in **loss function design**. By carefully choosing 
 
 
 <p style="color:blue;">
-<strong>My Insight:</strong> When we look at the model architecture, training process, usage of data, and so on... I realize that the **PINNs are not breaking the rules of the game, but they bend it.**
+<strong>My Insight:</strong> When we look at the model architecture, training process, usage of data, and so on... I realize that the <strong>PINNs are not breaking the rules of the game, but they bend it.<strong>
 </p>
