@@ -59,7 +59,7 @@ Let us understand the PINN by working on three examples.
 
 ### Example 1: Forward PINN for Steady-State Heat Transfer
 
-#### Physical Problem
+### Physical Problem
 
 Let's start with one of the simplest engineering problems: heat conduction through a metal rod.
 
@@ -227,7 +227,7 @@ Physics Violated
 
 ---
 
-## Loss Function Design
+### Loss Function Design
 
 This is where the real magic of PINNs happens.
 
@@ -247,7 +247,7 @@ Instead of learning only from data, the network learns from multiple sources of 
 
 ---
 
-## Step 4: Total Loss
+### Step 4: Total Loss
 
 All three objectives are combined together.
 
@@ -263,7 +263,7 @@ In practical terms, the network is simultaneously trying to:
 
 ---
 
-## Understanding the Training Process
+### Understanding the Training Process
 
 A useful way to visualize PINN training is:
 
@@ -320,7 +320,7 @@ class HeatPINN(nn.Module):
 
 ---
 
-## What the Neural Network Learns
+### What the Neural Network Learns
 
 The neural network learns:
 
@@ -334,7 +334,7 @@ Instead of predicting temperatures only at sensor locations, it learns a continu
 
 ---
 
-## What Physics Contributes
+### What Physics Contributes
 
 Physics contributes the governing equation:
 
@@ -396,7 +396,5 @@ The final result is a physically consistent temperature field and an accurate es
 
 ### Inverse PINN for Heat Transfer 
 ![Inverse_PINN](/assets/images/PINN/I_PINN_6.png)
-
-assets/images/PINN
 
 
