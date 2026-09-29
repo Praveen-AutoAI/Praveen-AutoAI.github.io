@@ -347,9 +347,7 @@ This equation acts like a built-in engineering supervisor that continuously chec
 Even with very few measurements, physics prevents the network from producing unrealistic temperature profiles.
 
 ---
-## Loss Function Design: The Heart of a Forward PINN
-
-The real power of a Physics-Informed Neural Network (PINN) lies not in the neural network architecture itself, but in how the **loss function is designed**. Unlike conventional neural networks that learn only from measurement data, a PINN learns from both **data** and **physics**.
+### Example 2: Forward-PINN for Spring-mass system
 
 For the spring-mass system governed by
 
@@ -363,17 +361,7 @@ the objective is to train a neural network that predicts the displacement respon
 
 The first component of the loss function ensures that the predicted displacement matches the measured displacement data:
 
-$$
-L_{\text{data}}
-=
-\frac{1}{N}
-\sum_{i=1}^{N}
-\left(
-x_{\text{pred},i}
--
-x_{\text{true},i}
-\right)^2
-$$
+$L_{\text{data}} = \frac{1}{N} \sum_{i=1}^{N} \left( x_{\text{pred},i} - x_{\text{true},i} \right)^2$
 
 This term teaches the network:
 
