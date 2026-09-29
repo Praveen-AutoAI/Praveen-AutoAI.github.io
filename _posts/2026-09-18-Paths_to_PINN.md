@@ -183,45 +183,69 @@ The network simply tries to reduce prediction error.
 
 ## 2. PINN Idea
 
-Suppose a physical system is governed by a partial differential equation (PDE):
+Suppose the system is governed by a partial differential equation (PDE):
 
-\[
+$$
 \mathcal{N}(u)=0
-\]
+$$
 
 where:
 
-- \(u\) is the unknown physical state (e.g., temperature, displacement, pressure, concentration)
-- \(\mathcal{N}\) is the differential operator representing the governing physics
+- $u$ = unknown physical solution
+- $\mathcal{N}$ = differential operator representing the governing physics
 
-In a conventional numerical solver such as FEM or FDM, the PDE is solved directly using a computational mesh. In a Physics-Informed Neural Network (PINN), however, the solution is approximated by a neural network:
+Examples include heat transfer, fluid flow, structural dynamics, and electromagnetics, where the governing laws are expressed through differential equations.
 
-\[
+Instead of solving the PDE using traditional numerical methods such as Finite Element Method (FEM) or Finite Difference Method (FDM), a Physics-Informed Neural Network (PINN) approximates the solution using a neural network:
+
+$$
 u_\theta(x,t)
-\]
+$$
 
-where \(\theta\) denotes the trainable weights and biases of the network.
+where:
 
-The key idea of a PINN is that the neural network should not only fit available measurement data but should also obey the governing physical laws. To enforce this, the network prediction is substituted directly into the PDE. Using automatic differentiation, spatial and temporal derivatives of the network output can be computed exactly with respect to its inputs.
+- $x,t$ = spatial and temporal coordinates
+- $\theta$ = trainable neural network parameters (weights and biases)
 
-A PDE residual is then defined as
+The neural network receives the coordinates $(x,t)$ as inputs and predicts the corresponding physical state $u$.
 
-\[
-R(x,t)=\mathcal{N}(u_\theta(x,t))
-\]
+However, obtaining a prediction is not sufficient. The prediction must also satisfy the underlying physical laws. Therefore, the network output is substituted into the governing PDE, and all required derivatives are computed using **automatic differentiation**.
 
-This residual measures the extent to which the neural network prediction violates the governing equation at a given location and time.
+The resulting PDE residual is defined as:
 
-If the predicted solution perfectly satisfies the underlying physics,
+$$
+R = \mathcal{N}(u_\theta)
+$$
 
-\[
-R(x,t)=0
-\]
+The residual acts as a measure of physics violation. It quantifies how far the neural network prediction deviates from the governing equation at any point in the domain.
 
-throughout the entire solution domain. Any non-zero residual indicates that the predicted solution is physically inconsistent.
+If the physical law is satisfied perfectly:
 
-Therefore, during training, the PINN minimizes not only the data error but also the PDE residual. The residual acts as a physics-based penalty that constrains the solution space and prevents the network from learning non-physical behaviors. In essence, the PDE provides additional supervision, allowing PINNs to learn accurate solutions even when only a small amount of measurement data is available.
+$$
+R = 0
+$$
 
+For example, a heat conduction equation
+
+$$
+\frac{\partial T}{\partial t}
+-
+\alpha
+\frac{\partial^2 T}{\partial x^2}
+=0
+$$
+
+would produce the residual
+
+$$
+R =
+\frac{\partial T_\theta}{\partial t}
+-
+\alpha
+\frac{\partial^2 T_\theta}{\partial x^2}
+$$
+
+During training, the PINN minimizes this residual over many collocation points throughout the domain. Consequently, the network is forced not only to fit available data but also to obey the governing physics, allowing accurate learning even when only a small amount of measured data is available.
 ---
 
 ## 3. Physics Loss
