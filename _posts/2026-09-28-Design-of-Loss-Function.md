@@ -287,31 +287,8 @@ PINNs learn everywhere because physics applies everywhere.
 | :--- | :--- | :--- |
 | **Data Loss** | $L_{data} = \frac{1}{N} \sum (T_{pred} - T_{true})^2$<br><br>Based on a few temperature measurements from sensors.<br><br>`Sensor Location` $\rightarrow$ `Measured Temperature` | *"Match the temperatures measured in the experiment."*<br><br>*(Without this term, the network might satisfy physics but not match reality.)* |
 | **Physics Loss** | $L_{physics} = \frac{1}{M} \sum R^2$<br><br>Where the residual is:<br>$R = T_{xx}$ | *"Even where no measurements exist, obey the heat equation."*<br><br>*(Traditional neural networks learn only where data exists. PINNs learn everywhere because physics applies everywhere.)* |
+| **Boundary Condition Loss** | $L_{BC} = (T(0)-100)^2 + (T(L)-0)^2$<br><br>The boundary temperatures must remain fixed. | *"Never violate the known temperatures at the rod boundaries."*<br><br>*(Without this loss, the network could predict physically impossible temperatures at the ends.)* |
 
-
----
-
-## Step 3: Boundary Condition Loss
-
-The boundary temperatures must remain fixed.
-
-Therefore,
-
-$$
-L_{BC}
-=
-(T(0)-100)^2
-+
-(T(L)-0)^2
-$$
-
-### What is this teaching the network?
-
-This term tells the network:
-
-> "Never violate the known temperatures at the rod boundaries."
-
-Without this loss, the network could predict physically impossible temperatures at the ends.
 
 ---
 
