@@ -8,9 +8,7 @@ tags: [Data Science, Deep Learning, AI,PINN]
 math: true
 ---
 
-## Matching Made in Heaven: Pratical Loss Function Design for Engineering Problems
-
-### Bridging the two worlds : World of Data & Physics
+## Bridging the two worlds : World of Data & Physics
 
 For decades, engineers have lived in two different worlds.
 
