@@ -46,6 +46,8 @@ The real magic of PINNs lies in **loss function design**. By carefully choosing 
 <strong>My Insight:</strong> When we look at the model architecture, training process, usage of data, and so on... I realize that the <strong>PINNs are not breaking the rules of the game, but they bend it.<strong> And the bending is done by the loss function and not the neural networks.
 </p>
 
+Let us understand the PINN by working on three examples.
+
 | Example | Type | Network Learns | Unknown Quantity |
 | :--- | :--- | :--- | :--- |
 | Heat Transfer | Forward PINN | $T(x)$ | Temperature Distribution |
