@@ -34,9 +34,9 @@ $$L_{\text{total}} = L_{\text{data}} + L_{\text{physics}} + L_{\text{BC}} + L_{\
 
 where:
 
-- \(L_{\text{data}}\) ensures agreement with measurements,
-- \(L_{\text{physics}}\) enforces the governing ODEs/PDEs,
-- \(L_{\text{BC}}\) enforces boundary conditions,
-- \(L_{\text{IC}}\) enforces initial conditions.
+- $$L_{\text{data}}$$ ensures agreement with measurements.
+- $$L_{\text{physics}}$$ enforces the governing ODEs/PDEs.
+- $$L_{\text{BC}}$$ enforces boundary conditions.
+- $$L_{\text{IC}}$$ enforces initial conditions.
 
 The real magic of PINNs lies in **loss function design**. By carefully choosing which physical constraints to encode and how strongly to enforce them, we can transform sparse measurements into physically consistent solutions, estimate unknown parameters, and even discover hidden system dynamics. In many ways, the success of a PINN is determined less by the neural network architecture itself and more by how intelligently the loss function captures the physics of the problem.
