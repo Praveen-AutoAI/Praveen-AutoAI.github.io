@@ -18,24 +18,9 @@ Let's move from a thermal system to a dynamic mechanical system.
 
 Consider a mass attached to a spring that is subjected to an external force.
 
-```text
-      External Force F(t)
-               ↓
-
-Wall
- |
-/\/\/\/\
- |
-[ Mass m ]
-```
-
 This is one of the most fundamental systems in engineering and appears in many applications:
 
-- Vehicle suspensions
-- Vibration isolators
-- Machine foundations
-- Structural dynamics
-- Robotic actuators
+- Vehicle suspensions, Vibration isolators, Machine foundations, Structural dynamics, Robotic actuators
 
 Suppose we know:
 
