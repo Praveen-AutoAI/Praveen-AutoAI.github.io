@@ -56,9 +56,9 @@ Let us understand the PINN by working on three examples.
 
 
 
-# Example 1: Forward PINN for Steady-State Heat Transfer
+### Example 1: Forward PINN for Steady-State Heat Transfer
 
-## Physical Problem
+#### Physical Problem
 
 Let's start with one of the simplest engineering problems: heat conduction through a metal rod.
 
@@ -86,7 +86,7 @@ Our objective is simple:
 
 ---
 
-## Governing Equation
+### Governing Equation
 
 From Fourier's law of heat conduction, the steady-state heat equation for this problem becomes:
 
@@ -122,7 +122,7 @@ A PINN must discover this temperature profile while simultaneously respecting th
 
 ---
 
-## Boundary Conditions
+### Boundary Conditions
 
 To obtain a unique solution, we must specify the temperatures at the boundaries.
 
@@ -145,7 +145,7 @@ Without them, infinitely many temperature distributions could satisfy the differ
 
 ---
 
-## PINN Representation
+### PINN Representation
 
 Instead of solving the differential equation directly, a PINN uses a neural network to approximate the temperature field.
 
@@ -174,7 +174,7 @@ Training gradually adjusts the weights until the predicted temperature field sat
 
 ---
 
-## PINN Residual
+### PINN Residual
 
 The governing equation requires
 
@@ -226,7 +226,7 @@ Physics Violated
 
 ---
 
-# Loss Function Design
+## Loss Function Design
 
 This is where the real magic of PINNs happens.
 
@@ -380,7 +380,7 @@ Eventually, the network discovers a temperature profile that satisfies all requi
 
 ---
 
-## PyTorch Skeleton
+### PyTorch Skeleton
 
 ```python
 class HeatPINN(nn.Module):
@@ -430,22 +430,5 @@ Even with very few measurements, physics prevents the network from producing unr
 
 ---
 
-## Key Takeaway
 
-> A traditional neural network learns from data alone. A PINN learns from both data and the laws of physics.
 
-For this heat-transfer problem:
-
-```text
-Sparse Temperature Data
-           +
-Heat Equation
-           +
-Boundary Conditions
-           ↓
-         PINN
-           ↓
-Physically Consistent Temperature Field
-```
-
-The most important idea is that the network is not merely fitting points. It is learning a temperature distribution that simultaneously satisfies measurements, boundary conditions, and the governing heat-transfer physics.
