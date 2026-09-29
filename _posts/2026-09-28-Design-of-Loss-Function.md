@@ -360,13 +360,11 @@ The neural network receives the spatial position $$x$$ and predicts temperature 
 
 $\frac{dT}{dx}$         and           $\frac{d^2T}{dx^2}$
 
-<p align="center">
-  $$ \frac{dT}{dx} $$ 
-  <br>
-  and
-  <br>
-  $$ \frac{d^2T}{dx^2} $$
-</p>
+<div align="center">
+
+$$ \frac{dT}{dx} $$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **and** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $$ \frac{d^2T}{dx^2} $$
+
+</div>
 
 
 These derivatives are substituted into the governing heat equation:
