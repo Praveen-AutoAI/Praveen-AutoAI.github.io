@@ -373,4 +373,4 @@ A Physics-Informed Neural Network (PINN) learns from:
 - Boundary Conditions
 - Initial Conditions
 
-all through a single composite loss function.
+all through a single composite loss function when the data availability is a challenge.
