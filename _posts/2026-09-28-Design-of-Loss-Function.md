@@ -95,8 +95,8 @@ $$
 
 where:
 
-- \(T\) = temperature
-- \(x\) = position along the rod
+- $$T$$ = temperature
+- $$x$$ = position along the rod
 
 At first glance, this equation may look abstract.
 
