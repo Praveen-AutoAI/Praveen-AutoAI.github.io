@@ -249,13 +249,7 @@ The network prediction should match these measurements.
 
 The data loss is:
 
-$$
-L_{data}
-=
-\frac{1}{N}
-\sum
-(T_{pred}-T_{true})^2
-$$
+$L_{data} = \frac{1}{N} \sum (T_{pred} - T_{true})^2$
 
 ### What is this teaching the network?
 
@@ -271,18 +265,11 @@ Without this term, the network might satisfy physics but not match reality.
 
 The residual is
 
-$$
-R=T_{xx}
-$$
+$$ R=T_{xx} $$
 
 The physics loss becomes:
 
-$$
-L_{physics}
-=
-\frac{1}{M}
-\sum R^2
-$$
+$L_{physics} = \frac{1}{M} \sum R^2$
 
 ### What is this teaching the network?
 
@@ -295,6 +282,12 @@ This is the most important feature of PINNs.
 Traditional neural networks learn only where data exists.
 
 PINNs learn everywhere because physics applies everywhere.
+
+| Loss Component | Description & Formula | What it Teaches the Network |
+| :--- | :--- | :--- |
+| **Data Loss** | $L_{data} = \frac{1}{N} \sum (T_{pred} - T_{true})^2$<br><br>Based on a few temperature measurements from sensors.<br><br>`Sensor Location` $\rightarrow$ `Measured Temperature` | *"Match the temperatures measured in the experiment."*<br><br>*(Without this term, the network might satisfy physics but not match reality.)* |
+| **Physics Loss** | $L_{physics} = \frac{1}{M} \sum R^2$<br><br>Where the residual is:<br>$R = T_{xx}$ | *"Even where no measurements exist, obey the heat equation."*<br><br>*(Traditional neural networks learn only where data exists. PINNs learn everywhere because physics applies everywhere.)* |
+
 
 ---
 
