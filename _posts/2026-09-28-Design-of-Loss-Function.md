@@ -422,6 +422,7 @@ L_{\text{IC}}
 \left(\dot{x}(0)-v_0\right)^2
 $$
 
+
 This term teaches the network:
 
 > "Start the trajectory from the correct displacement and velocity."
