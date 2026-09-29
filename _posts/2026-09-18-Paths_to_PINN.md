@@ -32,7 +32,7 @@ This type of challenge appears throughout engineering:
 - Reconstruction: Using the available data and physical laws to infer the unknowns.
 
 
-Key Insight:
+Analogy:
 > Think of a student solving a physics exam.
 > A normal neural network is like a student who only memorizes past answers.
 > A PINN is like a student who actually knows the physical laws.
