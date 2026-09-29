@@ -361,7 +361,7 @@ the objective is to train a neural network that predicts the displacement respon
 
 The first component of the loss function ensures that the predicted displacement matches the measured displacement data:
 
-$L_{\text{data}} = \frac{1}{N} \sum_{i=1}^{N} \left( x_{\text{pred},i} - x_{\text{true},i} \right)^2$
+$$L_{\text{data}} = \frac{1}{N} \sum_{i=1}^{N} \left( x_{\text{pred},i} - x_{\text{true},i} \right)^2$$
 
 This term teaches the network:
 
