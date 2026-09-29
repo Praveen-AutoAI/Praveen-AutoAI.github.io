@@ -242,7 +242,7 @@ Instead of learning only from data, the network learns from multiple sources of 
 | **Boundary Condition Loss** | $L_{BC} = (T(0)-100)^2 + (T(L)-0)^2$<br><br>The boundary temperatures must remain fixed. | *"Never violate the known temperatures at the rod boundaries."*<br><br>*(Without this loss, the network could predict physically impossible temperatures at the ends.)* |
 
 <p style="color:blue;">
-<strong>My Insight:</strong> Without the physics loss, the neural network might learn the physically correct representation, but the chances are very low . The network uses brute force to map the input to output and less likely to learn the governing law of the system. May be yes if the data is abundant and of good quality.<strong>
+<strong>My Insight:</strong> Without the physics loss, the neural network might learn the physically correct representation, but the chances are very low . The network uses brute force to map the input to output and less likely to learn the governing law of the system. May be yes if the data is abundant and of good quality<strong>
 </p>
 
 ---
