@@ -348,5 +348,61 @@ Even with very few measurements, physics prevents the network from producing unr
 
 ---
 
+### Example: 3 Inverse PINN for Heat Transfer Parameter Identification
+
+In a traditional heat transfer problem, the thermal conductivity \(k\) of a material is already known. Engineers use the governing heat equation and boundary conditions to predict the temperature distribution inside the material. This is called a **forward problem**.
+
+An **Inverse Physics-Informed Neural Network (Inverse PINN)** solves the opposite problem. Instead of knowing the conductivity and predicting temperature, we start with a few measured temperature values and use them to estimate the unknown conductivity \(k\).
+
+Consider a metal rod maintained at \(100^\circ C\) on one end and \(0^\circ C\) on the other, with internal heat generation \(q\). Temperature sensors placed along the rod provide measured temperature data. The objective is to identify the material's thermal conductivity.
+
+The neural network receives the spatial position \(x\) and predicts temperature \(T(x)\). Unlike a standard PINN, the conductivity \(k\) is also treated as a trainable parameter. During training, automatic differentiation computes derivatives such as:
+
+\[
+\frac{dT}{dx}
+\]
+
+and
+
+\[
+\frac{d^2T}{dx^2}
+\]
+
+These derivatives are substituted into the governing heat equation:
+
+\[
+k\frac{d^2T}{dx^2}+q=0
+\]
+
+to form the physics residual:
+
+\[
+R = kT_{xx} + q
+\]
+
+The network minimizes three losses simultaneously:
+
+- **Data Loss (\(L_{data}\))**: Matches measured temperatures.
+- **Physics Loss (\(L_{physics}\))**: Enforces the heat equation.
+- **Boundary Condition Loss (\(L_{BC}\))**: Satisfies boundary temperatures.
+
+The total loss is:
+
+\[
+L_{total}=L_{data}+L_{physics}+L_{BC}
+\]
+
+As training progresses, both the neural network weights and conductivity \(k\) are updated. Eventually, the predicted temperature curve matches the measurements while also satisfying the governing physics.
+
+The final result is a physically consistent temperature field and an accurate estimate of the unknown thermal conductivity, even when only limited measurement data are available.
+
+---
+
+## Key Takeaway
+
+**Temperature Measurements + Physics Laws → Inverse PINN → Thermal Conductivity Identification**
+
+Unlike conventional machine learning models that rely only on data, an Inverse PINN combines measured data with the governing heat-transfer equation, enabling reliable parameter estimation even when measurements are sparse.
+
 
 
