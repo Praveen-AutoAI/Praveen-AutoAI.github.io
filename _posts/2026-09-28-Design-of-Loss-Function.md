@@ -235,60 +235,15 @@ Instead of learning only from data, the network learns from multiple sources of 
 
 ---
 
-## Step 1: Data Loss
-
-Assume we have a few temperature measurements from sensors.
-
-```text
-Sensor Location
-       ↓
-Measured Temperature
-```
-
-The network prediction should match these measurements.
-
-The data loss is:
-
-$L_{data} = \frac{1}{N} \sum (T_{pred} - T_{true})^2$
-
-### What is this teaching the network?
-
-The data loss tells the network:
-
-> "Match the temperatures measured in the experiment."
-
-Without this term, the network might satisfy physics but not match reality.
-
----
-
-## Step 2: Physics Loss
-
-The residual is
-
-$$ R=T_{xx} $$
-
-The physics loss becomes:
-
-$L_{physics} = \frac{1}{M} \sum R^2$
-
-### What is this teaching the network?
-
-The physics loss tells the network:
-
-> "Even where no measurements exist, obey the heat equation."
-
-This is the most important feature of PINNs.
-
-Traditional neural networks learn only where data exists.
-
-PINNs learn everywhere because physics applies everywhere.
-
 | Loss Component | Description & Formula | What it Teaches the Network |
 | :--- | :--- | :--- |
 | **Data Loss** | $L_{data} = \frac{1}{N} \sum (T_{pred} - T_{true})^2$<br><br>Based on a few temperature measurements from sensors.<br><br>`Sensor Location` $\rightarrow$ `Measured Temperature` | *"Match the temperatures measured in the experiment."*<br><br>*(Without this term, the network might satisfy physics but not match reality.)* |
 | **Physics Loss** | $L_{physics} = \frac{1}{M} \sum R^2$<br><br>Where the residual is:<br>$R = T_{xx}$ | *"Even where no measurements exist, obey the heat equation."*<br><br>*(Traditional neural networks learn only where data exists. PINNs learn everywhere because physics applies everywhere.)* |
 | **Boundary Condition Loss** | $L_{BC} = (T(0)-100)^2 + (T(L)-0)^2$<br><br>The boundary temperatures must remain fixed. | *"Never violate the known temperatures at the rod boundaries."*<br><br>*(Without this loss, the network could predict physically impossible temperatures at the ends.)* |
 
+<p style="color:blue;">
+<strong>My Insight:</strong> Without the physics loss, the neural network might learn the physically correct representation, but the chances are very low . The network uses brute force to map the input to output and less likely to learn the governing law of the system. May be yes if the data is abundant and of good quality.<strong>
+</p>
 
 ---
 
