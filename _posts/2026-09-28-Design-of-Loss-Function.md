@@ -441,7 +441,8 @@ The loss function acts as the **teacher** of the PINN:
 - $$L_{\text{physics}}$$ teaches the network to obey Newton's Second Law.
 - $$L_{\text{IC}}$$ teaches the network to start from the correct initial state.
 
-The magic of PINNs is that they do not simply fit data points. They learn a displacement trajectory that is **consistent with measurements, initial conditions, and the underlying laws of mechanics**, resulting in a physically meaningful solution even when only a limited amount of data is available.
+### Forward PINN for Spring-Mass System 
+![Inverse_PINN](/assets/images/PINN/I_PINN_7.png)
 
 ---
 
