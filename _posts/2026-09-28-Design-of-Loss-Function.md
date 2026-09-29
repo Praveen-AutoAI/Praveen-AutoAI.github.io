@@ -358,14 +358,15 @@ Consider a metal rod maintained at $$100^\circ C$$ on one end and $$0^\circ C$$ 
 
 The neural network receives the spatial position $$x$$ and predicts temperature $$T(x)$$. Unlike a standard PINN, the conductivity $$k$$ is also treated as a trainable parameter. During training, automatic differentiation computes derivatives such as
 
-$\frac{dT}{dx}$         and           $\frac{d^2T}{dx^2}$
+$$
+\frac{dT}{dx}
+$$
 
-<div align="center">
+and
 
-$$ \frac{dT}{dx} $$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **and** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $$ \frac{d^2T}{dx^2} $$
-
-</div>
-
+$$
+\frac{d^2T}{dx^2}.
+$$
 
 These derivatives are substituted into the governing heat equation:
 
