@@ -26,7 +26,7 @@ This raises an interesting question:
 
 This simple but powerful idea gives birth to **Physics-Informed Neural Networks (PINNs)**.
 
-Unlike conventional neural networks, PINNs are not trained solely to minimize prediction error. Instead, they are trained to satisfy the governing equations of the system as well. The mechanism that enables this is the **loss function**, which can be viewed as the "teacher" guiding the network during training.
+Unlike conventional neural networks, PINNs are not trained solely to minimize prediction error. Instead, they are trained to satisfy the governing equations of the system as well. The mechanism that enables this is the **loss function**, which can be viewed as the "teacher" guiding the network during training by **penalizing the wrong behavior.**
 
 A typical PINN loss takes the form:
 
