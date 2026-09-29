@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Paths to PINNs: Forward and Inverse Physics-Informed Neural Networks for Small-Data Engineering Problems "
-description: "Inverse Physics-Informed Neural Networks (Inverse PINNs): A Beginner-Friendly Introduction with Engineering Applications"
+description: "Physics-Informed Neural Networks (PINNs): A Beginner-Friendly Introduction with Engineering Applications"
 date: 2026-09-07
 categories: [Machine Learning, Engineering, Scientific Machine Learning,]
 tags: [Data Science, Deep Learning, AI]
