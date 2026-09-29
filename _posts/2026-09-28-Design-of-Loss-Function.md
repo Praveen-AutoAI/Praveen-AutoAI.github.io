@@ -57,7 +57,7 @@ Let us understand the PINN by working on three examples.
 
 
 
-### Example 1: Forward PINN for Steady-State Heat Transfer
+## Example 1: Forward PINN for Steady-State Heat Transfer
 
 ### Physical Problem
 
@@ -347,7 +347,7 @@ This equation acts like a built-in engineering supervisor that continuously chec
 Even with very few measurements, physics prevents the network from producing unrealistic temperature profiles.
 
 ---
-### Example 2: Forward-PINN for Spring-mass system
+## Example 2: Forward-PINN for Spring-mass system
 
 For the spring-mass system governed by
 
@@ -391,13 +391,8 @@ $$
 
 The physics loss penalizes violations of Newton's Second Law:
 
-$$
-L_{\text{physics}}
-=
-\frac{1}{M}
-\sum_{j=1}^{M}
-R_j^2
-$$
+$$L_{\text{physics}} = \frac{1}{M} \sum_{j=1}^{M} R_j^2$$
+
 
 This term teaches the network:
 
