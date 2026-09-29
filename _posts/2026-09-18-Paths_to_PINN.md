@@ -183,28 +183,44 @@ The network simply tries to reduce prediction error.
 
 ## 2. PINN Idea
 
-Suppose the system is governed by a PDE:
+Suppose a physical system is governed by a partial differential equation (PDE):
 
-$$ \mathcal{N}(u)=0 $$
+\[
+\mathcal{N}(u)=0
+\]
 
 where:
-- $u$ = unknown solution  
-- $\mathcal{N}$ = differential operator
 
+- \(u\) is the unknown physical state (e.g., temperature, displacement, pressure, concentration)
+- \(\mathcal{N}\) is the differential operator representing the governing physics
 
-The neural network predicts:
+In a conventional numerical solver such as FEM or FDM, the PDE is solved directly using a computational mesh. In a Physics-Informed Neural Network (PINN), however, the solution is approximated by a neural network:
 
-$$ u_\theta(x,t) $$
+\[
+u_\theta(x,t)
+\]
 
-If the prediction violates the PDE, we should penalize it.
+where \(\theta\) denotes the trainable weights and biases of the network.
 
-Define the PDE residual:
+The key idea of a PINN is that the neural network should not only fit available measurement data but should also obey the governing physical laws. To enforce this, the network prediction is substituted directly into the PDE. Using automatic differentiation, spatial and temporal derivatives of the network output can be computed exactly with respect to its inputs.
 
-$$ R = \mathcal{N}(u_\theta) $$
+A PDE residual is then defined as
 
-If physics is satisfied perfectly:
+\[
+R(x,t)=\mathcal{N}(u_\theta(x,t))
+\]
 
-$$ R = 0 $$
+This residual measures the extent to which the neural network prediction violates the governing equation at a given location and time.
+
+If the predicted solution perfectly satisfies the underlying physics,
+
+\[
+R(x,t)=0
+\]
+
+throughout the entire solution domain. Any non-zero residual indicates that the predicted solution is physically inconsistent.
+
+Therefore, during training, the PINN minimizes not only the data error but also the PDE residual. The residual acts as a physics-based penalty that constrains the solution space and prevents the network from learning non-physical behaviors. In essence, the PDE provides additional supervision, allowing PINNs to learn accurate solutions even when only a small amount of measurement data is available.
 
 ---
 
