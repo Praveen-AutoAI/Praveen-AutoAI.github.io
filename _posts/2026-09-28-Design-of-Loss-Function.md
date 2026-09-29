@@ -394,5 +394,9 @@ As training progresses, both the neural network weights and conductivity $$k$$ a
 
 The final result is a physically consistent temperature field and an accurate estimate of the unknown thermal conductivity, even when only limited measurement data are available.
 
+### Inverse PINN for Heat Transfer 
+![Inverse_PINN](/assets/images/PINN/I_PINN_6.png)
+
+assets/images/PINN
 
 
