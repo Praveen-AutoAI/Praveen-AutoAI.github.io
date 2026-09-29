@@ -347,6 +347,133 @@ This equation acts like a built-in engineering supervisor that continuously chec
 Even with very few measurements, physics prevents the network from producing unrealistic temperature profiles.
 
 ---
+## Loss Function Design: The Heart of a Forward PINN
+
+The real power of a Physics-Informed Neural Network (PINN) lies not in the neural network architecture itself, but in how the **loss function is designed**. Unlike conventional neural networks that learn only from measurement data, a PINN learns from both **data** and **physics**.
+
+For the spring-mass system governed by
+
+$$
+m\ddot{x}+kx=F(t),
+$$
+
+the objective is to train a neural network that predicts the displacement response $$x(t)$$ while simultaneously satisfying Newton's Second Law.
+
+### 1. Data Loss: Learning from Measurements
+
+The first component of the loss function ensures that the predicted displacement matches the measured displacement data:
+
+$$
+L_{\text{data}}
+=
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left(
+x_{\text{pred},i}
+-
+x_{\text{true},i}
+\right)^2
+$$
+
+This term teaches the network:
+
+> "Match the measured motion of the system."
+
+Without this term, the network may satisfy the physics equation but fail to reproduce the observed behavior.
+
+---
+
+### 2. Physics Loss: Enforcing Newton's Law
+
+Using automatic differentiation, the network computes the velocity and acceleration:
+
+$$
+\dot{x}=\frac{dx}{dt}
+$$
+
+$$
+\ddot{x}=\frac{d^2x}{dt^2}
+$$
+
+The governing equation residual becomes:
+
+$$
+R = m\ddot{x}+kx-F(t)
+$$
+
+The physics loss penalizes violations of Newton's Second Law:
+
+$$
+L_{\text{physics}}
+=
+\frac{1}{M}
+\sum_{j=1}^{M}
+R_j^2
+$$
+
+This term teaches the network:
+
+> "No matter what displacement you predict, it must obey the laws of mechanics."
+
+---
+
+### 3. Initial Condition Loss
+
+The motion must start from the correct physical state:
+
+$$
+x(0)=x_0
+$$
+
+$$
+\dot{x}(0)=v_0
+$$
+
+The initial condition loss is:
+
+$$
+L_{\text{IC}}
+=
+\left(x(0)-x_0\right)^2
++
+\left(\dot{x}(0)-v_0\right)^2
+$$
+
+This term teaches the network:
+
+> "Start the trajectory from the correct displacement and velocity."
+
+---
+
+### 4. Total Loss
+
+All objectives are combined into a single optimization target:
+
+$$
+L_{\text{total}}
+=
+L_{\text{data}}
++
+L_{\text{physics}}
++
+L_{\text{IC}}
+$$
+
+During training, the optimizer continuously updates the neural network weights to minimize this total loss.
+
+---
+
+## Key Insight
+
+The loss function acts as the **teacher** of the PINN:
+
+- $$L_{\text{data}}$$ teaches the network to match measurements.
+- $$L_{\text{physics}}$$ teaches the network to obey Newton's Second Law.
+- $$L_{\text{IC}}$$ teaches the network to start from the correct initial state.
+
+The magic of PINNs is that they do not simply fit data points. They learn a displacement trajectory that is **consistent with measurements, initial conditions, and the underlying laws of mechanics**, resulting in a physically meaningful solution even when only a limited amount of data is available.
+
+---
 
 ### Example: 3 Inverse-PINN for Heat Transfer Parameter Identification
 
