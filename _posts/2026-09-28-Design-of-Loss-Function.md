@@ -251,15 +251,7 @@ Instead of learning only from data, the network learns from multiple sources of 
 
 All three objectives are combined together.
 
-$$
-L_{total}
-=
-L_{data}
-+
-L_{physics}
-+
-L_{BC}
-$$
+$L_{total} = L_{data} + L_{physics} + L_{BC}$
 
 During training, the optimizer minimizes this total loss.
 
