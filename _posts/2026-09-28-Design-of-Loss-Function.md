@@ -41,12 +41,11 @@ where:
 
 The real magic of PINNs lies in **loss function design**. By carefully choosing which physical constraints to encode and how strongly to enforce them, we can transform sparse measurements into physically consistent solutions, estimate unknown parameters, and even discover hidden system dynamics. In many ways, the success of a PINN is determined less by the neural network architecture itself and more by how intelligently the loss function captures the physics of the problem.
 
-
 <p style="color:blue;">
-<strong>My Insight:</strong> When we look at the model architecture, training process, usage of data, and so on... I realize that the <strong>PINNs are not breaking the rules of the game, but they bend it.<strong> And the bending is done by the loss function and not the neural networks.
+<strong>My Insight:</strong> When we look at the model architecture, training process, usage of data, and so on... I realize that the <strong>PINNs are not breaking the rules of the game, but they bend it.</strong> And the bending is done by the loss function and not the neural networks.
 </p>
 
---- 
+---
 
 Let us understand the PINN by working on three examples.
 
