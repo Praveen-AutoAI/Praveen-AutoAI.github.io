@@ -30,17 +30,7 @@ Unlike conventional neural networks, PINNs are not trained solely to minimize pr
 
 A typical PINN loss takes the form:
 
-$$
-L_{\text{total}}
-=
-L_{\text{data}}
-+
-L_{\text{physics}}
-+
-L_{\text{BC}}
-+
-L_{\text{IC}}
-$$
+$$L_{\text{total}} = L_{\text{data}} + L_{\text{physics}} + L_{\text{BC}} + L_{\text{IC}}$$
 
 where:
 
