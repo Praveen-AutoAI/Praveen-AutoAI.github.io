@@ -414,14 +414,7 @@ $$
 
 The initial condition loss is:
 
-$$
-L_{\text{IC}}
-=
-\left(x(0)-x_0\right)^2
-+
-\left(\dot{x}(0)-v_0\right)^2
-$$
-
+$$L_{\text{IC}} = \left(x(0)-x_0\right)^2 + \left(\dot{x}(0)-v_0\right)^2$$
 
 This term teaches the network:
 
@@ -433,15 +426,8 @@ This term teaches the network:
 
 All objectives are combined into a single optimization target:
 
-$$
-L_{\text{total}}
-=
-L_{\text{data}}
-+
-L_{\text{physics}}
-+
-L_{\text{IC}}
-$$
+$$L_{\text{total}} = L_{\text{data}} + L_{\text{physics}} + L_{\text{IC}}$$
+
 
 During training, the optimizer continuously updates the neural network weights to minimize this total loss.
 
