@@ -225,25 +225,21 @@ $$
 R = 0
 $$
 
-For example, a heat conduction equation
+For example Heat equation:
 
-$$
-\frac{\partial T}{\partial t}
--
-\alpha
-\frac{\partial^2 T}{\partial x^2}
-=0
-$$
+$$ \frac{\partial T}{\partial t} - \alpha \frac{\partial^2 T}{\partial x^2} = 0 $$
 
-would produce the residual
+The neural network predicts:
 
-$$
-R =
-\frac{\partial T_\theta}{\partial t}
--
-\alpha
-\frac{\partial^2 T_\theta}{\partial x^2}
-$$
+$$ T_\theta(x,t) $$
+
+Substituting the network prediction into the PDE produces the residual:
+
+$$ R = \frac{\partial T_\theta}{\partial t} - \alpha \frac{\partial^2 T_\theta}{\partial x^2} $$
+
+If the prediction perfectly satisfies the governing physics:
+
+$$ R = 0 $$
 
 During training, the PINN minimizes this residual over many collocation points throughout the domain. Consequently, the network is forced not only to fit available data but also to obey the governing physics, allowing accurate learning even when only a small amount of measured data is available.
 ---
