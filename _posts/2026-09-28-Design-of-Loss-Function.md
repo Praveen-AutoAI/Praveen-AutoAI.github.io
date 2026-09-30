@@ -37,6 +37,83 @@ where:
 - $$L_{\text{BC}}$$ enforces boundary conditions.
 - $$L_{\text{IC}}$$ enforces initial conditions.
 
+  A typical PINN loss takes the form:
+
+$$
+L_{\text{total}}
+=
+\lambda_{\text{data}}L_{\text{data}}
++
+\lambda_{\text{physics}}L_{\text{physics}}
++
+\lambda_{\text{BC}}L_{\text{BC}}
++
+\lambda_{\text{IC}}L_{\text{IC}}
+$$
+
+where:
+
+- $$\lambda_{\text{data}}$$ controls the importance of matching the measurement data.
+- $$\lambda_{\text{physics}}$$ controls how strongly the governing ODE/PDE is enforced.
+- $$\lambda_{\text{BC}}$$ controls adherence to the boundary conditions.
+- $$\lambda_{\text{IC}}$$ controls adherence to the initial conditions.
+
+The individual loss components are:
+
+$$
+L_{\text{data}}
+=
+\frac{1}{N_d}
+\sum_{i=1}^{N_d}
+\left(
+u_i^{\text{pred}}
+-
+u_i^{\text{true}}
+\right)^2
+$$
+
+$$
+L_{\text{physics}}
+=
+\frac{1}{N_r}
+\sum_{j=1}^{N_r}
+R_j^2
+$$
+
+$$
+L_{\text{BC}}
+=
+\frac{1}{N_{BC}}
+\sum_{k=1}^{N_{BC}}
+\left(
+u_k^{\text{pred}}
+-
+u_k^{\text{BC}}
+\right)^2
+$$
+
+$$
+L_{\text{IC}}
+=
+\frac{1}{N_{IC}}
+\sum_{m=1}^{N_{IC}}
+\left(
+u_m^{\text{pred}}
+-
+u_m^{\text{IC}}
+\right)^2
+$$
+
+where:
+
+- $$R$$ is the PDE residual computed using automatic differentiation.
+- $$N_d$$ is the number of measurement points.
+- $$N_r$$ is the number of collocation (physics) points.
+- $$N_{BC}$$ is the number of boundary-condition points.
+- $$N_{IC}$$ is the number of initial-condition points.
+
+> **Key Idea:** The weighting coefficients $$\lambda_{\text{data}}, \lambda_{\text{physics}}, \lambda_{\text{BC}}, \lambda_{\text{IC}}$$ determine the relative importance of data fidelity and physical consistency. In practice, tuning these weights is often as important as designing the neural network architecture itself.
+
 The real magic of PINNs lies in **loss function design**. By carefully choosing which physical constraints to encode and how strongly to enforce them, we can transform sparse measurements into physically consistent solutions, estimate unknown parameters, and even discover hidden system dynamics. In many ways, the success of a PINN is determined less by the neural network architecture itself and more by how intelligently the loss function captures the physics of the problem.
 
 <p style="color:blue;">
